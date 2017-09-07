@@ -14,7 +14,10 @@ open ScribbleGenerativeTypeProvider.TypeGeneration
 open ScribbleGenerativeTypeProvider.DomainModel
 open ScribbleGenerativeTypeProvider.CommunicationAgents
 open ScribbleGenerativeTypeProvider.Regarder
+open ScribbleGenerativeTypeProvider.RefinementTypes
+open ScribbleGenerativeTypeProvider.RefinementTypesDict
 open ScribbleGenerativeTypeProvider.AsstScribbleParser
+
 open System.Text.RegularExpressions
 open System.Text
 
@@ -85,6 +88,8 @@ type GenerativeTypeProvider(config : TypeProviderConfig) as this =
         let agentRouter = createRouter (DomainModel.config)  listOfRoles explicitConnection
         Regarder.addAgent "agent" agentRouter 
         let cache = createCache
+        let assertionLookUp = createlookUp
+        Regarder.initAssertionDict "agent" assertionLookUp
         Regarder.initCache "cache" cache
 
         addProperties listTypes listTypes (Set.toList stateSet) (fst tupleLabel) (fst tupleRole) protocol

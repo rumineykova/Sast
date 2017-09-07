@@ -48,4 +48,4 @@ let sh = new SH()
 
 printPoints (sh.Start())
 
-    
+fun p2 res z -> z = p2 && res = 0

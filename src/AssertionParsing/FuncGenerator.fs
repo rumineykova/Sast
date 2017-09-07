@@ -4,7 +4,10 @@ open AssertionParsing.AssertionParser
 open AssertionParsing.Visitors
 
 module FuncGenerator =
-    let printVarSeq (setV: Set<string>) = setV |> Set.toList  |> String.concat " " 
+    
+    let printVarSeq (setV: Set<string>) = 
+        let newSet = setV |> Set.map(fun x -> sprintf "(%s:int)" x)
+        newSet |> Set.toList  |> String.concat " " 
 
     let genLambdaFromExpr expr = 
         let args = getVars expr

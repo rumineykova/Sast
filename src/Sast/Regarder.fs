@@ -63,3 +63,22 @@ let addVars name (keys: string list) (values:int []) =
 let addVarsBufs name (keys: string list) (values:Buf<int> []) = 
     //List.zip keys values |> List.iter (fun (key, value)->  cache.Item(name).Add(key, value))
     keys |> List.iteri (fun i key ->  cache.Item(name).Add(key, values.[i].getValue()))
+
+open ScribbleGenerativeTypeProvider.RefinementTypesDict
+
+let mutable lookUp = Map.empty<string, LoopUpDict>
+
+let initAssertionDict name (assertLookip:LoopUpDict) = 
+    lookUp <- lookUp.Add(name, assertLookip)
+ 
+let getIndex name  = 
+    lookUp.Item(name).Index()
+
+let addToDict name elem = 
+    lookUp.Item(name).addToDict(elem)
+
+let runFooFunction name foo = 
+    lookUp.Item(name).runFooFunction(foo)
+
+let addArgValue name argName rcv = 
+    lookUp.Item(name).addArgValue argName rcv 

@@ -1,6 +1,5 @@
 ﻿module ScribbleGenerativeTypeProvider.RefinementTypes
 
-
 open FSharp.Core.CompilerServices
 open Microsoft.FSharp.Compiler.Interactive.Shell
 open Microsoft.FSharp.Compiler.SourceCodeServices
@@ -159,10 +158,11 @@ module RefinementTypes =
                 else
                     None
         helper fn args
-
+    
     // TODO : Provide error handling, this can throw weird exceptions need to wrap that properly
     let untypedEvaluation ruleFunction =
-        let evaluatedExpression = fsiSession.EvalExpression (ruleFunction)
+        //let test = "fun (p2:int) (res:int) (z:int) -> z = p2 && res = 0"
+        let evaluatedExpression = fsiSession.EvalExpression(ruleFunction)
         evaluatedExpression.Value.ReflectionValue
         |> invokeUntype 
         
@@ -200,75 +200,8 @@ module RefinementTypes =
 
     (*** ****************** ***)
     (***   Local Functions  ***)
-    (*** ****************** ***)    
-    let dictFunInfos = ConcurrentDictionary<string,FnRuleInfos>()
-    let dictArgInfos = ConcurrentDictionary<string,ArgInfos>()
+    (*** ****************** ***)
 
-    let (|TryGetValueDict|_|) key (dict:ConcurrentDictionary<'a,'b>) =
-        match dict.TryGetValue key with
-        | true, args -> Some args
-        | _ -> None
-
-
-    let addFooFunction (fnRule:FnRule) = 
-        let _ = dictFunInfos.AddOrUpdate(fnRule.fnName,fnRule.fnInfos,(fun _ _ -> fnRule.fnInfos))        
-        ()
-
-    // TODO : Throw exception if new arg type is different from old one
-    let addArgInfos (arg:Arg) =
-        let valueFactory _ (oldArgInfos:ArgInfos) =
-            arg.argInfos
-
-        let _ = dictArgInfos.AddOrUpdate(arg.argName,arg.argInfos,valueFactory)        
-        ()
-    
-    let getArgValue (arg:string) = 
-        match dictArgInfos with
-        | TryGetValueDict arg args -> 
-            match args.value with
-            | None -> failwith "no value has been initialize yet"
-            | Some value -> value
-        | _ -> failwith "This arg hasn't been added yet to the dictionary"
-    
-    let getFooValue (fooName:string) = 
-        match dictFunInfos with
-        | TryGetValueDict fooName fnRule -> fnRule
-        | _ -> failwith "This function doesn't exist in the dictionary yet"
-
-    
-    (*** ********************** ***)
-    (***   Modular Functions    ***)
-    (*** ********************** ***)    
-
-    /// run the foo function built at compile-time 
-    let runFooFunction (fooName:string) =
-        let fnRule = getFooValue fooName
-        let untypedFn = fnRule.untypedFn
-        let args = 
-            let tmp = fnRule.argNames
-            [ for arg in tmp do
-                yield getArgValue arg
-            ]
-        untypedFn args
-
-    /// at compile-time (we add all the [functions + arguments] from the assertion to the dictionaries)
-    let addToDict (fnRule,argList) = 
-        addFooFunction fnRule
-        for arg in argList do
-            addArgInfos arg
-    
-    /// at runtime (we add the value, associated to an argument and provided by the user, inside the arguments dictionary. We will then grab the value and evaluate the 
-    /// assertions with the values put at run-time. It's also done this way, for latter when we'll have compile-time solutions.)
-    let addArgValue (argName:string) (value:obj) =
-        match dictArgInfos with
-        | TryGetValueDict argName args -> 
-            let newArgs =
-                {   argName = argName 
-                    argInfos = { args with value = Some value }
-                } 
-            addArgInfos newArgs
-        | _ -> failwith "This arg hasn't been added yet to the dictionary"
-        
 
 
 //    let fstEl = createFnRule 1 fstRule

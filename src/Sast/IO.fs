@@ -68,8 +68,8 @@ let serPayloads (args:Expr list) (listTypes:string list) (payloadDelim:string) (
                     let ranFoo = 
                         // No Assertion provided
                         if foo <> "" then 
-                            RefinementTypes.RefinementTypes.addArgValue argName spliced
-                            RefinementTypes.RefinementTypes.runFooFunction foo
+                            Regarder.addArgValue "agent" argName spliced
+                            Regarder.runFooFunction "agent" foo
                         else
                             Some true
                     match ranFoo with
@@ -94,8 +94,8 @@ let serPayloads (args:Expr list) (listTypes:string list) (payloadDelim:string) (
                     let ranFoo = 
                         // No Assertion provided
                         if foo <> "" then 
-                            RefinementTypes.RefinementTypes.addArgValue argName spliced
-                            RefinementTypes.RefinementTypes.runFooFunction foo
+                            Regarder.addArgValue "agent" argName spliced
+                            Regarder.runFooFunction "agent" foo
                         else
                             Some true
                     match ranFoo with
@@ -184,9 +184,9 @@ let deserialize (args: Expr list) (listTypes:string list) (messages: _ list) (ro
             // No Assertion provided
             if foo <> "" then 
                 (argsNames,received)
-                ||> List.map2(fun argName rcv -> RefinementTypes.RefinementTypes.addArgValue argName rcv )
+                ||> List.map2(fun argName rcv -> Regarder.addArgValue "agent" argName rcv )
                 |> ignore
-                RefinementTypes.RefinementTypes.runFooFunction foo
+                Regarder.runFooFunction "agent" foo
             else
                 Some true
 
@@ -214,9 +214,9 @@ let deserializeAsync (args: Expr list)  (listTypes:string list) (messages: _ lis
                         // No Assertion provided
                         if foo <> "" then 
                             (argsNames,received)
-                            ||> List.map2(fun argName rcv -> RefinementTypes.RefinementTypes.addArgValue argName rcv )
+                            ||> List.map2(fun argName rcv -> Regarder.addArgValue "agent" argName rcv )
                             |> ignore
-                            RefinementTypes.RefinementTypes.runFooFunction foo
+                            Regarder.runFooFunction "agent" foo
                         else
                             Some true
                     match ranFoo with
@@ -243,9 +243,9 @@ let deserializeChoice (args: Expr list) (listTypes:string list) argsNames foo =
             // No Assertion provided
             if foo <> "" then 
                 (argsNames,received)
-                ||> List.map2(fun argName rcv -> RefinementTypes.RefinementTypes.addArgValue argName rcv )
+                ||> List.map2(fun argName rcv -> Regarder.addArgValue "agent" argName rcv)
                 |> ignore
-                RefinementTypes.RefinementTypes.runFooFunction foo
+                Regarder.runFooFunction "agent" foo
             else
                 Some true
 
