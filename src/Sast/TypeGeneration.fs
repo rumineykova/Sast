@@ -271,7 +271,7 @@ let internal makeLabelTypes (fsmInstance:ScribbleProtocole.Root []) (providedLis
                                                 let exprDes = deserializeChoice buffers listPayload
                                                 Expr.Sequential(exprDes,exprState)//*)                                             
 
-                                                let listPayload = (payloadsToListStr event.Payload)
+                                                let listPayload = (payloadsToList event.Payload)
 
                                                 let assertionString = event.Assertion
 
@@ -328,7 +328,7 @@ let internal makeLabelTypes (fsmInstance:ScribbleProtocole.Root []) (providedLis
                                                 fun args-> 
                                                     let buffers = args.Tail.Tail
 
-                                                    let listPayload = (payloadsToListStr event.Payload)
+                                                    let listPayload = (payloadsToList event.Payload)
 
                                                     let assertionString = event.Assertion
 
@@ -414,7 +414,7 @@ let invokeCodeOnSend (args:Expr list) (payload: ScribbleProtocole.Payload [])  (
 
     //let buf = ser buffers
     let exprAction = 
-        <@@ let buf = %(serialize fullName buffers payloadNames (payloadDelim.Head) (endDelim.Head) (labelDelim.Head) argsName fooName)
+        <@@ let buf = %(serialize fullName buffers types (payloadDelim.Head) (endDelim.Head) (labelDelim.Head) argsName fooName)
             Regarder.sendMessage "agent" (buf:byte[]) role @@>
 
     let fn eq =
