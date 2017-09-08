@@ -9,4 +9,4 @@ LocalRole:
   Port: 5005
 
 ScribblePath:
-  FileName: "C:/PathToScribble/scribblec.bat"
+  FileName: "C:/PathToScribble/scribblecass.bat"

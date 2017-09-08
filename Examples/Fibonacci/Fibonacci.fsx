@@ -28,7 +28,7 @@ type Fib =
 
 let numIter = 3
 let S = Fib.S.instance
-let rec fibrec a b iter (c0:Fib.State9) = 
+let rec fibrec a b iter (c0:Fib.State7) = 
             let res = new DomainModel.Buf<int>()
             printfn "number of iter: %d" (numIter - iter)
             let c = c0.sendHELLO(S, a)
@@ -47,7 +47,7 @@ let rec fibrec a b iter (c0:Fib.State9) =
                     fibrec b (res.getValue()) (n-1) c2
 
 let fibo = new Fib()
-let first = fibo.Start().
+let first = fibo.Start()
 
 first |> fibrec 1 1 numIter
 
