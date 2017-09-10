@@ -427,7 +427,6 @@ type AgentReceiver(ipAddress,port, roles: string list) =
 type AgentRouter(explicitConnection:bool) =
         let explicitConnection = explicitConnection
         //let agentMapping = agentMap
-        //let connectedAgents = agentMapping |> Map.map (fun x y -> false)
         let mutable (payloadChoice:byte[] list) = []
         //let agentReceiver = agentReceiver
 
@@ -502,7 +501,7 @@ type AgentRouter(explicitConnection:bool) =
             replyMessage            
 
         member this.ReceiveChoice() =
-            printing "Go through A choice!!!" ""
+            printing "Go through A choice!!!" (payloadChoice)
             payloadChoice
 
         interface IRouter with 

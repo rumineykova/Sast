@@ -130,7 +130,7 @@ module AssertionParser =
                 None
             | Success (res,_,_) -> Some res
 
-    let testExprAsStr() = 
+    (*let testExprAsStr() = 
         run xparser "x+1 < y+2 || x+1" |> ignore
         run xparser "x+1 <5 && x<5   && x=y" |> ignore
         run xparser "(x+1 <5 && x<5   && x=y)" |> ignore
@@ -139,5 +139,5 @@ module AssertionParser =
         run xparser "x+1 > 4" |> ignore
         run xparser "x=y" |> ignore
         run xparser "x<y && x>10" |> ignore
-        run xparser "x<y" |> ignore
+        run xparser "x<y" |> ignore*)
 

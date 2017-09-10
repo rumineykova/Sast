@@ -45,7 +45,9 @@ let rec calculate (c:SH.State22) =
         let v = ifInteresect (resx.getValue()) (resy.getValue())
         c1.sendBothInOrOut(S, v)
         let c2 = match v with 
-                | 1 | 0  -> c1.sendBothInOrOut(S, v)
+                | 1 | 0  -> 
+                    c1.sendBothInOrOut(S, f)
+
                 | _ -> let p = getInteresectionP (resx.getValue()) (resy.getValue())
                        c1.sendItersection(S, p)
         calculate c2
@@ -56,7 +58,18 @@ let res1 = new DomainModel.Buf<int>()
 let res2 = new DomainModel.Buf<int>()  
 let res3 = new DomainModel.Buf<int>()  
 let res4 = new DomainModel.Buf<int>()  
-
 let sh = new SH()
 let c = sh.Start().receiveplane(S, res1, res2, res3, res4) |> calculate 
+
+let (x:int) = 1
+let mutable dict = Map.empty<string, int>
+let name = "x"
+dict<-dict.Add(name, x)
+
+//x <-2
+printf "Value is: %i" (dict.Item(name))
+//printf "Value is: %i" (dict.Count)
+
+        
+
 

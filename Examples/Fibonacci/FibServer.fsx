@@ -29,9 +29,11 @@ let C = Fib.C.instance
 let rec fibServer (c0:Fib.State17) =
     let res1 = new DomainModel.Buf<int>()
     let res2 = new DomainModel.Buf<int>()
+    let res3 = new DomainModel.Buf<int>()
     //let c = c0.receiveHELLO(C, res1)
     //printfn"received Hello %i" (res1.getValue())
-    let c = c0.receiveHELLO(C, res2)
+    let c = c0.receiveHELLO(C, res1)
+    printfn "After receive once"
     match c.branch() with 
         | :? Fib.BYE as bye-> 
             printfn"receive bye"
@@ -46,7 +48,6 @@ let dummy = new DomainModel.Buf<int>()
 
 let r = new DomainModel.Buf<int>()
 let sessionCh = session.Start()
-
 //let branch =  sessionCh.branch() 
 fibServer(sessionCh)
 

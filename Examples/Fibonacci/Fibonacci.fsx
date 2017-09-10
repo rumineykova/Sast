@@ -43,7 +43,6 @@ let rec fibrec a b iter (c0:Fib.State7) =
 
                     printfn "Fibo : %d" (res.getValue())
                     Async.RunSynchronously(Async.Sleep(1000))
-
                     fibrec b (res.getValue()) (n-1) c2
 
 let fibo = new Fib()

@@ -13,7 +13,6 @@ open ScribbleGenerativeTypeProvider.DomainModel
 open ScribbleGenerativeTypeProvider.CommunicationAgents
 open ScribbleGenerativeTypeProvider.IO
 open ScribbleGenerativeTypeProvider.RefinementTypes
-
 (******************* TYPE PROVIDER'S HELPERS *******************)
 
 // CREATING TYPES, NESTED TYPES, METHODS, PROPERTIES, CONSTRUCTORS
@@ -222,7 +221,7 @@ let getAssertionDoc assertion =
     if (assertion <> "") then 
         let sb = new System.Text.StringBuilder()
         sb.Append("<summary> Method arguments should satisfy the following constraint:") |> ignore
-        sb.Append ("<para>" + assertion.Replace(">", "&gt;").Replace("<","&gt;") + "</para>" ) |>ignore
+        sb.Append ("<para>" + assertion.Replace(">", "&gt;").Replace("<","&lt;") + "</para>" ) |>ignore
         sb.Append("</summary>") |>ignore
         sb.ToString()
     else ""    
@@ -327,9 +326,7 @@ let internal makeLabelTypes (fsmInstance:ScribbleProtocole.Root []) (providedLis
                                             InvokeCode = 
                                                 fun args-> 
                                                     let buffers = args.Tail.Tail
-
                                                     let listPayload = (payloadsToList event.Payload)
-
                                                     let assertionString = event.Assertion
 
                                                     let fooName,argsName = 
@@ -504,7 +501,6 @@ let invokeCodeOnChoice (payload: ScribbleProtocole.Payload []) indexList fsmInst
     let listExpectedMessages = listExpectedMessagesAndTypes |> List.map fst
     let listExpectedTypes = listExpectedMessagesAndTypes |> List.map snd |> List.map (fun p -> payloadsToList p)
     
-    
     <@@ 
         printing "Before Branching : " (listExpectedMessages,listExpectedTypes,listPayload)
         let result = Regarder.receiveMessage "agent" listExpectedMessages role listExpectedTypes 
@@ -578,7 +574,7 @@ let generateMethod aType (methodName:string) listParam nextType (errorMessage:st
                             let buffers = args.Tail.Tail
                             let listPayload = (payloadsToList event.Payload)
                             let assertionString = event.Assertion
-
+                            
                             let fooName,argsName = 
                                 if ((assertionString <> "fun expression -> expression") && (assertionString <> ""))  then
                                     let index = Regarder.getIndex "agent" 
@@ -594,7 +590,7 @@ let generateMethod aType (methodName:string) listParam nextType (errorMessage:st
                             
             let doc = getAssertionDoc event.Assertion
             if doc <> "" then myMethod.AddXmlDoc(doc); myMethodAsync.AddXmlDoc(doc)
-                        
+            //let property = createPropertyType "test" (Constraint.Numbers.ConstraintInt32<Rule = assertionString>) 
             aType 
             |> addMethod myMethod
             |> addMethod myMethodAsync
@@ -630,7 +626,7 @@ let generateChoice (aType:ProvidedTypeDefinition) (fsmInstance: ScribbleProtocol
     let role = event.Partner
 
     let myMethod = 
-        ProvidedMethod( "branch", [],labelType, IsStaticMethod = false, 
+        ProvidedMethod("branch", [],labelType, IsStaticMethod = false, 
             InvokeCode = 
                 (fun args  ->  
                     invokeCodeOnChoice event.Payload indexList fsmInstance role))                                                                                         
