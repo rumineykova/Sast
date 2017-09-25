@@ -82,3 +82,71 @@ type Choice38 = interface end
 type Choice39 = interface end
 
 type Choice40 = interface end
+
+type Choice41 = interface end
+
+type Choice42 = interface end
+
+type Choice43 = interface end
+
+type Choice44 = interface end
+
+type Choice45 = interface end
+
+type Choice46 = interface end
+
+type Choice47 = interface end
+
+type Choice48 = interface end
+
+type Choice49 = interface end
+
+type Choice50 = interface end
+
+type Choice51 = interface end
+
+type Choice52 = interface end
+
+type Choice53 = interface end
+
+type Choice54 = interface end
+
+type Choice55 = interface end
+
+type Choice56 = interface end
+
+type Choice57 = interface end
+
+type Choice58 = interface end
+
+type Choice59 = interface end
+
+type Choice60 = interface end
+
+type Choice61 = interface end
+
+type Choice62 = interface end
+
+type Choice63 = interface end
+
+type Choice64 = interface end
+
+type Choice65 = interface end
+
+type Choice66 = interface end
+
+type Choice67 = interface end
+
+type Choice68 = interface end
+
+type Choice69 = interface end
+
+type Choice70 = interface end
+
+type Choice71 = interface end
+
+type Choice72 = interface end
+
+type Choice73 = interface end
+
+type Choice74 = interface end

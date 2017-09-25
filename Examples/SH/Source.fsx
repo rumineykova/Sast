@@ -7,12 +7,15 @@ open ScribbleGenerativeTypeProvider.DomainModel
 [<Literal>]
 let delims = """ [ {"label" : "vertex", "delims": {"delim1": [":"] , "delim2": [","] , "delim3": [";"] } },
                    {"label" : "BothInOrOut", "delims": {"delim1": [":"] , "delim2": [","] , "delim3": [";"] } }, 
-                   {"label" : "addP", "delims": {"delim1": [":"] , "delim2": [","] , "delim3": [";"] } }, 
-                   {"label" : "forwardP", "delims": {"delim1": [":"] , "delim2": [","] , "delim3": [";"] } }, 
-                   {"label" : "none", "delims": {"delim1": [":"] , "delim2": [","] , "delim3": [";"] } }, 
-                   {"label" : "close", "delims": {"delim1": [":"] , "delim2": [","] , "delim3": [";"] } }, 
+                   {"label" : "check", "delims": {"delim1": [":"] , "delim2": [","] , "delim3": [";"] } }, 
                    {"label" : "plane", "delims": {"delim1": [":"] , "delim2": [","] , "delim3": [";"] } }, 
-                   {"label" : "Itersection", "delims": {"delim1": [":"] , "delim2": [","] , "delim3": [";"] } }]"""
+                   {"label" : "NumPoins", "delims": {"delim1": [":"] , "delim2": [","] , "delim3": [";"]} }, 
+                   {"label" : "BothIn", "delims": {"delim1": [":"] , "delim2": [","] , "delim3": [";"]} }, 
+                   {"label" : "BothOut", "delims": {"delim1": [":"] , "delim2": [","] , "delim3": [";"] } }, 
+                   {"label" : "Itersection", "delims": {"delim1": [":"] , "delim2": [","] , "delim3": [";"] } }, 
+                   {"label" : "OnePoit", "delims": {"delim1": [":"] , "delim2": [","] , "delim3": [";"]} }, 
+                   {"label" : "TwoPoist", "delims": {"delim1": [":"] , "delim2": [","] , "delim3": [";"] } },  
+                   {"label" : "Close", "delims": {"delim1": [":"] , "delim2": [","] , "delim3": [";"] } }]"""
 
 
 [<Literal>]
@@ -23,24 +26,26 @@ let typeAliasing =
 type SH = 
     Provided.TypeProviderFile<"../../../Examples/SH/ShFSM_S.txt" // Fully specified path to the scribble file
                                ,"SH" // name of the protocol
-                               ,"S" // local role
-                               ,"../../../Examples/SH/configS.yaml" // config file containing IP and port for each role and the path to the scribble script
+                               ,"P" // local role
+                               ,"../../../Examples/SH/configSP.yaml" // config file containing IP and port for each role and the path to the scribble script
                                ,Delimiter=delims 
                                ,TypeAliasing=typeAliasing // give mapping from scribble base files to F# types
                                ,ScribbleSource = ScribbleSource.File // choose one of the following options: (LocalExecutable | WebAPI | File)
                                ,ExplicitConnection = true>
 let numIter = 3
-let P = SH.P.instance
+let R = SH.R.instance
 let C = SH.C.instance
-
-let rec calcClipPoints (vert: int list)  (c:SH.State11) =
+let sh = new SH()
+let rec calcClipPoints (vert: int list)  (c:SH.State27) =
     let res = new DomainModel.Buf<int>()    
     match vert with 
-    | [hd] -> c.sendclose(C).sendclose(P).finish()
+    | [hd] -> c.sendClose(R).sendClose(C).finish()
     | hd1::hd2::tail -> 
-        let askC = c.sendvertex(C, hd1, hd2)
-                    .branch()
-                   
+        let c1 = c.sendcheck(R, hd1, hd2).receivePoitsToForward(R, res)
+        match c1 with 
+        | :? SH.noItersection as no -> no.receive(R).sendOnePoit1(P, h2)
+        | :? SH.                             
+(*        calcClipPoints (hd2::tail) cotn
         let cont = match askC with 
                     | :? SH.BothInOrOut as inout -> 
                         let c1 = inout.receive(C, res)
@@ -49,13 +54,12 @@ let rec calcClipPoints (vert: int list)  (c:SH.State11) =
 
                     | :? SH.Itersection as intr -> 
                         intr.receive(C, res).sendforwardP(P, res.getValue())
-        calcClipPoints (hd2::tail) cont
+        calcClipPoints (hd2::tail) cotn
+        *)
+//let polygon = []
 
-let polygon = []
 
-let sh = new SH()
-
-polygon |> calcClipPoints <| sh.Start().sendplane(C, 1, 2, 3, 4)
+//polygon |> calcClipPoints <| sh.Start().sendplane(C, 1, 2, 3, 4)
 
 
 

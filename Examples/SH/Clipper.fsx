@@ -11,6 +11,7 @@ let delims = """ [ {"label" : "vertex", "delims": {"delim1": [":"] , "delim2": [
                    {"label" : "none", "delims": {"delim1": [":"] , "delim2": [","] , "delim3": [";"] } }, 
                    {"label" : "close", "delims": {"delim1": [":"] , "delim2": [","] , "delim3": [";"] } }, 
                    {"label" : "plane", "delims": {"delim1": [":"] , "delim2": [","] , "delim3": [";"] } }, 
+                   {"label" : "forwardP", "delims": {"delim1": [":"] , "delim2": [","] , "delim3": [";"] } }, 
                    {"label" : "Itersection", "delims": {"delim1": [":"] , "delim2": [","] , "delim3": [";"] } }]"""
 
 
@@ -20,10 +21,10 @@ let typeAliasing =
 
 // C:/cygwin64/home/rhu/code/vs/scribble/github.com/rumineykova/Sast/Examples/Fibonacci/
 type SH = 
-    Provided.TypeProviderFile<"../../../Examples/SH/ShFSM_C.txt" // Fully specified path to the scribble file
+    Provided.TypeProviderFile<"../../../Examples/SH/ShFSM_S.txt" // Fully specified path to the scribble file
                                ,"SH" // name of the protocol
-                               ,"C" // local role
-                               ,"../../../Examples/SH/configC.yaml" // config file containing IP and port for each role and the path to the scribble script
+                               ,"S" // local role
+                               ,"../../../Examples/SH/configS.yaml" // config file containing IP and port for each role and the path to the scribble script
                                ,Delimiter=delims 
                                ,TypeAliasing=typeAliasing // give mapping from scribble base files to F# types
                                ,ScribbleSource = ScribbleSource.File // choose one of the following options: (LocalExecutable | WebAPI | File)
@@ -35,10 +36,11 @@ let ifInteresect (x:int) (y:int) = x + y
 let getInteresectionP x y = (x - y)
 
 
+
 let rec calculate (c:SH.State22) =
     let resx = new DomainModel.Buf<int>()    
     let resy = new DomainModel.Buf<int>()
-    match c.branch() with 
+(*    match c.branch() with 
     | :? SH.close as close -> close.receive(S).finish()     
     | :? SH.vertex as vertex -> 
         let c1 = vertex.receive(S, resx, resy)
@@ -46,13 +48,12 @@ let rec calculate (c:SH.State22) =
         c1.sendBothInOrOut(S, v)
         let c2 = match v with 
                 | 1 | 0  -> 
-                    c1.sendBothInOrOut(S, f)
+                    c1.sendBothInOrOut(S, v)
 
                 | _ -> let p = getInteresectionP (resx.getValue()) (resy.getValue())
                        c1.sendItersection(S, p)
-        calculate c2
+        calculate c2*)
                
-
 let polygon = []
 let res1 = new DomainModel.Buf<int>()    
 let res2 = new DomainModel.Buf<int>()  

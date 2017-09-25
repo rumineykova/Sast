@@ -274,6 +274,8 @@ let internal makeLabelTypes (fsmInstance:ScribbleProtocole.Root []) (providedLis
 
                                                 let assertionString = event.Assertion
 
+
+
                                                 let fooName,argsName = 
                                                     if ((assertionString <> "fun expression -> expression") && (assertionString <> ""))  then
                                                         let index = Regarder.getIndex "agent" 
@@ -288,7 +290,7 @@ let internal makeLabelTypes (fsmInstance:ScribbleProtocole.Root []) (providedLis
                                                 Expr.Sequential(exprDes,exprState)
                                           )
                         let doc = getAssertionDoc event.Assertion
-                        if doc <> "" then  myMethod.AddXmlDoc(doc)                                                                                                                                        
+                        if doc <> "" then  myMethod.AddXmlDocDelayed(fun() -> doc)                                                                                                                                        
                         
                         t <- t |> addMethod (myMethod)
 
@@ -343,7 +345,7 @@ let internal makeLabelTypes (fsmInstance:ScribbleProtocole.Root []) (providedLis
                                                     Expr.Sequential(exprDes,exprState)
                                           )
                         let doc = getAssertionDoc event.Assertion
-                        if doc <> "" then myMethod.AddXmlDoc(doc)     
+                        if doc <> "" then myMethod.AddXmlDocDelayed(fun() -> doc)     
 
                         t <- t |> addMethod (myMethod)
 
@@ -547,11 +549,16 @@ let generateMethod aType (methodName:string) listParam nextType (errorMessage:st
                                 exprState role fullName event)
                         
             let doc = getAssertionDoc event.Assertion
-            if doc <> "" then myMethod.AddXmlDoc(doc)
+            if doc <> "" then myMethod.AddXmlDocDelayed(fun () ->  doc)
                         
             aType 
                 |> addMethod myMethod
                 |> ignore
+            let assertion = event.Assertion
+            let aName = sprintf "%s" assertion
+            if assertion<> "" then 
+                aType |> addProperty (<@@ assertion @@> |> createPropertyType aName typeof<string> ) |> ignore
+            //aType.AddMembers (createProperty "assertion" System.String event.Assertion)
         |"receive" ->  
             let labelDelim, payloadDelim, endDelim = getDelims fullName
             let decode = new System.Text.UTF8Encoding()
@@ -565,7 +572,7 @@ let generateMethod aType (methodName:string) listParam nextType (errorMessage:st
                             invokeCodeOnReceive args event.Payload payloadDelim 
                                 labelDelim endDelim nameLabel message 
                                 exprState role fullName event.Assertion)
-                                   
+            
             let myMethodAsync = 
                 ProvidedMethod((methodName+nameLabel+"Async"),listParam,nextType,
                     IsStaticMethod = false,
@@ -574,7 +581,7 @@ let generateMethod aType (methodName:string) listParam nextType (errorMessage:st
                             let buffers = args.Tail.Tail
                             let listPayload = (payloadsToList event.Payload)
                             let assertionString = event.Assertion
-                            
+                           
                             let fooName,argsName = 
                                 if ((assertionString <> "fun expression -> expression") && (assertionString <> ""))  then
                                     let index = Regarder.getIndex "agent" 
@@ -587,13 +594,14 @@ let generateMethod aType (methodName:string) listParam nextType (errorMessage:st
 
                             let exprDes = deserializeAsync buffers listPayload [message] role argsName fooName
                             Expr.Sequential(exprDes,exprState))
-                            
+                                       
             let doc = getAssertionDoc event.Assertion
-            if doc <> "" then myMethod.AddXmlDoc(doc); myMethodAsync.AddXmlDoc(doc)
+            if doc <> "" then myMethod.AddXmlDocDelayed(fun () -> doc); myMethodAsync.AddXmlDoc(doc)
             //let property = createPropertyType "test" (Constraint.Numbers.ConstraintInt32<Rule = assertionString>) 
             aType 
             |> addMethod myMethod
             |> addMethod myMethodAsync
+            
             |> ignore       
         |"request" ->
             let myMethod = 
@@ -631,7 +639,7 @@ let generateChoice (aType:ProvidedTypeDefinition) (fsmInstance: ScribbleProtocol
                 (fun args  ->  
                     invokeCodeOnChoice event.Payload indexList fsmInstance role))                                                                                         
     let doc = getDocForChoice indexList fsmInstance
-    myMethod.AddXmlDoc(doc)
+    myMethod.AddXmlDocDelayed(fun () -> doc)
     aType |> addMethod myMethod |> ignore
 
 let generateMethodParams (fsmInstance:ScribbleProtocole.Root []) idx (providedList:ProvidedTypeDefinition list) roleValue= 
