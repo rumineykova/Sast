@@ -42,9 +42,8 @@ type GenerativeTypeProvider(config : TypeProviderConfig) as this =
     inherit TypeProviderForNamespaces ()
     let tmpAsm = Assembly.LoadFrom(config.RuntimeAssembly)
     let s = TimeMeasure.start()
-    //TimeMeasure.measureTime "Starting"
+    //TimeMeasure.measureTime "Starting"   
     
-    (*
     let invalidation = new Event<System.EventHandler, _>()
     let mutable invalidationTriggered = 0
     let invalidate() = 
@@ -66,7 +65,7 @@ type GenerativeTypeProvider(config : TypeProviderConfig) as this =
         watcher.Renamed.Add(fun _ -> invalidate())
 
         watcher.EnableRaisingEvents <- true
-        disposals.Add(fun () -> watcher.Dispose()) *)
+        disposals.Add(fun () -> watcher.Dispose())
 
     let invokeScribble batFile pathToFile protocol localRole tempFileName =         
         // Configure command line

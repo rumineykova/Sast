@@ -1,0 +1,23 @@
+
+digraph G {
+compound = true;
+"21" [ label="21: src_SupplierInfoNoFair_PartnershipSupplier_requestor_PartnershipSupplier_requestor___loginsvc__requestor__authorisersvc_" ];
+"21" -> "23" [ label="loginsvc!!()" ];
+"23" [ label="23: " ];
+"23" -> "24" [ label="loginsvc!login(username, password)" ];
+"24" [ label="24: " ];
+"24" -> "22" [ label="loginsvc?loginfailure()" ];
+"22" [ label="22: " ];
+"24" -> "25" [ label="loginsvc?loginsuccess()" ];
+"25" [ label="25: " ];
+"25" -> "26" [ label="authorisersvc!!()" ];
+"26" [ label="26: src_SupplierInfoNoFair_Main_requestor_Main_requestor___requestor__authorisersvc_" ];
+"26" -> "27" [ label="authorisersvc!getsuppliers(uuid)" ];
+"27" [ label="27: src_SupplierInfoNoFair_SuppInfo_requestor_SuppInfo_requestor___requestor__authorisersvc_" ];
+"27" -> "26" [ label="authorisersvc?deny()" ];
+"27" -> "26" [ label="authorisersvc?suppliers()" ];
+"26" -> "28" [ label="authorisersvc!getcontracts()" ];
+"28" [ label="28: src_SupplierInfoNoFair_ContractInfo_requestor_ContractInfo_requestor___requestor__authorisersvc_" ];
+"28" -> "26" [ label="authorisersvc?deny()" ];
+"28" -> "26" [ label="authorisersvc?contracts()" ];
+}

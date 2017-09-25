@@ -1,0 +1,19 @@
+
+digraph G {
+compound = true;
+"10" [ label="10: nego_Nego1_Negotiate_C_Negotiate_C___C__P_" ];
+"10" -> "12" [ label="P!propose()" ];
+"12" [ label="12: X" ];
+"12" -> "13" [ label="P?accpt()" ];
+"13" [ label="13: " ];
+"13" -> "11" [ label="P!confirm()" ];
+"11" [ label="11: " ];
+"12" -> "11" [ label="P?reject()" ];
+"12" -> "14" [ label="P?propose()" ];
+"14" [ label="14: " ];
+"14" -> "15" [ label="P!accpt()" ];
+"15" [ label="15: " ];
+"15" -> "11" [ label="P?confirm()" ];
+"14" -> "11" [ label="P!reject()" ];
+"14" -> "12" [ label="P!propose()" ];
+}

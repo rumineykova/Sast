@@ -1,0 +1,19 @@
+
+digraph G {
+compound = true;
+"25" [ label="25: travel_Travel_Booking_A_Booking_A___C__A__S_" ];
+"25" -> "27" [ label="C?Query(x2:int)" ];
+"27" [ label="27: " ];
+"27" -> "28" [ label="C!Quote(x1:int)" ];
+"28" [ label="28: " ];
+"28" -> "25" [ label="S!Dummy()" ];
+"25" -> "29" [ label="C?Yes()" ];
+"29" [ label="29: " ];
+"29" -> "30" [ label="S!Yes()" ];
+"30" [ label="30: " ];
+"30" -> "26" [ label="C?Bye()" ];
+"26" [ label="26: " ];
+"25" -> "31" [ label="C?No()" ];
+"31" [ label="31: " ];
+"31" -> "30" [ label="S!No()" ];
+}
