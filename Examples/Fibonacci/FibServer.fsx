@@ -14,7 +14,7 @@ let typeAliasing =
     """ [ {"alias" : "int", "type": "System.Int32"} ] """
 
 type Fib = 
-    Provided.TypeProviderFile<"../../../Examples/Fibonacci/Fib.scr"
+    Provided.TypeProviderFile<"../../../Examples/Fibonacci/FibnoAss.scr"
                                ,"Adder"
                                ,"S"
                                ,"../../../Examples/Fibonacci/configServer.yaml"

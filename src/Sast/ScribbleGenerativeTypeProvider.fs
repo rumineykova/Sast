@@ -37,13 +37,17 @@ type internal WatchSpec =
     member x.Path = let (WatchSpec(p, _)) = x in p
     member x.Filter = let (WatchSpec(_, f)) = x in f
 
+
 [<TypeProvider>]
 type GenerativeTypeProvider(config : TypeProviderConfig) as this =
-    inherit TypeProviderForNamespaces ()
+    inherit TypeProviderForNamespaces ()      
     let tmpAsm = Assembly.LoadFrom(config.RuntimeAssembly)
     let s = TimeMeasure.start()
     //TimeMeasure.measureTime "Starting"   
-    
+
+    // ==== cachng ============
+    let cachedTypes = Dictionary<string, ProvidedTypeDefinition>()
+    let mutable disposals = ResizeArray<(unit -> unit)>()
     let invalidation = new Event<System.EventHandler, _>()
     let mutable invalidationTriggered = 0
     let invalidate() = 
@@ -59,10 +63,12 @@ type GenerativeTypeProvider(config : TypeProviderConfig) as this =
             new FileSystemWatcher (folder, file)
         
         watcher.Changed.Add (fun f -> 
-            if spec.Filter(f.FullPath) then invalidate()
+            if spec.Filter(f.FullPath) then 
+                cachedTypes.Clear()        
+                invalidate()
             )
-        watcher.Deleted.Add(fun _ -> invalidate())
-        watcher.Renamed.Add(fun _ -> invalidate())
+        watcher.Deleted.Add(fun _ -> cachedTypes.Clear(); invalidate())
+        watcher.Renamed.Add(fun _ -> cachedTypes.Clear(); invalidate())
 
         watcher.EnableRaisingEvents <- true
         disposals.Add(fun () -> watcher.Dispose())
@@ -172,8 +178,6 @@ type GenerativeTypeProvider(config : TypeProviderConfig) as this =
         assembly.AddTypes [ty]
         ty
 
-    let cachedTypes = Dictionary<string, ProvidedTypeDefinition>()
-
     let createOrUseProvidedTypeDefinition (name:string) (parameters:obj[]) =
         match cachedTypes.TryGetValue name with 
         | true, typeDef -> 
@@ -185,7 +189,6 @@ type GenerativeTypeProvider(config : TypeProviderConfig) as this =
             let localRole = parameters.[2] :?> string
             let configFilePath = parameters.[3] :?> string
         
-        
             let naming = __SOURCE_DIRECTORY__ + configFilePath
             DomainModel.config.Load(naming)
 
@@ -196,6 +199,9 @@ type GenerativeTypeProvider(config : TypeProviderConfig) as this =
                                 match File.Exists(relativePath) with 
                                     | true -> relativePath
                                     | false -> failwith "The given file does not exist"
+            
+            watchPath (WatchSpec.File pathToFile) 
+            watchPath (WatchSpec.File naming) 
 
             let scribbleSource = parameters.[6] :?> ScribbleSource
             let fsm = match scribbleSource with 
@@ -240,11 +246,25 @@ type GenerativeTypeProvider(config : TypeProviderConfig) as this =
                           ProvidedStaticParameter("ScribbleSource",typeof<ScribbleSource>);
                           ProvidedStaticParameter("ExplicitConnection",typeof<bool>); ]
 
-
     do 
+        this.Disposing.Add((fun _ ->
+            let disposers = disposals |> Seq.toList
+            disposals.Clear()
+            for disposef in disposers do try disposef() with _ -> ()
+        ))
+
         providedType.DefineStaticParameters(parametersTP, createOrUseProvidedTypeDefinition)
         this.AddNamespace(ns, [providedType])        
         TimeMeasure.measureTime "Assembly"
+    
+    [<CLIEvent>]
+    member x.Invalidate = invalidation.Publish
+
+    (*interface IDisposable with 
+        member this.Dispose() = 
+           let disposers = disposals |> Seq.toList
+           disposals.Clear()
+           for disposef in disposers do try disposef() with _ -> ()*)
 
 [<assembly:TypeProviderAssembly>]
     do() 

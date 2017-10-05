@@ -22,6 +22,7 @@ module Visitors =
             let rightStr = getStringRepr right
             sprintf "%s %s %s" leftStr (op.ToString()) rightStr
 
+
     let rec getVars node = 
         match node with
         | Literal(Bool(value)) -> 
