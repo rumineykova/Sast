@@ -10,8 +10,7 @@ let delims = """ [ {"label" : "ADD", "delims": {"delim1": [":"] , "delim2": [","
 
 
 [<Literal>]
-let typeAliasing =
-    """ [ {"alias" : "int", "type": "System.Int32"} ] """
+let typeAliasing = """ [ {"alias" : "int", "type": "System.Int32"} ] """
 
 type Fib = 
     Provided.TypeProviderFile<"../../../Examples/Fibonacci/FibnoAss.scr"

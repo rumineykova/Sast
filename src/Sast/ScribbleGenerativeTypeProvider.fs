@@ -75,6 +75,8 @@ type GenerativeTypeProvider(config : TypeProviderConfig) as this =
 
     let invokeScribble batFile pathToFile protocol localRole tempFileName =         
         // Configure command line
+        // Add -batch (to speed up Z3 by passing one logical formulae for checking the protocol, 
+        // hence the check is fast when the protocol is correct, but slow when it is not. 
         let scribbleArgs = sprintf """/C %s %s -ass %s -ass-fsm %s -Z3 >> %s 2>&1 """ 
                                     batFile pathToFile protocol localRole tempFileName
 
@@ -97,9 +99,9 @@ type GenerativeTypeProvider(config : TypeProviderConfig) as this =
         let parsedScribble = parsedFile.ToString().Replace("\r\n\r\n", "\r\n")
         parsedScribble            
 
-    let parseCFSM parsedScribble protocol localRole = 
+    let parseCFSM parsedScribble protocol localRole typeAliasing = 
         let str = sprintf """{"code":"%s","proto":"%s","role":"%s"}""" "code" protocol localRole
-        match Parsing.getFSMJson parsedScribble str with 
+        match Parsing.getFSMJson parsedScribble str typeAliasing with 
             | Some parsed -> 
                 parsed
             | None -> failwith "The file given does not contain a valid fsm"
@@ -108,18 +110,14 @@ type GenerativeTypeProvider(config : TypeProviderConfig) as this =
     
         let configFilePath = parameters.[0]  :?> string
         let delimitaters = parameters.[1]  :?> string
-        let typeAliasing = parameters.[2] :?> string
         let explicitConnection = parameters.[4] :?> bool
-        
-        // TODO: Fix as to replace only types
-        let fsm = 
-            let aliases = DotNetTypesMapping.Parse(typeAliasing)
-            let mutable prot = fsm
-            for alias in aliases do
-                 prot <- Regex.Replace(prot, alias.Alias, alias.Type) 
-            prot
 
         let protocol = ScribbleProtocole.Parse(fsm)
+
+        (*for event in protocol do 
+            for payload in event.Payload do 
+                payload.VarType <- alias.*)
+
         let triple = stateSet protocol
         let n, stateSet, firstState = triple
         let listTypes = (Set.toList stateSet) |> List.map (fun x -> makeStateType x )
@@ -188,7 +186,15 @@ type GenerativeTypeProvider(config : TypeProviderConfig) as this =
             let protocol = parameters.[1] :?> string
             let localRole = parameters.[2] :?> string
             let configFilePath = parameters.[3] :?> string
-        
+            let typeAliasingParam = parameters.[5] :?> string
+
+            // TODO: Fix as to replace only types
+            let typeAliasing: Map<string, string> = 
+                DotNetTypesMapping.Parse(typeAliasingParam) 
+                |>  Array.map (fun s -> (s.Alias, s.Type)) 
+                |> Map.ofArray
+
+
             let naming = __SOURCE_DIRECTORY__ + configFilePath
             DomainModel.config.Load(naming)
 
@@ -218,13 +224,13 @@ type GenerativeTypeProvider(config : TypeProviderConfig) as this =
                             //TimeMeasure.measureTime "Before Scribble"
                             //let parsedScribble = code.ToString()
                             let scribbleCode = File.ReadAllText(pathToFile)
-                            parseCFSM scribbleCode protocol localRole
+                            parseCFSM scribbleCode protocol localRole typeAliasing
                         |ScribbleSource.LocalExecutable ->  
                             let batFile = DomainModel.config.ScribblePath.FileName 
                             let tempFileName = Path.GetTempFileName()       
                             try  
                                 let parsedScribble = invokeScribble batFile pathToFile protocol localRole tempFileName
-                                parseCFSM parsedScribble protocol localRole
+                                parseCFSM parsedScribble protocol localRole typeAliasing
                             finally 
                                 if File.Exists(tempFileName) then File.Delete(tempFileName)
 

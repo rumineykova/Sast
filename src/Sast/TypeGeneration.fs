@@ -162,7 +162,7 @@ let internal createProvidedParameters (event : ScribbleProtocole.Root) =
             let typing = System.Type.GetType(nameParam)
             let arrType = typing.MakeArrayType()
             let genType = generic.MakeGenericType(arrType)
-            yield ProvidedParameter((param.VarName),genType) 
+            yield ProvidedParameter((param.VarName), genType) 
         else
             // Currently this Case is throwing an error due to the fact that 
             // The type returned by the scribble API is not an F# type

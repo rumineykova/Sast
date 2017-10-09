@@ -254,19 +254,26 @@ module Parsing =
             yield ScribbleProtocole.Payload((fst elem), (snd elem))
         ]
     
-    let transformJsonToPayload(payload: List<ScribbleProtocole.Payload>) = 
+    let transformJsonToPayload (typesMap:Map<string, string>) (payload: List<ScribbleProtocole.Payload>) = 
         [for elem in payload do
-            yield (elem.VarName, elem.VarType)
+            yield (elem.VarName, typesMap.Item elem.VarType)
         ]
 
-    let getArrayJson (response:string) json =
+    let UnitType = "Unit" 
+    let adjustTypesMap (typesMap: Map<string, string>) = 
+        if not (typesMap.ContainsKey UnitType) then 
+            typesMap.Add(UnitType, UnitType)
+        else typesMap
+
+    let getArrayJson (response:string) (config:string) (initTypesMap: Map<string, string>) =
         //let s = DiGraph.Parse(response)
         //let s0 = s.Result
+        let typesMap =  adjustTypesMap initTypesMap 
         let s0 = response
         match Regex.IsMatch(s0,"java\\.lang\\.NullPointerException") with
         |true ->  None
         |false ->
-            let role = ScribbleAPI.Parse(json)
+            let role = ScribbleAPI.Parse(config)
             let test = run (transitions (role.Role) ) s0
             match test with
             | Failure (error,_,_) -> 
@@ -284,12 +291,12 @@ module Parsing =
                                 Role        = tr.LocalRole |> Role
                                 Partner     = tr.Partner |> Partner
                                 Label       = tr.Label |> Label
-                                TrPayload   = tr.Payload |> List.ofArray |> transformJsonToPayload  |> TrPayload
+                                TrPayload   = tr.Payload |> List.ofArray |> transformJsonToPayload typesMap |> TrPayload
                                 Assertion   = tr.Assertion |> genLambdaFromStr |> Assertion
                                 EventType   = tr.Type |> EventType
                                 Next        = tr.NextState |> Next
                             }  
                     ] |> Transitions
                 Some (finalRes.Stringify())
-                
-    let getFSMJson (json:string) = getArrayJson json
+    // (typesMap: Map<string, string>)
+    let getFSMJson (parsedScribble:string) = getArrayJson parsedScribble 
