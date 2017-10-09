@@ -73,10 +73,11 @@ type GenerativeTypeProvider(config : TypeProviderConfig) as this =
         watcher.EnableRaisingEvents <- true
         disposals.Add(fun () -> watcher.Dispose())
 
-    let invokeScribble batFile pathToFile protocol localRole tempFileName =         
+    let invokeScribble pathToFile protocol localRole tempFileName =         
         // Configure command line
         // Add -batch (to speed up Z3 by passing one logical formulae for checking the protocol, 
         // hence the check is fast when the protocol is correct, but slow when it is not. 
+        let batFile = """%scribble%"""
         let scribbleArgs = sprintf """/C %s %s -ass %s -ass-fsm %s -Z3 >> %s 2>&1 """ 
                                     batFile pathToFile protocol localRole tempFileName
 
@@ -226,10 +227,10 @@ type GenerativeTypeProvider(config : TypeProviderConfig) as this =
                             let scribbleCode = File.ReadAllText(pathToFile)
                             parseCFSM scribbleCode protocol localRole typeAliasing
                         |ScribbleSource.LocalExecutable ->  
-                            let batFile = DomainModel.config.ScribblePath.FileName 
+                            // let batFile = DomainModel.config.ScribblePath.FileName 
                             let tempFileName = Path.GetTempFileName()       
                             try  
-                                let parsedScribble = invokeScribble batFile pathToFile protocol localRole tempFileName
+                                let parsedScribble = invokeScribble pathToFile protocol localRole tempFileName
                                 parseCFSM parsedScribble protocol localRole typeAliasing
                             finally 
                                 if File.Exists(tempFileName) then File.Delete(tempFileName)

@@ -63,9 +63,6 @@ LocalRole:
   Name: Me
   IP: 127.0.0.1
   Port: 5000 
-
-ScribblePath:
-   FileName: scribbleScriptfile   
 "
 
 type ConfigFile = YamlConfig<YamlText=metaYaml>
