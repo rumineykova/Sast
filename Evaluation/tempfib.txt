@@ -1,0 +1,243 @@
+TCP time: 83 
+before incoke: 0 
+done: 3105 
+before incoke: 0 
+done: 29 
+TCP time: 57 
+TCP time: 229 
+before incoke: 0 
+done: 193 
+TCP time: 224 
+before incoke: 0 
+before incoke: 0 
+done: 159 
+TCP time: 226 
+before incoke: 0 
+done: 149 
+TCP time: 256 
+TCP time: 216 
+TCP time: 214 
+TCP time: 208 
+TCP time: 213 
+TCP time: 211 
+TCP time: 208 
+TCP time: 212 
+before incoke: 0 
+done: 150 
+TCP time: 220 
+TCP time: 209 
+before incoke: 0 
+done: 155 
+before TCP start: 0 
+TCP time: 202 
+before TCP start: 0 
+TCP time: 201 
+before TCP start: 0 
+TCP time: 475 
+before incoke: 0 
+done: 180 
+before incoke: 0 
+done: 1031 
+before TCP start: 0 
+TCP time: 480 
+before TCP start: 0 
+TCP time: 463 
+before incoke: 0 
+done: 366 
+before TCP start: 0 
+TCP time: 2589 
+before incoke: 0 
+done: 2933 
+before TCP start: 0 
+TCP time: 2632 
+before TCP start: 0 
+TCP time: 2602 
+before incoke: 0 
+done: 2998 
+before TCP start: 0 
+TCP time: 2556 
+before incoke: 0 
+before TCP start: 0 
+TCP time: 2751 
+before incoke: 0 
+before incoke: 0 
+before incoke: 0 
+done: 2947 
+before incoke: 0 
+before incoke: 0 
+before incoke: 0 
+done: 4123 
+before incoke: 0 
+done: 3210 
+
+TCP 10000
+before TCP start: 0 
+TCP time: 2557 
+before TCP start: 0 
+TCP time: 2498 
+before TCP start: 0 
+TCP time: 2531 
+before TCP start: 0 
+TCP time: 2588 
+before TCP start: 0 
+TCP time: 2553 
+before TCP start: 0 
+TCP time: 2577 
+before TCP start: 0 
+TCP time: 2571 
+before TCP start: 0 
+TCP time: 2531 
+before TCP start: 0 
+TCP time: 2600 
+
+TP 10000 (no assertions)
+before incoke: 0 
+done: 2885 
+before incoke: 0 
+done: 2868 
+before incoke: 0 
+done: 2892 
+before incoke: 0 
+done: 2895 
+before incoke: 0 
+done: 2892 
+before incoke: 0 
+done: 2896 
+before incoke: 0 
+done: 2885 
+before incoke: 0 
+done: 2873 
+before incoke: 0 
+done: 2853 
+before incoke: 0 
+done: 3007 
+
+
+TP 10000 (assertions in the code)
+before incoke: 0 
+done: 2901 
+before incoke: 0 
+done: 2906 
+before incoke: 0 
+done: 2929 
+before incoke: 0 
+done: 2865 
+before incoke: 0 
+done: 2848 
+before incoke: 0 
+done: 2906 
+before incoke: 0 
+done: 2906 
+before incoke: 0 
+done: 2903 
+before incoke: 0 
+done: 3046 
+before incoke: 0 
+done: 2919 
+
+TCP 10000 (assertions in the code)
+before TCP start: 0 
+TCP time: 2500 
+before TCP start: 0 
+TCP time: 2537 
+before TCP start: 0 
+TCP time: 2493 
+before TCP start: 0 
+TCP time: 2533 
+before TCP start: 0 
+TCP time: 2618 
+before TCP start: 0 
+TCP time: 2560 
+before TCP start: 0 
+TCP time: 2519 
+before TCP start: 0 
+TCP time: 2566 
+before TCP start: 0 
+TCP time: 2580 
+before TCP start: 0 
+TCP time: 2507 
+before TCP start: 0 
+TCP time: 2541 
+before TCP start: 0 
+TCP time: 2556 
+
+
+TCP 10000 (assertions)
+before incoke: 0 
+done: 3524 
+before incoke: 0 
+done: 3265 
+before incoke: 0 
+done: 3234 
+before incoke: 0 
+done: 3294 
+before incoke: 0 
+done: 3250 
+before incoke: 0 
+done: 3257 
+before incoke: 0 
+done: 3275 
+before incoke: 0 
+done: 3254 
+before incoke: 0 
+done: 3258 
+before incoke: 0 
+done: 3487 
+
+
+
+Start 100: 0 
+Done 100: 2053 
+Start 100: 2045 
+Start 100: 2053 
+Done 100: 103 
+Start 100: 3074 
+Done 100: 104 
+Start 100: 440 
+
+// with ASS 
+Done 100: 50 
+Start 100: 1046 
+
+// without ASS
+Done 100: 44 
+
+// 100 with Ass
+Start 100: 1043 
+Done 100: 107 
+Start 100: 463 
+Done 100: 107 
+
+// 100 without Ass
+Start 100: 852 
+Done 100: 103 
+Start 100: 805 
+Done 100: 90 
+Start 100: 210 
+Done 100: 93 
+
+// 100 with Ass
+Start 100: 822 
+Done 100: 110 
+Start 100: 681 
+Done 100: 89 
+Start 100: 417 
+Done 100: 96 
+Start 100: 692 
+Done 100: 94 
+Start 100: 507 
+Done 100: 90 
+Start 100: 995 
+Done 100: 95 
+
+// 100 without Ass
+Start 100: 3061 
+Done 100: 86 
+Start 100: 3077 
+Done 100: 87 
+Start 100: 3070 
+Done 100: 91 
+Start 100: 3073 
+Done 100: 98 
+Start 100: 3074 
+Done 100: 92 

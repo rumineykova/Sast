@@ -1,0 +1,67 @@
+Assembly: 30 
+After Scribble Compiler: 906 
+After Parsing : 304 
+After Type generation: 102 
+From the cache: 1800 
+From the cache: 528 
+
+Assembly: 0 
+After Scribble Compiler: 697 
+After Parsing : 101 
+After Type generation: 11 
+From the cache: 1594 
+From the cache: 617 
+
+Assembly: 0 
+After Scribble Compiler: 726 
+After Parsing : 106 
+After Type generation: 11 
+From the cache: 1574 
+From the cache: 599 
+
+Assembly: 0 
+After Scribble Compiler: 722 
+After Parsing : 105 
+After Type generation: 11 
+From the cache: 1555 
+From the cache: 647 
+
+Assembly: 0 
+After Scribble Compiler: 688 
+After Parsing : 103 
+After Type generation: 8 
+From the cache: 1565 
+From the cache: 647 
+
+Assembly: 0 
+After Scribble Compiler: 692 
+After Parsing : 103 
+After Type generation: 9 
+From the cache: 1562 
+From the cache: 630 
+
+Assembly: 0 
+After Scribble Compiler: 694 
+After Parsing : 98 
+After Type generation: 12 
+From the cache: 1582 
+From the cache: 630 
+
+Assembly: 0 
+After Scribble Compiler: 649 
+After Parsing : 104 
+After Type generation: 11 
+From the cache: 1776 
+
+Assembly: 0 
+After Scribble Compiler: 652 
+After Parsing : 103 
+After Type generation: 8 
+From the cache: 1580 
+
+Assembly: 0 
+After Scribble Compiler: 694 
+After Parsing : 112 
+After Type generation: 11 
+From the cache: 1577 
+From the cache: 624 

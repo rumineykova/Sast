@@ -1,0 +1,21 @@
+Test100
+Assembly: 0 
+After Type generation: 144 
+After Type generation: 2915 
+Assembly: 0 
+After Type generation: 168 
+After Type generation: 2928 
+Test120
+Assembly: 0 
+After Type generation: 157 
+After Type generation: 8406 
+Assembly: 0 
+After Type generation: 162 
+After Type generation: 8472 
+Assembly: 0 
+Test200
+After Type generation: 205 
+After Type generation: 14933 
+Assembly: 0 
+After Type generation: 205 
+After Type generation: 15015 

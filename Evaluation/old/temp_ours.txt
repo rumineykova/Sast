@@ -1,0 +1,39 @@
+Nego
+Assembly: 0 
+After Type generation: 31 
+After Type generation: 997 
+Assembly: 0 
+After Type generation: 31 
+After Type generation: 989 
+2Buyer
+Assembly: 0 
+After Type generation: 34 
+After Type generation: 987 
+Assembly: 0 
+After Type generation: 21 
+After Type generation: 1000 
+3Buyer
+Assembly: 0 
+After Type generation: 38 
+After Type generation: 996 
+Assembly: 0 
+After Type generation: 47 
+After Type generation: 977 
+TravelAgnecy
+Assembly: 0 
+After Type generation: 38 
+After Type generation: 974 
+Assembly: 0 
+After Type generation: 41 
+After Type generation: 991 
+Micro
+After Type generation: 61054 
+After Type generation: 728 
+Assembly: 0 
+After Type generation: 73 
+After Type generation: 969 
+Assembly: 0 
+After Type generation: 94 
+After Type generation: 728 
+After Type generation: 1262 
+

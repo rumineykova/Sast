@@ -1,0 +1,47 @@
+FibServer
+Assembly: 29 
+After Type generation: 1502 
+After Type generation: 4303 
+After Type generation: 23290 
+After Type generation: 1361 
+After Type generation: 1388 
+Assembly: 39 
+After Type generation: 1544 
+After Type generation: 4362 
+After Type generation: 1378 
+After Type generation: 1373 
+Assembly: 0 
+=====
+Http
+Assembly: 0 
+After Type generation: 68 
+After Type generation: 719 
+After Type generation: 1282 
+=====
+SMtp
+Assembly: 0 
+After Type generation: 6050 
+After Type generation: 6612 
+Assembly: 0 
+After Type generation: 5925 
+After Type generation: 6616 
+Assembly: 0 
+After Type generation: 5849 
+After Type generation: 6598 
+After Type generation: 7762 
+=====
+Running Example
+Assembly: 0 
+After Type generation: 58 
+After Type generation: 992 
+Assembly: 0 
+After Type generation: 69 
+After Type generation: 992 
+Assembly: 0 
+After Type generation: 53 
+After Type generation: 1002 
+After Type generation: 1000 
+After Type generation: 544 
+Assembly: 0 
+After Type generation: 1080 
+After Type generation: 1423 
