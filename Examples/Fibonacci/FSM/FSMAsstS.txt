@@ -1,0 +1,17 @@
+digraph G {
+compound = true;
+"23" [ label="23: " ];
+"23" -> "25" [ label="C?HELLO(s: int)" ];
+"25" [ label="25: " ];
+"25" -> "26" [ label="C!HELLO(f: int)" ];
+"26" [ label="26: " ];
+"26" -> "27" [ label="C?HELLO(u: int)" ];
+"27" [ label="27: " ];
+"27" -> "28" [ label="C?ADD(y: int)" ];
+"28" [ label="28: " ];
+"28" -> "26" [ label="C!RES(w: int)@\"(w > 0)\"" ];
+"27" -> "29" [ label="C?BYE(_dum1: _Unit)" ];
+"29" [ label="29: " ];
+"29" -> "24" [ label="C!BYE(_dum2: _Unit)" ];
+"24" [ label="24: " ];
+}
