@@ -115,7 +115,7 @@ module RefinementTypes =
                     // the evaluation at compile-time if that's possible (Not run-time because e verything will be written once!!)
                     
                     // we return the couple (foo_i, [param1, param2, param3])
-                    (value.CompiledName,argList,value) 
+                    (value.CompiledName, argList, value) 
                 | FSharpImplementationFileDeclaration.InitAction(_) -> 
                     failwith "unexpected InitAction in file Declaration!! Issue with library not protocol specification" 
 

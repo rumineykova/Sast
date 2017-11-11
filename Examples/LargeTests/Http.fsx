@@ -39,14 +39,15 @@ let testPath = @"C:/Users/rn710/Repositories/TestGenerator/Scribble/test100.scr"
 //let f n = @
 // C:/cygwin64/home/rhu/code/vs/scribble/github.com/rumineykova/Sast/Examples/Fibonacci/
 type Fib = 
-    Provided.TypeProviderFile<"C:/Users/rn710/Repositories/scribble-java/scribble-assertions/src/test/scrib/assrt/icse18/HttpC.txt" // Fully specified path to the scribble file
+    Provided.TypeProviderFile<"C:/Users/rn710/Repositories/scribble-java/scribble-assertions/src/test/scrib/assrt/icse18/Http.scr" // Fully specified path to the scribble file
                                ,"Http" // name of the protocol
                                ,"C" // local role
                                ,"../../../Examples/Fibonacci/config.yaml" // config file containing IP and port for each role and the path to the scribble script
                                ,Delimiter=delims 
                                ,TypeAliasing=typeAliasing // give mapping from scribble base files to F# types
-                               ,ScribbleSource = ScribbleSource.File, // choose one of the following options: (LocalExecutable | WebAPI | File)
-                               ExplicitConnection=false>
+                               ,ScribbleSource = ScribbleSource.LocalExecutable // choose one of the following options: (LocalExecutable | WebAPI | File)
+                               ,ExplicitConnection=false
+                               ,AssertionsOn=false>
 
 let S = Fib.S.instance 
 Fib.

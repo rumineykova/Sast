@@ -46,6 +46,8 @@ let rec calcClipPoints (vert: int list)  (c:SH.State27) =
     match vert with 
     | [hd] -> c.sendClose(R).sendClose(C).finish()
     | hd1::hd2::tail -> 
+        let p = printf "Hello 1"
+                6
         let c1 = c.sendcheck(R, hd1, hd2).receivePoitsToForward(R, res)
         match c1 with 
         | :? SH.noItersection as no -> no.receive(R).sendOnePoit1(P, h2)

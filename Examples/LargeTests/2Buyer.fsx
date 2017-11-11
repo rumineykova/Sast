@@ -5,7 +5,9 @@ open ScribbleGenerativeTypeProvider
 [<Literal>]
 let delims = """ [ {"label" : "quote2", "delims": {"delim1": [":"] , "delim2": [","] , "delim3": [";"] } },
                    {"label" : "ok", "delims": {"delim1": [":"] , "delim2": [","] , "delim3": [";"] } }, 
+                   {"label" : "title", "delims": {"delim1": [":"] , "delim2": [","] , "delim3": [";"] } }, 
                    {"label" : "quote", "delims": {"delim1": [":"] , "delim2": [","] , "delim3": [";"] } }, 
+                   {"label" : "empty", "delims": {"delim1": [":"] , "delim2": [","] , "delim3": [";"] } }, 
                    {"label" : "empty1", "delims": {"delim1": [":"] , "delim2": [","] , "delim3": [";"] } }, 
                    {"label" : "empty2", "delims": {"delim1": [":"] , "delim2": [","] , "delim3": [";"] } }, 
                    {"label" : "empty3", "delims": {"delim1": [":"] , "delim2": [","] , "delim3": [";"] } }, 
@@ -17,17 +19,19 @@ let delims = """ [ {"label" : "quote2", "delims": {"delim1": [":"] , "delim2": [
 let typeAliasing =
     """ [ {"alias" : "int", "type": "System.Int32"} ] """
 
-
+// 
+// C:/Users/rn710/Repositories/GenerativeTypeProviderExample/Examples/LargeTests/FSM/2BuyerFSMB.txt"
 
 type Fib = 
-    Provided.TypeProviderFile<"C:/Users/rn710/Repositories/GenerativeTypeProviderExample/Examples/LargeTests/FSM/2BuyerFSMB.txt"
+    Provided.TypeProviderFile<"C:/Users/rn710/Repositories/scribble-java/scribble-demos/scrib/twobuyer/src/twobuyer/TwoBuyer.scr"
                                 ,"TwoBuyer"
                                ,"B"
                                ,"../../../Examples/LargeTests/Config/configbuyer.yaml"
                                ,Delimiter=delims
                                ,TypeAliasing=typeAliasing
-                               ,ScribbleSource = ScribbleSource.File, 
-                               ExplicitConnection=true>
+                               ,ScribbleSource = ScribbleSource.LocalExecutable
+                               ,ExplicitConnection=true
+                               ,AssertionsOn=false>
 
 
 

@@ -22,16 +22,19 @@ let delims = """ [ {"label" : "vertex", "delims": {"delim1": [":"] , "delim2": [
 let typeAliasing =
     """ [ {"alias" : "int", "type": "System.Int32"} ] """
 
+// C:\Users\rn710\Repositories\scribble-java\scribble-assertions\src\test\scrib\assrt\sh\SH.scr
+
 // C:/cygwin64/home/rhu/code/vs/scribble/github.com/rumineykova/Sast/Examples/Fibonacci/
 type SH = 
-    Provided.TypeProviderFile<"../../../Examples/SH/ShFSM_S.txt" // Fully specified path to the scribble file
+    Provided.TypeProviderFile<"C:/Users/rn710/Repositories/scribble-java/scribble-assertions/src/test/scrib/assrt/sh/SH.scr" // Fully specified path to the scribble file
                                ,"SH" // name of the protocol
                                ,"P" // local role
                                ,"../../../Examples/SH/configSP.yaml" // config file containing IP and port for each role and the path to the scribble script
                                ,Delimiter=delims 
                                ,TypeAliasing=typeAliasing // give mapping from scribble base files to F# types
-                               ,ScribbleSource = ScribbleSource.File // choose one of the following options: (LocalExecutable | WebAPI | File)
-                               ,ExplicitConnection = true>
+                               ,ScribbleSource = ScribbleSource.LocalExecutable // choose one of the following options: (LocalExecutable | WebAPI | File)
+                               ,ExplicitConnection = true
+                               ,AssertionsOn = true>
 let numIter = 3
 let R = SH.R.instance
 let C = SH.C.instance

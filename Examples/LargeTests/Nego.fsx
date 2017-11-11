@@ -15,17 +15,18 @@ let delims = """ [ {"label" : "propose", "delims": {"delim1": [":"] , "delim2": 
 let typeAliasing =
     """ [ {"alias" : "int", "type": "System.Int32"} ] """
 
-
+// C:/Users/rn710/Repositories/GenerativeTypeProviderExample/Examples/LargeTests/FSM/NegoC.txt
 
 type Fib = 
-    Provided.TypeProviderFile<"C:/Users/rn710/Repositories/GenerativeTypeProviderExample/Examples/LargeTests/FSM/NegoC.txt"
-                               ,"Nego"
+    Provided.TypeProviderFile<"C:/Users/rn710/Repositories/scribble-java/scribble-demos/scrib/nego/src/nego/Nego1.scr"
+                               ,"Negotiation"
                                ,"C"
                                ,"../../../Examples/LargeTests/Config/configNego.yaml"
                                ,Delimiter=delims
                                ,TypeAliasing=typeAliasing
-                               ,ScribbleSource = ScribbleSource.File, 
-                               ExplicitConnection=true>
+                               ,ScribbleSource = ScribbleSource.LocalExecutable 
+                               ,ExplicitConnection=true
+                               ,AssertionsOn=false>
 
 
 

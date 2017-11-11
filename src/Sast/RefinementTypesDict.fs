@@ -47,7 +47,7 @@ type LoopUpDict() =
 
     /// run the foo function built at compile-time 
     member x.runFooFunction (fooName:string) =
-        let fnRule = x.getFooValue fooName
+        let fnRule = x.getFooValue fooName        
         let untypedFn = fnRule.untypedFn
         let args = 
             let tmp = fnRule.argNames

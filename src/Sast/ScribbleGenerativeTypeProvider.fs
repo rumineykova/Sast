@@ -73,17 +73,25 @@ type GenerativeTypeProvider(config : TypeProviderConfig) as this =
         watcher.EnableRaisingEvents <- true
         disposals.Add(fun () -> watcher.Dispose())
 
-    let invokeScribble pathToFile protocol localRole tempFileName =         
+    let invokeScribble pathToFile protocol localRole tempFileName assertionsOn =         
         // Configure command line
         // Add -batch (to speed up Z3 by passing one logical formulae for checking the protocol, 
         // hence the check is fast when the protocol is correct, but slow when it is not. 
-        let batFile = """%scribble%"""
-        let scribbleArgs = sprintf """/C %s %s -ass %s -ass-fsm %s -Z3 >> %s 2>&1 """ 
-                                    batFile pathToFile protocol localRole tempFileName
+            
+        (* let batFile = if assertionsOn then """%scribble%""" else """%scribbleno%"""
+        
+        let scribbleArgs = sprintf """/C %s %s -ass %s -ass-fsm %s -Z3  >> %s 2>&1 """ 
+                                    batFile pathToFile protocol localRole tempFileName *)
 
-        // Incomment below for Scribble without assertions 
-        //let scribbleArgs = sprintf """/C %s %s -fsm %s %s >> %s 2>&1 """ 
-        //                               batFile pathToFile protocol localRole tempFileName
+        // Uncomment below for Scribble without assertions 
+        let scribbleArgs = match assertionsOn with 
+                           | false -> 
+                                let batFile = """%scribbleno%""" 
+                                sprintf """/C %s %s -fsm %s %s >> %s 2>&1 """ batFile pathToFile protocol localRole tempFileName
+                           | true -> 
+                                let batFile = """%scribble%""" 
+                                sprintf """/C %s %s -ass %s -ass-fsm %s -Z3  >> %s 2>&1 """ 
+                                                batFile pathToFile protocol localRole tempFileName
 
         let psi = ProcessStartInfo("cmd.exe", scribbleArgs)
         psi.UseShellExecute <- false; psi.CreateNoWindow <- true; 
@@ -107,17 +115,13 @@ type GenerativeTypeProvider(config : TypeProviderConfig) as this =
                 parsed
             | None -> failwith "The file given does not contain a valid fsm"
 
-    let generateTypes (fsm:string) (name:string) (parameters:obj[]) = 
+    let generateTypes (fsm:string) (variablesMap : Map<string, AssertionParsing.Expr>) (name:string) (parameters:obj[]) = 
     
         let configFilePath = parameters.[0]  :?> string
         let delimitaters = parameters.[1]  :?> string
         let explicitConnection = parameters.[4] :?> bool
 
         let protocol = ScribbleProtocole.Parse(fsm)
-
-        (*for event in protocol do 
-            for payload in event.Payload do 
-                payload.VarType <- alias.*)
 
         let triple = stateSet protocol
         let n, stateSet, firstState = triple
@@ -154,7 +158,7 @@ type GenerativeTypeProvider(config : TypeProviderConfig) as this =
         Regarder.initAssertionDict "agent" assertionLookUp
         Regarder.initCache "cache" cache
 
-        addProperties listTypes listTypes (Set.toList stateSet) (fst tupleLabel) (fst tupleRole) protocol
+        addProperties listTypes listTypes (Set.toList stateSet) (fst tupleLabel) (fst tupleRole) protocol (variablesMap : Map<string, AssertionParsing.Expr>)
 
         let ctor = firstStateType.GetConstructors().[0]                                                               
         let ctorExpr = Expr.NewObject(ctor, [])
@@ -211,6 +215,9 @@ type GenerativeTypeProvider(config : TypeProviderConfig) as this =
             watchPath (WatchSpec.File naming) 
 
             let scribbleSource = parameters.[6] :?> ScribbleSource
+            let assertionsOn = parameters.[8] :?> bool
+
+
             let fsm = match scribbleSource with 
                         | ScribbleSource.WebAPI ->  
                             let str =  File.ReadAllText(pathToFile) // parse the Scribble code
@@ -230,16 +237,20 @@ type GenerativeTypeProvider(config : TypeProviderConfig) as this =
                             // let batFile = DomainModel.config.ScribblePath.FileName 
                             let tempFileName = Path.GetTempFileName()       
                             try  
-                                let parsedScribble = invokeScribble pathToFile protocol localRole tempFileName
-                                parseCFSM parsedScribble protocol localRole typeAliasing
+                                let parsedScribble = invokeScribble pathToFile protocol localRole tempFileName assertionsOn
+                                TimeMeasure.measureTime "After Scribble Compiler"  
+                                let p = parseCFSM parsedScribble protocol localRole typeAliasing
+                                TimeMeasure.measureTime "After Parsing "
+                                p
                             finally 
                                 if File.Exists(tempFileName) then File.Delete(tempFileName)
-
+            let variablesMap : Map<string, AssertionParsing.Expr> = Map.empty
+            // Pass u = v + 3 : string -> AssertionParsing.Expr
             let size = parameters.Length
             //TimeMeasure.measureTime "Before Type generation"
-            let genType = generateTypes fsm name parameters.[3..(size-1)]
-            TimeMeasure.measureTime "After Type generation"
+            let genType = generateTypes fsm  variablesMap name parameters.[3..(size-1)]
             cachedTypes.Add(name, genType)
+            TimeMeasure.measureTime "After Type generation"
             genType
 
     //let basePort = 5000       
@@ -251,7 +262,8 @@ type GenerativeTypeProvider(config : TypeProviderConfig) as this =
                           ProvidedStaticParameter("Delimiter",typeof<string>);
                           ProvidedStaticParameter("TypeAliasing",typeof<string>); 
                           ProvidedStaticParameter("ScribbleSource",typeof<ScribbleSource>);
-                          ProvidedStaticParameter("ExplicitConnection",typeof<bool>); ]
+                          ProvidedStaticParameter("ExplicitConnection",typeof<bool>);
+                          ProvidedStaticParameter("AssertionsOn",typeof<bool>); ]
 
     do 
         this.Disposing.Add((fun _ ->
@@ -261,7 +273,7 @@ type GenerativeTypeProvider(config : TypeProviderConfig) as this =
         ))
 
         providedType.DefineStaticParameters(parametersTP, createOrUseProvidedTypeDefinition)
-        this.AddNamespace(ns, [providedType])        
+        this.AddNamespace(ns, [providedType])     
         TimeMeasure.measureTime "Assembly"
     
     [<CLIEvent>]

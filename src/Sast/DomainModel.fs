@@ -35,7 +35,7 @@ type Message =
     |SendMessage of byte [] * string // (serialized message to be put in the tcp Stream , role of the partner)
     |ReceiveMessage of (byte[] * string list) list * string * AsyncReplyChannel<byte [] list> // (serialized message to be put in the tcp Stream , the reply channel , role of the partner)
     |ReceiveMessageAsync of byte[] list * string * string list * AsyncReplyChannel<byte [] list> // (serialized message to be put in the tcp Stream , the reply channel , role of the partner)
-    
+    |Stop 
 
 // TYPE PROVIDER'S ASSEMBLY (for generative type provider) + NAMESPACE + BASETYPE 
 let internal ns = "ScribbleGenerativeTypeProvider.Provided"

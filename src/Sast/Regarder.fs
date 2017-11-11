@@ -20,7 +20,7 @@ let addLabel mapping =
     mLabel <- mapping
 
 let getLabelType (labelRead:string) =
-    printfn "getLabelType : %A" (mLabel,labelRead) 
+    //printfn "getLabelType : %A" (mLabel,labelRead) 
      
     mLabel.[labelRead]
 
@@ -32,6 +32,9 @@ let acceptConnection agent role =
 
 let requestConnection agent role =
     routerMap.Item(agent).RequestConnection(role)
+
+let stopMessage agent = 
+    routerMap.Item(agent).Stop()
 
 let sendMessage agent message role =
     routerMap.Item(agent).SendMessage(message,role)
@@ -66,19 +69,19 @@ let addVarsBufs name (keys: string list) (values:Buf<int> []) =
 
 open ScribbleGenerativeTypeProvider.RefinementTypesDict
 
-let mutable lookUp = Map.empty<string, LoopUpDict>
+let mutable assertionLookUp = Map.empty<string, LoopUpDict>
 
 let initAssertionDict name (assertLookip:LoopUpDict) = 
-    lookUp <- lookUp.Add(name, assertLookip)
+    assertionLookUp <- assertionLookUp.Add(name, assertLookip)
  
-let getIndex name  = 
-    lookUp.Item(name).Index()
+let getAssertionIndex name  = 
+    assertionLookUp.Item(name).Index()
 
-let addToDict name elem = 
-    lookUp.Item(name).addToDict(elem)
+let addToAssertionDict name elem = 
+    assertionLookUp.Item(name).addToDict(elem)
 
 let runFooFunction name foo = 
-    lookUp.Item(name).runFooFunction(foo)
+    assertionLookUp.Item(name).runFooFunction(foo)
 
-let addArgValue name argName rcv = 
-    lookUp.Item(name).addArgValue argName rcv 
+let addArgValueToAssertionDict name argName rcv = 
+    assertionLookUp.Item(name).addArgValue argName rcv 

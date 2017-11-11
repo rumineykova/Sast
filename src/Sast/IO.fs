@@ -10,6 +10,7 @@ open ScribbleGenerativeTypeProvider.DomainModel
 open ScribbleGenerativeTypeProvider.Regarder
 open ScribbleGenerativeTypeProvider.CommunicationAgents
 open System.Threading.Tasks
+open ScribbleGenerativeTypeProvider.Util
 
 
 /// this way of defining failures can be used in an exception raising manner
@@ -68,7 +69,8 @@ let serPayloads (args:Expr list) (listTypes:string list) (payloadDelim:string) (
                     let ranFoo = 
                         // No Assertion provided
                         if foo <> "" then 
-                            Regarder.addArgValue "agent" argName spliced
+                            
+                            Regarder.addArgValueToAssertionDict "agent" argName spliced
                             Regarder.runFooFunction "agent" foo
                         else
                             Some true
@@ -94,8 +96,11 @@ let serPayloads (args:Expr list) (listTypes:string list) (payloadDelim:string) (
                     let ranFoo = 
                         // No Assertion provided
                         if foo <> "" then 
-                            Regarder.addArgValue "agent" argName spliced
-                            Regarder.runFooFunction "agent" foo
+                            // TimeMeasure.measureTime "before assertion"
+                            Regarder.addArgValueToAssertionDict "agent" argName spliced
+                            let res = Regarder.runFooFunction "agent" foo
+                            // TimeMeasure.measureTime "after assertion res"
+                            res
                         else
                             Some true
                     match ranFoo with
@@ -175,7 +180,7 @@ let deserialize (args: Expr list) (listTypes:string list) (messages: _ list) (ro
 
     <@ 
         let result = Regarder.receiveMessage "agent" messages role [listTypes]
-        printfn " deserialize Normal : %A || Role : %A || listTypes : %A" messages role listTypes
+        //printfn " deserialize Normal : %A || Role : %A || listTypes : %A" messages role listTypes
         printing " received Bytes: " result
             
         let received = convert (result.Tail) listTypes 
@@ -184,7 +189,7 @@ let deserialize (args: Expr list) (listTypes:string list) (messages: _ list) (ro
             // No Assertion provided
             if foo <> "" then 
                 (argsNames,received)
-                ||> List.map2(fun argName rcv -> Regarder.addArgValue "agent" argName rcv )
+                ||> List.map2(fun argName rcv -> Regarder.addArgValueToAssertionDict "agent" argName rcv )
                 |> ignore
                 Regarder.runFooFunction "agent" foo
             else
@@ -199,7 +204,6 @@ let deserialize (args: Expr list) (listTypes:string list) (messages: _ list) (ro
             Runtime.setResults received (%%(Expr.NewArray(typeof<ISetResult>, buffer)):ISetResult []) 
     @>
                  
-
 let deserializeAsync (args: Expr list)  (listTypes:string list) (messages: _ list) (role:string) argsNames foo =  
     let buffer = [for elem in args do
                     yield Expr.Coerce(elem,typeof<ISetResult>) ]              
@@ -212,9 +216,10 @@ let deserializeAsync (args: Expr list)  (listTypes:string list) (messages: _ lis
 
                     let ranFoo = 
                         // No Assertion provided
+                        
                         if foo <> "" then 
                             (argsNames,received)
-                            ||> List.map2(fun argName rcv -> Regarder.addArgValue "agent" argName rcv )
+                            ||> List.map2(fun argName rcv -> Regarder.addArgValueToAssertionDict "agent" argName rcv )
                             |> ignore
                             Regarder.runFooFunction "agent" foo
                         else
@@ -237,18 +242,20 @@ let deserializeChoice (args: Expr list) (listTypes:string list) argsNames foo =
                     yield Expr.Coerce(elem,typeof<ISetResult>) ]
     <@ 
         let result = Regarder.receiveChoice "agent" 
+        printing "List types" listTypes
         let received = (result |> convert <| listTypes ) 
 
+        printing "foo is" foo
         let ranFoo = 
             // No Assertion provided
             if foo <> "" then 
                 (argsNames,received)
-                ||> List.map2(fun argName rcv -> Regarder.addArgValue "agent" argName rcv)
+                ||> List.map2(fun argName rcv -> Regarder.addArgValueToAssertionDict "agent" argName rcv)
                 |> ignore
                 Regarder.runFooFunction "agent" foo
             else
                 Some true
-
+        
         match ranFoo with
         | None -> failwith "Incorrect type evaluated : Either not enough argument given to the assertion or the assertion is not a function that returns a boolean"
         | Some false -> failwith "Assertion Constraint not met"

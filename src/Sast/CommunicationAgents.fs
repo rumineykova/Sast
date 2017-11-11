@@ -40,8 +40,8 @@ type VarCache() =
 
 let createCache = new VarCache()
 
+let doPrinting = false
 let printing message data =
-    let doPrinting = true
     if doPrinting then
         printfn "%s %A" message data
 
@@ -77,7 +77,7 @@ let internal moreLists (labels:byte[] list) =
                            | None , Some delims -> delims
                            | Some delims , None -> delims
                            | _ , _ -> failwith (sprintf "Error with delimitations : For the moment avoid to have a label equal to a label + delimiter \n Example : %s AND %s" str1 str2)
-                       printfn "LOOP : Get Delims"
+                       //printfn "LOOP : Get Delims"
                        aux (listDelim::acc) tl
     printing  "Labels :" labels
     aux [] labels
@@ -155,6 +155,7 @@ type IRouter =
 type AgentSender(ipAddress,port, localRole:string, role:string) =
     let mutable localRole = localRole
     let mutable role = role
+    let mutable tcpClient:TcpClient = null
     [<DefaultValue>] val mutable router : IRouter
 
     let waitSynchronously timeout =
@@ -165,20 +166,20 @@ type AgentSender(ipAddress,port, localRole:string, role:string) =
     // FEATURE to add: 5 Tries of 3 seconds and then double the time at each try following Microsoft Standards.
     // FEATURE ADDED
     let connect address p (tcpClient:TcpClient) (router:IRouter) =
-        System.Console.WriteLine("Connecting ...")
+        //System.Console.WriteLine("Connecting ...")
         let rec aux timeout count =
             let tries = 5
             try
                 match count with
-                    |n when n<tries ->  System.Console.WriteLine("Attempt number : {0} out of {1} : waiting {2} seconds before restarting...",
-                                                                  count,tries,timeout)
+                    |n when n<tries ->  //System.Console.WriteLine("Attempt number : {0} out of {1} : waiting {2} seconds before restarting...",
+                                        //                          count,tries,timeout)
                                         //MOCK THE CONNECTION HERE
-                                        System.Console.WriteLine("Trying to connect to : IP = {0}  and Port = {1} ...", IPAddress.Parse(address), p)
+                                        //System.Console.WriteLine("Trying to connect to : IP = {0}  and Port = {1} ...", IPAddress.Parse(address), p)
                                         tcpClient.Connect(IPAddress.Parse(address),p)
-                                        System.Console.WriteLine("After connect attempt...")
-                                        if (tcpClient.Connected) then
-                                            router.UpdateAgentReceiver role  tcpClient
-                                            System.Console.WriteLine("Connected to: IP = {0}  and Port = {1} ...", IPAddress.Parse(address), p)                                            
+                                        //System.Console.WriteLine("After connect attempt...")
+                                        //if (tcpClient.Connected) then
+                                            //router.UpdateAgentReceiver role  tcpClient
+                                           // System.Console.WriteLine("Connected to: IP = {0}  and Port = {1} ...", IPAddress.Parse(address), p)                                            
                     |_ -> tcpClient.Connect(IPAddress.Parse(address),p)
                           if not(tcpClient.Connected) then
                               raise (TooManyTriesError("You have tried too many times to connect, the partner is not ready to connect with you"))
@@ -207,13 +208,14 @@ type AgentSender(ipAddress,port, localRole:string, role:string) =
                     do! stream.AsyncWrite(message)
                     printing "Message Sent via TCP" ""
                     return! loop()
+                |Stop -> stream.Close()
             }
         in loop()
  
     let mutable agentSender = None 
 
     member this.SendMessage(message) =
-        printing "Send Message : About to send" ""
+        // printing "Send Message : About to send" ""
         match (agentSender:Option<Agent<Message>>) with
             |None -> () // Raise an exception Error due to using this method before the Start method in the type provider 
             |Some sending -> 
@@ -224,11 +226,15 @@ type AgentSender(ipAddress,port, localRole:string, role:string) =
     member this.SetRouter router = 
         this.router <- router
         
+    member this.Stop () = 
+        let stream = tcpClient.GetStream().Close()
+        tcpClient.Close()
 
     member this.Start() = // Raise an exception due to trying to connect and parsing the IPAddress
         printing "Is start" this.router
         let tcpClientSend = new TcpClient()
         connect ipAddress port tcpClientSend this.router
+        tcpClient <- tcpClientSend
         let stream = tcpClientSend.GetStream()
         let serializedRole = localRole + ";"
         printing "serialized roles is" serializedRole
@@ -238,7 +244,7 @@ type AgentSender(ipAddress,port, localRole:string, role:string) =
         agentSender <- Some (Agent.Start(send stream))
 
     member this.Accept(tcpClient:TcpClient) = // Raise an exception due to trying to connect and parsing the IPAddress
-        let stream = tcpClient.GetStream()
+        let stream = tcpClient.GetStream()        
         agentSender <- Some (Agent.Start(send stream))
     
 type AgentReceiver(ipAddress,port, roles: string list) =
@@ -252,9 +258,9 @@ type AgentReceiver(ipAddress,port, roles: string list) =
         match count with
             |n when n=0 -> ()
             |n when n>0 -> if not(clientMap.ContainsKey str) then
-                                System.Console.WriteLine(" I AM WAITING FOR CANCELLATION !!!!")
-                                System.Console.WriteLine(clientMap.Count)
-                                System.Console.WriteLine(" For role" + str)
+                                //System.Console.WriteLine(" I AM WAITING FOR CANCELLATION !!!!")
+                                //System.Console.WriteLine(clientMap.Count)
+                                //System.Console.WriteLine(" For role" + str)
                                 Async.RunSynchronously(Async.Sleep 1000)
                                 waitForCancellation str (count-1)
                            else
@@ -295,7 +301,8 @@ type AgentReceiver(ipAddress,port, roles: string list) =
             // CHANGE ABOVE BY READING THE ROLE IN ANOTHER Map<role:string,(IP,PORT)>
             clientMap <- clientMap.Add(readRole,stream)
             printing " SIZE :" (clientMap.Count,readRole)
-            router.UpdateAgentSenders readRole client 
+            //router.UpdateAgentSenders readRole client 
+            //router.UpdateAgentReceiver readRole client 
             return! loop()
             }
         in loop()
@@ -356,7 +363,8 @@ type AgentReceiver(ipAddress,port, roles: string list) =
                     match label with
                     |msg when ( (message |> List.map fst) |> isIn <| (Array.append msg delim) ) |> not -> 
                         printing "wrong label read :" (label,message)
-                        failwith "Received a wrong Label, that doesn't belong to the possible Labels at this state"
+                        if stream.DataAvailable then 
+                            failwith "Received a wrong Label, that doesn't belong to the possible Labels at this state"
                     | _ ->  
                         let listTypes = message |> List.map snd
                         printing "\n \n List of Types : " (listTypes,label,message)
@@ -388,10 +396,10 @@ type AgentReceiver(ipAddress,port, roles: string list) =
 
     member this.Start()=
         server.Start()
-        System.Console.WriteLine("TCP LISTENER RECEIVER STARTS...")
+        //System.Console.WriteLine("TCP LISTENER RECEIVER STARTS...")
         //let roles = clientMap |> Map.toSeq |> Seq.map fst |> Seq.toList
-        System.Console.WriteLine(roles.Length)
-        System.Console.WriteLine(clientMap.Count)
+        //System.Console.WriteLine(roles.Length)
+        //System.Console.WriteLine(clientMap.Count)
         Agent.Start(binding server this.parentRouter) |> ignore
         agentReceiver <- Some (Agent.Start(receive))
 
@@ -404,22 +412,19 @@ type AgentReceiver(ipAddress,port, roles: string list) =
 
     member thid.UpdateClientMap(role:string, client:TcpClient)= 
         if not (clientMap.ContainsKey(role)) then
+            printing "Update client map " (role.ToString())
             clientMap <- clientMap.Add(role,client.GetStream())
 
     // Be carefull with this function: IF IT'S NONE RAISE AN EXCEPTION
     member this.ReceiveMessageAsync(message) =
-        
-        System.Console.WriteLine("RECEIVING...")
         match agentReceiver with
             |Some receive -> receive.Post(Message.ReceiveMessageAsync message )                            
             |None -> failwith " agent not instanciated yet"
                      
     member this.ReceiveMessage(message) =
-        System.Console.WriteLine("RECEIVING...")
         let (msg,role,ch) = message
         match agentReceiver with
             |Some receive -> 
-                printfn "Wait Reply"
                 receive.PostAndReply(fun channel -> Message.ReceiveMessage (msg,role,channel))
             |None -> failwith " agent not instanciated yet"
                      
@@ -484,6 +489,11 @@ type AgentRouter(explicitConnection:bool) =
                     sender.Value.Start()
                     //connectedAgents.[sender.Key] = true |> ignore
 
+        member this.Stop() =
+            for sender in this.agentMapping do
+                    sender.Value.Stop()
+            this.agentReceiver.Stop()
+            printing "closing the connections"
                    
         member this.SendMessage(message) =
             printing "SendMessage : Post to the write role = " message

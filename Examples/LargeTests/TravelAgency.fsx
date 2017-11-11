@@ -15,17 +15,18 @@ let delims = """ [ {"label" : "Query", "delims": {"delim1": [":"] , "delim2": ["
 let typeAliasing =
     """ [ {"alias" : "int", "type": "System.Int32"} ] """
 
-
-
+//C:\Users\rn710\Repositories\scribble-java\scribble-demos\scrib\travel\src\travel\Travel.scr
+// fsm is inL C:/Users/rn710/Repositories/GenerativeTypeProviderExample/Examples/LargeTests/FSM/TravelAgencyA.txt
 type Fib = 
-    Provided.TypeProviderFile<"C:/Users/rn710/Repositories/GenerativeTypeProviderExample/Examples/LargeTests/FSM/TravelAgencyA.txt"
-                               ,"TravelAgency"
+    Provided.TypeProviderFile<"C:/Users/rn710/Repositories/scribble-java/scribble-demos/scrib/travel/src/travel/Travel.scr"
+                               ,"Booking"
                                ,"A"
                                ,"../../../Examples/LargeTests/Config/configTA.yaml"
                                ,Delimiter=delims
                                ,TypeAliasing=typeAliasing
-                               ,ScribbleSource = ScribbleSource.File, 
-                               ExplicitConnection=true>
+                               ,ScribbleSource = ScribbleSource.LocalExecutable
+                               ,ExplicitConnection=true
+                               ,AssertionsOn=false>
 
 
 Fib.

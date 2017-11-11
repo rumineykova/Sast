@@ -19,17 +19,18 @@ let delims = """ [ {"label" : "quote2", "delims": {"delim1": [":"] , "delim2": [
 let typeAliasing =
     """ [ {"alias" : "int", "type": "System.Int32"} ] """
 
-
+//"C:/Users/rn710/Repositories/GenerativeTypeProviderExample/Examples/LargeTests/FSM/3BuyerFSMB.txt
 
 type Fib = 
-    Provided.TypeProviderFile<"C:/Users/rn710/Repositories/GenerativeTypeProviderExample/Examples/LargeTests/FSM/3BuyerFSMB.txt"
+    Provided.TypeProviderFile<"C:/Users/rn710/Repositories/scribble-java/scribble-demos/scrib/threebuyer/src/threebuyer/ThreeBuyer.scr"
                                ,"TwoBuyer"
                                ,"B"
                                ,"../../../Examples/LargeTests/Config/configbuyer3.yaml"
                                ,Delimiter=delims
                                ,TypeAliasing=typeAliasing
-                               ,ScribbleSource = ScribbleSource.File, 
-                               ExplicitConnection=true>
+                               ,ScribbleSource = ScribbleSource.LocalExecutable 
+                               ,ExplicitConnection=true
+                               ,AssertionsOn=false>
 
 let session = new Fib()
 session.Start()

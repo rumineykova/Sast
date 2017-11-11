@@ -14,14 +14,15 @@ let typeAliasing =
     """ [ {"alias" : "int", "type": "System.Int32"} ] """
 
 type Fib = 
-    Provided.TypeProviderFile<"C:/Users/rn710/Repositories/TestGenerator/Scribble/test200FSM.txt"
+    Provided.TypeProviderFile<"C:/Users/rn710/Repositories/TestGenerator/Scribble/test200.scr"
                                ,"Test200"
                                ,"S"
                                ,"../../../Examples/Fibonacci/configServer.yaml"
                                ,Delimiter=delims
                                ,TypeAliasing=typeAliasing
-                               ,ScribbleSource = ScribbleSource.File, 
-                               ExplicitConnection=true>
+                               ,ScribbleSource = ScribbleSource.LocalExecutable
+                               ,ExplicitConnection=true
+                               ,AssertionsOn=false>
 
 let numIter = 10-2
 let C = Fib.C.instance

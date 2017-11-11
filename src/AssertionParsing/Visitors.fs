@@ -22,6 +22,13 @@ module Visitors =
             let rightStr = getStringRepr right
             sprintf "%s %s %s" leftStr (op.ToString()) rightStr
 
+    let isEquality node = 
+        match node with 
+        | Comparison(left, op, right) -> 
+            match op with 
+            | Eq -> true
+            | _ -> false
+        | _ -> false 
 
     let rec getVars node = 
         match node with
@@ -43,3 +50,12 @@ module Visitors =
             let rightSet = getVars right
             let res = leftSet |> Set.union rightSet
             res 
+
+    (*let rec substVar node (mapping:Map<string, obj option>) = 
+        match node with 
+        |Ident(identifier) -> 
+            let value = mapping.Item(identifier)
+            let res = match value with 
+                        | Some x -> x      
+                        | _ -> failwith "No value given for the arguments"
+            Literal(IntC(res :> System.Int32))*)

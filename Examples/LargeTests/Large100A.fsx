@@ -16,15 +16,15 @@ let typeAliasing =
 
 
 type Fib = 
-    Provided.TypeProviderFile<"C:/Users/rn710/Repositories/TestGenerator/Scribble/atest100FSMA.txt"
+    Provided.TypeProviderFile<"C:/Users/rn710/Repositories/TestGenerator/Scribble/atest100.scr"
                                 ,"Test100"
                                ,"C"
                                ,"../../../Examples/Fibonacci/configServer.yaml"
                                ,Delimiter=delims
                                ,TypeAliasing=typeAliasing
-                               ,ScribbleSource = ScribbleSource.File, 
-                               ExplicitConnection=true>
-
+                               ,ScribbleSource = ScribbleSource.LocalExecutable
+                               ,ExplicitConnection=true
+                               ,AssertionsOn=true>
 
 
 let session = new Fib()

@@ -6,6 +6,7 @@ open ScribbleGenerativeTypeProvider
 let delims = """ [ {"label" : "getsuppliers", "delims": {"delim1": [":"] , "delim2": [","] , "delim3": [";"] } },
                    {"label" : "deny", "delims": {"delim1": [":"] , "delim2": [","] , "delim3": [";"] } }, 
                    {"label" : "getsuppliers", "delims": {"delim1": [":"] , "delim2": [","] , "delim3": [";"] } }, 
+                   {"label" : "filter", "delims": {"delim1": [":"] , "delim2": [","] , "delim3": [";"] } }, 
                    {"label" : "suppliers", "delims": {"delim1": [":"] , "delim2": [","] , "delim3": [";"] } },
                    {"label" : "Query", "delims": {"delim1": [":"] , "delim2": [","] , "delim3": [";"] } }, 
                    {"label" : "filtered", "delims": {"delim1": [":"] , "delim2": [","] , "delim3": [";"] } }, 
@@ -21,16 +22,16 @@ let typeAliasing =
 
 
 type Fib = 
-    Provided.TypeProviderFile<"C:/Users/rn710/Repositories/GenerativeTypeProviderExample/Examples/LargeTests/FSM/McrAuth.txt"
-                               ,"Test100"
+    Provided.TypeProviderFile<"C:/Users/rn710/Repositories/GenerativeTypeProviderExample/Examples/LargeTests/Protocols/Mcrsrv.scr"
+                               ,"PartnershipSupplier"
                                ,"authorisersvc"
                                ,"../../../Examples/LargeTests/Config/configMicro.yaml"
                                ,Delimiter=delims
                                ,TypeAliasing=typeAliasing
-                               ,ScribbleSource = ScribbleSource.File, 
-                               ExplicitConnection=false>
+                               ,ScribbleSource = ScribbleSource.LocalExecutable 
+                               ,ExplicitConnection=false
+                               ,AssertionsOn=false>
 
-Fib.
 
 let session = new Fib()
 session.Start()
