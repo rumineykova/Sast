@@ -1,0 +1,88 @@
+﻿#r "../../src/Sast/bin/Debug/Sast.dll"
+
+open ScribbleGenerativeTypeProvider
+           
+           
+           
+                        
+[<Literal>]
+let delims = """ [ {"label" : "ADD", "delims": {"delim1": [":"] , "delim2": [","] , "delim3": [";"] } },
+                   {"label" : "RES", "delims": {"delim1": [":"] , "delim2": [","] , "delim3": [";"] } }, 
+                   {"label" : "BYE", "delims": {"delim1": [":"] , "delim2": [","] , "delim3": [";"] } }, 
+                   {"label" : "close", "delims": {"delim1": [":"] , "delim2": [","] , "delim3": [";"] } }, 
+                   {"label" : "HELLO", "delims": {"delim1": [":"] , "delim2": [","] , "delim3": [";"] } }]"""
+
+
+[<Literal>]
+let typeAliasing1 = """ [ {"alias" : "int", "type": "System.Int32"} ] """
+
+type Fib = 
+    Provided.TypeProviderFile<"../../../Examples/Fibonacci/FibnoAss.scr"
+                               ,"Adder"
+                                   ,"C"
+                               ,"../../../Examples/Fibonacci/config.yaml"
+                               ,Delimiter=delims
+                               ,TypeAliasing=typeAliasing1
+                               ,ScribbleSource = ScribbleSource.LocalExecutable 
+                               ,ExplicitConnection=false 
+                               ,AssertionsOn=true>
+
+
+module TimeMeasure =     
+    open System.IO
+    open System.Diagnostics
+
+    let mutable stopWatch = System.Diagnostics.Stopwatch.StartNew()
+    let path = "C:/Users/rn710/Repositories/GenerativeTypeProviderExample/Evaluation/"
+    let file = "C:/Users/rn710/Repositories/GenerativeTypeProviderExample/Evaluation/tempfib.txt"
+
+    let start() = 
+        stopWatch.Stop()
+        stopWatch <- System.Diagnostics.Stopwatch.StartNew()
+
+    let measureTime (step:string) = 
+        stopWatch.Stop()
+        let numSeconds = stopWatch.ElapsedTicks / Stopwatch.Frequency
+        let curTime = sprintf "%s: %i \r\n" step stopWatch.ElapsedMilliseconds
+        File.AppendAllText(file, curTime)
+        stopWatch <- Stopwatch.StartNew()
+
+let numIter = 10000
+let S = Fib.S.instance
+
+let rec fibrec a b iter (c0:Fib.State12) = 
+    let res = new DomainModel.Buf<int>()
+    //let res2 = new DomainModel.Buf<int>()
+    //let res1 = new DomainModel.Buf<int>()
+    //printfn "number of iter: %d" (numIter - iter)
+    let c = c0.sendHELLO(S, 1)
+    //printfn "Result received: %d" (res2.getValue())
+    match iter with
+        |0 -> 
+            let c1 = c.sendBYE(S)
+            let c2 = c1.receiveBYE(S)
+            printfn "Fibo : %d" b
+            TimeMeasure.measureTime  "done"
+            let finalc = c2.finish()
+            finalc
+        |n -> 
+            let c1 = c.sendADD(S, b)
+            //printfn "Send ADD"   
+            let c2 = c1.receiveRES(S, res)
+            //printfn "GetValue: %d" (res.getValue())
+            //if res.getValue() >  0 then 
+            //    printfn "Fibo : %d" (res.getValue())
+            //else 
+            //    printfn "Fibo : %d" (res.getValue())
+            //Async.RunSynchronously(Async.Sleep(1000))
+            fibrec b (res.getValue()) (n-1) c2
+
+
+
+let fibo = new Fib()
+let r = new DomainModel.Buf<int>()
+let first = fibo.Start()//.request(S)
+let snd = first.sendHELLO(S, 1).receiveHELLO(S, r)
+TimeMeasure.start()
+TimeMeasure.measureTime "before incoke"
+snd |> fibrec 1 1 numIter

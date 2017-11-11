@@ -241,3 +241,31 @@ Start 100: 3073
 Done 100: 98 
 Start 100: 3074 
 Done 100: 92 
+Start 100: 337 
+Done 100: 126 
+Start 100: 1015 
+Done 100: 103 
+
+// 100 * 100 with assertions 
+Start 100: 124 
+Done 100: 1177 
+Start 100: 212 
+Done 100: 1156 
+Start 100: 337 
+Done 100: 1148 
+Start 100: 822 
+Done 100: 1184 
+Start 100: 959 
+Done 100: 1162 
+
+
+// 100 * 100 no assertions Start 100: 3063 
+Done 100: 1023 
+Start 100: 3070 
+Done 100: 1025 
+Start 100: 3062 
+Done 100: 1016 
+Start 100: 2045 
+Done 100: 1014 
+Start 100: 3077 
+Done 100: 1061 

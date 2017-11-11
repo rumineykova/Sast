@@ -42,7 +42,7 @@ type Seq =
                                ,"../../../Examples/Fibonacci/config.yaml"
                                ,Delimiter=delims
                                ,TypeAliasing=typeAliasing
-                               ,ScribbleSource = ScribbleSource.LocalExecutable 
+                               ,ScribbleSource = ScribbleSource.LocalExecutable
                                ,ExplicitConnection=false
                                ,AssertionsOn=true>
 
@@ -110,53 +110,55 @@ let c1 = sessionCh.sendhello(S, 1).receivehello(S, v1)
 TimeMeasure.measureTime "Start 100"
 printfn "start"
 
-
-let c2 = c1.sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
-                .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
-                .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
-                .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
-                .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
-                .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
-                .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
-                .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
-                .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
-                .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
-                .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
-                .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
-                .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
-                .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
-                .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
-                .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
-                .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
-                .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
-                .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
-                .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
-                .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
-                .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
-                .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
-                .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
-                .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
-                .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
-                .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
-                .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
-                .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
-                .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
-                .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
-                .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
-                .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
-                .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
-                .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
-                .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
-                .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
-                .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
-                .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
-                .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
-                .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
-                .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
-                .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
-                .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
-                .finish()
-           
+let rec loop count (c:Seq.State278) = 
+    if count > 0 then 
+        let c2 = c.sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
+                        .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
+                        .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
+                        .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
+                        .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
+                        .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
+                        .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
+                        .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
+                        .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
+                        .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
+                        .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
+                        .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
+                        .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
+                        .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
+                        .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
+                        .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
+                        .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
+                        .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
+                        .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
+                        .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
+                        .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
+                        .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
+                        .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
+                        .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
+                        .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
+                        .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
+                        .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
+                        .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
+                        .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
+                        .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
+                        .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
+                        .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
+                        .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
+                        .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
+                        .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
+                        .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
+                        .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
+                        .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
+                        .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
+                        .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
+                        .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
+                        .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
+                        .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
+                        .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
+        loop (count - 1) c2
+    else printf "Done" 
+loop 100  c1        
 TimeMeasure.measureTime "Done 100"    
 
 (*  
