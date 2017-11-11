@@ -36,7 +36,7 @@ module TimeMeasure =
 // C:/Users/rn710/Repositories/TestGenerator/Scribble/test100.scr
 
 type Seq = 
-    Provided.TypeProviderFile<"../../../Examples/LargeTests/test100.scr"
+    Provided.TypeProviderFile<"../../../Examples/LargeTests/test100NoAss.scr"
                                ,"Test100"
                                ,"C"
                                ,"../../../Examples/Fibonacci/config.yaml"
@@ -155,7 +155,7 @@ let c2 = c1.sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
                 .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
                 .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
                 .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
-                .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>()).finish()
+                .finish()
            
 TimeMeasure.measureTime "Done 100"    
 
