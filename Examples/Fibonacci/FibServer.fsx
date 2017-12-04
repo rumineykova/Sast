@@ -19,7 +19,7 @@ type Fib =
                                ,"../../../Examples/Fibonacci/configServer.yaml"
                                ,Delimiter=delims1
                                ,TypeAliasing=typeAliasing1
-                               ,ScribbleSource = ScribbleSource.LocalExecutable 
+                               ,ScribbleSource = ScribbleSource.LocalExecutable
                                ,ExplicitConnection=false 
                                ,AssertionsOn=true>
 
@@ -42,8 +42,6 @@ let rec fibServer (c0:Fib.State26) =
         | :? Fib.ADD as add -> 
             //printfn"receive add" 
             let c1 = add.receive(C, res1)
-            let ass = if res1.getValue() > 0 
-                      then 0  else 1  
             let c2 = c1.sendRES(C, res1.getValue())
             fibServer c2
 

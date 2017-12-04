@@ -36,7 +36,7 @@ module TimeMeasure =
 // C:/Users/rn710/Repositories/TestGenerator/Scribble/test100.scr
 
 type Seq = 
-    Provided.TypeProviderFile<"../../../Examples/LargeTests/test100NoAss.scr"
+    Provided.TypeProviderFile<"../../../Examples/LargeTests/test100.scr"
                                ,"Test100"
                                ,"C"
                                ,"../../../Examples/Fibonacci/config.yaml"
@@ -158,8 +158,10 @@ let rec loop count (c:Seq.State278) =
                         .sendhello(S, 1).receivehello(S, new DomainModel.Buf<int>())
         loop (count - 1) c2
     else printf "Done" 
-loop 100  c1        
-TimeMeasure.measureTime "Done 100"    
+let iter = 10
+loop iter  c1        
+let s = sprintf "Measure for seq with assertions %i" iter
+TimeMeasure.measureTime s
 
 (*  
 let rec fibrec a b iter (S:Fib.State14) =

@@ -37,6 +37,8 @@ After Type generation: 49
 From the cache: 170985 
 From the cache: 7128 
 Assembly: 0 
+
+// For SH 
 After Scribble Compiler: 771 
 After Parsing : 13 
 After Type generation: 14 
@@ -3615,3 +3617,5934 @@ From the cache: 2027
 From the cache: 5050 
 From the cache: 69 
 From the cache: 957 
+From the cache: 219029 
+From the cache: 61 
+From the cache: 959 
+From the cache: 68957 
+From the cache: 6076 
+From the cache: 20315 
+From the cache: 17257 
+From the cache: 1013 
+From the cache: 1020 
+From the cache: 5063 
+From the cache: 5049 
+From the cache: 2046 
+From the cache: 2025 
+From the cache: 2026 
+From the cache: 1021 
+From the cache: 233 
+From the cache: 760 
+From the cache: 6087 
+From the cache: 57 
+From the cache: 958 
+From the cache: 3039 
+From the cache: 8120 
+From the cache: 1015 
+From the cache: 2017 
+From the cache: 3050 
+From the cache: 2021 
+From the cache: 16215 
+From the cache: 2034 
+From the cache: 2011 
+From the cache: 2040 
+From the cache: 3046 
+From the cache: 2023 
+From the cache: 5066 
+From the cache: 2026 
+From the cache: 3028 
+From the cache: 58 
+From the cache: 941 
+From the cache: 21297 
+From the cache: 2046 
+From the cache: 1009 
+From the cache: 1003 
+From the cache: 2031 
+From the cache: 1015 
+From the cache: 58 
+From the cache: 952 
+From the cache: 53784 
+From the cache: 1009 
+From the cache: 2041 
+From the cache: 4052 
+From the cache: 2019 
+From the cache: 19274 
+From the cache: 15206 
+From the cache: 1020 
+From the cache: 4028 
+From the cache: 2041 
+From the cache: 1012 
+From the cache: 2005 
+From the cache: 4069 
+From the cache: 2037 
+From the cache: 10140 
+From the cache: 1014 
+From the cache: 3030 
+From the cache: 58 
+From the cache: 1968 
+From the cache: 57 
+From the cache: 956 
+From the cache: 11153 
+From the cache: 55 
+From the cache: 952 
+Assembly: 18 
+After Scribble Compiler: 1193 
+After Parsing : 297 
+After Type generation: 84 
+Assembly: 18 
+After Scribble Compiler: 1207 
+After Parsing : 297 
+After Type generation: 63 
+Assembly: 19 
+After Scribble Compiler: 1194 
+After Parsing : 279 
+After Type generation: 66 
+Assembly: 19 
+After Scribble Compiler: 1283 
+After Parsing : 287 
+After Type generation: 94 
+Assembly: 18 
+After Scribble Compiler: 1107 
+After Parsing : 293 
+After Type generation: 80 
+Assembly: 18 
+After Scribble Compiler: 1229 
+After Parsing : 297 
+After Type generation: 62 
+Assembly: 19 
+After Scribble Compiler: 1101 
+After Parsing : 276 
+After Type generation: 64 
+Assembly: 18 
+After Scribble Compiler: 1170 
+After Parsing : 281 
+After Type generation: 62 
+Assembly: 18 
+After Scribble Compiler: 1143 
+After Parsing : 284 
+After Type generation: 94 
+Assembly: 19 
+After Scribble Compiler: 1291 
+After Parsing : 289 
+After Type generation: 63 
+Assembly: 19 
+After Scribble Compiler: 1104 
+After Parsing : 288 
+After Type generation: 81 
+Assembly: 18 
+After Scribble Compiler: 1239 
+After Parsing : 290 
+After Type generation: 74 
+Assembly: 25 
+After Scribble Compiler: 1245 
+After Parsing : 293 
+After Type generation: 75 
+From the cache: 4006 
+Assembly: 0 
+After Scribble Compiler: 982 
+After Parsing : 134 
+After Type generation: 18 
+From the cache: 3778 
+Assembly: 0 
+After Scribble Compiler: 1049 
+After Parsing : 115 
+After Type generation: 19 
+From the cache: 3807 
+Assembly: 0 
+After Scribble Compiler: 716 
+After Parsing : 17 
+After Type generation: 8 
+From the cache: 314 
+From the cache: 65922 
+From the cache: 14 
+From the cache: 965 
+From the cache: 44633 
+From the cache: 18 
+From the cache: 966 
+Assembly: 0 
+After Scribble Compiler: 765 
+After Parsing : 29 
+After Type generation: 10 
+From the cache: 3341 
+From the cache: 13127 
+From the cache: 13 
+From the cache: 1001 
+Assembly: 17 
+After Scribble Compiler: 777 
+After Parsing : 143 
+After Type generation: 51 
+Assembly: 17 
+After Scribble Compiler: 756 
+After Parsing : 135 
+After Type generation: 49 
+From the cache: 45624 
+From the cache: 1022 
+From the cache: 6127 
+From the cache: 2024 
+From the cache: 9112 
+From the cache: 3054 
+From the cache: 9 
+From the cache: 995 
+From the cache: 2027 
+From the cache: 14 
+From the cache: 984 
+From the cache: 5083 
+From the cache: 15 
+From the cache: 1004 
+From the cache: 16121 
+From the cache: 1009 
+From the cache: 2038 
+From the cache: 2012 
+From the cache: 3045 
+From the cache: 11 
+From the cache: 10 
+From the cache: 983 
+From the cache: 15 
+From the cache: 3018 
+From the cache: 1023 
+From the cache: 1015 
+From the cache: 2027 
+From the cache: 1013 
+From the cache: 19 
+From the cache: 994 
+From the cache: 11 
+From the cache: 1005 
+From the cache: 2021 
+From the cache: 14 
+From the cache: 994 
+From the cache: 25 
+From the cache: 991 
+From the cache: 9 
+From the cache: 1013 
+From the cache: 9 
+From the cache: 982 
+From the cache: 2037 
+From the cache: 2040 
+From the cache: 1000 
+From the cache: 20 
+From the cache: 1008 
+From the cache: 6053 
+From the cache: 15 
+From the cache: 1025 
+From the cache: 7083 
+From the cache: 9 
+From the cache: 1016 
+Assembly: 18 
+After Type generation: 328 
+Assembly: 18 
+After Type generation: 319 
+From the cache: 2285502 
+From the cache: 2031 
+From the cache: 1016 
+From the cache: 1017 
+From the cache: 5067 
+From the cache: 6064 
+From the cache: 3051 
+From the cache: 16221 
+Assembly: 0 
+After Type generation: 37 
+From the cache: 1983 
+From the cache: 11152 
+From the cache: 4127 
+From the cache: 9261 
+From the cache: 2029 
+From the cache: 1027 
+From the cache: 1012 
+From the cache: 1014 
+Assembly: 0 
+After Type generation: 35 
+From the cache: 959 
+From the cache: 19270 
+From the cache: 15 
+From the cache: 993 
+From the cache: 13 
+From the cache: 988 
+From the cache: 1020 
+From the cache: 14 
+From the cache: 1002 
+From the cache: 19 
+From the cache: 987 
+From the cache: 6082 
+From the cache: 2026 
+From the cache: 1020 
+From the cache: 1017 
+From the cache: 4061 
+From the cache: 1007 
+From the cache: 34481 
+From the cache: 2022 
+From the cache: 2024 
+From the cache: 2020 
+From the cache: 1015 
+From the cache: 8117 
+From the cache: 1003 
+From the cache: 5094 
+From the cache: 16 
+From the cache: 990 
+From the cache: 2043 
+From the cache: 3032 
+From the cache: 22 
+From the cache: 13 
+From the cache: 956 
+From the cache: 34492 
+From the cache: 1016 
+From the cache: 6114 
+From the cache: 1025 
+From the cache: 13 
+From the cache: 1003 
+From the cache: 6090 
+From the cache: 41578 
+From the cache: 6078 
+From the cache: 1016 
+From the cache: 3037 
+From the cache: 2030 
+From the cache: 2009 
+From the cache: 1020 
+From the cache: 1012 
+From the cache: 2028 
+From the cache: 6076 
+From the cache: 1011 
+From the cache: 23 
+From the cache: 983 
+From the cache: 80108 
+From the cache: 1009 
+From the cache: 1013 
+From the cache: 1015 
+From the cache: 1009 
+From the cache: 993 
+From the cache: 7115 
+From the cache: 3034 
+From the cache: 995 
+From the cache: 4072 
+From the cache: 1030 
+From the cache: 999 
+From the cache: 6091 
+From the cache: 3032 
+From the cache: 1016 
+From the cache: 1004 
+From the cache: 1028 
+From the cache: 1008 
+From the cache: 2031 
+From the cache: 1016 
+From the cache: 1016 
+From the cache: 1024 
+From the cache: 2024 
+From the cache: 4101 
+From the cache: 6110 
+From the cache: 3047 
+From the cache: 3027 
+From the cache: 4065 
+From the cache: 13 
+From the cache: 1000 
+From the cache: 19 
+From the cache: 980 
+From the cache: 14 
+From the cache: 994 
+Assembly: 18 
+After Type generation: 337 
+Assembly: 18 
+After Type generation: 354 
+Assembly: 26 
+Assembly: 22 
+Assembly: 0 
+After Type generation: 37 
+From the cache: 971 
+Assembly: 18 
+After Type generation: 338 
+Assembly: 18 
+After Type generation: 311 
+Assembly: 0 
+After Type generation: 45 
+From the cache: 958 
+Assembly: 0 
+After Type generation: 37 
+From the cache: 943 
+From the cache: 6083 
+From the cache: 6087 
+From the cache: 2025 
+From the cache: 1010 
+From the cache: 10 
+From the cache: 999 
+From the cache: 94704 
+From the cache: 12 
+From the cache: 1012 
+From the cache: 9 
+From the cache: 999 
+From the cache: 7094 
+From the cache: 2025 
+From the cache: 2025 
+From the cache: 15 
+From the cache: 991 
+From the cache: 13 
+From the cache: 997 
+From the cache: 5071 
+From the cache: 25 
+From the cache: 972 
+From the cache: 16 
+From the cache: 1011 
+From the cache: 19 
+From the cache: 981 
+From the cache: 16 
+From the cache: 989 
+Assembly: 18 
+Assembly: 19 
+From the cache: 28378 
+From the cache: 2040 
+From the cache: 13 
+From the cache: 3025 
+From the cache: 1015 
+From the cache: 10 
+From the cache: 982 
+From the cache: 9 
+From the cache: 1004 
+Assembly: 18 
+After Scribble Compiler: 764 
+After Parsing : 143 
+After Type generation: 53 
+Assembly: 19 
+After Scribble Compiler: 653 
+After Parsing : 136 
+After Type generation: 49 
+From the cache: 79077 
+From the cache: 1012 
+From the cache: 1049 
+From the cache: 1027 
+From the cache: 9 
+From the cache: 1004 
+From the cache: 9 
+From the cache: 997 
+From the cache: 22302 
+From the cache: 21 
+From the cache: 1000 
+From the cache: 13 
+From the cache: 993 
+Assembly: 18 
+After Scribble Compiler: 712 
+After Parsing : 171 
+Assembly: 18 
+After Type generation: 52 
+After Scribble Compiler: 651 
+After Parsing : 137 
+After Type generation: 48 
+From the cache: 97337 
+From the cache: 1000 
+From the cache: 2036 
+From the cache: 2030 
+From the cache: 13 
+From the cache: 968 
+From the cache: 4080 
+From the cache: 18 
+From the cache: 983 
+From the cache: 40557 
+From the cache: 22 
+From the cache: 992 
+From the cache: 5064 
+From the cache: 13 
+From the cache: 998 
+From the cache: 19 
+From the cache: 995 
+Assembly: 20 
+After Scribble Compiler: 777 
+After Parsing : 161 
+After Type generation: 66 
+Assembly: 19 
+After Scribble Compiler: 709 
+After Parsing : 137 
+After Type generation: 51 
+From the cache: 134933 
+From the cache: 72994 
+From the cache: 22 
+From the cache: 990 
+Assembly: 18 
+After Scribble Compiler: 723 
+After Parsing : 143 
+After Type generation: 60 
+Assembly: 18 
+After Scribble Compiler: 634 
+After Parsing : 138 
+After Type generation: 48 
+From the cache: 56787 
+From the cache: 1017 
+From the cache: 1016 
+From the cache: 1003 
+From the cache: 993 
+From the cache: 13 
+From the cache: 1014 
+From the cache: 1012 
+From the cache: 13 
+From the cache: 1003 
+From the cache: 2011 
+From the cache: 1015 
+From the cache: 14 
+From the cache: 1003 
+Assembly: 18 
+After Scribble Compiler: 790 
+Assembly: 21 
+After Parsing : 145 
+After Type generation: 57 
+After Scribble Compiler: 675 
+After Parsing : 143 
+After Type generation: 50 
+Assembly: 18 
+After Scribble Compiler: 505 
+Assembly: 19 
+After Scribble Compiler: 457 
+Assembly: 19 
+After Scribble Compiler: 807 
+After Parsing : 147 
+After Type generation: 65 
+Assembly: 18 
+After Scribble Compiler: 823 
+After Parsing : 141 
+After Type generation: 51 
+Assembly: 19 
+After Scribble Compiler: 786 
+After Parsing : 145 
+After Type generation: 51 
+Assembly: 18 
+After Scribble Compiler: 803 
+After Parsing : 137 
+After Type generation: 50 
+Assembly: 24 
+After Scribble Compiler: 947 
+After Parsing : 162 
+After Type generation: 64 
+From the cache: 561 
+From the cache: 37424 
+From the cache: 1011 
+From the cache: 1034 
+From the cache: 1009 
+From the cache: 1014 
+From the cache: 3036 
+From the cache: 998 
+From the cache: 12174 
+From the cache: 2037 
+From the cache: 3 
+From the cache: 1009 
+From the cache: 19 
+From the cache: 984 
+Assembly: 19 
+After Scribble Compiler: 779 
+After Parsing : 144 
+After Type generation: 52 
+Assembly: 18 
+After Scribble Compiler: 821 
+After Parsing : 140 
+After Type generation: 61 
+From the cache: 40542 
+From the cache: 3062 
+From the cache: 3029 
+From the cache: 16 
+From the cache: 997 
+From the cache: 13 
+From the cache: 998 
+Assembly: 22 
+Assembly: 0 
+After Scribble Compiler: 711 
+After Parsing : 28 
+After Type generation: 21 
+Assembly: 0 
+After Scribble Compiler: 695 
+After Parsing : 15 
+After Type generation: 3 
+From the cache: 328 
+From the cache: 24202 
+From the cache: 13 
+From the cache: 1005 
+After Scribble Compiler: 15741 
+After Parsing : 15 
+After Type generation: 3 
+After Scribble Compiler: 19314 
+After Parsing : 15 
+After Type generation: 16 
+From the cache: 262 
+From the cache: 176 
+From the cache: 7122 
+From the cache: 12 
+From the cache: 979 
+Assembly: 18 
+After Scribble Compiler: 651 
+After Parsing : 137 
+After Type generation: 51 
+Assembly: 18 
+After Scribble Compiler: 654 
+After Parsing : 137 
+After Type generation: 74 
+From the cache: 44646 
+From the cache: 2031 
+From the cache: 15 
+From the cache: 997 
+Assembly: 18 
+After Scribble Compiler: 751 
+Assembly: 18 
+After Parsing : 154 
+After Type generation: 53 
+After Scribble Compiler: 654 
+After Parsing : 142 
+After Type generation: 48 
+Assembly: 19 
+After Scribble Compiler: 709 
+After Parsing : 170 
+After Type generation: 60 
+Assembly: 19 
+After Scribble Compiler: 671 
+After Parsing : 136 
+After Type generation: 48 
+From the cache: 72030 
+From the cache: 1015 
+From the cache: 1016 
+Assembly: 19 
+After Scribble Compiler: 687 
+After Parsing : 168 
+After Type generation: 84 
+Assembly: 19 
+After Scribble Compiler: 650 
+After Parsing : 136 
+After Type generation: 67 
+Assembly: 19 
+After Scribble Compiler: 643 
+After Parsing : 142 
+After Type generation: 53 
+Assembly: 18 
+After Scribble Compiler: 685 
+After Parsing : 135 
+After Type generation: 48 
+Assembly: 18 
+After Scribble Compiler: 672 
+After Parsing : 159 
+Assembly: 18 
+After Type generation: 55 
+After Scribble Compiler: 643 
+After Parsing : 136 
+After Type generation: 48 
+Assembly: 18 
+After Scribble Compiler: 680 
+After Parsing : 168 
+After Type generation: 59 
+Assembly: 18 
+After Scribble Compiler: 646 
+After Parsing : 136 
+After Type generation: 48 
+From the cache: 176427 
+From the cache: 14 
+From the cache: 971 
+Assembly: 19 
+After Scribble Compiler: 728 
+After Parsing : 156 
+After Type generation: 60 
+Assembly: 19 
+After Scribble Compiler: 664 
+After Parsing : 135 
+After Type generation: 48 
+Assembly: 19 
+After Scribble Compiler: 740 
+Assembly: 18 
+After Parsing : 160 
+After Type generation: 52 
+After Scribble Compiler: 657 
+After Parsing : 136 
+After Type generation: 49 
+Assembly: 19 
+After Scribble Compiler: 657 
+After Parsing : 138 
+After Type generation: 51 
+Assembly: 18 
+After Scribble Compiler: 667 
+After Parsing : 136 
+After Type generation: 48 
+From the cache: 46699 
+From the cache: 13 
+From the cache: 985 
+Assembly: 18 
+After Scribble Compiler: 673 
+After Parsing : 153 
+After Type generation: 59 
+Assembly: 18 
+After Scribble Compiler: 649 
+After Parsing : 140 
+After Type generation: 49 
+Assembly: 19 
+After Scribble Compiler: 655 
+After Parsing : 146 
+After Type generation: 50 
+Assembly: 19 
+After Scribble Compiler: 640 
+After Parsing : 138 
+After Type generation: 49 
+Assembly: 18 
+After Scribble Compiler: 657 
+After Parsing : 142 
+After Type generation: 53 
+Assembly: 18 
+After Scribble Compiler: 620 
+After Parsing : 136 
+After Type generation: 48 
+From the cache: 35546 
+From the cache: 15 
+From the cache: 993 
+Assembly: 18 
+After Scribble Compiler: 679 
+Assembly: 18 
+After Parsing : 150 
+After Type generation: 52 
+After Scribble Compiler: 640 
+After Parsing : 135 
+After Type generation: 47 
+Assembly: 18 
+After Scribble Compiler: 633 
+After Parsing : 140 
+After Type generation: 79 
+Assembly: 18 
+After Scribble Compiler: 626 
+After Parsing : 134 
+After Type generation: 49 
+Assembly: 17 
+After Scribble Compiler: 637 
+After Parsing : 147 
+After Type generation: 61 
+Assembly: 18 
+After Scribble Compiler: 636 
+After Parsing : 137 
+After Type generation: 48 
+From the cache: 29592 
+From the cache: 1006 
+From the cache: 12 
+From the cache: 980 
+From the cache: 5124 
+From the cache: 11 
+From the cache: 1011 
+From the cache: 1018 
+From the cache: 16 
+From the cache: 1014 
+Assembly: 18 
+After Scribble Compiler: 686 
+After Parsing : 160 
+After Type generation: 67 
+Assembly: 18 
+After Scribble Compiler: 633 
+After Parsing : 136 
+After Type generation: 65 
+Assembly: 18 
+After Scribble Compiler: 726 
+After Parsing : 149 
+After Type generation: 58 
+Assembly: 18 
+After Scribble Compiler: 665 
+After Parsing : 141 
+After Type generation: 48 
+From the cache: 55796 
+From the cache: 1024 
+Assembly: 19 
+After Scribble Compiler: 699 
+After Parsing : 160 
+Assembly: 18 
+After Type generation: 52 
+After Scribble Compiler: 640 
+After Parsing : 136 
+After Type generation: 97 
+Assembly: 19 
+After Scribble Compiler: 682 
+Assembly: 18 
+After Parsing : 156 
+After Type generation: 52 
+After Scribble Compiler: 651 
+After Parsing : 137 
+After Type generation: 48 
+Assembly: 17 
+After Scribble Compiler: 676 
+After Parsing : 169 
+Assembly: 18 
+After Type generation: 52 
+After Scribble Compiler: 622 
+After Parsing : 137 
+After Type generation: 48 
+From the cache: 22508 
+From the cache: 1016 
+From the cache: 15 
+From the cache: 988 
+Assembly: 18 
+After Scribble Compiler: 713 
+Assembly: 18 
+After Parsing : 162 
+After Type generation: 52 
+After Scribble Compiler: 641 
+After Parsing : 137 
+After Type generation: 48 
+Assembly: 18 
+After Scribble Compiler: 711 
+Assembly: 18 
+After Parsing : 158 
+After Type generation: 52 
+After Scribble Compiler: 658 
+After Parsing : 136 
+After Type generation: 48 
+Assembly: 19 
+Assembly: 19 
+After Scribble Compiler: 704 
+After Parsing : 143 
+After Type generation: 53 
+After Scribble Compiler: 646 
+After Parsing : 135 
+After Type generation: 53 
+From the cache: 25358 
+From the cache: 1013 
+From the cache: 18 
+From the cache: 994 
+Assembly: 18 
+After Scribble Compiler: 687 
+Assembly: 18 
+After Parsing : 156 
+After Type generation: 63 
+After Scribble Compiler: 639 
+After Parsing : 138 
+After Type generation: 48 
+Assembly: 18 
+After Scribble Compiler: 705 
+After Parsing : 148 
+After Type generation: 66 
+Assembly: 19 
+After Scribble Compiler: 633 
+After Parsing : 136 
+After Type generation: 48 
+Assembly: 18 
+After Scribble Compiler: 695 
+Assembly: 18 
+After Parsing : 159 
+After Type generation: 68 
+After Scribble Compiler: 679 
+After Parsing : 149 
+After Type generation: 50 
+After Scribble Compiler: 272730 
+After Parsing : 15 
+After Type generation: 4 
+From the cache: 272 
+From the cache: 1041 
+From the cache: 21 
+From the cache: 987 
+From the cache: 5076 
+From the cache: 2015 
+From the cache: 1017 
+From the cache: 13 
+From the cache: 996 
+From the cache: 65955 
+From the cache: 18 
+From the cache: 1022 
+From the cache: 4132 
+From the cache: 18 
+From the cache: 992 
+Assembly: 18 
+Assembly: 19 
+After Scribble Compiler: 872 
+After Parsing : 146 
+After Type generation: 53 
+After Scribble Compiler: 860 
+After Parsing : 138 
+After Type generation: 49 
+Assembly: 18 
+After Scribble Compiler: 757 
+After Parsing : 147 
+After Type generation: 72 
+Assembly: 18 
+After Scribble Compiler: 770 
+After Parsing : 144 
+After Type generation: 51 
+Assembly: 18 
+After Scribble Compiler: 820 
+After Parsing : 147 
+After Type generation: 69 
+Assembly: 18 
+After Scribble Compiler: 789 
+After Parsing : 147 
+After Type generation: 69 
+From the cache: 74041 
+From the cache: 14 
+From the cache: 983 
+Assembly: 17 
+After Scribble Compiler: 764 
+After Parsing : 146 
+After Type generation: 78 
+Assembly: 18 
+After Scribble Compiler: 760 
+After Parsing : 138 
+After Type generation: 49 
+Assembly: 18 
+After Scribble Compiler: 769 
+After Parsing : 146 
+After Type generation: 52 
+Assembly: 18 
+After Scribble Compiler: 789 
+After Parsing : 136 
+After Type generation: 52 
+From the cache: 69967 
+From the cache: 1033 
+From the cache: 15 
+From the cache: 1037 
+Assembly: 17 
+After Scribble Compiler: 888 
+Assembly: 25 
+After Parsing : 156 
+After Type generation: 53 
+After Scribble Compiler: 794 
+After Parsing : 137 
+After Type generation: 49 
+Assembly: 17 
+After Scribble Compiler: 804 
+After Parsing : 144 
+After Type generation: 51 
+Assembly: 18 
+After Scribble Compiler: 773 
+After Parsing : 136 
+After Type generation: 48 
+Assembly: 18 
+After Scribble Compiler: 780 
+After Parsing : 185 
+Assembly: 18 
+After Type generation: 71 
+After Scribble Compiler: 780 
+After Parsing : 139 
+After Type generation: 48 
+From the cache: 115579 
+From the cache: 2040 
+From the cache: 18 
+From the cache: 1004 
+Assembly: 18 
+After Scribble Compiler: 753 
+After Parsing : 145 
+After Type generation: 51 
+Assembly: 18 
+After Scribble Compiler: 762 
+After Parsing : 141 
+After Type generation: 50 
+Assembly: 18 
+After Scribble Compiler: 769 
+After Parsing : 145 
+After Type generation: 67 
+Assembly: 18 
+After Scribble Compiler: 812 
+After Parsing : 147 
+After Type generation: 53 
+From the cache: 62883 
+From the cache: 1011 
+From the cache: 16 
+From the cache: 993 
+Assembly: 19 
+After Scribble Compiler: 851 
+After Parsing : 167 
+After Type generation: 59 
+Assembly: 19 
+After Scribble Compiler: 864 
+After Parsing : 154 
+After Type generation: 66 
+Assembly: 19 
+After Scribble Compiler: 808 
+After Parsing : 145 
+After Type generation: 50 
+Assembly: 18 
+After Scribble Compiler: 808 
+After Parsing : 138 
+After Type generation: 48 
+From the cache: 30470 
+From the cache: 2074 
+From the cache: 12 
+From the cache: 992 
+Assembly: 18 
+After Scribble Compiler: 784 
+After Parsing : 145 
+After Type generation: 68 
+Assembly: 18 
+After Scribble Compiler: 763 
+After Parsing : 139 
+After Type generation: 49 
+Assembly: 18 
+After Scribble Compiler: 762 
+After Parsing : 151 
+After Type generation: 51 
+Assembly: 18 
+After Scribble Compiler: 800 
+After Parsing : 147 
+After Type generation: 49 
+From the cache: 38546 
+From the cache: 18 
+From the cache: 973 
+Assembly: 18 
+After Scribble Compiler: 766 
+After Parsing : 176 
+After Type generation: 84 
+Assembly: 18 
+After Scribble Compiler: 776 
+After Parsing : 137 
+After Type generation: 57 
+Assembly: 18 
+Assembly: 19 
+After Scribble Compiler: 828 
+After Parsing : 161 
+After Type generation: 54 
+After Scribble Compiler: 786 
+After Parsing : 143 
+After Type generation: 49 
+Assembly: 18 
+After Scribble Compiler: 753 
+After Parsing : 144 
+After Type generation: 52 
+Assembly: 18 
+After Scribble Compiler: 773 
+After Parsing : 138 
+After Type generation: 50 
+From the cache: 58889 
+From the cache: 993 
+From the cache: 18 
+From the cache: 1020 
+Assembly: 18 
+After Scribble Compiler: 833 
+After Parsing : 150 
+After Type generation: 74 
+Assembly: 18 
+After Scribble Compiler: 775 
+After Parsing : 140 
+After Type generation: 64 
+Assembly: 19 
+After Scribble Compiler: 787 
+After Parsing : 154 
+After Type generation: 55 
+Assembly: 22 
+After Scribble Compiler: 797 
+After Parsing : 140 
+After Type generation: 50 
+From the cache: 26428 
+From the cache: 1048 
+From the cache: 12 
+From the cache: 1036 
+Assembly: 19 
+Assembly: 20 
+After Scribble Compiler: 875 
+After Parsing : 152 
+After Type generation: 55 
+After Scribble Compiler: 812 
+After Parsing : 137 
+After Type generation: 64 
+Assembly: 19 
+After Scribble Compiler: 827 
+Assembly: 25 
+After Parsing : 146 
+After Type generation: 60 
+After Scribble Compiler: 776 
+After Parsing : 136 
+After Type generation: 48 
+From the cache: 22323 
+From the cache: 1009 
+From the cache: 18 
+From the cache: 996 
+Assembly: 18 
+Assembly: 18 
+After Scribble Compiler: 843 
+After Parsing : 148 
+After Type generation: 53 
+After Scribble Compiler: 774 
+After Parsing : 135 
+After Type generation: 85 
+Assembly: 26 
+Assembly: 25 
+After Scribble Compiler: 861 
+After Parsing : 156 
+After Type generation: 57 
+After Scribble Compiler: 810 
+After Parsing : 160 
+After Type generation: 90 
+From the cache: 41614 
+From the cache: 14242 
+From the cache: 3038 
+From the cache: 3119 
+From the cache: 19 
+From the cache: 982 
+From the cache: 8116 
+From the cache: 1002 
+From the cache: 2026 
+From the cache: 1029 
+After Scribble Compiler: 24944 
+After Parsing : 29 
+After Type generation: 4 
+From the cache: 281 
+From the cache: 1160 
+From the cache: 4073 
+From the cache: 16 
+From the cache: 980 
+From the cache: 2025 
+From the cache: 999 
+From the cache: 18 
+From the cache: 1022 
+Assembly: 18 
+After Scribble Compiler: 626 
+After Parsing : 139 
+After Type generation: 57 
+Assembly: 17 
+After Scribble Compiler: 607 
+After Parsing : 136 
+After Type generation: 47 
+Assembly: 18 
+After Scribble Compiler: 666 
+After Parsing : 160 
+After Type generation: 68 
+Assembly: 18 
+After Scribble Compiler: 630 
+After Parsing : 140 
+After Type generation: 49 
+Assembly: 18 
+After Scribble Compiler: 635 
+After Parsing : 140 
+After Type generation: 51 
+Assembly: 17 
+After Scribble Compiler: 628 
+After Parsing : 136 
+After Type generation: 48 
+From the cache: 72082 
+From the cache: 1014 
+From the cache: 14 
+From the cache: 986 
+Assembly: 17 
+After Scribble Compiler: 651 
+After Parsing : 138 
+After Type generation: 51 
+Assembly: 18 
+After Scribble Compiler: 623 
+After Parsing : 137 
+After Type generation: 49 
+Assembly: 17 
+After Scribble Compiler: 636 
+After Parsing : 139 
+After Type generation: 57 
+Assembly: 21 
+After Scribble Compiler: 650 
+After Parsing : 137 
+After Type generation: 48 
+Assembly: 18 
+After Scribble Compiler: 674 
+After Parsing : 139 
+After Type generation: 51 
+Assembly: 18 
+After Scribble Compiler: 622 
+After Parsing : 136 
+After Type generation: 48 
+From the cache: 133848 
+From the cache: 1045 
+From the cache: 19 
+From the cache: 1036 
+Assembly: 18 
+After Scribble Compiler: 619 
+After Parsing : 139 
+After Type generation: 74 
+Assembly: 17 
+After Scribble Compiler: 619 
+After Parsing : 135 
+After Type generation: 48 
+Assembly: 18 
+After Scribble Compiler: 694 
+After Parsing : 163 
+After Type generation: 59 
+Assembly: 18 
+After Scribble Compiler: 614 
+After Parsing : 136 
+After Type generation: 49 
+Assembly: 17 
+After Scribble Compiler: 731 
+After Parsing : 164 
+Assembly: 18 
+After Type generation: 57 
+After Scribble Compiler: 629 
+After Parsing : 137 
+After Type generation: 55 
+From the cache: 141009 
+From the cache: 1031 
+From the cache: 1012 
+Assembly: 18 
+After Scribble Compiler: 685 
+Assembly: 18 
+After Parsing : 151 
+After Type generation: 52 
+After Scribble Compiler: 646 
+After Parsing : 135 
+After Type generation: 47 
+Assembly: 19 
+After Scribble Compiler: 690 
+Assembly: 19 
+After Parsing : 141 
+After Type generation: 53 
+After Scribble Compiler: 636 
+After Parsing : 139 
+After Type generation: 48 
+From the cache: 24347 
+From the cache: 18 
+From the cache: 1144 
+From the cache: 20 
+From the cache: 974 
+Assembly: 19 
+After Scribble Compiler: 688 
+Assembly: 18 
+After Parsing : 142 
+After Type generation: 52 
+After Scribble Compiler: 646 
+After Parsing : 138 
+After Type generation: 48 
+Assembly: 18 
+After Scribble Compiler: 685 
+Assembly: 18 
+After Parsing : 148 
+After Type generation: 51 
+After Scribble Compiler: 634 
+After Parsing : 137 
+After Type generation: 49 
+From the cache: 74070 
+From the cache: 1015 
+From the cache: 13 
+From the cache: 1001 
+Assembly: 18 
+After Scribble Compiler: 709 
+Assembly: 18 
+After Parsing : 167 
+After Type generation: 52 
+After Scribble Compiler: 637 
+After Parsing : 136 
+After Type generation: 48 
+Assembly: 19 
+After Scribble Compiler: 696 
+After Parsing : 164 
+After Type generation: 57 
+Assembly: 18 
+After Scribble Compiler: 683 
+After Parsing : 136 
+After Type generation: 49 
+From the cache: 45639 
+From the cache: 1008 
+From the cache: 19 
+From the cache: 994 
+Assembly: 17 
+After Scribble Compiler: 715 
+Assembly: 18 
+After Parsing : 150 
+After Type generation: 53 
+After Scribble Compiler: 642 
+After Parsing : 136 
+After Type generation: 48 
+Assembly: 18 
+After Scribble Compiler: 684 
+Assembly: 18 
+After Parsing : 141 
+After Type generation: 51 
+After Scribble Compiler: 636 
+After Parsing : 135 
+After Type generation: 54 
+Assembly: 18 
+After Scribble Compiler: 682 
+Assembly: 20 
+After Parsing : 141 
+After Type generation: 53 
+After Scribble Compiler: 643 
+After Parsing : 135 
+After Type generation: 48 
+From the cache: 18321 
+From the cache: 992 
+From the cache: 18 
+From the cache: 986 
+Assembly: 17 
+After Scribble Compiler: 653 
+After Parsing : 163 
+After Type generation: 59 
+Assembly: 18 
+After Scribble Compiler: 638 
+After Parsing : 136 
+After Type generation: 65 
+Assembly: 18 
+After Scribble Compiler: 673 
+Assembly: 18 
+After Parsing : 143 
+After Type generation: 52 
+After Scribble Compiler: 640 
+After Parsing : 138 
+After Type generation: 63 
+From the cache: 19359 
+From the cache: 13 
+From the cache: 1021 
+Assembly: 18 
+After Scribble Compiler: 646 
+After Parsing : 167 
+Assembly: 18 
+After Type generation: 52 
+After Scribble Compiler: 633 
+After Parsing : 141 
+After Type generation: 48 
+Assembly: 17 
+After Scribble Compiler: 673 
+After Parsing : 160 
+After Type generation: 50 
+Assembly: 17 
+After Scribble Compiler: 606 
+After Parsing : 135 
+After Type generation: 50 
+Assembly: 18 
+After Scribble Compiler: 724 
+After Parsing : 165 
+Assembly: 18 
+After Type generation: 52 
+After Scribble Compiler: 646 
+After Parsing : 136 
+After Type generation: 62 
+From the cache: 83230 
+From the cache: 1014 
+From the cache: 22 
+From the cache: 986 
+Assembly: 17 
+After Scribble Compiler: 666 
+After Parsing : 166 
+Assembly: 18 
+After Type generation: 52 
+After Scribble Compiler: 622 
+After Parsing : 137 
+After Type generation: 48 
+Assembly: 17 
+After Scribble Compiler: 658 
+After Parsing : 143 
+After Type generation: 60 
+Assembly: 18 
+After Scribble Compiler: 612 
+After Parsing : 136 
+After Type generation: 48 
+Assembly: 18 
+After Scribble Compiler: 640 
+After Parsing : 140 
+After Type generation: 51 
+Assembly: 18 
+After Scribble Compiler: 638 
+After Parsing : 142 
+After Type generation: 49 
+Assembly: 0 
+After Scribble Compiler: 1113 
+After Parsing : 120 
+After Type generation: 18 
+From the cache: 3687 
+From the cache: 7240 
+From the cache: 6092 
+From the cache: 2022 
+From the cache: 1010 
+From the cache: 1032 
+From the cache: 2066 
+From the cache: 6072 
+From the cache: 996 
+From the cache: 2086 
+From the cache: 3056 
+From the cache: 1013 
+From the cache: 8112 
+From the cache: 2028 
+From the cache: 1008 
+From the cache: 2074 
+From the cache: 10167 
+From the cache: 1020 
+From the cache: 2002 
+From the cache: 1027 
+From the cache: 3027 
+From the cache: 6143 
+From the cache: 993 
+From the cache: 71 
+From the cache: 960 
+From the cache: 74 
+From the cache: 924 
+From the cache: 82 
+From the cache: 935 
+From the cache: 3046 
+From the cache: 83 
+From the cache: 916 
+Assembly: 0 
+After Scribble Compiler: 968 
+After Parsing : 127 
+After Type generation: 19 
+From the cache: 3789 
+From the cache: 4198 
+From the cache: 3042 
+From the cache: 2008 
+From the cache: 79 
+From the cache: 925 
+From the cache: 4105 
+From the cache: 1018 
+From the cache: 2019 
+From the cache: 6075 
+From the cache: 2036 
+From the cache: 1070 
+From the cache: 995 
+From the cache: 58 
+From the cache: 954 
+From the cache: 17248 
+From the cache: 3026 
+From the cache: 75 
+From the cache: 939 
+From the cache: 71 
+From the cache: 1943 
+From the cache: 77 
+From the cache: 943 
+Assembly: 17 
+Assembly: 18 
+After Scribble Compiler: 1136 
+After Parsing : 280 
+After Type generation: 65 
+After Scribble Compiler: 1347 
+After Parsing : 285 
+After Type generation: 70 
+From the cache: 172434 
+From the cache: 1004 
+From the cache: 1000 
+From the cache: 70 
+From the cache: 945 
+From the cache: 79 
+From the cache: 926 
+Assembly: 18 
+After Scribble Compiler: 1132 
+After Parsing : 275 
+After Type generation: 73 
+Assembly: 18 
+After Scribble Compiler: 1224 
+After Parsing : 293 
+After Type generation: 62 
+From the cache: 43600 
+From the cache: 82 
+From the cache: 927 
+From the cache: 78 
+From the cache: 2952 
+From the cache: 58 
+From the cache: 63 
+From the cache: 873 
+From the cache: 66 
+From the cache: 958 
+Assembly: 18 
+After Scribble Compiler: 1190 
+After Parsing : 272 
+After Type generation: 64 
+Assembly: 18 
+After Scribble Compiler: 1237 
+After Parsing : 283 
+After Type generation: 63 
+Assembly: 18 
+After Scribble Compiler: 1066 
+After Parsing : 295 
+After Type generation: 64 
+Assembly: 19 
+After Scribble Compiler: 1270 
+After Parsing : 304 
+After Type generation: 66 
+Assembly: 18 
+After Scribble Compiler: 1159 
+After Parsing : 282 
+After Type generation: 66 
+Assembly: 18 
+After Scribble Compiler: 1280 
+After Parsing : 309 
+After Type generation: 61 
+From the cache: 87203 
+From the cache: 4063 
+From the cache: 1001 
+From the cache: 74 
+From the cache: 938 
+Assembly: 18 
+After Scribble Compiler: 1204 
+After Parsing : 268 
+After Type generation: 90 
+Assembly: 18 
+After Scribble Compiler: 1261 
+After Parsing : 285 
+After Type generation: 65 
+Assembly: 18 
+After Scribble Compiler: 1152 
+After Parsing : 279 
+After Type generation: 68 
+Assembly: 18 
+After Scribble Compiler: 1130 
+After Parsing : 300 
+After Type generation: 81 
+Assembly: 18 
+After Scribble Compiler: 1121 
+After Parsing : 268 
+After Type generation: 67 
+Assembly: 18 
+After Scribble Compiler: 1339 
+After Parsing : 281 
+After Type generation: 64 
+From the cache: 75042 
+From the cache: 57 
+From the cache: 942 
+From the cache: 1049 
+From the cache: 997 
+From the cache: 57 
+From the cache: 952 
+Assembly: 18 
+After Scribble Compiler: 1063 
+After Parsing : 272 
+After Type generation: 72 
+Assembly: 18 
+After Scribble Compiler: 1208 
+After Parsing : 294 
+After Type generation: 64 
+Assembly: 18 
+After Scribble Compiler: 1086 
+After Parsing : 278 
+After Type generation: 82 
+Assembly: 18 
+After Scribble Compiler: 1258 
+After Parsing : 294 
+After Type generation: 62 
+From the cache: 59860 
+From the cache: 58 
+From the cache: 940 
+From the cache: 2071 
+From the cache: 78 
+From the cache: 931 
+From the cache: 1010 
+From the cache: 1001 
+From the cache: 80 
+From the cache: 934 
+Assembly: 17 
+After Scribble Compiler: 1135 
+After Parsing : 275 
+After Type generation: 64 
+Assembly: 18 
+After Scribble Compiler: 1139 
+After Parsing : 289 
+After Type generation: 61 
+From the cache: 42611 
+From the cache: 4039 
+From the cache: 61 
+From the cache: 936 
+Assembly: 18 
+After Scribble Compiler: 1152 
+After Parsing : 277 
+After Type generation: 75 
+Assembly: 18 
+After Scribble Compiler: 1255 
+After Parsing : 285 
+After Type generation: 65 
+Assembly: 18 
+After Scribble Compiler: 1091 
+After Parsing : 280 
+After Type generation: 69 
+Assembly: 18 
+After Scribble Compiler: 1183 
+After Parsing : 300 
+After Type generation: 63 
+From the cache: 43661 
+From the cache: 2042 
+From the cache: 2016 
+From the cache: 1016 
+From the cache: 85 
+From the cache: 71 
+From the cache: 858 
+From the cache: 68 
+From the cache: 967 
+Assembly: 18 
+Assembly: 34 
+After Scribble Compiler: 1098 
+After Parsing : 279 
+After Type generation: 64 
+After Scribble Compiler: 1199 
+After Parsing : 279 
+After Type generation: 62 
+Assembly: 18 
+Assembly: 21 
+After Scribble Compiler: 1374 
+After Parsing : 281 
+After Type generation: 65 
+After Scribble Compiler: 1211 
+After Parsing : 272 
+After Type generation: 62 
+From the cache: 59877 
+From the cache: 1014 
+From the cache: 80 
+From the cache: 953 
+From the cache: 80 
+From the cache: 2945 
+From the cache: 57 
+From the cache: 961 
+Assembly: 19 
+Assembly: 28 
+After Scribble Compiler: 1237 
+After Parsing : 311 
+After Type generation: 76 
+After Scribble Compiler: 1263 
+After Parsing : 285 
+After Type generation: 63 
+Assembly: 17 
+Assembly: 18 
+After Scribble Compiler: 1232 
+After Parsing : 350 
+After Type generation: 71 
+After Scribble Compiler: 1297 
+After Parsing : 287 
+After Type generation: 82 
+From the cache: 43700 
+From the cache: 1012 
+From the cache: 58 
+From the cache: 962 
+From the cache: 2036 
+From the cache: 1052 
+From the cache: 77 
+From the cache: 932 
+Assembly: 18 
+Assembly: 26 
+After Scribble Compiler: 1258 
+After Parsing : 317 
+After Type generation: 82 
+After Scribble Compiler: 1408 
+After Parsing : 283 
+After Type generation: 77 
+Assembly: 18 
+Assembly: 19 
+After Scribble Compiler: 1306 
+After Parsing : 287 
+After Type generation: 69 
+After Scribble Compiler: 1264 
+After Parsing : 276 
+After Type generation: 67 
+From the cache: 37556 
+From the cache: 999 
+From the cache: 77 
+From the cache: 926 
+From the cache: 2010 
+From the cache: 2036 
+From the cache: 67 
+From the cache: 943 
+Assembly: 18 
+Assembly: 19 
+After Scribble Compiler: 1222 
+After Parsing : 284 
+After Type generation: 70 
+After Scribble Compiler: 1354 
+After Parsing : 281 
+After Type generation: 63 
+Assembly: 19 
+Assembly: 24 
+After Scribble Compiler: 1186 
+After Parsing : 294 
+After Type generation: 68 
+After Scribble Compiler: 1278 
+After Parsing : 294 
+After Type generation: 61 
+Assembly: 18 
+After Scribble Compiler: 1151 
+After Parsing : 273 
+After Type generation: 97 
+Assembly: 18 
+After Scribble Compiler: 1279 
+After Parsing : 292 
+After Type generation: 64 
+From the cache: 91318 
+From the cache: 1019 
+From the cache: 1010 
+From the cache: 3041 
+From the cache: 8108 
+From the cache: 1016 
+From the cache: 1047 
+From the cache: 1015 
+From the cache: 1017 
+From the cache: 3078 
+From the cache: 3040 
+From the cache: 3051 
+From the cache: 1007 
+From the cache: 2024 
+From the cache: 2018 
+From the cache: 57 
+From the cache: 942 
+From the cache: 2023 
+From the cache: 2058 
+From the cache: 1021 
+From the cache: 17222 
+From the cache: 58 
+From the cache: 948 
+From the cache: 3063 
+From the cache: 68 
+From the cache: 939 
+From the cache: 10175 
+From the cache: 3152 
+From the cache: 1006 
+From the cache: 70 
+From the cache: 941 
+From the cache: 6096 
+From the cache: 1010 
+From the cache: 69 
+From the cache: 938 
+From the cache: 8101 
+From the cache: 66 
+From the cache: 951 
+From the cache: 5062 
+From the cache: 14257 
+From the cache: 80 
+From the cache: 921 
+Assembly: 18 
+Assembly: 20 
+After Scribble Compiler: 4415 
+After Parsing : 295 
+After Type generation: 70 
+After Scribble Compiler: 4449 
+After Parsing : 306 
+After Type generation: 63 
+Assembly: 18 
+Assembly: 20 
+After Scribble Compiler: 4078 
+After Parsing : 320 
+After Type generation: 67 
+After Scribble Compiler: 4198 
+After Parsing : 304 
+After Type generation: 83 
+From the cache: 118714 
+From the cache: 1009 
+From the cache: 82 
+From the cache: 942 
+Assembly: 18 
+Assembly: 19 
+After Scribble Compiler: 4308 
+After Parsing : 297 
+After Type generation: 82 
+After Scribble Compiler: 4134 
+After Parsing : 281 
+After Type generation: 62 
+Assembly: 18 
+Assembly: 23 
+After Scribble Compiler: 4115 
+After Parsing : 313 
+After Type generation: 69 
+After Scribble Compiler: 4087 
+After Parsing : 294 
+After Type generation: 62 
+From the cache: 105470 
+From the cache: 1056 
+From the cache: 74 
+From the cache: 914 
+Assembly: 18 
+Assembly: 19 
+After Scribble Compiler: 4078 
+After Parsing : 297 
+After Type generation: 104 
+After Scribble Compiler: 4215 
+After Parsing : 296 
+After Type generation: 63 
+Assembly: 38 
+Assembly: 18 
+After Scribble Compiler: 4406 
+After Parsing : 295 
+After Type generation: 111 
+After Scribble Compiler: 4403 
+After Parsing : 278 
+After Type generation: 63 
+From the cache: 107513 
+From the cache: 73 
+From the cache: 919 
+From the cache: 80 
+From the cache: 934 
+Assembly: 17 
+Assembly: 18 
+After Scribble Compiler: 4227 
+After Parsing : 290 
+After Type generation: 84 
+After Scribble Compiler: 4234 
+After Parsing : 295 
+After Type generation: 64 
+Assembly: 18 
+After Scribble Compiler: 3999 
+After Parsing : 276 
+After Type generation: 62 
+Assembly: 17 
+After Scribble Compiler: 3942 
+After Parsing : 277 
+After Type generation: 61 
+Assembly: 17 
+Assembly: 23 
+After Scribble Compiler: 4381 
+After Parsing : 304 
+After Type generation: 69 
+After Scribble Compiler: 4391 
+After Parsing : 277 
+After Type generation: 62 
+From the cache: 157227 
+From the cache: 2026 
+From the cache: 71 
+From the cache: 920 
+Assembly: 18 
+Assembly: 27 
+After Scribble Compiler: 4190 
+After Parsing : 301 
+After Type generation: 86 
+After Scribble Compiler: 4362 
+After Parsing : 296 
+After Type generation: 61 
+Assembly: 17 
+Assembly: 19 
+After Scribble Compiler: 4369 
+After Parsing : 291 
+After Type generation: 66 
+After Scribble Compiler: 4274 
+After Parsing : 276 
+After Type generation: 63 
+From the cache: 92292 
+From the cache: 85 
+From the cache: 948 
+Assembly: 18 
+Assembly: 18 
+After Scribble Compiler: 4119 
+After Parsing : 294 
+After Type generation: 70 
+After Scribble Compiler: 4124 
+After Parsing : 288 
+After Type generation: 62 
+Assembly: 18 
+Assembly: 21 
+After Scribble Compiler: 4210 
+After Parsing : 292 
+After Type generation: 67 
+After Scribble Compiler: 4101 
+After Parsing : 291 
+After Type generation: 62 
+From the cache: 123739 
+From the cache: 79 
+From the cache: 934 
+Assembly: 18 
+Assembly: 19 
+After Scribble Compiler: 4156 
+After Parsing : 293 
+After Type generation: 69 
+After Scribble Compiler: 4071 
+After Parsing : 289 
+After Type generation: 63 
+Assembly: 18 
+Assembly: 19 
+After Scribble Compiler: 4115 
+After Parsing : 295 
+After Type generation: 67 
+After Scribble Compiler: 4081 
+After Parsing : 271 
+After Type generation: 61 
+From the cache: 116640 
+From the cache: 72 
+From the cache: 913 
+Assembly: 18 
+Assembly: 19 
+After Scribble Compiler: 4135 
+After Parsing : 311 
+After Type generation: 67 
+After Scribble Compiler: 4167 
+After Parsing : 285 
+After Type generation: 81 
+Assembly: 17 
+Assembly: 19 
+After Scribble Compiler: 4269 
+After Parsing : 296 
+After Type generation: 66 
+After Scribble Compiler: 4183 
+After Parsing : 300 
+After Type generation: 62 
+From the cache: 95402 
+From the cache: 75 
+From the cache: 900 
+Assembly: 17 
+Assembly: 19 
+After Scribble Compiler: 4175 
+After Parsing : 290 
+After Type generation: 65 
+After Scribble Compiler: 4282 
+After Parsing : 293 
+After Type generation: 84 
+Assembly: 18 
+Assembly: 19 
+After Scribble Compiler: 4184 
+After Parsing : 304 
+After Type generation: 81 
+After Scribble Compiler: 4215 
+After Parsing : 299 
+After Type generation: 62 
+Assembly: 17 
+Assembly: 19 
+After Scribble Compiler: 4085 
+After Parsing : 289 
+After Type generation: 66 
+After Scribble Compiler: 4162 
+After Parsing : 291 
+After Type generation: 65 
+From the cache: 200845 
+From the cache: 2016 
+From the cache: 83 
+From the cache: 911 
+Assembly: 17 
+Assembly: 19 
+After Scribble Compiler: 4066 
+After Parsing : 290 
+After Type generation: 86 
+After Scribble Compiler: 3993 
+After Parsing : 285 
+After Type generation: 62 
+Assembly: 17 
+Assembly: 19 
+After Scribble Compiler: 4118 
+After Parsing : 295 
+After Type generation: 67 
+After Scribble Compiler: 4114 
+After Parsing : 297 
+After Type generation: 66 
+Assembly: 0 
+After Scribble Compiler: 968 
+After Parsing : 15 
+After Type generation: 4 
+From the cache: 320 
+Assembly: 0 
+After Scribble Compiler: 598 
+After Parsing : 24 
+After Type generation: 4 
+Assembly: 0 
+After Scribble Compiler: 68036 
+After Parsing : 24 
+After Type generation: 5 
+From the cache: 317 
+From the cache: 3 
+From the cache: 488 
+After Scribble Compiler: 29490 
+After Parsing : 23 
+After Type generation: 5 
+From the cache: 409 
+From the cache: 1465 
+After Scribble Compiler: 48188 
+After Parsing : 23 
+After Type generation: 5 
+From the cache: 426 
+Assembly: 0 
+After Scribble Compiler: 15994 
+After Parsing : 34 
+After Type generation: 28 
+From the cache: 401 
+From the cache: 764 
+From the cache: 80130 
+From the cache: 3047 
+From the cache: 2017 
+From the cache: 8116 
+From the cache: 18232 
+From the cache: 2023 
+From the cache: 1013 
+From the cache: 12 
+From the cache: 1023 
+From the cache: 12173 
+From the cache: 10153 
+From the cache: 869 
+From the cache: 5220 
+From the cache: 1007 
+From the cache: 1003 
+From the cache: 1017 
+From the cache: 20276 
+From the cache: 10153 
+From the cache: 16 
+From the cache: 977 
+From the cache: 18271 
+From the cache: 21 
+Assembly: 0 
+After Scribble Compiler: 15911 
+After Parsing : 30 
+After Type generation: 5 
+From the cache: 412 
+
+// After SH 
+Assembly: 0 
+After Scribble Compiler: 15826 
+After Parsing : 39 
+After Type generation: 4 
+From the cache: 407 
+From the cache: 932 
+Assembly: 0 
+After Scribble Compiler: 15866 
+After Parsing : 27 
+After Type generation: 5 
+From the cache: 410 
+Assembly: 0 
+After Scribble Compiler: 15829 
+After Parsing : 24 
+After Type generation: 4 
+Assembly: 0 
+After Scribble Compiler: 15997 
+After Parsing : 27 
+After Type generation: 5 
+From the cache: 415 
+Assembly: 0 
+After Scribble Compiler: 35253 
+After Parsing : 12 
+After Type generation: 4 
+From the cache: 193 
+From the cache: 1014 
+From the cache: 16231 
+From the cache: 4046 
+From the cache: 5070 
+From the cache: 2014 
+From the cache: 2031 
+From the cache: 10151 
+From the cache: 13172 
+From the cache: 2031 
+From the cache: 11 
+From the cache: 989 
+From the cache: 6088 
+From the cache: 1012 
+From the cache: 17 
+From the cache: 996 
+From the cache: 1021 
+From the cache: 10 
+From the cache: 1000 
+From the cache: 4067 
+From the cache: 7095 
+From the cache: 1026 
+From the cache: 12 
+From the cache: 1003 
+From the cache: 10 
+From the cache: 1006 
+From the cache: 13224 
+From the cache: 2010 
+From the cache: 4050 
+From the cache: 9 
+From the cache: 1005 
+From the cache: 10 
+From the cache: 1001 
+From the cache: 22359 
+From the cache: 10 
+From the cache: 1010 
+After Scribble Compiler: 81189 
+After Parsing : 23 
+After Type generation: 4 
+Assembly: 0 
+After Scribble Compiler: 4099 
+After Parsing : 37 
+After Type generation: 5 
+From the cache: 446 
+From the cache: 481 
+From the cache: 12158 
+From the cache: 14238 
+From the cache: 3034 
+From the cache: 6081 
+From the cache: 991 
+From the cache: 16232 
+From the cache: 1022 
+From the cache: 3026 
+From the cache: 1015 
+From the cache: 17 
+From the cache: 1017 
+From the cache: 3040 
+From the cache: 1012 
+From the cache: 7092 
+From the cache: 3046 
+From the cache: 1011 
+From the cache: 1009 
+From the cache: 1007 
+From the cache: 1039 
+From the cache: 2001 
+From the cache: 1009 
+From the cache: 1053 
+From the cache: 1010 
+From the cache: 3066 
+From the cache: 1007 
+From the cache: 1019 
+From the cache: 1009 
+From the cache: 3042 
+From the cache: 24324 
+From the cache: 1013 
+From the cache: 3036 
+From the cache: 2126 
+From the cache: 6 
+From the cache: 1004 
+From the cache: 2130 
+From the cache: 4972 
+From the cache: 3037 
+From the cache: 4055 
+From the cache: 2026 
+From the cache: 1010 
+From the cache: 1818 
+From the cache: 3233 
+From the cache: 1038 
+From the cache: 2016 
+From the cache: 10134 
+From the cache: 5062 
+From the cache: 8126 
+From the cache: 1009 
+From the cache: 2053 
+From the cache: 9174 
+From the cache: 5062 
+From the cache: 7091 
+From the cache: 1017 
+From the cache: 3048 
+From the cache: 3043 
+From the cache: 2981 
+From the cache: 5125 
+From the cache: 3034 
+From the cache: 2028 
+From the cache: 3037 
+From the cache: 161 
+From the cache: 850 
+From the cache: 1025 
+From the cache: 1042 
+From the cache: 1021 
+From the cache: 5111 
+From the cache: 3060 
+From the cache: 4096 
+From the cache: 2533 
+From the cache: 1535 
+From the cache: 2025 
+From the cache: 2024 
+From the cache: 1020 
+From the cache: 7081 
+From the cache: 7150 
+From the cache: 2031 
+From the cache: 1002 
+From the cache: 1027 
+From the cache: 8097 
+From the cache: 3068 
+From the cache: 15185 
+From the cache: 1008 
+From the cache: 1012 
+From the cache: 1010 
+From the cache: 1023 
+From the cache: 2016 
+From the cache: 1013 
+From the cache: 1039 
+From the cache: 2044 
+From the cache: 3032 
+From the cache: 2058 
+From the cache: 5067 
+From the cache: 2031 
+From the cache: 3038 
+From the cache: 3034 
+From the cache: 2024 
+From the cache: 30475 
+From the cache: 2071 
+From the cache: 2046 
+From the cache: 1760 
+From the cache: 7339 
+From the cache: 1023 
+From the cache: 10139 
+From the cache: 1054 
+From the cache: 1006 
+From the cache: 4059 
+From the cache: 1010 
+From the cache: 1000 
+From the cache: 1014 
+From the cache: 1016 
+From the cache: 995 
+From the cache: 3114 
+From the cache: 1023 
+From the cache: 677 
+From the cache: 1371 
+From the cache: 2026 
+From the cache: 2056 
+From the cache: 1023 
+From the cache: 1021 
+From the cache: 1003 
+From the cache: 1010 
+From the cache: 996 
+From the cache: 478 
+From the cache: 1568 
+From the cache: 2033 
+From the cache: 2028 
+From the cache: 4053 
+From the cache: 1013 
+From the cache: 5128 
+From the cache: 1007 
+From the cache: 190 
+From the cache: 1648 
+From the cache: 2206 
+From the cache: 1014 
+From the cache: 5050 
+From the cache: 1010 
+From the cache: 1015 
+From the cache: 2041 
+From the cache: 1017 
+From the cache: 1013 
+From the cache: 4057 
+From the cache: 3043 
+From the cache: 1000 
+From the cache: 11 
+From the cache: 1004 
+From the cache: 2061 
+From the cache: 2017 
+From the cache: 1016 
+From the cache: 4055 
+From the cache: 6082 
+From the cache: 996 
+From the cache: 2089 
+From the cache: 11 
+From the cache: 994 
+From the cache: 7103 
+From the cache: 5069 
+From the cache: 3037 
+From the cache: 2035 
+From the cache: 3035 
+From the cache: 8150 
+From the cache: 1000 
+From the cache: 11 
+From the cache: 1010 
+From the cache: 11 
+From the cache: 982 
+From the cache: 13 
+From the cache: 2020 
+From the cache: 13 
+From the cache: 999 
+Assembly: 0 
+After Scribble Compiler: 15832 
+After Parsing : 34 
+After Type generation: 5 
+From the cache: 1500 
+From the cache: 24319 
+From the cache: 14 
+From the cache: 999 
+From the cache: 858846 
+From the cache: 1013 
+From the cache: 1014 
+From the cache: 2029 
+From the cache: 3036 
+From the cache: 990 
+From the cache: 1034 
+From the cache: 1019 
+From the cache: 1011 
+From the cache: 3114 
+From the cache: 10 
+From the cache: 994 
+After Scribble Compiler: 64419 
+After Scribble Compiler: 421 
+After Scribble Compiler: 5584 
+After Scribble Compiler: 421 
+After Scribble Compiler: 1823 
+After Scribble Compiler: 421 
+After Scribble Compiler: 2085 
+After Scribble Compiler: 417 
+After Scribble Compiler: 932 
+After Scribble Compiler: 422 
+After Scribble Compiler: 29941 
+After Parsing : 44 
+After Scribble Compiler: 17528 
+After Parsing : 39 
+After Scribble Compiler: 17491 
+After Parsing : 43 
+After Type generation: 5 
+Assembly: 0 
+After Scribble Compiler: 17170 
+After Parsing : 40 
+After Type generation: 7 
+From the cache: 1562 
+From the cache: 4051 
+From the cache: 1019 
+From the cache: 3034 
+From the cache: 1006 
+From the cache: 1021 
+From the cache: 1003 
+From the cache: 2033 
+From the cache: 994 
+From the cache: 2054 
+From the cache: 17221 
+From the cache: 12181 
+From the cache: 1015 
+From the cache: 5072 
+From the cache: 1010 
+From the cache: 3034 
+From the cache: 15 
+From the cache: 993 
+From the cache: 12175 
+From the cache: 14 
+From the cache: 2018 
+From the cache: 2014 
+From the cache: 1041 
+From the cache: 15 
+From the cache: 1001 
+From the cache: 11 
+Assembly: 0 
+After Scribble Compiler: 19066 
+After Parsing : 15 
+After Scribble Compiler: 17177 
+After Parsing : 24 
+After Scribble Compiler: 17418 
+After Parsing : 14 
+After Scribble Compiler: 17563 
+After Parsing : 14 
+After Scribble Compiler: 17555 
+After Parsing : 14 
+After Type generation: 4 
+Assembly: 0 
+After Scribble Compiler: 17375 
+After Parsing : 27 
+After Scribble Compiler: 17309 
+After Parsing : 27 
+After Scribble Compiler: 17420 
+After Parsing : 27 
+After Type generation: 5 
+From the cache: 495 
+From the cache: 349 
+From the cache: 6132 
+From the cache: 1016 
+From the cache: 1018 
+From the cache: 4055 
+From the cache: 3048 
+From the cache: 1032 
+From the cache: 1011 
+From the cache: 7076 
+From the cache: 1033 
+From the cache: 2023 
+From the cache: 992 
+From the cache: 1031 
+From the cache: 1020 
+From the cache: 7088 
+From the cache: 4158 
+From the cache: 16 
+From the cache: 996 
+From the cache: 2031 
+From the cache: 17 
+From the cache: 972 
+Assembly: 0 
+After Scribble Compiler: 17369 
+After Parsing : 14 
+After Type generation: 4 
+From the cache: 647 
+From the cache: 5060 
+From the cache: 3035 
+From the cache: 2037 
+From the cache: 1006 
+From the cache: 7107 
+From the cache: 4155 
+From the cache: 14 
+From the cache: 1002 
+From the cache: 11149 
+From the cache: 2026 
+From the cache: 13193 
+From the cache: 1015 
+From the cache: 1029 
+From the cache: 1002 
+From the cache: 35678 
+From the cache: 10 
+From the cache: 981 
+From the cache: 17243 
+From the cache: 9 
+From the cache: 1006 
+From the cache: 3037 
+From the cache: 11 
+From the cache: 988 
+Assembly: 18 
+Assembly: 19 
+After Scribble Compiler: 18000 
+After Parsing : 156 
+After Type generation: 57 
+Assembly: 23 
+After Scribble Compiler: 18073 
+After Parsing : 172 
+After Type generation: 62 
+From the cache: 132901 
+From the cache: 1010 
+From the cache: 9 
+From the cache: 1003 
+After Scribble Compiler: 18070 
+After Parsing : 177 
+After Type generation: 53 
+Assembly: 18 
+After Scribble Compiler: 17598 
+After Parsing : 154 
+After Type generation: 50 
+From the cache: 40580 
+From the cache: 2032 
+From the cache: 11 
+From the cache: 991 
+Assembly: 17 
+After Scribble Compiler: 17522 
+After Parsing : 140 
+After Type generation: 50 
+From the cache: 446236 
+From the cache: 2017 
+From the cache: 1010 
+From the cache: 3028 
+From the cache: 5083 
+From the cache: 3047 
+From the cache: 11 
+From the cache: 995 
+From the cache: 9 
+From the cache: 993 
+Assembly: 0 
+After Scribble Compiler: 17559 
+After Parsing : 32 
+After Type generation: 5 
+From the cache: 489 
+From the cache: 143 
+From the cache: 22 
+From the cache: 985 
+From the cache: 17 
+From the cache: 1009 
+From the cache: 13 
+From the cache: 996 
+From the cache: 13 
+From the cache: 988 
+From the cache: 18 
+From the cache: 992 
+From the cache: 24 
+From the cache: 990 
+From the cache: 15 
+From the cache: 998 
+Assembly: 0 
+After Scribble Compiler: 17375 
+After Parsing : 49 
+After Type generation: 6 
+From the cache: 1570 
+From the cache: 223 
+Assembly: 17 
+After Type generation: 317 
+Assembly: 17 
+Assembly: 17 
+After Type generation: 120412 
+From the cache: 1444 
+From the cache: 2618 
+From the cache: 3030 
+From the cache: 34 
+From the cache: 1989 
+Assembly: 0 
+After Type generation: 14257 
+From the cache: 2044 
+Assembly: 0 
+After Type generation: 52 
+From the cache: 1685 
+From the cache: 9080 
+From the cache: 5073 
+From the cache: 4051 
+From the cache: 78 
+From the cache: 11111 
+From the cache: 1008 
+From the cache: 16 
+From the cache: 992 
+From the cache: 3037 
+From the cache: 2053 
+From the cache: 1021 
+Assembly: 0 
+After Type generation: 19342 
+From the cache: 394 
+From the cache: 3 
+From the cache: 577 
+From the cache: 5 
+From the cache: 1022 
+From the cache: 6 
+From the cache: 1013 
+Assembly: 0 
+After Type generation: 27 
+From the cache: 257 
+From the cache: 689 
+From the cache: 8120 
+From the cache: 2021 
+From the cache: 10 
+From the cache: 2019 
+Assembly: 0 
+After Type generation: 51 
+From the cache: 392 
+From the cache: 538 
+From the cache: 1012 
+From the cache: 6 
+From the cache: 997 
+From the cache: 51624 
+From the cache: 1009 
+Assembly: 0 
+After Type generation: 51 
+From the cache: 402 
+From the cache: 535 
+Assembly: 0 
+After Type generation: 50 
+From the cache: 388 
+From the cache: 541 
+Assembly: 0 
+After Type generation: 25 
+From the cache: 980 
+Assembly: 0 
+After Type generation: 45 
+From the cache: 572 
+From the cache: 356 
+From the cache: 41621 
+From the cache: 6094 
+Assembly: 0 
+After Scribble Compiler: 12416 
+After Parsing : 32 
+After Type generation: 5 
+From the cache: 458 
+From the cache: 302 
+From the cache: 13172 
+From the cache: 2034 
+From the cache: 13 
+From the cache: 2004 
+From the cache: 16 
+From the cache: 991 
+From the cache: 6119 
+From the cache: 13 
+From the cache: 994 
+Assembly: 18 
+After Type generation: 317 
+Assembly: 18 
+Assembly: 19 
+After Type generation: 386 
+After Scribble Compiler: 3556 
+After Parsing : 157 
+After Type generation: 53 
+From the cache: 86251 
+From the cache: 13 
+From the cache: 998 
+Assembly: 0 
+After Type generation: 25 
+From the cache: 957 
+From the cache: 4090 
+From the cache: 1041 
+From the cache: 1004 
+From the cache: 2031 
+From the cache: 7100 
+From the cache: 1004 
+From the cache: 14 
+From the cache: 986 
+From the cache: 14 
+From the cache: 1005 
+From the cache: 9 
+From the cache: 1000 
+Assembly: 0 
+After Type generation: 62 
+From the cache: 3964 
+From the cache: 4058 
+From the cache: 1011 
+From the cache: 2023 
+From the cache: 1017 
+From the cache: 3061 
+From the cache: 12 
+From the cache: 993 
+Assembly: 17 
+After Scribble Compiler: 3418 
+After Parsing : 138 
+After Type generation: 49 
+Assembly: 18 
+After Scribble Compiler: 3324 
+After Parsing : 171 
+Assembly: 17 
+After Scribble Compiler: 3371 
+After Parsing : 160 
+After Type generation: 52 
+Assembly: 18 
+After Scribble Compiler: 3366 
+After Parsing : 138 
+After Type generation: 50 
+Assembly: 18 
+After Scribble Compiler: 3381 
+After Parsing : 171 
+Assembly: 0 
+After Scribble Compiler: 3335 
+After Parsing : 40 
+After Scribble Compiler: 3278 
+After Parsing : 39 
+After Scribble Compiler: 3287 
+After Parsing : 43 
+After Scribble Compiler: 3175 
+After Parsing : 42 
+After Scribble Compiler: 4180 
+After Parsing : 39 
+After Scribble Compiler: 3258 
+After Parsing : 42 
+After Scribble Compiler: 26174 
+After Parsing : 39 
+After Type generation: 9 
+From the cache: 546 
+From the cache: 1095 
+From the cache: 3068 
+From the cache: 1010 
+From the cache: 11 
+From the cache: 988 
+From the cache: 5080 
+From the cache: 1018 
+From the cache: 13 
+From the cache: 995 
+From the cache: 15 
+From the cache: 1063 
+Assembly: 0 
+After Scribble Compiler: 3395 
+After Parsing : 14 
+After Type generation: 4 
+From the cache: 255 
+From the cache: 10500 
+From the cache: 12 
+From the cache: 994 
+Assembly: 0 
+After Scribble Compiler: 3264 
+After Parsing : 27 
+After Type generation: 5 
+From the cache: 488 
+Assembly: 18 
+Assembly: 19 
+Assembly: 19 
+After Scribble Compiler: 4352 
+After Parsing : 154 
+After Type generation: 51 
+After Scribble Compiler: 4145 
+After Parsing : 158 
+After Type generation: 62 
+After Scribble Compiler: 4084 
+After Parsing : 171 
+After Type generation: 49 
+Assembly: 0 
+After Scribble Compiler: 693 
+After Scribble Compiler: 681 
+After Scribble Compiler: 702 
+After Scribble Compiler: 677 
+Assembly: 0 
+After Scribble Compiler: 681 
+After Parsing : 26 
+After Scribble Compiler: 671 
+After Parsing : 26 
+After Scribble Compiler: 713 
+After Parsing : 28 
+After Scribble Compiler: 703 
+After Parsing : 26 
+After Scribble Compiler: 2839 
+After Parsing : 30 
+After Scribble Compiler: 667 
+After Parsing : 26 
+After Scribble Compiler: 642 
+After Parsing : 26 
+After Scribble Compiler: 680 
+After Parsing : 27 
+After Scribble Compiler: 724 
+After Parsing : 26 
+After Scribble Compiler: 661 
+After Parsing : 26 
+Assembly: 0 
+After Scribble Compiler: 682 
+After Parsing : 36 
+After Type generation: 5 
+From the cache: 452 
+From the cache: 805 
+From the cache: 6093 
+From the cache: 6086 
+From the cache: 1020 
+From the cache: 14 
+From the cache: 999 
+From the cache: 12 
+From the cache: 978 
+From the cache: 5073 
+From the cache: 3042 
+From the cache: 2035 
+From the cache: 1000 
+From the cache: 2044 
+From the cache: 13 
+From the cache: 2010 
+From the cache: 13 
+From the cache: 1034 
+From the cache: 3053 
+From the cache: 10 
+From the cache: 995 
+From the cache: 12 
+From the cache: 1044 
+Assembly: 18 
+After Scribble Compiler: 876 
+After Parsing : 156 
+After Type generation: 57 
+Assembly: 17 
+After Scribble Compiler: 799 
+After Parsing : 149 
+After Type generation: 50 
+From the cache: 39598 
+From the cache: 11 
+From the cache: 981 
+Assembly: 18 
+After Scribble Compiler: 789 
+After Parsing : 150 
+After Type generation: 48 
+After Scribble Compiler: 90971 
+After Parsing : 37 
+After Type generation: 5 
+From the cache: 390 
+From the cache: 901 
+From the cache: 13 
+From the cache: 1013 
+After Scribble Compiler: 7844 
+After Parsing : 30 
+After Type generation: 4 
+From the cache: 442 
+From the cache: 1863 
+Assembly: 18 
+After Scribble Compiler: 847 
+After Parsing : 154 
+After Type generation: 51 
+Assembly: 18 
+After Scribble Compiler: 794 
+After Parsing : 149 
+After Type generation: 49 
+From the cache: 125773 
+From the cache: 2029 
+From the cache: 2030 
+From the cache: 1010 
+From the cache: 2019 
+From the cache: 1007 
+From the cache: 1015 
+From the cache: 1020 
+From the cache: 3030 
+From the cache: 2033 
+From the cache: 2021 
+From the cache: 15 
+From the cache: 986 
+From the cache: 13 
+From the cache: 1003 
+From the cache: 20 
+From the cache: 992 
+From the cache: 27428 
+From the cache: 17 
+From the cache: 986 
+From the cache: 32447 
+From the cache: 1017 
+From the cache: 15 
+From the cache: 989 
+From the cache: 4081 
+From the cache: 3 
+From the cache: 1007 
+From the cache: 14 
+From the cache: 1000 
+Assembly: 17 
+After Scribble Compiler: 793 
+After Parsing : 152 
+After Type generation: 68 
+Assembly: 18 
+After Scribble Compiler: 807 
+After Parsing : 152 
+After Type generation: 50 
+Assembly: 18 
+After Scribble Compiler: 782 
+After Parsing : 154 
+After Type generation: 53 
+Assembly: 18 
+After Scribble Compiler: 801 
+After Parsing : 149 
+After Type generation: 54 
+After Scribble Compiler: 288239 
+After Parsing : 26 
+After Type generation: 31 
+From the cache: 1272 
+From the cache: 1020 
+From the cache: 3034 
+From the cache: 3086 
+From the cache: 16 
+From the cache: 1003 
+From the cache: 27421 
+From the cache: 19 
+From the cache: 992 
+After Scribble Compiler: 59111 
+After Parsing : 29 
+After Type generation: 19 
+From the cache: 5391 
+From the cache: 3061 
+From the cache: 2044 
+From the cache: 5065 
+From the cache: 1014 
+From the cache: 10 
+From the cache: 1014 
+After Scribble Compiler: 8823 
+After Parsing : 26 
+After Type generation: 4 
+From the cache: 1313 
+From the cache: 2023 
+From the cache: 2028 
+From the cache: 2030 
+From the cache: 13 
+From the cache: 989 
+From the cache: 16 
+From the cache: 991 
+Assembly: 18 
+After Scribble Compiler: 794 
+After Parsing : 151 
+After Type generation: 58 
+Assembly: 17 
+After Scribble Compiler: 816 
+After Parsing : 155 
+After Type generation: 49 
+From the cache: 87247 
+From the cache: 15 
+From the cache: 992 
+Assembly: 18 
+Assembly: 18 
+After Scribble Compiler: 939 
+After Parsing : 159 
+After Type generation: 54 
+After Scribble Compiler: 822 
+After Parsing : 152 
+After Type generation: 49 
+Assembly: 24 
+After Scribble Compiler: 1003 
+After Parsing : 197 
+After Type generation: 76 
+From the cache: 677 
+Assembly: 0 
+After Scribble Compiler: 715 
+After Parsing : 24 
+After Type generation: 9 
+From the cache: 408 
+Assembly: 20 
+After Scribble Compiler: 850 
+After Parsing : 168 
+After Type generation: 67 
+Assembly: 20 
+After Scribble Compiler: 841 
+After Parsing : 161 
+After Type generation: 61 
+Assembly: 20 
+After Scribble Compiler: 868 
+After Parsing : 170 
+After Type generation: 59 
+Assembly: 20 
+After Scribble Compiler: 755 
+After Parsing : 159 
+After Type generation: 59 
+Assembly: 25 
+After Scribble Compiler: 864 
+After Parsing : 194 
+After Type generation: 64 
+From the cache: 612 
+From the cache: 116989 
+From the cache: 6098 
+From the cache: 2030 
+From the cache: 1013 
+From the cache: 18 
+From the cache: 2017 
+From the cache: 13 
+From the cache: 978 
+Assembly: 19 
+After Scribble Compiler: 846 
+After Parsing : 169 
+After Type generation: 64 
+Assembly: 19 
+After Scribble Compiler: 815 
+After Parsing : 161 
+After Type generation: 60 
+Assembly: 0 
+After Scribble Compiler: 678 
+After Parsing : 29 
+After Type generation: 10 
+From the cache: 500 
+After Scribble Compiler: 84420 
+After Scribble Compiler: 412 
+After Scribble Compiler: 444 
+After Scribble Compiler: 418 
+Assembly: 0 
+Assembly: 0 
+After Scribble Compiler: 3205 
+After Parsing : 31 
+After Type generation: 4 
+From the cache: 245 
+After Scribble Compiler: 62675 
+After Parsing : 23 
+After Type generation: 4 
+From the cache: 231 
+From the cache: 1629 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+After Scribble Compiler: 3256 
+After Parsing : 48 
+After Scribble Compiler: 3250 
+After Parsing : 41 
+After Scribble Compiler: 3239 
+After Parsing : 48 
+After Scribble Compiler: 3208 
+After Parsing : 45 
+After Scribble Compiler: 4304 
+After Parsing : 40 
+After Scribble Compiler: 3131 
+After Parsing : 45 
+Assembly: 0 
+After Scribble Compiler: 3171 
+After Parsing : 46 
+After Type generation: 5 
+From the cache: 523 
+From the cache: 43407 
+From the cache: 3170 
+From the cache: 1033 
+From the cache: 1015 
+From the cache: 4048 
+From the cache: 1005 
+From the cache: 15 
+From the cache: 1006 
+From the cache: 9 
+From the cache: 1004 
+From the cache: 3047 
+From the cache: 998 
+From the cache: 9 
+From the cache: 1031 
+From the cache: 4058 
+From the cache: 2024 
+From the cache: 13 
+From the cache: 996 
+From the cache: 2024 
+From the cache: 996 
+From the cache: 2029 
+From the cache: 10152 
+From the cache: 3052 
+From the cache: 1006 
+From the cache: 1011 
+From the cache: 3065 
+From the cache: 1013 
+From the cache: 15 
+From the cache: 999 
+From the cache: 7106 
+From the cache: 14 
+From the cache: 996 
+From the cache: 4060 
+From the cache: 17 
+From the cache: 993 
+Assembly: 19 
+Assembly: 22 
+Assembly: 27 
+After Scribble Compiler: 4239 
+After Parsing : 161 
+After Type generation: 75 
+After Scribble Compiler: 4371 
+After Parsing : 173 
+After Type generation: 58 
+After Scribble Compiler: 4059 
+After Parsing : 185 
+After Type generation: 54 
+From the cache: 32436 
+From the cache: 5068 
+From the cache: 3049 
+From the cache: 2014 
+From the cache: 1016 
+From the cache: 25 
+From the cache: 999 
+From the cache: 19 
+From the cache: 984 
+Assembly: 19 
+After Scribble Compiler: 3224 
+After Parsing : 151 
+After Type generation: 79 
+Assembly: 19 
+Assembly: 20 
+Assembly: 30 
+After Scribble Compiler: 4237 
+After Parsing : 187 
+After Type generation: 57 
+After Scribble Compiler: 4112 
+After Parsing : 160 
+After Type generation: 65 
+After Scribble Compiler: 4072 
+After Parsing : 182 
+After Type generation: 55 
+From the cache: 192693 
+From the cache: 2033 
+From the cache: 2024 
+From the cache: 3049 
+From the cache: 5072 
+From the cache: 3024 
+From the cache: 18 
+From the cache: 997 
+From the cache: 6086 
+From the cache: 12 
+Assembly: 0 
+Assembly: 0 
+After Type generation: 60 
+From the cache: 4673 
+From the cache: 1328 
+From the cache: 38 
+From the cache: 975 
+Assembly: 0 
+After Type generation: 54 
+From the cache: 1469 
+From the cache: 477 
+From the cache: 9133 
+From the cache: 2030 
+From the cache: 20 
+From the cache: 983 
+From the cache: 20 
+From the cache: 989 
+Assembly: 0 
+After Type generation: 51 
+From the cache: 1555 
+Assembly: 0 
+After Scribble Compiler: 3185 
+After Parsing : 49 
+After Type generation: 4 
+From the cache: 479 
+From the cache: 9449 
+From the cache: 3060 
+From the cache: 990 
+From the cache: 17 
+From the cache: 2026 
+From the cache: 13 
+From the cache: 996 
+Assembly: 19 
+Assembly: 21 
+Assembly: 33 
+After Type generation: 514 
+After Scribble Compiler: 3799 
+After Parsing : 180 
+After Type generation: 57 
+After Scribble Compiler: 3913 
+After Parsing : 167 
+After Type generation: 64 
+From the cache: 68994 
+From the cache: 1028 
+From the cache: 19 
+From the cache: 996 
+From the cache: 13 
+From the cache: 995 
+From the cache: 19 
+From the cache: 999 
+Assembly: 19 
+Assembly: 21 
+Assembly: 33 
+After Type generation: 551 
+After Scribble Compiler: 3853 
+After Parsing : 162 
+After Type generation: 78 
+After Scribble Compiler: 3868 
+After Parsing : 169 
+After Type generation: 58 
+From the cache: 91282 
+From the cache: 2023 
+From the cache: 15 
+From the cache: 994 
+From the cache: 7106 
+From the cache: 14 
+From the cache: 994 
+Assembly: 19 
+Assembly: 20 
+After Scribble Compiler: 3736 
+After Parsing : 185 
+After Type generation: 60 
+After Scribble Compiler: 3791 
+After Parsing : 165 
+After Type generation: 64 
+Assembly: 19 
+After Type generation: 408 
+Assembly: 24 
+After Scribble Compiler: 3361 
+After Parsing : 165 
+After Type generation: 59 
+Assembly: 20 
+After Scribble Compiler: 3368 
+After Parsing : 175 
+After Type generation: 58 
+Assembly: 20 
+After Type generation: 388 
+Assembly: 0 
+After Type generation: 70 
+From the cache: 1676 
+Assembly: 19 
+Assembly: 20 
+After Scribble Compiler: 3771 
+Assembly: 20 
+After Parsing : 189 
+After Type generation: 58 
+After Type generation: 411 
+After Scribble Compiler: 3749 
+After Parsing : 181 
+After Type generation: 68 
+Assembly: 19 
+Assembly: 20 
+After Scribble Compiler: 3763 
+After Parsing : 200 
+Assembly: 20 
+After Type generation: 55 
+After Type generation: 394 
+After Scribble Compiler: 3837 
+After Parsing : 172 
+After Type generation: 67 
+Assembly: 19 
+Assembly: 19 
+After Scribble Compiler: 3640 
+After Parsing : 182 
+After Type generation: 58 
+Assembly: 20 
+After Type generation: 389 
+After Scribble Compiler: 3743 
+After Parsing : 188 
+After Type generation: 70 
+From the cache: 875573 
+From the cache: 4177 
+From the cache: 2049 
+From the cache: 7088 
+From the cache: 1017 
+From the cache: 7103 
+From the cache: 3052 
+From the cache: 1015 
+From the cache: 14 
+From the cache: 987 
+From the cache: 4035 
+From the cache: 2029 
+From the cache: 4068 
+From the cache: 1007 
+From the cache: 2040 
+From the cache: 4094 
+From the cache: 12158 
+From the cache: 301648 
+From the cache: 21 
+From the cache: 995 
+Assembly: 0 
+After Scribble Compiler: 564 
+After Parsing : 15 
+After Type generation: 20 
+From the cache: 372 
+After Type generation: 19353 
+From the cache: 28374 
+From the cache: 1011 
+From the cache: 1005 
+From the cache: 999 
+From the cache: 2049 
+From the cache: 1015 
+From the cache: 2017 
+From the cache: 4063 
+From the cache: 2017 
+From the cache: 290 
+From the cache: 1766 
+From the cache: 998 
+From the cache: 2039 
+From the cache: 1005 
+From the cache: 1010 
+From the cache: 9118 
+From the cache: 1013 
+From the cache: 4130 
+From the cache: 15 
+From the cache: 973 
+From the cache: 1016 
+From the cache: 16 
+From the cache: 1004 
+Assembly: 0 
+After Scribble Compiler: 3942 
+After Parsing : 112 
+After Type generation: 19 
+Assembly: 0 
+After Scribble Compiler: 3317 
+After Parsing : 49 
+After Type generation: 4 
+From the cache: 666 
+From the cache: 6081 
+From the cache: 1018 
+From the cache: 2035 
+From the cache: 5057 
+From the cache: 1012 
+From the cache: 5076 
+From the cache: 995 
+From the cache: 1011 
+From the cache: 6067 
+From the cache: 8124 
+From the cache: 17 
+From the cache: 1018 
+Assembly: 0 
+After Scribble Compiler: 3849 
+After Parsing : 125 
+After Type generation: 20 
+Assembly: 0 
+After Scribble Compiler: 3252 
+After Parsing : 36 
+After Type generation: 4 
+From the cache: 514 
+From the cache: 4266 
+From the cache: 3047 
+From the cache: 9124 
+From the cache: 5075 
+From the cache: 1011 
+From the cache: 12171 
+From the cache: 4045 
+From the cache: 1017 
+From the cache: 1020 
+From the cache: 5063 
+From the cache: 2014 
+From the cache: 23330 
+From the cache: 1015 
+From the cache: 1000 
+From the cache: 8115 
+From the cache: 3060 
+From the cache: 999 
+From the cache: 4059 
+From the cache: 4061 
+From the cache: 7101 
+From the cache: 2018 
+From the cache: 9130 
+From the cache: 1011 
+From the cache: 2029 
+From the cache: 2014 
+From the cache: 2032 
+From the cache: 4049 
+From the cache: 5067 
+From the cache: 1021 
+From the cache: 3029 
+From the cache: 1014 
+From the cache: 2020 
+From the cache: 3050 
+From the cache: 17244 
+From the cache: 993 
+From the cache: 5068 
+From the cache: 2033 
+From the cache: 1015 
+From the cache: 2024 
+From the cache: 11151 
+From the cache: 3030 
+From the cache: 1010 
+From the cache: 7107 
+From the cache: 1009 
+From the cache: 1016 
+From the cache: 2019 
+From the cache: 1019 
+From the cache: 5041 
+From the cache: 4086 
+From the cache: 14 
+From the cache: 980 
+From the cache: 14 
+From the cache: 990 
+From the cache: 1026 
+From the cache: 14 
+From the cache: 985 
+From the cache: 15 
+From the cache: 988 
+From the cache: 13 
+From the cache: 991 
+From the cache: 19 
+From the cache: 995 
+From the cache: 62897 
+From the cache: 2035 
+From the cache: 1005 
+From the cache: 1012 
+From the cache: 1022 
+From the cache: 8100 
+From the cache: 1014 
+From the cache: 1017 
+From the cache: 2032 
+From the cache: 1004 
+From the cache: 2020 
+From the cache: 2040 
+From the cache: 20 
+From the cache: 2996 
+From the cache: 1005 
+From the cache: 7110 
+From the cache: 1027 
+From the cache: 7098 
+From the cache: 3051 
+From the cache: 998 
+From the cache: 1020 
+From the cache: 15 
+From the cache: 995 
+From the cache: 1008 
+From the cache: 22 
+From the cache: 995 
+From the cache: 12197 
+From the cache: 1035 
+From the cache: 2017 
+From the cache: 1009 
+From the cache: 5072 
+From the cache: 2031 
+From the cache: 1023 
+From the cache: 1024 
+From the cache: 1031 
+From the cache: 26 
+From the cache: 975 
+From the cache: 16 
+From the cache: 995 
+From the cache: 40554 
+From the cache: 22 
+From the cache: 1005 
+Assembly: 19 
+Assembly: 19 
+After Scribble Compiler: 3752 
+After Parsing : 229 
+After Type generation: 68 
+Assembly: 20 
+After Type generation: 505 
+After Scribble Compiler: 3824 
+After Parsing : 183 
+After Type generation: 58 
+From the cache: 65885 
+From the cache: 2029 
+From the cache: 996 
+From the cache: 29 
+From the cache: 1011 
+From the cache: 16 
+From the cache: 959 
+From the cache: 1029 
+From the cache: 22 
+From the cache: 984 
+From the cache: 3054 
+From the cache: 22 
+From the cache: 986 
+From the cache: 14589 
+From the cache: 22 
+From the cache: 975 
+From the cache: 137909 
+From the cache: 17 
+From the cache: 1001 
+From the cache: 29394 
+From the cache: 23 
+Assembly: 20 
+Assembly: 20 
+Assembly: 33 
+After Scribble Compiler: 3811 
+After Parsing : 161 
+After Type generation: 56 
+After Type generation: 535 
+After Scribble Compiler: 4001 
+After Parsing : 176 
+After Type generation: 58 
+Assembly: 26 
+After Scribble Compiler: 3430 
+After Parsing : 186 
+After Type generation: 61 
+From the cache: 1154 
+From the cache: 1070 
+From the cache: 1014 
+From the cache: 13 
+From the cache: 999 
+From the cache: 18 
+From the cache: 1281 
+From the cache: 8697 
+From the cache: 12 
+From the cache: 1009 
+From the cache: 8098 
+From the cache: 9 
+From the cache: 995 
+Assembly: 27 
+Assembly: 28 
+Assembly: 22 
+After Scribble Compiler: 3957 
+After Type generation: 646 
+After Parsing : 164 
+After Type generation: 72 
+After Scribble Compiler: 3833 
+After Parsing : 184 
+After Type generation: 59 
+Assembly: 19 
+Assembly: 32 
+Assembly: 24 
+After Type generation: 688 
+After Scribble Compiler: 4185 
+After Parsing : 182 
+After Type generation: 90 
+After Scribble Compiler: 4214 
+After Parsing : 182 
+After Type generation: 67 
+Assembly: 19 
+Assembly: 20 
+Assembly: 32 
+After Scribble Compiler: 3901 
+After Parsing : 170 
+After Type generation: 63 
+After Type generation: 563 
+After Scribble Compiler: 3859 
+After Parsing : 177 
+After Type generation: 65 
+Assembly: 19 
+Assembly: 20 
+Assembly: 28 
+After Scribble Compiler: 3776 
+After Parsing : 157 
+After Type generation: 58 
+After Type generation: 499 
+After Scribble Compiler: 3789 
+After Parsing : 176 
+After Type generation: 61 
+Assembly: 0 
+After Type generation: 126 
+From the cache: 4629 
+From the cache: 36403 
+From the cache: 2038 
+From the cache: 996 
+From the cache: 2043 
+From the cache: 2032 
+From the cache: 2036 
+From the cache: 2012 
+From the cache: 2023 
+From the cache: 25 
+From the cache: 992 
+From the cache: 17 
+From the cache: 975 
+From the cache: 3061 
+From the cache: 1004 
+From the cache: 21 
+From the cache: 993 
+From the cache: 5061 
+From the cache: 17 
+From the cache: 975 
+From the cache: 24 
+From the cache: 1007 
+Assembly: 19 
+Assembly: 20 
+After Scribble Compiler: 3748 
+After Parsing : 183 
+After Type generation: 56 
+After Scribble Compiler: 3677 
+After Parsing : 171 
+After Type generation: 57 
+Assembly: 19 
+After Scribble Compiler: 3377 
+After Parsing : 180 
+After Type generation: 70 
+Assembly: 0 
+After Scribble Compiler: 3182 
+After Parsing : 55 
+After Type generation: 5 
+From the cache: 539 
+From the cache: 10393 
+From the cache: 17 
+From the cache: 976 
+From the cache: 16 
+From the cache: 1012 
+Assembly: 20 
+Assembly: 21 
+Assembly: 44 
+After Scribble Compiler: 3850 
+After Parsing : 184 
+After Type generation: 62 
+After Scribble Compiler: 3996 
+After Parsing : 180 
+After Type generation: 68 
+After Scribble Compiler: 3924 
+After Parsing : 198 
+After Type generation: 57 
+Assembly: 21 
+Assembly: 20 
+After Scribble Compiler: 3802 
+After Parsing : 229 
+After Type generation: 88 
+Assembly: 21 
+After Scribble Compiler: 3973 
+After Parsing : 191 
+After Type generation: 58 
+After Scribble Compiler: 3613 
+After Parsing : 201 
+After Type generation: 54 
+Assembly: 20 
+Assembly: 23 
+Assembly: 25 
+After Scribble Compiler: 3954 
+After Parsing : 171 
+After Type generation: 66 
+After Scribble Compiler: 4302 
+After Parsing : 180 
+After Type generation: 64 
+After Scribble Compiler: 3812 
+After Parsing : 208 
+After Type generation: 56 
+Assembly: 0 
+After Scribble Compiler: 3246 
+After Parsing : 55 
+After Type generation: 5 
+From the cache: 537 
+Assembly: 0 
+After Scribble Compiler: 3392 
+After Parsing : 26 
+After Type generation: 5 
+From the cache: 514 
+Assembly: 23 
+After Scribble Compiler: 3523 
+After Parsing : 184 
+After Type generation: 60 
+From the cache: 689 
+From the cache: 314 
+From the cache: 2026 
+From the cache: 17 
+From the cache: 990 
+From the cache: 7211 
+From the cache: 1011 
+From the cache: 14 
+From the cache: 979 
+From the cache: 14 
+From the cache: 1018 
+From the cache: 1015 
+From the cache: 16 
+From the cache: 1002 
+From the cache: 20 
+From the cache: 991 
+Assembly: 0 
+After Scribble Compiler: 421 
+After Scribble Compiler: 400 
+After Scribble Compiler: 430 
+After Scribble Compiler: 396 
+After Scribble Compiler: 771 
+After Scribble Compiler: 410 
+After Scribble Compiler: 4355 
+After Parsing : 26 
+After Type generation: 8 
+From the cache: 854 
+From the cache: 3048 
+From the cache: 19 
+Assembly: 0 
+After Scribble Compiler: 3184 
+After Parsing : 27 
+After Type generation: 4 
+From the cache: 2862 
+From the cache: 17 
+From the cache: 971 
+Assembly: 0 
+After Scribble Compiler: 3208 
+After Parsing : 50 
+After Type generation: 9 
+From the cache: 555 
+From the cache: 209 
+From the cache: 1040 
+From the cache: 16 
+From the cache: 22 
+From the cache: 967 
+From the cache: 19028 
+From the cache: 2003 
+From the cache: 2049 
+From the cache: 2032 
+From the cache: 15211 
+From the cache: 3470 
+From the cache: 24 
+From the cache: 965 
+Assembly: 0 
+After Type generation: 75 
+From the cache: 3957 
+From the cache: 8167 
+From the cache: 4065 
+From the cache: 1047 
+From the cache: 1014 
+From the cache: 15 
+From the cache: 997 
+From the cache: 2021 
+From the cache: 3043 
+From the cache: 1010 
+From the cache: 15 
+From the cache: 978 
+From the cache: 21 
+From the cache: 1013 
+From the cache: 2027 
+From the cache: 19 
+From the cache: 984 
+From the cache: 17240 
+From the cache: 995 
+From the cache: 23 
+From the cache: 1002 
+From the cache: 2042 
+From the cache: 14 
+From the cache: 992 
+From the cache: 4055 
+From the cache: 15 
+From the cache: 993 
+Assembly: 18 
+After Scribble Compiler: 3401 
+After Parsing : 165 
+After Type generation: 65 
+Assembly: 18 
+After Scribble Compiler: 3333 
+After Parsing : 154 
+After Type generation: 51 
+Assembly: 18 
+After Scribble Compiler: 3358 
+After Parsing : 143 
+After Type generation: 50 
+Assembly: 18 
+After Type generation: 409 
+Assembly: 18 
+After Scribble Compiler: 848 
+After Parsing : 152 
+After Type generation: 54 
+Assembly: 18 
+After Type generation: 396 
+Assembly: 19 
+After Scribble Compiler: 831 
+After Parsing : 179 
+After Type generation: 57 
+Assembly: 18 
+After Type generation: 422 
+Assembly: 18 
+After Scribble Compiler: 872 
+After Parsing : 161 
+After Type generation: 54 
+Assembly: 19 
+After Type generation: 427 
+Assembly: 23 
+After Scribble Compiler: 892 
+After Parsing : 174 
+After Type generation: 62 
+Assembly: 18 
+After Type generation: 403 
+Assembly: 19 
+After Scribble Compiler: 852 
+After Parsing : 163 
+After Type generation: 53 
+Assembly: 18 
+After Type generation: 407 
+Assembly: 17 
+After Scribble Compiler: 888 
+After Parsing : 157 
+After Type generation: 54 
+Assembly: 18 
+After Type generation: 419 
+Assembly: 18 
+After Scribble Compiler: 884 
+After Parsing : 161 
+After Type generation: 53 
+Assembly: 17 
+After Type generation: 412 
+Assembly: 18 
+After Scribble Compiler: 873 
+After Parsing : 155 
+After Type generation: 60 
+Assembly: 17 
+After Type generation: 435 
+Assembly: 18 
+After Scribble Compiler: 877 
+After Parsing : 155 
+After Type generation: 53 
+Assembly: 18 
+After Type generation: 468 
+Assembly: 21 
+After Scribble Compiler: 808 
+After Parsing : 153 
+After Type generation: 53 
+Assembly: 17 
+After Type generation: 426 
+Assembly: 18 
+After Scribble Compiler: 841 
+After Parsing : 155 
+After Type generation: 53 
+Assembly: 18 
+After Type generation: 415 
+Assembly: 18 
+After Scribble Compiler: 825 
+After Parsing : 163 
+After Type generation: 59 
+Assembly: 23 
+After Type generation: 549 
+From the cache: 4108 
+From the cache: 4170 
+From the cache: 3029 
+From the cache: 5073 
+From the cache: 3048 
+From the cache: 18 
+From the cache: 997 
+From the cache: 22 
+From the cache: 990 
+From the cache: 88268 
+From the cache: 14 
+From the cache: 1016 
+Assembly: 18 
+After Scribble Compiler: 969 
+After Parsing : 155 
+After Type generation: 57 
+Assembly: 18 
+After Scribble Compiler: 734 
+After Parsing : 153 
+After Type generation: 58 
+Assembly: 18 
+After Scribble Compiler: 892 
+After Parsing : 157 
+After Type generation: 85 
+Assembly: 19 
+After Scribble Compiler: 840 
+After Parsing : 155 
+After Type generation: 57 
+Assembly: 18 
+Assembly: 21 
+After Scribble Compiler: 969 
+After Parsing : 153 
+After Type generation: 79 
+After Scribble Compiler: 848 
+After Parsing : 160 
+After Type generation: 53 
+Assembly: 18 
+Assembly: 22 
+After Scribble Compiler: 988 
+After Parsing : 150 
+After Type generation: 51 
+After Scribble Compiler: 789 
+After Parsing : 173 
+After Type generation: 57 
+Assembly: 18 
+Assembly: 18 
+After Scribble Compiler: 916 
+After Parsing : 178 
+After Type generation: 65 
+After Scribble Compiler: 761 
+After Parsing : 155 
+After Type generation: 56 
+Assembly: 17 
+Assembly: 30 
+After Scribble Compiler: 946 
+After Parsing : 182 
+After Type generation: 52 
+After Scribble Compiler: 844 
+After Parsing : 162 
+After Type generation: 51 
+Assembly: 18 
+Assembly: 29 
+After Scribble Compiler: 965 
+After Parsing : 159 
+After Type generation: 62 
+After Scribble Compiler: 771 
+After Parsing : 153 
+After Type generation: 53 
+Assembly: 18 
+Assembly: 29 
+After Scribble Compiler: 925 
+After Parsing : 182 
+After Type generation: 63 
+After Scribble Compiler: 856 
+After Parsing : 156 
+After Type generation: 58 
+Assembly: 18 
+Assembly: 18 
+After Scribble Compiler: 985 
+After Parsing : 158 
+After Type generation: 68 
+After Scribble Compiler: 847 
+After Parsing : 163 
+After Type generation: 86 
+Assembly: 18 
+Assembly: 18 
+After Scribble Compiler: 968 
+After Parsing : 155 
+After Type generation: 76 
+After Scribble Compiler: 823 
+After Parsing : 162 
+After Type generation: 53 
+Assembly: 17 
+After Scribble Compiler: 931 
+Assembly: 18 
+After Parsing : 171 
+After Type generation: 66 
+After Scribble Compiler: 817 
+After Parsing : 158 
+After Type generation: 52 
+Assembly: 18 
+After Scribble Compiler: 904 
+Assembly: 18 
+After Parsing : 174 
+After Type generation: 65 
+After Scribble Compiler: 930 
+After Parsing : 150 
+After Type generation: 69 
+Assembly: 18 
+Assembly: 18 
+After Scribble Compiler: 936 
+After Parsing : 180 
+After Type generation: 54 
+After Scribble Compiler: 853 
+After Parsing : 153 
+After Type generation: 58 
+Assembly: 17 
+After Scribble Compiler: 870 
+Assembly: 18 
+After Parsing : 183 
+After Type generation: 59 
+After Scribble Compiler: 934 
+After Parsing : 149 
+After Type generation: 48 
+Assembly: 17 
+After Scribble Compiler: 912 
+Assembly: 18 
+After Scribble Compiler: 796 
+After Parsing : 153 
+After Type generation: 58 
+Assembly: 17 
+After Scribble Compiler: 991 
+After Parsing : 153 
+After Type generation: 50 
+Assembly: 18 
+After Scribble Compiler: 880 
+After Parsing : 150 
+After Type generation: 49 
+Assembly: 17 
+After Scribble Compiler: 799 
+After Parsing : 152 
+After Type generation: 51 
+Assembly: 23 
+After Scribble Compiler: 1021 
+After Parsing : 174 
+After Type generation: 57 
+From the cache: 600 
+From the cache: 6006 
+From the cache: 1019 
+From the cache: 19129 
+From the cache: 22 
+From the cache: 970 
+Assembly: 0 
+After Scribble Compiler: 3866 
+After Parsing : 121 
+After Type generation: 20 
+From the cache: 15846 
+From the cache: 479 
+From the cache: 3038 
+From the cache: 1027 
+From the cache: 10122 
+From the cache: 2033 
+From the cache: 1013 
+From the cache: 2020 
+From the cache: 1020 
+From the cache: 2034 
+From the cache: 1017 
+From the cache: 1015 
+From the cache: 3037 
+From the cache: 2026 
+From the cache: 2023 
+From the cache: 3039 
+From the cache: 2026 
+From the cache: 2292 
+From the cache: 2012 
+From the cache: 4068 
+From the cache: 3041 
+From the cache: 3048 
+From the cache: 4078 
+From the cache: 1004 
+From the cache: 4063 
+From the cache: 2020 
+From the cache: 2034 
+From the cache: 17 
+From the cache: 991 
+From the cache: 16 
+From the cache: 979 
+From the cache: 26 
+From the cache: 985 
+From the cache: 1017 
+From the cache: 15 
+From the cache: 995 
+Assembly: 18 
+After Scribble Compiler: 893 
+After Parsing : 194 
+After Type generation: 51 
+Assembly: 19 
+After Scribble Compiler: 804 
+After Parsing : 154 
+After Type generation: 52 
+Assembly: 18 
+Assembly: 27 
+After Scribble Compiler: 941 
+After Parsing : 183 
+After Type generation: 59 
+After Scribble Compiler: 865 
+After Parsing : 153 
+After Type generation: 52 
+Assembly: 20 
+Assembly: 21 
+After Scribble Compiler: 952 
+After Parsing : 161 
+After Type generation: 51 
+After Scribble Compiler: 888 
+After Parsing : 159 
+After Type generation: 54 
+Assembly: 18 
+Assembly: 18 
+After Scribble Compiler: 899 
+After Parsing : 152 
+After Type generation: 55 
+After Scribble Compiler: 899 
+After Parsing : 155 
+After Type generation: 51 
+Assembly: 17 
+After Scribble Compiler: 856 
+Assembly: 18 
+After Parsing : 197 
+After Type generation: 50 
+After Scribble Compiler: 841 
+After Parsing : 158 
+After Type generation: 52 
+Assembly: 18 
+Assembly: 18 
+After Scribble Compiler: 863 
+After Parsing : 182 
+After Type generation: 51 
+After Scribble Compiler: 854 
+After Parsing : 157 
+After Type generation: 59 
+Assembly: 18 
+Assembly: 18 
+After Scribble Compiler: 868 
+After Parsing : 188 
+After Type generation: 57 
+After Scribble Compiler: 877 
+After Parsing : 154 
+After Type generation: 52 
+Assembly: 23 
+Assembly: 24 
+After Scribble Compiler: 912 
+After Parsing : 186 
+After Type generation: 52 
+After Scribble Compiler: 937 
+After Parsing : 160 
+After Type generation: 55 
+Assembly: 18 
+Assembly: 29 
+After Scribble Compiler: 954 
+After Parsing : 157 
+After Type generation: 62 
+After Scribble Compiler: 859 
+After Parsing : 159 
+After Type generation: 51 
+Assembly: 17 
+After Scribble Compiler: 842 
+After Parsing : 181 
+After Type generation: 61 
+Assembly: 17 
+After Scribble Compiler: 850 
+After Parsing : 175 
+After Type generation: 63 
+Assembly: 20 
+Assembly: 18 
+After Scribble Compiler: 942 
+After Parsing : 157 
+After Type generation: 75 
+After Scribble Compiler: 783 
+After Parsing : 158 
+After Type generation: 54 
+Assembly: 18 
+Assembly: 18 
+After Scribble Compiler: 940 
+After Parsing : 160 
+After Type generation: 51 
+After Scribble Compiler: 852 
+After Parsing : 153 
+After Type generation: 52 
+Assembly: 18 
+Assembly: 25 
+After Scribble Compiler: 981 
+After Parsing : 155 
+After Type generation: 51 
+After Scribble Compiler: 882 
+After Parsing : 154 
+After Type generation: 57 
+Assembly: 18 
+Assembly: 18 
+After Scribble Compiler: 987 
+After Parsing : 154 
+After Type generation: 50 
+After Scribble Compiler: 787 
+After Parsing : 154 
+After Type generation: 59 
+Assembly: 21 
+Assembly: 18 
+After Scribble Compiler: 888 
+After Parsing : 158 
+After Type generation: 54 
+After Scribble Compiler: 876 
+After Parsing : 155 
+After Type generation: 54 
+Assembly: 20 
+Assembly: 20 
+After Scribble Compiler: 1018 
+After Parsing : 207 
+After Type generation: 54 
+After Scribble Compiler: 998 
+After Parsing : 153 
+After Type generation: 77 
+Assembly: 22 
+Assembly: 19 
+After Scribble Compiler: 978 
+After Parsing : 166 
+After Type generation: 55 
+After Scribble Compiler: 822 
+After Parsing : 154 
+After Type generation: 58 
+Assembly: 20 
+Assembly: 18 
+After Scribble Compiler: 971 
+After Parsing : 162 
+After Type generation: 57 
+After Scribble Compiler: 881 
+After Parsing : 161 
+After Type generation: 53 
+Assembly: 19 
+Assembly: 18 
+After Scribble Compiler: 950 
+After Parsing : 167 
+After Type generation: 77 
+After Scribble Compiler: 879 
+After Parsing : 155 
+After Type generation: 53 
+Assembly: 17 
+After Scribble Compiler: 930 
+After Parsing : 160 
+After Type generation: 54 
+Assembly: 18 
+After Scribble Compiler: 800 
+After Parsing : 152 
+After Type generation: 53 
+Assembly: 22 
+After Scribble Compiler: 893 
+After Parsing : 120 
+After Type generation: 38 
+From the cache: 611 
+From the cache: 954 
+From the cache: 2130 
+From the cache: 2033 
+From the cache: 2019 
+From the cache: 1009 
+From the cache: 4382 
+From the cache: 2069 
+From the cache: 1230 
+From the cache: 1061 
+From the cache: 2144 
+From the cache: 999 
+From the cache: 2051 
+From the cache: 4088 
+From the cache: 1025 
+From the cache: 5059 
+From the cache: 23305 
+From the cache: 84169 
+From the cache: 2013 
+From the cache: 6096 
+From the cache: 2000 
+From the cache: 1036 
+From the cache: 2022 
+From the cache: 1004 
+From the cache: 5075 
+From the cache: 17244 
+From the cache: 3028 
+From the cache: 1022 
+From the cache: 70007 
+From the cache: 1010 
+From the cache: 1005 
+From the cache: 1014 
+From the cache: 3033 
+From the cache: 19 
+From the cache: 2008 
+From the cache: 997 
+From the cache: 1024 
+From the cache: 17 
+From the cache: 996 
+From the cache: 3057 
+From the cache: 6082 
+From the cache: 1039 
+From the cache: 1000 
+From the cache: 2033 
+From the cache: 2027 
+From the cache: 2027 
+From the cache: 1018 
+From the cache: 2019 
+From the cache: 2027 
+From the cache: 4052 
+From the cache: 2029 
+From the cache: 1013 
+From the cache: 2041 
+From the cache: 33519 
+From the cache: 13583 
+From the cache: 24451 
+From the cache: 10942 
+From the cache: 6120 
+From the cache: 3033 
+From the cache: 1015 
+From the cache: 3068 
+From the cache: 997 
+From the cache: 1026 
+From the cache: 1015 
+From the cache: 1009 
+From the cache: 2023 
+From the cache: 1018 
+From the cache: 1005 
+From the cache: 2028 
+From the cache: 2019 
+From the cache: 7108 
+From the cache: 15211 
+From the cache: 2033 
+From the cache: 4065 
+From the cache: 4061 
+From the cache: 3026 
+From the cache: 13082 
+From the cache: 2056 
+From the cache: 71222 
+From the cache: 1021 
+From the cache: 8824 
+From the cache: 18772 
+From the cache: 7682 
+From the cache: 2036 
+From the cache: 1025 
+From the cache: 3047 
+From the cache: 1006 
+From the cache: 6099 
+From the cache: 4043 
+From the cache: 1001 
+From the cache: 4068 
+From the cache: 2036 
+From the cache: 5053 
+From the cache: 1013 
+From the cache: 1011 
+From the cache: 1018 
+From the cache: 3040 
+From the cache: 2024 
+From the cache: 1019 
+From the cache: 1009 
+From the cache: 2018 
+From the cache: 3047 
+From the cache: 2024 
+From the cache: 1012 
+From the cache: 1018 
+From the cache: 3032 
+From the cache: 1017 
+From the cache: 1013 
+From the cache: 1019 
+From the cache: 1003 
+From the cache: 1009 
+From the cache: 1023 
+From the cache: 2031 
+From the cache: 2014 
+From the cache: 2039 
+From the cache: 6084 
+From the cache: 1010 
+From the cache: 21282 
+From the cache: 1019 
+From the cache: 5090 
+From the cache: 61839 
+From the cache: 1013 
+From the cache: 14 
+From the cache: 990 
+From the cache: 9114 
+From the cache: 2045 
+From the cache: 4052 
+From the cache: 20297 
+From the cache: 1006 
+From the cache: 1017 
+From the cache: 1009 
+From the cache: 5069 
+From the cache: 1018 
+From the cache: 4034 
+From the cache: 2049 
+From the cache: 4043 
+From the cache: 8107 
+From the cache: 9148 
+From the cache: 1012 
+From the cache: 15 
+From the cache: 26 
+From the cache: 949 
+From the cache: 19 
+From the cache: 992 
+From the cache: 15235 
+From the cache: 1018 
+From the cache: 7966 
+From the cache: 25827 
+From the cache: 4043 
+From the cache: 5109 
+From the cache: 998 
+From the cache: 2039 
+From the cache: 2016 
+From the cache: 1017 
+From the cache: 1017 
+From the cache: 2010 
+From the cache: 1023 
+From the cache: 1037 
+From the cache: 2010 
+From the cache: 1002 
+From the cache: 3050 
+From the cache: 1011 
+From the cache: 1005 
+From the cache: 3045 
+From the cache: 1029 
+From the cache: 989 
+From the cache: 1017 
+From the cache: 1014 
+From the cache: 1018 
+From the cache: 2025 
+From the cache: 1015 
+From the cache: 2009 
+From the cache: 4066 
+From the cache: 2032 
+From the cache: 5070 
+From the cache: 10135 
+From the cache: 5049 
+From the cache: 3051 
+From the cache: 2031 
+From the cache: 18 
+From the cache: 4031 
+From the cache: 18 
+From the cache: 996 
+From the cache: 83132 
+From the cache: 1019 
+From the cache: 1015 
+From the cache: 15 
+From the cache: 1373 
+From the cache: 34086 
+From the cache: 1014 
+From the cache: 1006 
+From the cache: 19 
+From the cache: 991 
+From the cache: 28398 
+From the cache: 3035 
+From the cache: 1013 
+From the cache: 15 
+From the cache: 972 
+From the cache: 3083 
+From the cache: 3034 
+From the cache: 15 
+From the cache: 1001 
+From the cache: 17 
+From the cache: 997 
+From the cache: 73015 
+From the cache: 8026 
+From the cache: 7383 
+From the cache: 3065 
+From the cache: 1013 
+From the cache: 2021 
+From the cache: 1018 
+From the cache: 1012 
+From the cache: 1020 
+From the cache: 2006 
+From the cache: 1017 
+From the cache: 2034 
+From the cache: 2010 
+From the cache: 1018 
+From the cache: 2028 
+From the cache: 1007 
+From the cache: 4062 
+From the cache: 1008 
+From the cache: 4055 
+From the cache: 7089 
+From the cache: 1020 
+From the cache: 5063 
+From the cache: 4049 
+From the cache: 1019 
+From the cache: 9120 
+From the cache: 1023 
+From the cache: 16 
+From the cache: 1005 
+From the cache: 18 
+From the cache: 1005 
+From the cache: 9007 
+From the cache: 1070 
+From the cache: 15 
+From the cache: 1033 
+From the cache: 25 
+From the cache: 1034 
+From the cache: 18385 
+From the cache: 6 
+From the cache: 1001 
+From the cache: 6083 
+From the cache: 32450 
+From the cache: 3040 
+From the cache: 5529 
+From the cache: 4068 
+From the cache: 1020 
+From the cache: 1007 
+From the cache: 1011 
+From the cache: 1018 
+From the cache: 1014 
+From the cache: 1014 
+From the cache: 2036 
+From the cache: 7264 
+From the cache: 3077 
+From the cache: 2027 
+From the cache: 1009 
+From the cache: 2033 
+From the cache: 2013 
+From the cache: 2031 
+From the cache: 3037 
+From the cache: 2026 
+From the cache: 6067 
+From the cache: 2027 
+From the cache: 3062 
+From the cache: 2009 
+From the cache: 1012 
+From the cache: 22 
+From the cache: 1663 
+From the cache: 6418 
+From the cache: 5086 
+From the cache: 9123 
+From the cache: 1016 
+From the cache: 2027 
+From the cache: 7089 
+From the cache: 3076 
+From the cache: 7092 
+From the cache: 2025 
+From the cache: 5069 
+From the cache: 1009 
+From the cache: 18 
+From the cache: 992 
+From the cache: 4062 
+From the cache: 997 
+From the cache: 21301 
+From the cache: 17 
+From the cache: 989 
+From the cache: 12172 
+From the cache: 1013 
+From the cache: 2033 
+From the cache: 2028 
+From the cache: 20 
+From the cache: 971 
+From the cache: 7104 
+From the cache: 14 
+From the cache: 992 
+Assembly: 0 
+After Scribble Compiler: 733 
+After Parsing : 27 
+After Type generation: 20 
+From the cache: 454 
+From the cache: 775 
+From the cache: 4081 
+From the cache: 1029 
+From the cache: 995 
+From the cache: 2034 
+From the cache: 2018 
+From the cache: 1014 
+From the cache: 8111 
+From the cache: 4065 
+From the cache: 16 
+From the cache: 2012 
+From the cache: 18 
+From the cache: 2003 
+From the cache: 1019 
+From the cache: 22 
+From the cache: 1004 
+From the cache: 1025 
+From the cache: 6063 
+From the cache: 20 
+From the cache: 1000 
+Assembly: 18 
+After Type generation: 407 
+Assembly: 18 
+After Scribble Compiler: 802 
+After Parsing : 159 
+After Type generation: 58 
+Assembly: 19 
+After Type generation: 419 
+Assembly: 19 
+After Scribble Compiler: 895 
+After Parsing : 171 
+After Type generation: 64 
+Assembly: 18 
+After Type generation: 413 
+Assembly: 19 
+After Scribble Compiler: 931 
+After Parsing : 198 
+After Type generation: 54 
+Assembly: 18 
+After Type generation: 442 
+Assembly: 18 
+After Scribble Compiler: 933 
+After Parsing : 157 
+After Type generation: 54 
+Assembly: 18 
+After Type generation: 416 
+Assembly: 18 
+After Scribble Compiler: 924 
+After Parsing : 157 
+After Type generation: 56 
+Assembly: 19 
+After Type generation: 414 
+Assembly: 18 
+After Scribble Compiler: 874 
+After Parsing : 162 
+After Type generation: 54 
+Assembly: 18 
+After Type generation: 435 
+Assembly: 18 
+After Scribble Compiler: 857 
+After Parsing : 159 
+After Type generation: 53 
+Assembly: 18 
+After Type generation: 418 
+Assembly: 18 
+After Scribble Compiler: 905 
+After Parsing : 158 
+After Type generation: 59 
+Assembly: 19 
+After Type generation: 449 
+Assembly: 19 
+After Scribble Compiler: 941 
+After Parsing : 160 
+After Type generation: 67 
+Assembly: 19 
+After Type generation: 450 
+Assembly: 18 
+After Scribble Compiler: 884 
+After Parsing : 159 
+After Type generation: 54 
+Assembly: 18 
+After Type generation: 455 
+Assembly: 19 
+After Scribble Compiler: 876 
+After Parsing : 187 
+After Type generation: 53 
+Assembly: 18 
+After Type generation: 431 
+Assembly: 18 
+After Scribble Compiler: 877 
+After Parsing : 157 
+After Type generation: 61 
+Assembly: 18 
+After Type generation: 421 
+Assembly: 18 
+After Scribble Compiler: 851 
+After Parsing : 166 
+After Type generation: 56 
+Assembly: 19 
+After Type generation: 438 
+Assembly: 18 
+After Scribble Compiler: 851 
+After Parsing : 165 
+After Type generation: 59 
+From the cache: 226127 
+From the cache: 2013 
+From the cache: 2045 
+From the cache: 2047 
+From the cache: 1009 
+From the cache: 2024 
+From the cache: 9582 
+From the cache: 5530 
+From the cache: 9237 
+From the cache: 2042 
+From the cache: 1014 
+From the cache: 2039 
+From the cache: 2033 
+From the cache: 996 
+From the cache: 1014 
+From the cache: 2009 
+From the cache: 2040 
+From the cache: 4062 
+From the cache: 3035 
+From the cache: 1015 
+From the cache: 3032 
+From the cache: 6085 
+From the cache: 2024 
+From the cache: 4056 
+From the cache: 1007 
+From the cache: 2026 
+From the cache: 4072 
+From the cache: 10126 
+From the cache: 1029 
+From the cache: 2026 
+From the cache: 1014 
+From the cache: 3036 
+From the cache: 2030 
+From the cache: 3030 
+From the cache: 3049 
+From the cache: 12164 
+From the cache: 1002 
+From the cache: 1017 
+From the cache: 1022 
+From the cache: 8097 
+From the cache: 2037 
+From the cache: 2019 
+From the cache: 1011 
+From the cache: 4052 
+From the cache: 2022 
+From the cache: 5069 
+From the cache: 5052 
+From the cache: 2051 
+From the cache: 2025 
+From the cache: 1019 
+From the cache: 2022 
+From the cache: 7081 
+From the cache: 2040 
+From the cache: 1007 
+From the cache: 2019 
+From the cache: 4044 
+From the cache: 2040 
+From the cache: 4049 
+From the cache: 8123 
+From the cache: 997 
+From the cache: 2030 
+From the cache: 6111 
+From the cache: 9149 
+From the cache: 272758 
+From the cache: 8114 
+From the cache: 225110 
+From the cache: 2033 
+From the cache: 3030 
+From the cache: 73015 
+From the cache: 7092 
+From the cache: 4042 
+From the cache: 3054 
+From the cache: 1007 
+From the cache: 4056 
+From the cache: 2023 
+From the cache: 1007 
+From the cache: 1016 
+From the cache: 2032 
+From the cache: 3030 
+From the cache: 2034 
+From the cache: 4050 
+From the cache: 3035 
+From the cache: 1020 
+From the cache: 1019 
+From the cache: 3027 
+From the cache: 1028 
+From the cache: 5080 
+From the cache: 2017 
+From the cache: 2031 
+From the cache: 4043 
+From the cache: 5083 
+From the cache: 2025 
+From the cache: 2033 
+From the cache: 1005 
+From the cache: 3041 
+From the cache: 1023 
+From the cache: 17212 
+From the cache: 4060 
+From the cache: 3049 
+From the cache: 7106 
+From the cache: 30423 
+From the cache: 1001 
+From the cache: 3040 
+From the cache: 3050 
+From the cache: 1004 
+From the cache: 3045 
+From the cache: 4051 
+From the cache: 64904 
+From the cache: 998 
+From the cache: 1012 
+From the cache: 6087 
+From the cache: 2021 
+From the cache: 4045 
+From the cache: 4064 
+From the cache: 5070 
+From the cache: 991 
+From the cache: 4069 
+From the cache: 3032 
+From the cache: 3031 
+From the cache: 17 
+From the cache: 2566 
+From the cache: 5205 
+From the cache: 1053 
+From the cache: 5182 
+From the cache: 2068 
+From the cache: 3171 
+From the cache: 1036 
+From the cache: 1006 
+From the cache: 23 
+From the cache: 989 
+From the cache: 55765 
+From the cache: 7100 
+From the cache: 5067 
+From the cache: 3034 
+From the cache: 5095 
+From the cache: 3028 
+From the cache: 2029 
+From the cache: 22 
+From the cache: 971 
+From the cache: 6114 
+From the cache: 2019 
+From the cache: 20 
+From the cache: 991 
+From the cache: 60834 
+From the cache: 6086 
+From the cache: 28380 
+From the cache: 1018 
+From the cache: 26 
+From the cache: 980 
+From the cache: 29429 
+From the cache: 2013 
+From the cache: 28 
+From the cache: 1062 
+From the cache: 6009 
+From the cache: 1018 
+From the cache: 1009 
+From the cache: 1003 
+From the cache: 21 
+From the cache: 985 
+From the cache: 27 
+From the cache: 972 
+From the cache: 9143 
+From the cache: 7105 
+From the cache: 2015 
+From the cache: 17 
+From the cache: 990 
+From the cache: 3042 
+From the cache: 18 
+From the cache: 1739 
+From the cache: 9387 
+From the cache: 1014 
+From the cache: 1025 
+From the cache: 20 
+From the cache: 958 
+From the cache: 34494 
+From the cache: 12160 
+From the cache: 25 
+From the cache: 990 
+From the cache: 24 
+From the cache: 986 
+From the cache: 3038 
+From the cache: 22 
+From the cache: 980 
+From the cache: 22344 
+From the cache: 9644 
+From the cache: 9350 
+From the cache: 2041 
+From the cache: 2049 
+From the cache: 1007 
+From the cache: 1013 
+From the cache: 993 
+From the cache: 1037 
+From the cache: 2020 
+From the cache: 2025 
+From the cache: 1015 
+From the cache: 1005 
+From the cache: 1013 
+From the cache: 1012 
+From the cache: 5067 
+From the cache: 3039 
+From the cache: 5060 
+From the cache: 1018 
+From the cache: 3038 
+From the cache: 2019 
+From the cache: 2029 
+From the cache: 1021 
+From the cache: 994 
+From the cache: 1012 
+From the cache: 17 
+From the cache: 993 
+From the cache: 7112 
+From the cache: 1015 
+From the cache: 1006 
+From the cache: 1008 
+From the cache: 2029 
+From the cache: 23 
+From the cache: 975 
+From the cache: 13179 
+From the cache: 1028 
+From the cache: 1001 
+From the cache: 1020 
+From the cache: 2029 
+From the cache: 1017 
+From the cache: 997 
+From the cache: 6085 
+From the cache: 2036 
+From the cache: 1014 
+From the cache: 1010 
+From the cache: 1003 
+From the cache: 1002 
+From the cache: 2034 
+From the cache: 2022 
+From the cache: 7680 
+From the cache: 2054 
+From the cache: 1019 
+From the cache: 3023 
+From the cache: 1021 
+From the cache: 2009 
+From the cache: 3054 
+From the cache: 3029 
+From the cache: 2036 
+From the cache: 4046 
+From the cache: 4197 
+From the cache: 997 
+From the cache: 26 
+From the cache: 1001 
+From the cache: 9125 
+From the cache: 22 
+From the cache: 988 
+From the cache: 11144 
+From the cache: 3051 
+From the cache: 2021 
+From the cache: 1019 
+From the cache: 999 
+From the cache: 1020 
+From the cache: 2833 
+From the cache: 2049 
+From the cache: 1021 
+From the cache: 3034 
+From the cache: 2033 
+From the cache: 3036 
+From the cache: 1009 
+From the cache: 1021 
+From the cache: 3033 
+From the cache: 3044 
+From the cache: 2017 
+From the cache: 3048 
+From the cache: 2024 
+From the cache: 4030 
+From the cache: 1022 
+From the cache: 4141 
+From the cache: 986 
+From the cache: 6105 
+From the cache: 3041 
+From the cache: 1018 
+From the cache: 1017 
+From the cache: 9120 
+From the cache: 3034 
+From the cache: 5064 
+From the cache: 22 
+From the cache: 990 
+From the cache: 9121 
+From the cache: 1026 
+From the cache: 1001 
+From the cache: 22 
+From the cache: 979 
+From the cache: 6092 
+From the cache: 4058 
+From the cache: 1011 
+From the cache: 1002 
+From the cache: 1021 
+From the cache: 4484 
+From the cache: 3040 
+From the cache: 2036 
+From the cache: 1011 
+From the cache: 3035 
+From the cache: 1013 
+From the cache: 1017 
+From the cache: 1004 
+From the cache: 2039 
+From the cache: 2022 
+From the cache: 5066 
+From the cache: 7137 
+From the cache: 7085 
+From the cache: 23 
+From the cache: 982 
+From the cache: 2028 
+From the cache: 22 
+From the cache: 990 
+From the cache: 3042 
+From the cache: 1007 
+From the cache: 28 
+From the cache: 986 
+From the cache: 5067 
+From the cache: 8109 
+From the cache: 3035 
+From the cache: 21 
+From the cache: 982 
+From the cache: 26370 
+From the cache: 7986 
+From the cache: 6104 
+From the cache: 2535 
+From the cache: 2057 
+From the cache: 1007 
+From the cache: 1012 
+From the cache: 2020 
+From the cache: 1016 
+From the cache: 1020 
+From the cache: 1001 
+From the cache: 2031 
+From the cache: 1008 
+From the cache: 1022 
+From the cache: 11145 
+From the cache: 2025 
+From the cache: 1020 
+From the cache: 2016 
+From the cache: 2030 
+From the cache: 1050 
+From the cache: 4043 
+From the cache: 993 
+From the cache: 8124 
+From the cache: 3045 
+From the cache: 23 
+From the cache: 990 
+From the cache: 6095 
+From the cache: 16231 
+From the cache: 2025 
+From the cache: 3041 
+From the cache: 29 
+From the cache: 984 
+From the cache: 3040 
+From the cache: 3045 
+From the cache: 1015 
+From the cache: 26 
+From the cache: 976 
+From the cache: 3722 
+From the cache: 8180 
+From the cache: 3053 
+From the cache: 1021 
+From the cache: 1011 
+From the cache: 3035 
+From the cache: 1018 
+From the cache: 1010 
+From the cache: 1005 
+From the cache: 1014 
+From the cache: 1018 
+From the cache: 1022 
+From the cache: 1004 
+From the cache: 1011 
+From the cache: 2028 
+From the cache: 3032 
+From the cache: 1019 
+From the cache: 5051 
+From the cache: 6087 
+From the cache: 8112 
+From the cache: 1001 
+From the cache: 31 
+From the cache: 968 
+From the cache: 18265 
+From the cache: 2032 
+From the cache: 4117 
+From the cache: 13476 
+From the cache: 9727 
+From the cache: 2037 
+From the cache: 1009 
+From the cache: 1004 
+From the cache: 1009 
+From the cache: 1019 
+From the cache: 1013 
+From the cache: 2018 
+From the cache: 1015 
+From the cache: 3039 
+From the cache: 2023 
+From the cache: 5093 
+From the cache: 2007 
+From the cache: 6071 
+From the cache: 5084 
+From the cache: 3032 
+From the cache: 4047 
+From the cache: 9135 
+From the cache: 25 
+From the cache: 1996 
+From the cache: 33 
+From the cache: 974 
+From the cache: 2029 
+From the cache: 26 
+From the cache: 989 
+From the cache: 57810 
+From the cache: 4841 
+From the cache: 5913 
+From the cache: 4063 
+From the cache: 2033 
+From the cache: 2021 
+From the cache: 1005 
+From the cache: 1017 
+From the cache: 2042 
+From the cache: 2019 
+From the cache: 1016 
+From the cache: 1008 
+From the cache: 1017 
+From the cache: 2023 
+From the cache: 1013 
+From the cache: 3041 
+From the cache: 1005 
+From the cache: 2039 
+From the cache: 2027 
+From the cache: 4059 
+From the cache: 2012 
+From the cache: 1025 
+From the cache: 4033 
+From the cache: 2048 
+From the cache: 3047 
+From the cache: 4034 
+From the cache: 1013 
+From the cache: 3046 
+From the cache: 1018 
+From the cache: 998 
+From the cache: 9129 
+From the cache: 5065 
+From the cache: 28 
+From the cache: 970 
+From the cache: 26 
+From the cache: 992 
+From the cache: 5067 
+From the cache: 12165 
+From the cache: 23 
+From the cache: 1001 
+From the cache: 412689 
+From the cache: 31508270 
+From the cache: 13657 
+From the cache: 25838 
+From the cache: 2036 
+From the cache: 1015 
+From the cache: 3043 
+From the cache: 2031 
+From the cache: 1006 
+From the cache: 1025 
+From the cache: 2007 
+From the cache: 1017 
+From the cache: 2037 
+From the cache: 1000 
+From the cache: 2064 
+From the cache: 1016 
+From the cache: 1020 
+From the cache: 2022 
+From the cache: 1011 
+From the cache: 8108 
+From the cache: 2026 
+From the cache: 1007 
+From the cache: 2037 
+From the cache: 1015 
+From the cache: 1007 
+From the cache: 1012 
+From the cache: 1007 
+From the cache: 6094 
+From the cache: 7121 
+From the cache: 2029 
+From the cache: 996 
+From the cache: 4045 
+From the cache: 1025 
+From the cache: 3021 
+From the cache: 4081 
+From the cache: 3038 
+From the cache: 4043 
+From the cache: 5064 
+From the cache: 3040 
+From the cache: 3045 
+From the cache: 3036 
+From the cache: 11159 
+From the cache: 1013 
+From the cache: 2032 
+From the cache: 18239 
+From the cache: 5052 
+From the cache: 4070 
+From the cache: 1036 
+From the cache: 4057 
+From the cache: 1001 
+From the cache: 6100 
+From the cache: 1016 
+From the cache: 3034 
+From the cache: 1004 
+From the cache: 4067 
+From the cache: 3050 
+From the cache: 4050 
+From the cache: 6077 
+From the cache: 5078 
+From the cache: 4075 
+From the cache: 9123 
+From the cache: 3044 
+From the cache: 4056 
+From the cache: 1005 
+From the cache: 4054 
+From the cache: 1010 
+From the cache: 3036 
+From the cache: 2034 
+From the cache: 2019 
+From the cache: 8114 
+From the cache: 3035 
+From the cache: 1014 
+From the cache: 1028 
+From the cache: 2006 
+From the cache: 1015 
+From the cache: 2031 
+From the cache: 6090 
+From the cache: 2034 
+From the cache: 9118 
+From the cache: 2029 
+From the cache: 2020 
+From the cache: 3039 
+From the cache: 4044 
+From the cache: 3051 
+From the cache: 3019 
+From the cache: 1030 
+From the cache: 5089 
+From the cache: 1017 
+From the cache: 3030 
+From the cache: 5064 
+From the cache: 1020 
+From the cache: 984 
+From the cache: 2047 
+From the cache: 1012 
+From the cache: 4047 
+From the cache: 7115 
+From the cache: 2021 
+From the cache: 3040 
+From the cache: 4050 
+From the cache: 1012 
+From the cache: 1002 
+From the cache: 4062 
+From the cache: 2028 
+From the cache: 1024 
+From the cache: 3035 
+From the cache: 5061 
+From the cache: 3043 
+From the cache: 3043 
+From the cache: 2014 
+From the cache: 1019 
+From the cache: 3049 
+From the cache: 999 
+From the cache: 1016 
+From the cache: 1009 
+From the cache: 1019 
+From the cache: 1021 
+From the cache: 2031 
+From the cache: 8102 
+From the cache: 3048 
+From the cache: 1009 
+From the cache: 2023 
+From the cache: 1020 
+From the cache: 3032 
+From the cache: 3044 
+From the cache: 2019 
+From the cache: 3024 
+From the cache: 1056 
+From the cache: 4064 
+From the cache: 3015 
+From the cache: 1026 
+From the cache: 3035 
+From the cache: 1025 
+From the cache: 1010 
+From the cache: 1015 
+From the cache: 1008 
+From the cache: 1011 
+From the cache: 2033 
+From the cache: 4030 
+From the cache: 3056 
+From the cache: 3030 
+From the cache: 2037 
+From the cache: 6074 
+From the cache: 2028 
+From the cache: 1014 
+From the cache: 1008 
+From the cache: 2023 
+From the cache: 4054 
+From the cache: 1031 
+From the cache: 997 
+From the cache: 1013 
+From the cache: 2013 
+From the cache: 1023 
+From the cache: 6082 
+From the cache: 1013 
+From the cache: 2016 
+From the cache: 1012 
+From the cache: 3043 
+From the cache: 2022 
+From the cache: 1008 
+From the cache: 999 
+From the cache: 4120 
+From the cache: 2108 
+From the cache: 2009 
+From the cache: 2087 
+From the cache: 2068 
+From the cache: 991 
+From the cache: 1020 
+From the cache: 3051 
+From the cache: 10140 
+From the cache: 2018 
+From the cache: 1002 
+From the cache: 7120 
+From the cache: 5064 
+From the cache: 4055 
+From the cache: 3013 
+From the cache: 3068 
+From the cache: 8106 
+From the cache: 1013 
+From the cache: 3055 
+From the cache: 3011 
+From the cache: 8129 
+From the cache: 1014 
+From the cache: 1016 
+From the cache: 3048 
+From the cache: 3027 
+From the cache: 1021 
+From the cache: 1018 
+From the cache: 999 
+From the cache: 4396 
+From the cache: 8801 
+From the cache: 1005 
+From the cache: 6094 
+From the cache: 1016 
+From the cache: 12155 
+From the cache: 3042 
+From the cache: 6076 
+From the cache: 2122 
+From the cache: 1944 
+From the cache: 1019 
+From the cache: 3037 
+From the cache: 1008 
+From the cache: 2032 
+From the cache: 1020 
+From the cache: 2020 
+From the cache: 1011 
+From the cache: 1016 
+From the cache: 3034 
+From the cache: 2034 
+From the cache: 2022 
+From the cache: 3051 
+From the cache: 1004 
+From the cache: 1032 
+From the cache: 2037 
+From the cache: 2035 
+From the cache: 2017 
+From the cache: 1014 
+From the cache: 1012 
+From the cache: 1019 
+From the cache: 2018 
+From the cache: 1015 
+From the cache: 1024 
+From the cache: 1009 
+From the cache: 1017 
+From the cache: 1017 
+From the cache: 3034 
+From the cache: 4034 
+From the cache: 31 
+From the cache: 986 
+From the cache: 19292 
+From the cache: 2023 
+From the cache: 4050 
+From the cache: 6082 
+From the cache: 1008 
+From the cache: 2028 
+From the cache: 1022 
+From the cache: 3023 
+From the cache: 2037 
+From the cache: 3039 
+From the cache: 1016 
+From the cache: 2021 
+From the cache: 29 
+From the cache: 980 
+From the cache: 10144 
+From the cache: 11148 
+From the cache: 1021 
+From the cache: 6087 
+From the cache: 2032 
+From the cache: 1013 
+From the cache: 2012 
+From the cache: 3054 
+From the cache: 2016 
+From the cache: 3048 
+From the cache: 2014 
+From the cache: 1018 
+From the cache: 2032 
+From the cache: 3032 
+From the cache: 4075 
+From the cache: 3023 
+From the cache: 2040 
+From the cache: 2009 
+From the cache: 1033 
+From the cache: 3045 
+From the cache: 2019 
+From the cache: 3050 
+From the cache: 1007 
+From the cache: 3047 
+From the cache: 3033 
+From the cache: 3029 
+From the cache: 1019 
+From the cache: 3041 
+From the cache: 6078 
+From the cache: 3114 
+From the cache: 1001 
+From the cache: 28 
+From the cache: 974 
+From the cache: 2029 
+From the cache: 1016 
+From the cache: 2041 
+From the cache: 1026 
+From the cache: 2024 
+From the cache: 5068 
+From the cache: 1006 
+From the cache: 2032 
+From the cache: 3038 
+From the cache: 1018 
+From the cache: 1000 
+From the cache: 4058 
+From the cache: 1033 
+From the cache: 1015 
+From the cache: 5099 
+From the cache: 1016 
+From the cache: 4053 
+From the cache: 1014 
+From the cache: 2020 
+From the cache: 3047 
+From the cache: 3032 
+From the cache: 1013 
+From the cache: 1016 
+From the cache: 1004 
+From the cache: 1009 
+From the cache: 2035 
+From the cache: 3034 
+From the cache: 3042 
+From the cache: 3038 
+From the cache: 3035 
+From the cache: 4059 
+From the cache: 2010 
+From the cache: 2032 
+From the cache: 2018 
+From the cache: 6084 
+From the cache: 1017 
+From the cache: 3034 
+From the cache: 3042 
+From the cache: 2032 
+From the cache: 2020 
+From the cache: 2023 
+From the cache: 997 
+From the cache: 4078 
+From the cache: 8107 
+From the cache: 2027 
+From the cache: 1013 
+From the cache: 3046 
+From the cache: 1020 
+From the cache: 4070 
+From the cache: 1018 
+From the cache: 2017 
+From the cache: 1029 
+From the cache: 4062 
+From the cache: 4047 
+From the cache: 2034 
+From the cache: 3029 
+From the cache: 1018 
+From the cache: 3024 
+From the cache: 1021 
+From the cache: 5093 
+From the cache: 4031 
+From the cache: 7090 
+From the cache: 21309 
+From the cache: 2033 
+From the cache: 1000 
+From the cache: 1016 
+From the cache: 3046 
+From the cache: 1009 
+From the cache: 1013 
+From the cache: 1008 
+From the cache: 1005 
+From the cache: 10134 
+From the cache: 1015 
+From the cache: 2031 
+From the cache: 2029 
+From the cache: 65905 
+From the cache: 3024 
+From the cache: 1027 
+From the cache: 2059 
+From the cache: 8102 
+From the cache: 3049 
+From the cache: 1999 
+From the cache: 4070 
+From the cache: 7095 
+From the cache: 1010 
+From the cache: 4075 
+From the cache: 37 
+From the cache: 948 
+From the cache: 11162 
+From the cache: 7085 
+From the cache: 3067 
+From the cache: 998 
+From the cache: 999 
+From the cache: 1013 
+From the cache: 2027 
+From the cache: 1032 
+From the cache: 1005 
+From the cache: 3026 
+From the cache: 1022 
+From the cache: 1019 
+From the cache: 1010 
+From the cache: 1000 
+From the cache: 1013 
+From the cache: 3039 
+From the cache: 1007 
+From the cache: 1018 
+From the cache: 4032 
+From the cache: 3059 
+From the cache: 1019 
+From the cache: 4051 
+From the cache: 992 
+From the cache: 4076 
+From the cache: 3032 
+From the cache: 1003 
+From the cache: 2040 
+From the cache: 2010 
+From the cache: 2033 
+From the cache: 3042 
+From the cache: 3041 
+From the cache: 1001 
+From the cache: 1038 
+From the cache: 2016 
+From the cache: 3028 
+From the cache: 3027 
+From the cache: 3070 
+From the cache: 3047 
+From the cache: 3034 
+From the cache: 3040 
+From the cache: 3038 
+From the cache: 7083 
+From the cache: 5093 
+From the cache: 2032 
+From the cache: 997 
+From the cache: 4071 
+From the cache: 2001 
+From the cache: 6097 
+From the cache: 4059 
+From the cache: 3023 
+From the cache: 1032 
+From the cache: 2025 
+From the cache: 1017 
+From the cache: 5065 
+From the cache: 4049 
+From the cache: 1015 
+From the cache: 8113 
+From the cache: 2023 
+From the cache: 1020 
+From the cache: 1011 
+From the cache: 3036 
+From the cache: 2024 
+From the cache: 4037 
+From the cache: 3052 
+From the cache: 3033 
+From the cache: 3039 
+From the cache: 1028 
+From the cache: 1015 
+From the cache: 4053 
+From the cache: 3025 
+From the cache: 4059 
+From the cache: 4059 
+From the cache: 2014 
+From the cache: 14178 
+From the cache: 5084 
+From the cache: 3041 
+From the cache: 2022 
+From the cache: 1012 
+From the cache: 2039 
+From the cache: 2015 
+From the cache: 3043 
+From the cache: 2020 
+From the cache: 3053 
+From the cache: 1013 
+From the cache: 3032 
+From the cache: 2004 
+From the cache: 7113 
+From the cache: 2031 
+From the cache: 7092 
+From the cache: 3032 
+From the cache: 2035 
+From the cache: 1008 
+From the cache: 4056 
+From the cache: 2022 
+From the cache: 35 
+From the cache: 1997 
+From the cache: 3035 
+From the cache: 1007 
+From the cache: 2027 
+From the cache: 3026 
+From the cache: 43607 
+From the cache: 4057 
+From the cache: 1003 
+From the cache: 1023 
+From the cache: 2026 
+From the cache: 2016 
+From the cache: 1016 
+From the cache: 3035 
+From the cache: 4062 
+From the cache: 33433 
+From the cache: 3059 
+From the cache: 1012 
+From the cache: 2032 
+From the cache: 38 
+From the cache: 939 
+From the cache: 115622 
+From the cache: 3034 
+From the cache: 77059 
+From the cache: 2033 
+From the cache: 1011 
+From the cache: 1029 
+From the cache: 1022 
+From the cache: 1008 
+From the cache: 2040 
+From the cache: 2031 
+From the cache: 1016 
+From the cache: 2018 
+From the cache: 4065 
+From the cache: 1003 
+From the cache: 4051 
+From the cache: 2021 
+From the cache: 3051 
+From the cache: 3025 
+From the cache: 1018 
+From the cache: 4049 
+From the cache: 2036 
+From the cache: 5066 
+From the cache: 2009 
+From the cache: 3057 
+From the cache: 4045 
+From the cache: 20281 
+From the cache: 6080 
+From the cache: 5072 
+From the cache: 6122 
+From the cache: 7092 
+From the cache: 7098 
+From the cache: 20276 
+From the cache: 7099 
+From the cache: 4050 
+From the cache: 1022 
+From the cache: 2024 
+From the cache: 1009 
+From the cache: 2026 
+From the cache: 6090 
+From the cache: 1017 
+From the cache: 1015 
+From the cache: 2017 
+From the cache: 3043 
+From the cache: 1020 
+From the cache: 2018 
+From the cache: 1032 
+From the cache: 2011 
+From the cache: 997 
+From the cache: 4076 
+From the cache: 1017 
+From the cache: 2030 
+From the cache: 4058 
+From the cache: 988 
+From the cache: 4066 
+From the cache: 1023 
+From the cache: 6058 
+From the cache: 2034 
+From the cache: 4050 
+From the cache: 1008 
+From the cache: 1021 
+From the cache: 3036 
+From the cache: 2032 
+From the cache: 1016 
+From the cache: 1002 
+From the cache: 1016 
+From the cache: 2027 
+From the cache: 7093 
+From the cache: 2030 
+From the cache: 2029 
+From the cache: 3019 
+From the cache: 1030 
+From the cache: 1020 
+From the cache: 8104 
+From the cache: 2029 
+From the cache: 999 
+From the cache: 3048 
+From the cache: 1018 
+From the cache: 2008 
+From the cache: 4056 
+From the cache: 1016 
+From the cache: 1016 
+From the cache: 2017 
+From the cache: 1004 
+From the cache: 4074 
+From the cache: 994 
+From the cache: 1022 
+From the cache: 1015 
+From the cache: 1010 
+From the cache: 2031 
+From the cache: 2025 
+From the cache: 3035 
+From the cache: 5068 
+From the cache: 2032 
+From the cache: 3052 
+From the cache: 3040 
+From the cache: 1013 
+From the cache: 1015 
+From the cache: 3028 
+From the cache: 2034 
+From the cache: 1012 
+From the cache: 3040 
+From the cache: 4049 
+From the cache: 4059 
+From the cache: 2030 
+From the cache: 1023 
+From the cache: 1012 
+From the cache: 2029 
+From the cache: 1003 
+From the cache: 19240 
+From the cache: 1021 
+From the cache: 3059 
+From the cache: 2026 
+From the cache: 2014 
+From the cache: 2032 
+From the cache: 1018 
+From the cache: 1002 
+From the cache: 2028 
+From the cache: 1018 
+From the cache: 1014 
+From the cache: 4053 
+From the cache: 2037 
+From the cache: 995 
+From the cache: 1019 
+From the cache: 2027 
+From the cache: 1009 
+From the cache: 1034 
+From the cache: 2024 
+From the cache: 1010 
+From the cache: 1025 
+From the cache: 2030 
+From the cache: 2028 
+From the cache: 1002 
+From the cache: 1039 
+From the cache: 3016 
+From the cache: 998 
+From the cache: 1034 
+From the cache: 2020 
+From the cache: 1009 
+From the cache: 3047 
+From the cache: 2023 
+From the cache: 2029 
+From the cache: 2019 
+From the cache: 613 
+From the cache: 2432 
+From the cache: 532 
+From the cache: 1489 
+From the cache: 5066 
+From the cache: 3040 
+From the cache: 1016 
+From the cache: 2026 
+From the cache: 2030 
+From the cache: 1016 
+From the cache: 1017 
+From the cache: 4054 
+From the cache: 2030 
+From the cache: 1003 
+From the cache: 2032 
+From the cache: 4067 
+From the cache: 50698 
+From the cache: 3025 
+From the cache: 7176 
+From the cache: 3027 
+From the cache: 14203 
+From the cache: 3037 
+From the cache: 6094 
+From the cache: 2010 
+From the cache: 4051 
+From the cache: 1007 
+From the cache: 1023 
+From the cache: 1021 
+From the cache: 2023 
+From the cache: 5077 
+From the cache: 33462 
+From the cache: 3044 
+From the cache: 2018 
+From the cache: 1008 
+From the cache: 8128 
+From the cache: 10127 
+From the cache: 2029 
+From the cache: 1017 
+From the cache: 6087 
+From the cache: 2004 
+From the cache: 1005 
+From the cache: 1023 
+From the cache: 1005 
+From the cache: 2045 
+From the cache: 1009 
+From the cache: 3048 
+From the cache: 3052 
+From the cache: 5069 
+From the cache: 25349 
+From the cache: 2044 
+From the cache: 1011 
+From the cache: 6093 
+From the cache: 1007 
+From the cache: 18254 
+From the cache: 7157 
+From the cache: 983 
+From the cache: 2043 
+Assembly: 0 
+After Scribble Compiler: 779 
+After Parsing : 25 
+After Type generation: 4 
+From the cache: 2219 
+From the cache: 993 
+From the cache: 5084 
+From the cache: 2023 
+From the cache: 1020 
+From the cache: 6064 
+From the cache: 2031 
+From the cache: 1024 
+From the cache: 2057 
+From the cache: 3052 
+From the cache: 20254 
+From the cache: 1013 
+From the cache: 7105 
+From the cache: 1006 
+From the cache: 38547 
+From the cache: 2009 
+From the cache: 3034 
+From the cache: 2037 
+From the cache: 4048 
+From the cache: 3048 
+From the cache: 20280 
+From the cache: 2026 
+From the cache: 1013 
+From the cache: 1023 
+From the cache: 2013 
+From the cache: 1008 
+From the cache: 1025 
+From the cache: 1006 
+From the cache: 3037 
+From the cache: 1023 
+From the cache: 17269 
+From the cache: 2015 
+From the cache: 1000 
+From the cache: 1016 
+From the cache: 2032 
+From the cache: 1017 
+From the cache: 2030 
+From the cache: 3031 
+From the cache: 5072 
+From the cache: 2037 
+From the cache: 1018 
+From the cache: 2015 
+From the cache: 996 
+From the cache: 1030 
+From the cache: 2023 
+From the cache: 1010 
+From the cache: 2035 
+From the cache: 9112 
+From the cache: 2035 
+From the cache: 3029 
+From the cache: 2017 
+From the cache: 2032 
+From the cache: 4045 
+From the cache: 8121 
+From the cache: 1027 
+From the cache: 1012 
+From the cache: 3022 
+From the cache: 1032 
+From the cache: 20274 
+From the cache: 4049 
+From the cache: 3035 
+From the cache: 14212 
+From the cache: 8114 
+From the cache: 1019 
+From the cache: 5073 
+From the cache: 2009 
+From the cache: 39 
+From the cache: 978 
+From the cache: 17256 
+From the cache: 7109 
+From the cache: 1016 
+From the cache: 1014 
+From the cache: 1004 
+From the cache: 4060 
+From the cache: 7095 
+From the cache: 1010 
+From the cache: 5066 
+From the cache: 2032 
+From the cache: 1022 
+From the cache: 1992 
+From the cache: 1033 
+From the cache: 1017 
+From the cache: 1003 
+From the cache: 4057 
+From the cache: 3033 
+From the cache: 2030 
+From the cache: 1011 
+From the cache: 5080 
+From the cache: 4061 
+From the cache: 1984 
+From the cache: 1035 
+From the cache: 1017 
+From the cache: 2031 
+From the cache: 983 
+From the cache: 2042 
+From the cache: 13185 
+From the cache: 1003 
+From the cache: 1025 
+From the cache: 1043 
+From the cache: 3025 
+From the cache: 6090 
+From the cache: 1008 
+From the cache: 1024 
+From the cache: 1011 
+From the cache: 6100 
+From the cache: 1012 
+From the cache: 3048 
+From the cache: 1011 
+From the cache: 5063 
+From the cache: 2028 
+From the cache: 9120 
+From the cache: 7102 
+From the cache: 3033 
+From the cache: 2031 
+From the cache: 1010 
+From the cache: 3040 
+From the cache: 4053 
+From the cache: 5069 
+From the cache: 2033 
+From the cache: 4056 
+From the cache: 2024 
+From the cache: 3032 
+From the cache: 3035 
+From the cache: 2031 
+From the cache: 9119 
+From the cache: 7106 
+From the cache: 2034 
+From the cache: 2025 
+From the cache: 1011 
+From the cache: 1004 
+From the cache: 1064 
+From the cache: 4023 
+From the cache: 1029 
+From the cache: 4055 
+From the cache: 2026 
+From the cache: 1001 
+From the cache: 1030 
+From the cache: 3040 
+From the cache: 5061 
+From the cache: 2026 
+From the cache: 3045 
+From the cache: 2018 
+From the cache: 5070 
+From the cache: 2033 
+From the cache: 3030 
+From the cache: 2032 
+From the cache: 1011 
+From the cache: 2024 
+From the cache: 11149 
+From the cache: 3057 
+From the cache: 997 
+From the cache: 14209 
+From the cache: 2033 
+From the cache: 3034 
+From the cache: 1009 
+From the cache: 2018 
+From the cache: 1014 
+From the cache: 3049 
+From the cache: 3034 
+From the cache: 3034 
+From the cache: 3051 
+From the cache: 22278 
+From the cache: 1033 
+From the cache: 1013 
+From the cache: 43 
+From the cache: 973 
+From the cache: 352901 
+From the cache: 8110 
+From the cache: 3036 
+From the cache: 2025 
+From the cache: 1018 
+From the cache: 2038 
+From the cache: 2028 
+From the cache: 3033 
+From the cache: 2031 
+From the cache: 4050 
+From the cache: 1007 
+From the cache: 3041 
+From the cache: 996 
+From the cache: 6082 
+From the cache: 3049 
+From the cache: 2018 
+From the cache: 3050 
+From the cache: 2039 
+From the cache: 3028 
+From the cache: 2033 
+From the cache: 5067 
+From the cache: 5071 
+From the cache: 14188 
+From the cache: 2032 
+From the cache: 2019 
+From the cache: 5059 
+From the cache: 1020 
+From the cache: 3036 
+From the cache: 1009 
+From the cache: 1014 
+From the cache: 13205 
+From the cache: 1016 
+From the cache: 1014 
+From the cache: 10136 
+From the cache: 994 
+From the cache: 1017 
+From the cache: 2039 
+From the cache: 1000 
+From the cache: 2039 
+From the cache: 3041 
+From the cache: 1019 
+From the cache: 2024 
+From the cache: 2024 
+From the cache: 1012 
+From the cache: 1008 
+From the cache: 2022 
+From the cache: 2031 
+From the cache: 1005 
+From the cache: 1003 
+From the cache: 1017 
+From the cache: 4066 
+From the cache: 2022 
+From the cache: 2038 
+From the cache: 3027 
+From the cache: 988 
+From the cache: 1048 
+From the cache: 992 
+From the cache: 2032 
+From the cache: 2034 
+From the cache: 1003 
+From the cache: 1004 
+From the cache: 1024 
+From the cache: 3027 
+From the cache: 1002 
+From the cache: 1022 
+From the cache: 1018 
+From the cache: 1014 
+From the cache: 5058 
+From the cache: 2028 
+From the cache: 1002 
+From the cache: 2042 
+From the cache: 998 
+From the cache: 1023 
+From the cache: 2025 
+From the cache: 1013 
+From the cache: 994 
+From the cache: 1035 
+From the cache: 1015 
+From the cache: 6081 
+From the cache: 2030 
+From the cache: 1003 
+From the cache: 2037 
+From the cache: 2010 
+From the cache: 3054 
+From the cache: 1016 
+From the cache: 1007 
+From the cache: 43578 
+From the cache: 4072 
+From the cache: 14192 
+From the cache: 4057 
+From the cache: 43 
+From the cache: 963 
+From the cache: 2200450 
+From the cache: 2006 
+From the cache: 6093 
+From the cache: 2038 
+From the cache: 2033 
+From the cache: 1088 
+From the cache: 1002 
+From the cache: 49 
+From the cache: 965 
+From the cache: 2177108 
+From the cache: 31430 
+From the cache: 15183 
+From the cache: 1028 
+From the cache: 1001 
+From the cache: 15 
+From the cache: 1005 
+Assembly: 0 
+After Scribble Compiler: 3368 
+After Parsing : 14 
+After Type generation: 4 
+From the cache: 256 
+From the cache: 8490 
+From the cache: 756421 
+From the cache: 3057 
+From the cache: 2033 
+From the cache: 4047 
+From the cache: 3037 
+From the cache: 1009 
+From the cache: 1009 
+From the cache: 4056 
+From the cache: 7098 
+From the cache: 2025 
+From the cache: 1013 
+From the cache: 2031 
+From the cache: 2001 
+From the cache: 1030 
+From the cache: 3046 
+From the cache: 52718 
+From the cache: 1017 
+From the cache: 991 
+From the cache: 1038 
+From the cache: 995 
+From the cache: 3034 
+From the cache: 1030 
+From the cache: 3039 
+From the cache: 1016 
+From the cache: 1010 
+From the cache: 17 
+From the cache: 995 
+From the cache: 76044 
+From the cache: 2056 
+From the cache: 109495 
+From the cache: 1013 
+From the cache: 5070 
+From the cache: 3035 
+From the cache: 1016 
+From the cache: 2035 
+From the cache: 982 
+From the cache: 1011 
+From the cache: 3070 
+From the cache: 7083 
+From the cache: 3053 
+From the cache: 4044 
+From the cache: 6086 
+From the cache: 4053 
+Assembly: 24 
+After Scribble Compiler: 4940 
+After Parsing : 183 
+After Type generation: 83 
+From the cache: 421 
+Assembly: 25 
+After Scribble Compiler: 3542 
+After Parsing : 209 
+After Type generation: 75 
+From the cache: 652 
+From the cache: 2850 
+From the cache: 22993 
+From the cache: 13173 
+From the cache: 2116 
+From the cache: 21 
+From the cache: 1031 
+Assembly: 0 
+After Scribble Compiler: 3372 
+After Parsing : 25 
+After Type generation: 20 
+From the cache: 517 
+From the cache: 11246 
+From the cache: 11159 
+
+// Starting to emasure 50 assertions x_i > x_i-1
+Assembly: 0 
+Assembly: 0 
+
+// 50 
+After Scribble Compiler: 507 
+After Scribble Compiler: 525 
+After Scribble Compiler: 484 
+After Scribble Compiler: 422 
+Assembly: 0 
+After Scribble Compiler: 2898 
+After Parsing : 121 
+After Type generation: 13 
+From the cache: 11536 
+From the cache: 85851 
+From the cache: 15 
+From the cache: 987 
+Assembly: 0 
+
+// 50 
+
+After Scribble Compiler: 2918 
+After Parsing : 140 
+After Type generation: 18 
+From the cache: 8017 
+Assembly: 0 
+
+// 40 
+After Scribble Compiler: 2101 
+After Parsing : 88 
+After Type generation: 8 
+From the cache: 5021 
+Assembly: 0 
+
+// 40
+After Scribble Compiler: 2109 
+After Parsing : 82 
+After Type generation: 12 
+From the cache: 6086 
+From the cache: 793 
+Assembly: 0 
+
+// 40
+After Scribble Compiler: 2376 
+After Parsing : 89 
+After Type generation: 39 
+From the cache: 4999 
+Assembly: 0 
+
+
+// 30 
+After Scribble Compiler: 1714 
+After Parsing : 71 
+After Type generation: 12 
+From the cache: 3585 
+Assembly: 0 
+
+After Scribble Compiler: 1637 
+After Parsing : 73 
+After Type generation: 29 
+From the cache: 3560 
+From the cache: 768 
+Assembly: 0 
+
+After Scribble Compiler: 1753 
+After Parsing : 80 
+After Type generation: 8 
+From the cache: 3791 
+From the cache: 410 
+Assembly: 0 
+
+// 20 
+After Scribble Compiler: 1239 
+After Parsing : 43 
+After Type generation: 29 
+From the cache: 2063 
+From the cache: 655 
+Assembly: 0 
+
+After Scribble Compiler: 1250 
+After Parsing : 52 
+After Type generation: 13 
+From the cache: 2953 
+From the cache: 751 
+Assembly: 0 
+
+After Scribble Compiler: 1195 
+After Parsing : 48 
+After Type generation: 5 
+From the cache: 2035 
+From the cache: 760 
+Assembly: 0 
+
+// 10 
+After Scribble Compiler: 805 
+After Parsing : 11 
+After Type generation: 3 
+From the cache: 692 
+From the cache: 473 
+Assembly: 0 
+After Scribble Compiler: 759 
+After Parsing : 11 
+After Type generation: 3 
+From the cache: 677 
+From the cache: 567 
+Assembly: 0 
+After Scribble Compiler: 3026 
+After Parsing : 116 
+After Type generation: 10 
+From the cache: 9867 
+Assembly: 0 
+After Scribble Compiler: 2865 
+After Parsing : 118 
+After Type generation: 13 
+From the cache: 56601 
+Assembly: 0 
+After Scribble Compiler: 599 
+After Parsing : 19 
+After Type generation: 6574 
+From the cache: 276 

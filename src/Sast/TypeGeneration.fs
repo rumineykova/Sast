@@ -272,8 +272,8 @@ let internal makeLabelTypes (fsmInstance:ScribbleProtocole.Root []) (providedLis
                                                 let exprDes = deserializeChoice buffers listPayload
                                                 Expr.Sequential(exprDes,exprState)//*)                                             
 
-                                                let listPayload = (payloadsToList event.Payload)
-                                                let assertionString = event.Assertion
+                                                let listPayload = (payloadsToList currEvent.Payload)
+                                                let assertionString = currEvent.Assertion
 
                                                 let fooName,argsName = 
                                                     if ((assertionString <> "fun expression -> expression") && (assertionString <> ""))  then
@@ -288,7 +288,7 @@ let internal makeLabelTypes (fsmInstance:ScribbleProtocole.Root []) (providedLis
                                                 let exprDes = deserializeChoice buffers listPayload argsName fooName
                                                 Expr.Sequential(exprDes,exprState)
                                           )
-                        let doc = getAssertionDoc event.Assertion
+                        let doc = getAssertionDoc currEvent.Assertion
                         if doc <> "" then  myMethod.AddXmlDocDelayed(fun() -> doc)                                                                                                                                        
                         
                         t <- t |> addMethod (myMethod)
@@ -322,8 +322,8 @@ let internal makeLabelTypes (fsmInstance:ScribbleProtocole.Root []) (providedLis
                                             InvokeCode = 
                                                 fun args-> 
                                                     let buffers = args.Tail.Tail         
-                                                    let listPayload = (payloadsToList event.Payload)
-                                                    let assertionString = event.Assertion
+                                                    let listPayload = (payloadsToList currEvent.Payload)
+                                                    let assertionString = currEvent.Assertion
 
                                                     let fooName,argsName = 
                                                         if ((assertionString <> "fun expression -> expression") && (assertionString <> ""))  then
@@ -338,7 +338,7 @@ let internal makeLabelTypes (fsmInstance:ScribbleProtocole.Root []) (providedLis
                                                     let exprDes = deserializeChoice buffers listPayload argsName fooName
                                                     Expr.Sequential(exprDes,exprState)
                                           )
-                        let doc = getAssertionDoc event.Assertion
+                        let doc = getAssertionDoc currEvent.Assertion
                         if doc <> "" then myMethod.AddXmlDocDelayed(fun() -> doc)     
 
                         t <- t |> addMethod (myMethod)

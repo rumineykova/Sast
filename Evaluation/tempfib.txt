@@ -259,7 +259,8 @@ Start 100: 959
 Done 100: 1162 
 
 
-// 100 * 100 no assertions Start 100: 3063 
+// 100 * 100 no assertions 
+Start 100: 3063 
 Done 100: 1023 
 Start 100: 3070 
 Done 100: 1025 
@@ -269,3 +270,665 @@ Start 100: 2045
 Done 100: 1014 
 Start 100: 3077 
 Done 100: 1061 
+
+// 100 * 100 no assertions but they are in the code 
+Start 100: 3063
+Start 100: 3068 
+Done 100: 1067 
+Start 100: 3059 
+Done 100: 1010 
+Start 100: 3072 
+Done 100: 1009 
+Start 100: 3066 
+Done 100: 1019 
+Start 100: 3066 
+Done 100: 1022 
+Start 100: 3064 
+Done 100: 1038 
+
+// 100*100 TCP no assertions
+
+before TCP start (100*100): 0 
+TCP time: 856 
+before TCP start: 0 
+TCP time: 31443 
+before TCP start: 0 
+TCP time: 858 
+before TCP start: 0 
+TCP time: 866 
+before TCP start: 0 
+TCP time: 900 
+before TCP start: 0 
+TCP time: 851 
+before TCP start: 0 
+TCP time: 886 
+before TCP start: 0 
+TCP time: 917 
+before TCP start: 0 
+TCP time: 863 
+before TCP start: 0 
+TCP time: 889 
+before TCP start: 0 
+TCP time: 868 
+before TCP start: 0 
+TCP time: 880 
+before TCP start: 0 
+TCP time: 864 
+before TCP start: 0 
+TCP time: 1320 
+before TCP start: 0 
+TCP time: 1284 
+before TCP start: 0 
+=== from here =====
+TCP time: 957 
+before TCP start: 0 
+TCP time: 980 
+before TCP start: 0 
+TCP time: 959 
+before TCP start: 0 
+TCP time: 960 
+before TCP start: 0 
+TCP time: 1044 
+before TCP start: 0 
+TCP time: 970 
+before TCP start: 0 
+before TCP start: 0 
+TCP time: 997 
+before TCP start: 0 
+TCP time: 976 
+
+==============SORTING===================================
+=== TP with asserions sorting a list at every iteration =====
+before invoke: 0 
+done: 12188 
+before TCP start: 0 
+TCP time: 10952 
+before invoke: 0 
+
+=== results for 10 000 with sorting ==== 
+done: 12147 
+before TCP start: 0 
+before invoke: 0 
+done: 12042 
+before invoke: 0 
+done: 12304 
+before TCP start: 0 
+before TCP start: 0 
+TCP time: 11286 
+before TCP start: 0 
+TCP time: 10912 
+before TCP start: 0 
+before invoke: 0 
+
+done: 11956 
+before invoke: 0 
+before invoke: 0 
+done: 11709 
+before invoke: 0 
+done: 12194 
+before TCP start: 0 
+
+
+TCP time: 10884 
+before TCP start: 0 
+TCP time: 2657 
+before TCP start: 0 
+TCP time: 2664 
+before TCP start: 0 
+=======================================
+
+TCP time for 9000: 2395 
+before TCP start: 0 
+TCP time for 9000: 2707 
+before TCP start: 0 
+TCP time for 8000: 2160 
+before TCP start: 0 
+TCP time for 8000: 2167 
+before TCP start: 0 
+TCP time for 7000: 1918 
+before TCP start: 0 
+TCP time for 7000: 1922 
+before TCP start: 0 
+TCP time for 6000: 1707 
+before TCP start: 0 
+TCP time for 6000: 1674 
+before TCP start: 0 
+TCP time for 5000: 1442 
+before TCP start: 0 
+TCP time for 5000: 1438 
+before TCP start: 0 
+TCP time for 4000: 1188 
+before TCP start: 0 
+TCP time for 4000: 1195 
+before TCP start: 0 
+TCP time for 3000: 944 
+before TCP start: 0 
+TCP time for 3000: 969 
+before TCP start: 0 
+TCP time for 2000: 705 
+before TCP start: 0 
+before TCP start: 0 
+TCP time for 1000: 468 
+before TCP start: 0 
+TCP time for 1000: 476 
+before TCP start: 0 
+before TCP start: 0 
+TCP time for 1000: 469 
+
+TP measure for: 10000: 0 
+done: 2906 
+TP measure for: 9000: 0 
+done: 2606 
+TP measure for: 9000: 0 
+done: 2605 
+TP measure for: 8000: 1 
+done: 2535 
+TP measure for: 8000: 1 
+done: 2340 
+TP measure for: 8000: 1 
+done: 2343 
+TP measure for: 8000: 0 
+done: 2346 
+TP measure for: 7000: 0 
+done: 2030 
+TP measure for: 7000: 0 
+done: 2055 
+TP measure for: 7000: 0 
+done: 2050 
+TP measure for: 6000: 0 
+done: 1782 
+TP measure for: 6000: 0 
+done: 1724 
+TP measure for: 6000: 0 
+done: 1765 
+TP measure for: 5000: 0 
+done: 1473 
+TP measure for: 5000: 0 
+done: 1462 
+TP measure for: 5000: 0 
+done: 1482 
+TP measure for: 4000: 0 
+done: 1235 
+TP measure for: 4000: 0 
+done: 1217 
+TP measure for: 3000: 0 
+done: 932 
+TP measure for: 3000: 1 
+done: 945 
+TP measure for: 3000: 1 
+done: 1024 
+TP measure for: 2000: 0 
+done: 646 
+TP measure for: 2000: 1 
+done: 669 
+TP measure for: 2000: 0 
+done: 695 
+TP measure for: 1000: 0 
+done: 345 
+TP measure for: 1000: 0 
+done: 350 
+TP measure for: 1000: 0 
+done: 360 
+
+TP measure with assertions for: 10000: 0 
+done: 3259 
+TP measure with assertions for: 10000: 0 
+done: 3414 
+TP measure with assertions for: 10000: 0 
+done: 3256 
+TP measure with assertions for: 9000: 0 
+done: 2935 
+TP measure with assertions for: 9000: 0 
+done: 3127 
+TP measure with assertions for: 8000: 0 
+done: 2614 
+TP measure with assertions for: 8000: 0 
+done: 2767 
+TP measure with assertions for: 8000: 0 
+done: 2614 
+TP measure with assertions for: 7000: 0 
+done: 2404 
+TP measure with assertions for: 7000: 0 
+done: 2285 
+TP measure with assertions for: 6000: 1 
+done: 2004 
+TP measure with assertions for: 6000: 0 
+done: 1997 
+TP measure with assertions for: 5000: 0 
+done: 1698 
+TP measure with assertions for: 5000: 0 
+done: 1686 
+TP measure with assertions for: 4000: 0 
+done: 1349 
+TP measure with assertions for: 4000: 0 
+done: 1362 
+TP measure with assertions for: 4000: 0 
+done: 1343 
+TP measure with assertions for: 3000: 0 
+done: 1039 
+TP measure with assertions for: 3000: 0 
+done: 1004 
+TP measure with assertions for: 2000: 0 
+done: 693 
+TP measure with assertions for: 2000: 0 
+done: 718 
+TP measure with assertions for: 1000: 0 
+done: 389 
+TP measure with assertions for: 1000: 0 
+done: 384 
+
+TP measure with assertions in the code for: 10000: 0 
+done: 2886 
+TP measure with assertions in the code for: 10000: 0 
+done: 2970 
+TP measure with assertions in the code for: 10000: 1 
+done: 2900 
+TP measure with assertions in the code for: 9000: 1 
+done: 2634 
+TP measure with assertions in the code for: 9000: 1 
+done: 2609 
+TP measure with assertions in the code for: 9000: 0 
+done: 2661 
+TP measure with assertions in the code for: 8000: 1 
+done: 2307 
+TP measure with assertions in the code for: 8000: 0 
+done: 2312 
+TP measure with assertions in the code for: 8000: 1 
+done: 2344 
+TP measure with assertions in the code for: 7000: 0 
+done: 2196 
+TP measure with assertions in the code for: 7000: 1 
+done: 2081 
+TP measure with assertions in the code for: 6000: 0 
+done: 1750 
+TP measure with assertions in the code for: 6000: 0 
+done: 1756 
+TP measure with assertions in the code for: 5000: 1 
+done: 1489 
+TP measure with assertions in the code for: 5000: 1 
+done: 1488 
+TP measure with assertions in the code for: 4000: 1 
+done: 1221 
+TP measure with assertions in the code for: 4000: 0 
+done: 1193 
+TP measure with assertions in the code for: 4000: 0 
+done: 1195 
+TP measure with assertions in the code for: 3000: 0 
+done: 911 
+TP measure with assertions in the code for: 3000: 0 
+done: 907 
+TP measure with assertions in the code for: 2000: 0 
+done: 676 
+TP measure with assertions in the code for: 2000: 0 
+done: 634 
+TP measure with assertions in the code for: 2000: 0 
+done: 659 
+TP measure with assertions in the code for: 1000: 0 
+done: 349 
+TP measure with assertions in the code for: 1000: 1 
+done: 373 
+TP measure with assertions in the code for: 1000: 0 
+done: 354 
+Start 100: 1042 
+
+Measure for seq 100: 1022 
+Start 100: 3070 
+Measure for seq assertions in code 100: 1024 
+Start 100: 2038 
+Measure for seq assertions in code 90: 931 
+Start 100: 3069 
+Measure for seq assertions in code 90: 921 
+Start 100: 3068 
+Measure for seq assertions in code 90: 932 
+Start 100: 2043 
+Measure for seq assertions in code 80: 824 
+Start 100: 3078 
+Measure for seq assertions in code 80: 848 
+Start 100: 2059 
+Measure for seq assertions in code 80: 865 
+Start 100: 3070 
+Measure for seq assertions in code 70: 746 
+Start 100: 3078 
+Measure for seq assertions in code 70: 770 
+Start 100: 3067 
+Measure for seq assertions in code 60: 630 
+Start 100: 3052 
+Measure for seq assertions in code 50: 602 
+Start 100: 3066 
+Measure for seq assertions in code 50: 589 
+Start 100: 1041 
+Measure for seq assertions in code 40: 488 
+Start 100: 839 
+Measure for seq assertions in code 40: 483 
+Start 100: 1036 
+Measure for seq assertions in code 30: 396 
+Start 100: 1041 
+Measure for seq assertions in code 30: 403 
+Start 100: 1044 
+Measure for seq assertions in code 20: 295 
+Start 100: 1038 
+Measure for seq assertions in code 20: 296 
+Start 100: 1040 
+Measure for seq assertions in code 10: 192 
+Start 100: 1037 
+Measure for seq assertions in code 10: 205 
+Start 100: 3070 
+Measure for seq assertions in code 10: 218 
+Start 100: 364 
+
+
+Measure for seq with assertions 100: 1164 
+Start 100: 864 
+Measure for seq with assertions 100: 1174 
+Start 100: 1064 
+Measure for seq with assertions 90: 1059 
+Start 100: 784 
+Measure for seq with assertions 90: 1032 
+Start 100: 115 
+Measure for seq with assertions 80: 951 
+Start 100: 388 
+Measure for seq with assertions 80: 944 
+Start 100: 616 
+Measure for seq with assertions 70: 866 
+Start 100: 10172 
+Measure for seq with assertions 70: 866 
+Start 100: 298 
+Measure for seq with assertions 70: 864 
+Start 100: 401 
+Measure for seq with assertions 60: 746 
+Start 100: 307 
+Measure for seq with assertions 60: 843 
+Start 100: 776 
+Measure for seq with assertions 50: 661 
+Start 100: 1018 
+Measure for seq with assertions 50: 652 
+Start 100: 635 
+Measure for seq with assertions 40: 525 
+Start 100: 121 
+Measure for seq with assertions 40: 546 
+Start 100: 211 
+Measure for seq with assertions 30: 439 
+Start 100: 394 
+Measure for seq with assertions 30: 424 
+Start 100: 396 
+Measure for seq with assertions 20: 325 
+Start 100: 725 
+Measure for seq with assertions 20: 319 
+Start 100: 710 
+Measure for seq with assertions 20: 327 
+Start 100: 278 
+Measure for seq with assertions 10: 219 
+Start 100: 697 
+Measure for seq with assertions 10: 218 
+
+
+before TCP start: 0 
+TCP seq time for 100: 926 
+before TCP start: 0 
+TCP seq time for 100: 941 
+before TCP start: 0 
+TCP seq time for 90: 848 
+before TCP start: 0 
+TCP seq time for 90: 849 
+before TCP start: 0 
+TCP seq time for 90: 984 
+before TCP start: 0 
+TCP seq time for 80: 767 
+before TCP start: 0 
+TCP seq time for 80: 771 
+before TCP start: 0 
+TCP seq time for 80: 780 
+before TCP start: 0 
+TCP seq time for 70: 729 
+before TCP start: 0 
+TCP seq time for 70: 698 
+before TCP start: 0 
+TCP seq time for 70: 744 
+before TCP start: 0 
+TCP seq time for 60: 612 
+before TCP start: 0 
+TCP seq time for 60: 689 
+before TCP start: 0 
+TCP seq time for 60: 627 
+before TCP start: 0 
+TCP seq time for 50: 549 
+before TCP start: 0 
+TCP seq time for 50: 546 
+before TCP start: 0 
+TCP seq time for 50: 548 
+before TCP start: 0 
+TCP seq time for 40: 473 
+before TCP start: 0 
+TCP seq time for 40: 464 
+before TCP start: 0 
+TCP seq time for 40: 462 
+before TCP start: 0 
+TCP seq time for 30: 385 
+before TCP start: 0 
+TCP seq time for 30: 385 
+before TCP start: 0 
+TCP seq time for 30: 389 
+before TCP start: 0 
+TCP seq time for 20: 306 
+before TCP start: 0 
+TCP seq time for 20: 312 
+before TCP start: 0 
+TCP seq time for 20: 313 
+before TCP start: 0 
+TCP seq time for 10: 233 
+before TCP start: 0 
+TCP seq time for 10: 232 
+before TCP start: 0 
+TCP seq time for 10: 230 
+
+
+
+
+SH measure with assertions: 0 
+SH measure with assertions: 0 
+SH done: 1064 
+SH measure with assertions: 0 
+SH done: 1002 
+SH measure with assertions: 0 
+SH done: 985 
+SH measure with assertions: 0 
+SH done: 1019 
+SH measure with assertions: 1 
+SH done: 1073 
+SH measure with no assertions: 0 
+SH done: 1031 
+SH measure with no assertions: 0 
+SH done: 1030 
+SH measure with no assertions: 0 
+SH done: 1070 
+
+
+
+
+before SH TCP start: 0 
+SH TCP done: 896 
+before SH TCP start: 0 
+SH TCP done: 885 
+before SH TCP start: 0 
+SH TCP done: 948 
+before SH TCP start: 0 
+SH TCP done: 903 
+before SH TCP start: 0 
+SH TCP done: 909 
+before SH TCP start: 0 
+SH TCP done: 878 
+before SH TCP start: 0 
+SH TCP done: 921 
+before SH TCP start: 0 
+SH TCP done: 897 
+before SH TCP start: 0 
+SH TCP done: 903 
+before SH TCP start: 0 
+SH TCP done: 899 
+before SH TCP start: 0 
+SH TCP done: 886 
+before SH TCP start: 0 
+SH TCP done: 896 
+before SH TCP start: 0 
+SH TCP done: 908 
+before SH TCP start: 0 
+SH TCP done: 886 
+
+=== all below are actually WITH ASSERTIONS in TP ===== 
+SH measure with no assertions: 0 
+SH done: 940 
+SH measure with no assertions: 0 
+SH done: 913 
+SH measure with no assertions: 0 
+SH done: 938 
+SH measure with no assertions: 0 
+SH done: 917 
+SH measure with no assertions: 1 
+SH done: 939 
+SH measure with no assertions: 0 
+SH done: 932 
+SH measure with no assertions: 1 
+SH done: 936 
+SH measure with no assertions: 0 
+SH done: 922 
+SH measure with no assertions: 0 
+SH done: 1019 
+SH measure with no assertions: 0 
+SH done: 957 
+SH measure with no assertions: 0 
+SH done: 913 
+SH measure with no assertions: 0 
+SH done: 965 
+
+
+=== NOW STARTING WITHOUT ASSERTIONS ===== 
+SH measure with no assertions: 1 
+SH done: 949 
+SH measure with no assertions: 0 
+SH done: 924 
+SH measure with no assertions: 0 
+SH done: 935 
+SH measure with no assertions: 0 
+SH done: 1010 
+SH measure with no assertions: 0 
+SH done: 939 
+SH measure with no assertions: 0 
+SH done: 933 
+SH measure with no assertions: 0 
+SH done: 925 
+SH measure with no assertions: 0 
+SH done: 929 
+SH measure with no assertions: 0 
+SH done: 948 
+SH measure with no assertions: 1 
+SH done: 958 
+SH measure with no assertions: 0 
+SH done: 1015 
+SH measure with no assertions: 0 
+SH done: 970 
+SH measure with no assertions: 0 
+SH done: 928 
+SH measure with no assertions: 0 
+SH done: 931 
+SH measure with no assertions: 0 
+SH done: 938 
+SH measure with no assertions: 0 
+SH done: 982 
+==================================SUMMARY: 942
+
+=== NOW STARTING WITH ASSERTIONS in the CODE (SH)===== 
+SH measure with no assertions: 0 
+SH done: 922 
+SH measure with no assertions: 0 
+SH done: 917 
+SH measure with no assertions: 0 
+SH done: 943 
+SH measure with no assertions: 0 
+SH done: 957 
+SH measure with no assertions: 0 
+SH done: 925 
+SH measure with no assertions: 0 
+SH done: 917 
+SH measure with no assertions: 0 
+SH done: 961 
+SH measure with no assertions: 0 
+SH done: 971 
+SH measure with no assertions: 0 
+SH done: 940 
+SH measure with no assertions: 0 
+SH done: 938 
+SH measure with no assertions: 0 
+SH done: 931 
+SH measure with no assertions: 0 
+SH done: 944 
+SH measure with no assertions: 0 
+SH done: 938 
+SH measure with no assertions: 0 
+SH done: 938 
+SH measure with no assertions: 0 
+SH done: 988 
+SH measure with no assertions: 0 
+SH done: 932 
+SH measure with no assertions: 0 
+SH done: 958 
+SH measure with no assertions: 0 
+SH done: 961 
+SH measure with no assertions: 0 
+SH done: 921 
+==================================SUMMARY: 942
+
+=====Summary======
+- SH 1000
+WithIR: 953.25
+WithNo: 946.9333333
+TCP: 901.0714286
+
+- GEN 10000
+WithIR: 
+WithNo
+TCP
+
+ 
+- ADDER 100
+WithIR: 
+WithNo
+TCP
+
+
+- GENREC 10000 
+WithIR: 
+WithNo
+TCP
+
+- Sorting 10000
+WithIR: 
+WithNo
+TCP
+
+// TP SH with ASSERTIONS ON P in TP 
+SH measure with no assertions: 1 
+SH done: 1012 
+SH measure with no assertions: 0 
+SH done: 962 
+SH measure with no assertions: 0 
+SH done: 958 
+SH measure with no assertions: 1 
+SH done: 948 
+SH measure with no assertions: 0 
+SH done: 947 
+SH measure with no assertions: 1 
+SH done: 961 
+SH measure with no assertions: 0 
+SH done: 937 
+SH measure with no assertions: 1 
+SH done: 928 
+SH measure with no assertions: 0 
+SH done: 960 
+SH measure with no assertions: 0 
+SH done: 980 
+SH measure with no assertions: 0 
+SH done: 930 
+SH measure with no assertions: 0 
+SH done: 951 
+SH measure with no assertions: 0 
+SH done: 977 

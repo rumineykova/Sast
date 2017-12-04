@@ -1,6 +1,8 @@
 ﻿module ScribbleGenerativeTypeProvider.CommunicationAgents
 
 
+
+
 // Outside namespaces and modules
 open System.Net.Sockets
 open System.IO
@@ -16,7 +18,7 @@ open System.Runtime.Serialization.Formatters.Binary
 
 let isDummyVar (x:string) = x.StartsWith("_")
 
-type VarCache() =
+type VarCache()=
     let data = Dictionary<string,_>()
     member x.RuntimeOperation() = data.Count  
       
@@ -32,9 +34,9 @@ type VarCache() =
         | _ -> failwith (sprintf "Cannot retrieve value from cache: %s" k)
 
     member x.Print() = 
-        printf "Cache: "
+        //printing "Cache: " 1
         [for key in data.Keys do 
-            printf "%s -- %A " key (data.Item(key))
+            sprintf "%s -- %A " key (data.Item(key)) |> ignore
         ]
 
 

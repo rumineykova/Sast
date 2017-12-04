@@ -19,11 +19,11 @@ let typeAliasing1 = """ [ {"alias" : "int", "type": "System.Int32"} ] """
 type Fib = 
     Provided.TypeProviderFile<"../../../Examples/Fibonacci/FibnoAss.scr"
                                ,"Adder"
-                                   ,"C"
+                               ,"C"
                                ,"../../../Examples/Fibonacci/config.yaml"
                                ,Delimiter=delims
                                ,TypeAliasing=typeAliasing1
-                               ,ScribbleSource = ScribbleSource.LocalExecutable 
+                               ,ScribbleSource = ScribbleSource.LocalExecutable
                                ,ExplicitConnection=false 
                                ,AssertionsOn=true>
 
@@ -47,7 +47,7 @@ module TimeMeasure =
         File.AppendAllText(file, curTime)
         stopWatch <- Stopwatch.StartNew()
 
-let numIter = 10000
+let numIter = 1000
 let S = Fib.S.instance
 
 let rec fibrec a b iter (c0:Fib.State12) = 
@@ -68,7 +68,14 @@ let rec fibrec a b iter (c0:Fib.State12) =
         |n -> 
             let c1 = c.sendADD(S, b)
             //printfn "Send ADD"   
+            (*let genRandomNumbers count =
+                let rnd = System.Random()
+                List.init count (fun _ -> rnd.Next ())
+
+            let l = genRandomNumbers 10000 |> List.sort *)
             let c2 = c1.receiveRES(S, res)
+            let foo s = if s > 0 then true else false 
+            let result = foo (res.getValue())
             //printfn "GetValue: %d" (res.getValue())
             //if res.getValue() >  0 then 
             //    printfn "Fibo : %d" (res.getValue())
@@ -84,5 +91,6 @@ let r = new DomainModel.Buf<int>()
 let first = fibo.Start()//.request(S)
 let snd = first.sendHELLO(S, 1).receiveHELLO(S, r)
 TimeMeasure.start()
-TimeMeasure.measureTime "before incoke"
+let s = sprintf "TP measure with assertions in the code for: %i" numIter
+TimeMeasure.measureTime s
 snd |> fibrec 1 1 numIter
