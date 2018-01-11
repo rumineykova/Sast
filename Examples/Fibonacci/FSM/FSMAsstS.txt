@@ -7,11 +7,11 @@ compound = true;
 "26" [ label="26: " ];
 "26" -> "27" [ label="C?HELLO(u: int)" ];
 "27" [ label="27: " ];
-"27" -> "28" [ label="C?ADD(y: int)" ];
+"27" -> "28" [ label="C?ADD(y: int)@\"(y > 0)\"" ];
 "28" [ label="28: " ];
-"28" -> "26" [ label="C!RES(w: int)@\"(w > 0)\"" ];
-"27" -> "29" [ label="C?BYE(_dum1: _Unit)" ];
+"28" -> "26" [ label="C!RES(w: int)@\"(w > 0)\"{bla}" ];
+"27" -> "29" [ label="C?BYE(_dum1: _Unit){ihu}" ];
 "29" [ label="29: " ];
-"29" -> "24" [ label="C!BYE(_dum2: _Unit)" ];
+"29" -> "24" [ label="C!BYE(_dum2: _Unit){ihu}" ];
 "24" [ label="24: " ];
 }

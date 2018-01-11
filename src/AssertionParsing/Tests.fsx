@@ -20,4 +20,3 @@ test "x+1 > 4"
 test "x=y"
 test "x<y && x>10 || z+y>s1" 
 test "x<y"
-

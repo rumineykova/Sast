@@ -14,19 +14,20 @@ let typeAliasing =
     """ [ {"alias" : "int", "type": "System.Int32"} ] """
 
 type Fib = 
-    Provided.TypeProviderFile<"../../../Examples/Fibonacci/Fib.scr"
+    Provided.TypeProviderFile<"../../../Examples/Fibonacci/FSM/FSMAsstS.txt"
                                ,"Adder"
                                ,"S"
                                ,"../../../Examples/Fibonacci/configServer.yaml"
                                ,Delimiter=delims
                                ,TypeAliasing=typeAliasing
-                               ,ScribbleSource = ScribbleSource.LocalExecutable, 
-                               ExplicitConnection=true>
+                               ,ScribbleSource = ScribbleSource.File 
+                               ,ExplicitConnection=false
+                               ,AssertionsOn=true>
 
-let numIter = 10-2
+let numIter = 10-2   
 let C = Fib.C.instance
 
-let rec fibServer (c0:Fib.State17) =
+let rec fibServer (c0:Fib.State26) =
     let res1 = new DomainModel.Buf<int>()
     let res2 = new DomainModel.Buf<int>()
     let res3 = new DomainModel.Buf<int>()
@@ -48,7 +49,7 @@ session.Start()
 let dummy = new DomainModel.Buf<int>()
 
 let r = new DomainModel.Buf<int>()
-let sessionCh = session.Start()
+let sessionCh = session.Start().receiveHELLO(C, dummy).sendHELLO(C, dummy.getValue())
 //let branch =  sessionCh.branch() 
 fibServer(sessionCh)
 

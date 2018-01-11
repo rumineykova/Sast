@@ -219,11 +219,12 @@ let internal makeRoleTypes (fsmInstance:ScribbleProtocole.Root []) =
     (mapping,listeType)
 
 
-let getAssertionDoc assertion = 
-    if (assertion <> "") then 
+let getAssertionDoc assertion inferred = 
+    if (assertion <> "" || inferred <> "") then 
         let sb = new System.Text.StringBuilder()
         sb.Append("<summary> Method arguments should satisfy the following constraint:") |> ignore
         sb.Append ("<para>" + assertion.Replace(">", "&gt;").Replace("<","&lt;") + "</para>" ) |>ignore
+        sb.Append(("<para>" + inferred + "</para>" )) |> ignore
         sb.Append("</summary>") |>ignore
         sb.ToString()
     else ""    
@@ -288,7 +289,7 @@ let internal makeLabelTypes (fsmInstance:ScribbleProtocole.Root []) (providedLis
                                                 let exprDes = deserializeChoice buffers listPayload argsName fooName
                                                 Expr.Sequential(exprDes,exprState)
                                           )
-                        let doc = getAssertionDoc currEvent.Assertion
+                        let doc = getAssertionDoc currEvent.Assertion currEvent.Inferred
                         if doc <> "" then  myMethod.AddXmlDocDelayed(fun() -> doc)                                                                                                                                        
                         
                         t <- t |> addMethod (myMethod)
@@ -338,7 +339,7 @@ let internal makeLabelTypes (fsmInstance:ScribbleProtocole.Root []) (providedLis
                                                     let exprDes = deserializeChoice buffers listPayload argsName fooName
                                                     Expr.Sequential(exprDes,exprState)
                                           )
-                        let doc = getAssertionDoc currEvent.Assertion
+                        let doc = getAssertionDoc currEvent.Assertion currEvent.Inferred
                         if doc <> "" then myMethod.AddXmlDocDelayed(fun() -> doc)     
 
                         t <- t |> addMethod (myMethod)
@@ -544,7 +545,7 @@ let generateMethod aType (methodName:string) listParam nextType (errorMessage:st
                                 labelDelim endDelim nameLabel 
                                 exprState role fullName event)
                         
-            let doc = getAssertionDoc event.Assertion
+            let doc = getAssertionDoc event.Assertion event.Inferred
             if doc <> "" then myMethod.AddXmlDocDelayed(fun () ->  doc)
                         
             aType 
@@ -591,7 +592,7 @@ let generateMethod aType (methodName:string) listParam nextType (errorMessage:st
                             let exprDes = deserializeAsync buffers listPayload [message] role argsName fooName
                             Expr.Sequential(exprDes,exprState))
                                        
-            let doc = getAssertionDoc event.Assertion
+            let doc = getAssertionDoc event.Assertion event.Inferred
             if doc <> "" then myMethod.AddXmlDocDelayed(fun () -> doc); myMethodAsync.AddXmlDoc(doc)
             //let property = createPropertyType "test" (Constraint.Numbers.ConstraintInt32<Rule = assertionString>) 
             aType 

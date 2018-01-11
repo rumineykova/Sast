@@ -13,13 +13,13 @@ let delims1 = """ [ {"label" : "ADD", "delims": {"delim1": [":"] , "delim2": [",
 let typeAliasing1 = """ [ {"alias" : "int", "type": "System.Int32"} ] """
 
 type Fib = 
-    Provided.TypeProviderFile<"../../../Examples/Fibonacci/FibnoAss.scr"
+    Provided.TypeProviderFile<"../../../Examples/Fibonacci/FSM/FSMAsstS.txt"
                                ,"Adder"
                                ,"S"
                                ,"../../../Examples/Fibonacci/configServer.yaml"
                                ,Delimiter=delims1
                                ,TypeAliasing=typeAliasing1
-                               ,ScribbleSource = ScribbleSource.LocalExecutable
+                               ,ScribbleSource = ScribbleSource.File
                                ,ExplicitConnection=false 
                                ,AssertionsOn=true>
 

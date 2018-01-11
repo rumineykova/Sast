@@ -4,7 +4,7 @@ open System.Threading
 open FSharp.Configuration
 
 // Scribble Type 
-type ScribbleProtocole = FSharp.Data.JsonProvider<""" [ { "currentState":0 , "localRole":"StringLocalRole" , "partner":"StringPartner" , "label":"StringLabel" ,"payload":[{"varName":"someZ", "varType":"someType"}] ,"assertion":"expression", "type":"EventType" , "nextState":0  } ] """>
+type ScribbleProtocole = FSharp.Data.JsonProvider<""" [ { "currentState":0 , "localRole":"StringLocalRole" , "partner":"StringPartner" , "label":"StringLabel" ,"payload":[{"varName":"someZ", "varType":"someType"}] ,"assertion":"expression", "inferred":"expressionMap", "type":"EventType" , "nextState":0  } ] """>
 
 type ScribbleAPI = FSharp.Data.JsonProvider<""" { "code":"Code", "proto":"global protocol", "role":"local role" } """>
 

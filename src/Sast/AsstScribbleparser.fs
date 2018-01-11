@@ -36,6 +36,7 @@ type TrPayload = TrPayload of List<string*string>
 type EventType = EventType of string
 type Next = Next of int
 type Assertion = Assertion of string
+type Inferred = Inferred of string
 
 type Transition =
     {
@@ -45,6 +46,7 @@ type Transition =
         Label       : Label
         TrPayload   : TrPayload    
         Assertion   : Assertion
+        Inferred    : Inferred
         EventType   : EventType
         Next        : Next
     }
@@ -57,9 +59,10 @@ type Transition =
         let (EventType eventType)   = this.EventType
         let (Next next)             = this.Next
         let (Assertion assertion)   = this.Assertion
+        let (Inferred inferred)     = this.Inferred
 
         sprintf
-            """{ "currentState": %i , "localRole":"%s" , "partner":"%s" , "label":"%s" , "payload": %s , "assertion": "%s", "type":"%s" , "nextState":%i  } """        
+            """{ "currentState": %i , "localRole":"%s" , "partner":"%s" , "label":"%s" , "payload": %s , "assertion": "%s", "inferred": "%s", "type":"%s" , "nextState":%i  } """        
             current
             role
             partner
@@ -70,6 +73,7 @@ type Transition =
                 printListJson payload
             )
             assertion
+            inferred
             eventType
             next         
 
@@ -113,7 +117,7 @@ module parserHelper =
         many1Satisfy isVar .>> spaces
     let expr:Parser<_, unit> = 
         let normalChar 
-            = satisfy (fun c -> c <> ';' && c<>'\\' && c<>'\"')
+            = satisfy (fun c -> c <> ';' && c<>'\\' && c<>'\"' && c<>'}'&& c<>',')
         (manyChars normalChar) 
     // pstring "\"" .>> spaces .>> pstring "];" >>. spaces
 
@@ -172,28 +176,65 @@ module parserHelper =
         spaces  >>. (sepBy singlePayload (pstring ",")) .>> (pstring ")")
         |>> TrPayload           
     //(pstring ")\"" >>. spaces >>. pstring "];" >>. spaces)    
-    let assertion:Parser<_,unit> =
+    //type AssertionInferred = AssertionInferred of Assertion*Inferred
+
+    let assertionPlus:Parser<_,unit> =     
+        let varName = manyChars (noneOf [',';')'; ':']) 
+        
+        (*let singleRecord = pipe3 (spaces >>.varName) (pstring ":") (spaces >>. expr) 
+                                 (fun name _ varExpr -> (sprintf "%s" name, sprintf "%s" varExpr))
+        let inferredAll = spaces >>. (sepBy singleRecord (pstring ",")) .>> (pstring "}")
+        //|>> Inferred*)
+        let infFragment = spaces >>. (between (pstring "{")  (pstring "}") expr)
+           
         let endOfPayload = pstring "\"" >>. spaces >>. pstring "];" >>. spaces
-        ((endOfPayload |>> fun x -> "") <|> ((pstring "@" >>. (between (pstring "\\\"")  (pstring "\\\"") expr))  .>> endOfPayload)) 
-        |>> Assertion
+
+        let assrt = (endOfPayload |>> (fun x -> Assertion(""), Inferred("")))
+                    // <|> ((((spaces >>. (between (pstring "{")  (pstring "}") expr))  .>> endOfPayload)) |>> Inferred)
+                    <|> ((infFragment  .>> endOfPayload) |>> (fun x -> Assertion(""), Inferred(x)))
+                    <|> pipe2  (pstring "@" >>. (between (pstring "\\\"")  (pstring "\\\"") expr))  
+                               ((endOfPayload |>> fun x -> "") <|> ((infFragment .>> endOfPayload) |> (fun x -> x))) 
+                               (fun ass maybeInferred -> 
+                                    if (maybeInferred <> "") 
+                                    then Assertion(ass), Inferred(maybeInferred) 
+                                    else Assertion(ass), Inferred("")
+                                )
+        assrt
+      // assrt |>> AssertionInferred
+
+   (* let inferred:Parser<_, unit> = 
+        let varName = manyChars (noneOf [',';')'; ':']) 
+        let singleRecord = pipe3 (spaces >>.varName) (pstring ":") (spaces >>. expr) 
+                                 (fun name _ varExpr -> (sprintf "%s" name, sprintf "%s" varExpr))
+        spaces >>. (sepBy singleRecord (pstring ",")) .>> (pstring "}")
+        |>> Inferred
+        // between (pstring "{") (pstring "}")  
+
+    endOfPayload |>> 
+    inferred <|> assertion <|> assertion inferred *)
+    (*let inferred: Parser<_,unit> = 
+        //let endOfPayload = pstring "\"" >>. spaces >>. pstring "];" >>. spaces
+        endOfPayload |>> fun x -> [sprintf "", "" ]
+        |>> Inferred *)
 
     let transition role currentState =
-        parse{
+        parse {
             let! _ = pstring "->"
             let! nextState = next
             let! _ = pstring "["
             let! partner,eventType = partnerEvent
             let! label = label
             let! payload = payload
-            let! assertion = assertion
+            let! (assertion, inferred) = assertionPlus
             return 
                 {
                     Current     = currentState
                     Role        = Role role
                     Partner     = partner
                     Label       = label
-                    TrPayload     = payload
-                    Assertion   = assertion      
+                    TrPayload   = payload
+                    Assertion   = assertion
+                    Inferred    = inferred      
                     EventType   = eventType
                     Next        = nextState
                 } |> Some
@@ -227,7 +268,7 @@ module Parsing =
     open parserHelper
     type ScribbleAPI = FSharp.Data.JsonProvider<""" { "code":"Code", "proto":"global protocol", "role":"local role" } """>
     type DiGraph = FSharp.Data.JsonProvider<""" {"result":"value"} """>
-    type ScribbleProtocole = FSharp.Data.JsonProvider<""" [ { "currentState":0 , "localRole":"StringLocalRole" , "partner":"StringPartner" , "label":"StringLabel" , "payload":[{"varName":"someZ", "varType":"someType"}] , "assertion":"expression", "type":"EventType" , "nextState":0  } ] """>
+    type ScribbleProtocole = FSharp.Data.JsonProvider<""" [ { "currentState":0 , "localRole":"StringLocalRole" , "partner":"StringPartner" , "label":"StringLabel" , "payload":[{"varName":"someZ", "varType":"someType"}] , "assertion":"expression", "inferred":"bla", "type":"EventType" , "nextState":0  } ] """>
                         
 
     let isCurrentChoice (fsm:ScribbleProtocole.Root []) (index:int) =
@@ -243,7 +284,7 @@ module Parsing =
         for i in 0..(fsm.Length-1) do
             let elem = fsm.[i]
             if elem.Type = "receive" && (isCurrentChoice fsm i) then
-                let newElem = ScribbleProtocole.Root(elem.CurrentState,elem.LocalRole,elem.Partner,elem.Label,elem.Payload, elem.Assertion,"choice",elem.NextState)
+                let newElem = ScribbleProtocole.Root(elem.CurrentState,elem.LocalRole,elem.Partner,elem.Label,elem.Payload, elem.Assertion, elem.Inferred, "choice",elem.NextState)
                 newArray <- Array.append newArray [|newElem|]            
             else
             newArray <- Array.append newArray [|elem|]
@@ -293,6 +334,7 @@ module Parsing =
                                 Label       = tr.Label |> Label
                                 TrPayload   = tr.Payload |> List.ofArray |> transformJsonToPayload typesMap |> TrPayload
                                 Assertion   = tr.Assertion |> genLambdaFromStr |> Assertion
+                                Inferred    = tr.Inferred |> Inferred
                                 EventType   = tr.Type |> EventType
                                 Next        = tr.NextState |> Next
                             }  

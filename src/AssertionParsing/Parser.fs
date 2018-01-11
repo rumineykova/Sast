@@ -120,7 +120,7 @@ module AssertionParser =
     allRef := oppb.ExpressionParser
 
 
-        // The full parser, terminating with an EOF marker
+    // The full parser, terminating with an EOF marker
     let xparser = ws >>. all .>> ws .>> eof
     
     let parse expr = 
