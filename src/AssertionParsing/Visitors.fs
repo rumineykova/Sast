@@ -12,7 +12,7 @@ module Visitors =
             identifier
         | UnaryOp(op, right) -> 
             sprintf "%s%s" (op.ToString()) (getStringRepr right)
-        | Not(expr) -> 
+        | Not(expr) ->
             sprintf "not %s" (getStringRepr expr)
         | Arithmetic(left, op, right) 
         | Comparison(left, op, right) 
@@ -29,6 +29,25 @@ module Visitors =
             | Eq -> true
             | _ -> false
         | _ -> false 
+
+    let myDict = dict["x", 2; "y", 3]
+    let rec getQExpr node = 
+        match node with
+        | Literal(Bool(value)) -> 
+            Quotations.Expr.Value(value)
+        | Literal(IntC(value)) -> 
+            Quotations.Expr.Value(value)
+        | Ident(identifier) -> 
+            //Quotations.Expr.Var(new Quotations.Var(identifier, typeof<int>))
+            //let getVal = myDict.Item identifier 
+            <@@ myDict.Item identifier @@>
+            //Quotations.Expr.Value(getVal)
+
+        | Arithmetic(left, op, right) -> 
+            let leftExpr = getQExpr left
+            let rightExpr = getQExpr right
+            let res = Quotations.Expr.Applications(op.ToExpr(), [[leftExpr]; [rightExpr]]) 
+            res 
 
     let rec getVars node = 
         match node with

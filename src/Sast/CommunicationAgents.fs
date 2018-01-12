@@ -42,7 +42,7 @@ type VarCache()=
 
 let createCache = new VarCache()
 
-let doPrinting = false
+let doPrinting = true
 let printing message data =
     if doPrinting then
         printfn "%s %A" message data

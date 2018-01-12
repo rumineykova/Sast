@@ -69,8 +69,7 @@ let serPayloads (args:Expr list) (listTypes:string list) (payloadDelim:string) (
                     let ranFoo = 
                         // No Assertion provided
                         if foo <> "" then 
-                            
-                            Regarder.addArgValueToAssertionDict "agent" argName spliced
+                            Regarder.addArgValueToAssertionDict "agent" argName spliced                            
                             Regarder.runFooFunction "agent" foo
                         else
                             Some true
@@ -215,8 +214,7 @@ let deserializeAsync (args: Expr list)  (listTypes:string list) (messages: _ lis
                     let received = (res.Tail |> convert <| listTypes )
 
                     let ranFoo = 
-                        // No Assertion provided
-                        
+                        // No Assertion provided     
                         if foo <> "" then 
                             (argsNames,received)
                             ||> List.map2(fun argName rcv -> Regarder.addArgValueToAssertionDict "agent" argName rcv )

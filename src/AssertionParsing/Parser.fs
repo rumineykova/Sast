@@ -6,7 +6,7 @@ namespace AssertionParsing
 
 open System.Text.RegularExpressions
 open FParsec
-
+open Microsoft.FSharp
 //===============
 
 type Op =
@@ -27,6 +27,15 @@ type Op =
                 | GTEq -> ">="  
                 | AndOp -> "&&"
                 | OrOp -> "||"
+            
+            member x.ToExpr() = 
+                match x with 
+                    | Plus -> <@ (+) @>
+                    | Subtract -> <@ (-) @>
+                    | Multiply -> <@ (*) @>
+                    | _ -> failwith "Only arithmetic operations are supported"
+
+       
 
 type identifier = string 
          
@@ -141,3 +150,23 @@ module AssertionParser =
         run xparser "x<y && x>10" |> ignore
         run xparser "x<y" |> ignore*)
 
+type InferredVars = InferredVars of Map<string, Expr>
+module InferredVarsParser = 
+    module InternalInferredVars = 
+        let varName = manyChars (noneOf [',';')'; ':']) 
+        let myExpr:Parser<_, unit> = 
+            let normalChar 
+                = satisfy (fun c -> c <> ';' && c<>'\\' && c<>'\"' && c<>'}'&& c<>',')
+            (manyChars normalChar) 
+
+        let singleRecord = pipe3 (spaces >>.varName) (pstring ":") (spaces >>. myExpr) 
+                                     (fun name _ varExpr -> (sprintf "%s" name, sprintf "%s" varExpr))
+    
+        let all = spaces  >>. (sepBy singleRecord (pstring ","))  .>> spaces .>> eof |>> dict
+    
+    let parseInfVars infMap = 
+        match (run InternalInferredVars.all infMap) with 
+            | Failure (error,_,_) -> 
+                printfn "%s" error
+                None
+            | Success (res,_,_) -> Some res

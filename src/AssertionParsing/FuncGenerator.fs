@@ -21,3 +21,7 @@ module FuncGenerator =
         | Some res -> genLambdaFromExpr res 
         | None -> ""
     
+    let parseAssertionExpr expr =
+       match (parse expr) with 
+        | Some res -> res 
+        | None -> failwith "Empty expression"

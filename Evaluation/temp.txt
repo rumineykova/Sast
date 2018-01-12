@@ -9688,3 +9688,856 @@ From the cache: 3560
 Assembly: 0 
 After Type generation: 32 
 From the cache: 950 
+Assembly: 24 
+After Type generation: 520 
+From the cache: 3638 
+From the cache: 330162 
+From the cache: 12 
+From the cache: 967 
+Assembly: 0 
+After Type generation: 70 
+From the cache: 767 
+From the cache: 149 
+Assembly: 0 
+After Type generation: 56 
+From the cache: 938 
+Assembly: 0 
+After Type generation: 49 
+From the cache: 948 
+Assembly: 30 
+After Type generation: 492 
+From the cache: 3782 
+Assembly: 36 
+After Type generation: 630 
+Assembly: 25 
+After Type generation: 545 
+From the cache: 3760 
+Assembly: 37 
+After Type generation: 745 
+Assembly: 38 
+After Type generation: 655 
+Assembly: 37 
+After Type generation: 636 
+Assembly: 24 
+After Type generation: 487 
+From the cache: 3789 
+Assembly: 0 
+Assembly: 0 
+Assembly: 38 
+Assembly: 24 
+Assembly: 0 
+After Type generation: 49700 
+From the cache: 3730 
+From the cache: 314 
+From the cache: 25363 
+From the cache: 18264 
+From the cache: 14183 
+From the cache: 2024 
+From the cache: 1015 
+From the cache: 1018 
+From the cache: 9107 
+From the cache: 12 
+From the cache: 1014 
+From the cache: 9 
+From the cache: 988 
+Assembly: 0 
+After Scribble Compiler: 691 
+After Parsing : 16 
+After Type generation: 8 
+From the cache: 328 
+From the cache: 19242 
+From the cache: 4053 
+From the cache: 5056 
+From the cache: 32629 
+From the cache: 16 
+From the cache: 989 
+From the cache: 137991 
+From the cache: 13 
+From the cache: 1999 
+From the cache: 13 
+From the cache: 999 
+Assembly: 0 
+After Type generation: 29871 
+From the cache: 2005 
+From the cache: 1009 
+From the cache: 2005 
+From the cache: 18 
+From the cache: 1016 
+From the cache: 15212 
+From the cache: 10140 
+From the cache: 13176 
+From the cache: 1016 
+From the cache: 3025 
+From the cache: 3056 
+From the cache: 2003 
+From the cache: 4063 
+From the cache: 2008 
+From the cache: 4071 
+From the cache: 18 
+From the cache: 991 
+From the cache: 2033 
+From the cache: 4052 
+From the cache: 14191 
+From the cache: 1014 
+From the cache: 1021 
+From the cache: 4051 
+From the cache: 5054 
+From the cache: 13 
+From the cache: 1006 
+From the cache: 7090 
+From the cache: 21 
+From the cache: 992 
+From the cache: 1024 
+From the cache: 13 
+From the cache: 4029 
+From the cache: 5096 
+From the cache: 20 
+From the cache: 994 
+Assembly: 25 
+After Type generation: 508 
+From the cache: 1496 
+Assembly: 25 
+After Type generation: 487 
+Assembly: 25 
+After Type generation: 362 
+After Type generation: 543917 
+After Type generation: 1049539 
+From the cache: 985 
+From the cache: 1002 
+From the cache: 4066 
+From the cache: 996 
+From the cache: 2031 
+From the cache: 9 
+From the cache: 991 
+From the cache: 1022 
+From the cache: 11 
+From the cache: 1017 
+Assembly: 0 
+After Type generation: 44 
+From the cache: 958 
+Assembly: 25 
+After Type generation: 344 
+From the cache: 587 
+After Type generation: 185996 
+Assembly: 26 
+After Type generation: 376 
+From the cache: 56224 
+Assembly: 0 
+After Type generation: 39 
+From the cache: 1012 
+From the cache: 22 
+From the cache: 984 
+From the cache: 19630 
+From the cache: 166675 
+Assembly: 32 
+After Type generation: 412 
+From the cache: 235310 
+Assembly: 27 
+After Type generation: 565 
+From the cache: 2530 
+Assembly: 26 
+After Type generation: 415 
+Assembly: 24 
+After Type generation: 524 
+From the cache: 854 
+From the cache: 1707 
+Assembly: 23 
+After Type generation: 341 
+From the cache: 81056 
+From the cache: 1011 
+From the cache: 1017 
+From the cache: 8118 
+From the cache: 1013 
+From the cache: 2033 
+From the cache: 2018 
+From the cache: 5069 
+From the cache: 3044 
+From the cache: 1008 
+From the cache: 2019 
+From the cache: 2031 
+From the cache: 3045 
+From the cache: 2017 
+From the cache: 2029 
+From the cache: 11147 
+From the cache: 1013 
+From the cache: 5072 
+From the cache: 3040 
+From the cache: 2023 
+From the cache: 5069 
+From the cache: 2030 
+From the cache: 4055 
+From the cache: 17 
+From the cache: 20 
+From the cache: 972 
+From the cache: 17 
+From the cache: 994 
+From the cache: 243353 
+From the cache: 155617 
+Assembly: 24 
+After Type generation: 375 
+Assembly: 25 
+After Type generation: 353 
+From the cache: 418433 
+From the cache: 2023 
+From the cache: 2024 
+From the cache: 15 
+From the cache: 991 
+From the cache: 14 
+From the cache: 1006 
+From the cache: 9 
+From the cache: 992 
+Assembly: 25 
+After Type generation: 376 
+Assembly: 28 
+After Type generation: 409 
+From the cache: 253508 
+From the cache: 3037 
+From the cache: 3039 
+From the cache: 13 
+From the cache: 1000 
+From the cache: 85179 
+From the cache: 11 
+From the cache: 993 
+From the cache: 9123 
+From the cache: 1011 
+From the cache: 3067 
+From the cache: 989 
+From the cache: 3089 
+From the cache: 2060 
+From the cache: 1005 
+From the cache: 18 
+From the cache: 1024 
+From the cache: 998 
+From the cache: 28393 
+From the cache: 1006 
+From the cache: 1012 
+From the cache: 1010 
+From the cache: 1024 
+From the cache: 2111 
+From the cache: 1027 
+From the cache: 1022 
+From the cache: 6233 
+From the cache: 2038 
+From the cache: 22 
+From the cache: 988 
+From the cache: 20 
+From the cache: 988 
+From the cache: 8499 
+From the cache: 20 
+From the cache: 990 
+From the cache: 22 
+From the cache: 1003 
+From the cache: 45648 
+From the cache: 9 
+From the cache: 996 
+From the cache: 40555 
+From the cache: 11 
+From the cache: 1007 
+From the cache: 191462 
+From the cache: 190780 
+Assembly: 23 
+After Type generation: 371 
+Assembly: 24 
+After Type generation: 355 
+Assembly: 0 
+After Type generation: 45 
+From the cache: 933 
+From the cache: 6084 
+From the cache: 2025 
+From the cache: 1012 
+From the cache: 9 
+From the cache: 997 
+From the cache: 6090 
+From the cache: 1005 
+From the cache: 276945 
+From the cache: 1018 
+From the cache: 8110 
+From the cache: 4051 
+From the cache: 14 
+From the cache: 1000 
+Assembly: 24 
+After Type generation: 376 
+Assembly: 25 
+After Type generation: 414 
+Assembly: 25 
+After Type generation: 372 
+Assembly: 33 
+After Type generation: 378 
+From the cache: 85169 
+From the cache: 3035 
+From the cache: 3043 
+From the cache: 5064 
+From the cache: 1020 
+From the cache: 3043 
+From the cache: 1017 
+From the cache: 3025 
+From the cache: 9124 
+From the cache: 23 
+From the cache: 985 
+From the cache: 1020 
+From the cache: 14 
+From the cache: 1000 
+From the cache: 147023 
+From the cache: 4059 
+From the cache: 1013 
+From the cache: 3034 
+From the cache: 1010 
+From the cache: 3048 
+From the cache: 1007 
+From the cache: 2024 
+From the cache: 1011 
+From the cache: 4056 
+From the cache: 2023 
+From the cache: 12 
+From the cache: 1002 
+From the cache: 10 
+From the cache: 1004 
+Assembly: 23 
+After Type generation: 380 
+Assembly: 26 
+After Type generation: 369 
+From the cache: 306219 
+From the cache: 420 
+From the cache: 580 
+From the cache: 1012 
+From the cache: 1013 
+From the cache: 2026 
+From the cache: 1022 
+From the cache: 1006 
+From the cache: 2027 
+From the cache: 1018 
+From the cache: 1007 
+From the cache: 1010 
+From the cache: 53741 
+From the cache: 1016 
+From the cache: 1911 
+From the cache: 2146 
+From the cache: 1018 
+From the cache: 1017 
+From the cache: 5064 
+From the cache: 1013 
+From the cache: 914 
+From the cache: 2125 
+From the cache: 2027 
+From the cache: 2086 
+From the cache: 1012 
+From the cache: 1041 
+From the cache: 1031 
+From the cache: 2079 
+From the cache: 2060 
+From the cache: 1059 
+From the cache: 1059 
+From the cache: 52424 
+From the cache: 116600 
+From the cache: 17235 
+From the cache: 5074 
+From the cache: 1010 
+From the cache: 3047 
+From the cache: 1012 
+From the cache: 1000 
+From the cache: 2028 
+From the cache: 27380 
+From the cache: 1018 
+From the cache: 4053 
+From the cache: 1011 
+From the cache: 3039 
+From the cache: 3039 
+From the cache: 1012 
+From the cache: 6097 
+From the cache: 1012 
+From the cache: 1012 
+From the cache: 26358 
+From the cache: 2026 
+From the cache: 3040 
+From the cache: 1014 
+From the cache: 1018 
+From the cache: 1016 
+From the cache: 3035 
+From the cache: 1014 
+From the cache: 2034 
+From the cache: 2013 
+From the cache: 1010 
+From the cache: 1012 
+From the cache: 2031 
+From the cache: 13180 
+From the cache: 3039 
+From the cache: 7095 
+From the cache: 3042 
+From the cache: 2018 
+From the cache: 2033 
+From the cache: 3035 
+From the cache: 8114 
+From the cache: 31462 
+From the cache: 3046 
+From the cache: 5059 
+From the cache: 58804 
+From the cache: 11154 
+From the cache: 19262 
+From the cache: 1014 
+From the cache: 2020 
+From the cache: 4054 
+From the cache: 7098 
+From the cache: 2026 
+From the cache: 2030 
+From the cache: 1014 
+From the cache: 1014 
+From the cache: 10126 
+From the cache: 1022 
+From the cache: 1004 
+From the cache: 1012 
+From the cache: 8118 
+From the cache: 1006 
+From the cache: 5063 
+From the cache: 4057 
+From the cache: 2019 
+From the cache: 1012 
+From the cache: 9127 
+From the cache: 1014 
+From the cache: 1005 
+From the cache: 1017 
+From the cache: 37514 
+From the cache: 1018 
+From the cache: 2026 
+From the cache: 1012 
+From the cache: 1003 
+From the cache: 3050 
+From the cache: 1010 
+From the cache: 11 
+From the cache: 993 
+From the cache: 2021 
+From the cache: 9 
+From the cache: 1004 
+Assembly: 24 
+After Type generation: 383 
+Assembly: 26 
+After Type generation: 481 
+From the cache: 39538 
+From the cache: 3044 
+From the cache: 3032 
+From the cache: 1017 
+From the cache: 1008 
+From the cache: 17 
+From the cache: 2364 
+Assembly: 24 
+After Type generation: 406 
+Assembly: 29 
+After Type generation: 412 
+Assembly: 24 
+After Type generation: 443 
+From the cache: 559 
+Assembly: 24 
+Assembly: 24 
+Assembly: 24 
+After Type generation: 374 
+Assembly: 0 
+After Type generation: 10239 
+From the cache: 3710 
+From the cache: 252 
+From the cache: 2020 
+From the cache: 10 
+From the cache: 998 
+Assembly: 0 
+After Type generation: 51 
+From the cache: 936 
+Assembly: 24 
+After Type generation: 394 
+Assembly: 25 
+After Type generation: 402 
+After Type generation: 455193 
+From the cache: 304 
+From the cache: 683 
+From the cache: 14 
+From the cache: 992 
+From the cache: 2031 
+From the cache: 14 
+From the cache: 997 
+From the cache: 26 
+From the cache: 984 
+From the cache: 13 
+From the cache: 997 
+From the cache: 2035 
+From the cache: 1011 
+From the cache: 13 
+From the cache: 992 
+From the cache: 3045 
+From the cache: 23 
+From the cache: 986 
+From the cache: 21 
+From the cache: 985 
+Assembly: 24 
+After Type generation: 395 
+Assembly: 25 
+After Type generation: 393 
+Assembly: 26 
+After Type generation: 567 
+From the cache: 3910 
+Assembly: 26 
+After Type generation: 491 
+From the cache: 581 
+After Type generation: 42209 
+From the cache: 2011 
+From the cache: 2028 
+From the cache: 3044 
+From the cache: 2024 
+From the cache: 5078 
+From the cache: 21 
+From the cache: 1998 
+From the cache: 21 
+From the cache: 981 
+From the cache: 17 
+From the cache: 995 
+From the cache: 6081 
+From the cache: 23 
+From the cache: 992 
+From the cache: 46647 
+From the cache: 22296 
+From the cache: 1017 
+From the cache: 41570 
+From the cache: 20 
+From the cache: 992 
+Assembly: 0 
+After Type generation: 48 
+From the cache: 944 
+From the cache: 17242 
+From the cache: 8104 
+From the cache: 1020 
+After Type generation: 43299 
+From the cache: 229 
+From the cache: 767 
+From the cache: 13 
+From the cache: 992 
+From the cache: 19 
+From the cache: 996 
+From the cache: 18 
+From the cache: 986 
+From the cache: 9133 
+From the cache: 4045 
+From the cache: 18 
+From the cache: 993 
+From the cache: 1013 
+From the cache: 16 
+From the cache: 999 
+From the cache: 1008 
+From the cache: 8109 
+From the cache: 16 
+From the cache: 1001 
+From the cache: 16 
+From the cache: 990 
+Assembly: 40 
+After Type generation: 605 
+Assembly: 51 
+After Type generation: 483 
+From the cache: 544 
+From the cache: 47214 
+From the cache: 1009 
+From the cache: 4051 
+From the cache: 2031 
+From the cache: 17224 
+From the cache: 18 
+From the cache: 994 
+From the cache: 2032 
+Assembly: 35 
+After Type generation: 610 
+From the cache: 5486 
+After Type generation: 64250 
+From the cache: 369 
+From the cache: 597 
+From the cache: 5067 
+From the cache: 23 
+From the cache: 2002 
+From the cache: 24 
+From the cache: 993 
+Assembly: 31 
+After Type generation: 472 
+From the cache: 586 
+Assembly: 24 
+After Type generation: 479 
+From the cache: 3484 
+From the cache: 21137 
+From the cache: 15 
+From the cache: 1001 
+From the cache: 42197 
+From the cache: 15 
+From the cache: 990 
+Assembly: 24 
+After Type generation: 396 
+Assembly: 24 
+After Type generation: 405 
+Assembly: 24 
+After Type generation: 379 
+Assembly: 33 
+After Type generation: 404 
+Assembly: 25 
+After Type generation: 436 
+Assembly: 25 
+After Type generation: 462 
+After Type generation: 155958 
+From the cache: 989 
+From the cache: 1013 
+From the cache: 14 
+From the cache: 992 
+From the cache: 16 
+From the cache: 997 
+From the cache: 14 
+From the cache: 1002 
+From the cache: 2055 
+From the cache: 18 
+From the cache: 993 
+From the cache: 13 
+From the cache: 1007 
+From the cache: 12 
+From the cache: 985 
+Assembly: 25 
+After Type generation: 412 
+Assembly: 26 
+After Type generation: 442 
+After Type generation: 62959 
+From the cache: 487 
+From the cache: 482 
+From the cache: 17234 
+From the cache: 1012 
+From the cache: 18 
+From the cache: 993 
+From the cache: 9 
+From the cache: 1001 
+From the cache: 1439838 
+From the cache: 3045 
+From the cache: 107469 
+From the cache: 2024 
+From the cache: 4057 
+From the cache: 17235 
+From the cache: 3042 
+From the cache: 12 
+From the cache: 994 
+From the cache: 5074 
+From the cache: 15 
+From the cache: 989 
+From the cache: 3887552 
+From the cache: 3038 
+From the cache: 2032 
+From the cache: 1013 
+From the cache: 4056 
+From the cache: 2024 
+From the cache: 23317 
+From the cache: 6088 
+From the cache: 2015 
+From the cache: 1019 
+From the cache: 2039 
+From the cache: 5297 
+From the cache: 6231 
+From the cache: 1009 
+From the cache: 1014 
+From the cache: 2024 
+From the cache: 14193 
+From the cache: 12916 
+From the cache: 1308 
+From the cache: 2032 
+From the cache: 1005 
+From the cache: 160 
+From the cache: 1880 
+From the cache: 1000 
+From the cache: 4056 
+From the cache: 1012 
+From the cache: 1009 
+From the cache: 2034 
+From the cache: 7091 
+From the cache: 2035 
+From the cache: 3032 
+From the cache: 2028 
+From the cache: 2029 
+From the cache: 1004 
+From the cache: 1032 
+From the cache: 8115 
+From the cache: 3037 
+From the cache: 4055 
+From the cache: 15 
+From the cache: 3022 
+From the cache: 3036 
+From the cache: 1018 
+From the cache: 1005 
+From the cache: 3047 
+From the cache: 2025 
+From the cache: 472313 
+From the cache: 13 
+From the cache: 1000 
+Assembly: 25 
+After Type generation: 493 
+From the cache: 3754 
+From the cache: 17763 
+From the cache: 7090 
+From the cache: 1010 
+From the cache: 20 
+From the cache: 993 
+From the cache: 12 
+From the cache: 992 
+Assembly: 36 
+After Type generation: 635 
+Assembly: 36 
+After Type generation: 678 
+Assembly: 41 
+After Type generation: 688 
+Assembly: 38 
+After Type generation: 655 
+Assembly: 48 
+After Type generation: 765 
+Assembly: 36 
+After Type generation: 704 
+Assembly: 44 
+After Type generation: 735 
+Assembly: 428 
+After Type generation: 681 
+From the cache: 45169 
+Assembly: 23 
+After Type generation: 503 
+From the cache: 3579 
+Assembly: 23 
+After Type generation: 476 
+From the cache: 544 
+After Type generation: 58263 
+From the cache: 322 
+From the cache: 674 
+Assembly: 0 
+After Type generation: 50 
+From the cache: 921 
+From the cache: 4063 
+From the cache: 1001 
+From the cache: 11153 
+From the cache: 3043 
+From the cache: 5072 
+From the cache: 2021 
+From the cache: 1013 
+From the cache: 24 
+From the cache: 986 
+From the cache: 1008 
+From the cache: 19 
+From the cache: 989 
+From the cache: 3048 
+From the cache: 17 
+From the cache: 1013 
+Assembly: 25 
+After Type generation: 409 
+Assembly: 24 
+After Type generation: 380 
+After Type generation: 122723 
+From the cache: 347 
+From the cache: 641 
+From the cache: 9130 
+From the cache: 13 
+From the cache: 992 
+From the cache: 4058 
+From the cache: 1022 
+From the cache: 4044 
+From the cache: 1016 
+From the cache: 2030 
+From the cache: 3038 
+From the cache: 1015 
+From the cache: 2022 
+From the cache: 1013 
+From the cache: 2026 
+From the cache: 18 
+From the cache: 992 
+From the cache: 27 
+From the cache: 985 
+After Type generation: 274452 
+From the cache: 556 
+From the cache: 430 
+Assembly: 0 
+After Type generation: 47 
+From the cache: 937 
+From the cache: 10171 
+From the cache: 6078 
+From the cache: 2033 
+From the cache: 6070 
+From the cache: 1014 
+From the cache: 2021 
+From the cache: 15 
+From the cache: 999 
+Assembly: 31 
+After Type generation: 533 
+From the cache: 3760 
+Assembly: 24 
+After Type generation: 514 
+From the cache: 611 
+Assembly: 24 
+After Type generation: 930 
+Assembly: 23 
+After Type generation: 457 
+From the cache: 107919 
+From the cache: 19 
+From the cache: 989 
+From the cache: 28410 
+From the cache: 12 
+From the cache: 996 
+From the cache: 12 
+From the cache: 1028 
+Assembly: 30 
+After Type generation: 520 
+From the cache: 3871 
+Assembly: 23 
+After Type generation: 508 
+From the cache: 628 
+Assembly: 24 
+After Type generation: 402 
+Assembly: 24 
+After Type generation: 392 
+Assembly: 24 
+After Type generation: 579 
+From the cache: 3825 
+Assembly: 25 
+After Type generation: 514 
+From the cache: 652 
+Assembly: 25 
+After Type generation: 472 
+Assembly: 24 
+After Type generation: 453 
+Assembly: 54 
+After Type generation: 522 
+From the cache: 3815 
+Assembly: 23 
+After Type generation: 543 
+From the cache: 676 
+Assembly: 24 
+After Type generation: 419 
+Assembly: 25 
+After Type generation: 399 
+Assembly: 23 
+After Type generation: 519 
+From the cache: 3813 
+Assembly: 23 
+After Type generation: 477 
+From the cache: 634 
+Assembly: 24 
+After Type generation: 462 
+Assembly: 24 
+After Type generation: 392 
+Assembly: 32 
+After Type generation: 522 
+From the cache: 3799 
+Assembly: 23 
+After Type generation: 488 
+From the cache: 676 
+Assembly: 25 
+After Type generation: 404 
+Assembly: 24 
+After Type generation: 377 
+Assembly: 28 
+After Type generation: 576 
+From the cache: 4029 
+Assembly: 24 
+After Type generation: 493 
+From the cache: 622 
+From the cache: 438 
+Assembly: 24 
+After Type generation: 435 
+Assembly: 30 
+After Type generation: 395 
+Assembly: 33 
+After Type generation: 506 
+From the cache: 3951 
+Assembly: 24 
+After Type generation: 519 
+From the cache: 628 
+Assembly: 23 
+After Type generation: 616 
+Assembly: 24 
+After Type generation: 393 

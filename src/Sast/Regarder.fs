@@ -60,6 +60,7 @@ let printCount name=
     cache.Item(name).Print()
 
 let addVars name (keys: string list) (values:int []) = 
+    printf "Adding values %s" (keys.Item 0)
     //List.zip keys values |> List.iter (fun (key, value)->  cache.Item(name).Add(key, value))
     keys |> List.iteri (fun i key ->  cache.Item(name).Add(key, values.[i]))
 
@@ -67,6 +68,12 @@ let addVarsBufs name (keys: string list) (values:Buf<int> []) =
     //List.zip keys values |> List.iter (fun (key, value)->  cache.Item(name).Add(key, value))
     keys |> List.iteri (fun i key ->  cache.Item(name).Add(key, values.[i].getValue()))
 
+let getFromToAssertionDict name elem =
+    printf "getting element %s" elem
+    let lm = cache.Item(name).Get(elem)
+    printf "Element %s retrieved" elem
+    lm
+    
 open ScribbleGenerativeTypeProvider.RefinementTypesDict
 
 let mutable assertionLookUp = Map.empty<string, LoopUpDict>

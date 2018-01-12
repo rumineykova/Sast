@@ -11,8 +11,8 @@ let delims = """ [ {"label" : "ADD", "delims": {"delim1": [":"] , "delim2": [","
 
 [<Literal>]
 let typeAliasing =
-    """ [ {"alias" : "int", "type": "System.Int32"} ] """
-
+    """ [ {"alias" : "int", "type": "System.Int32"}, 
+        {"alias" : "string", "type": "System.String"}] """
 type Fib = 
     Provided.TypeProviderFile<"../../../Examples/Fibonacci/FSM/FSMAsstS.txt"
                                ,"Adder"

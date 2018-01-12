@@ -6,7 +6,8 @@ open ScribbleGenerativeTypeProvider.RefinementTypes.RefinementTypes
 type LoopUpDict() =     
     let dictFunInfos = ConcurrentDictionary<string,FnRuleInfos>()
     let dictArgInfos = ConcurrentDictionary<string,ArgInfos>()
-   
+    let dictCacheVars = ConcurrentDictionary<string,ArgInfos>()
+
     let (|TryGetValueDict|_|) key (dict:ConcurrentDictionary<'a,'b>) =
         match dict.TryGetValue key with
         | true, args -> Some args
@@ -65,6 +66,7 @@ type LoopUpDict() =
     /// at runtime (we add the value, associated to an argument and provided by the user, inside the arguments dictionary. We will then grab the value and evaluate the 
     /// assertions with the values put at run-time. It's also done this way, for latter when we'll have compile-time solutions.)
     member x.addArgValue (argName:string) (value:obj) =
+        printfn  "Adding To dict %s" argName  
         match dictArgInfos with
         | TryGetValueDict argName args -> 
             let newArgs =
@@ -73,5 +75,6 @@ type LoopUpDict() =
                 } 
             x.addArgInfos newArgs
         | _ -> failwith "This arg hasn't been added yet to the dictionary"
-        
+    
+
 let createlookUp = new LoopUpDict()

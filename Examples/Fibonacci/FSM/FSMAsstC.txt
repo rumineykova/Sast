@@ -1,11 +1,11 @@
 digraph G {
 compound = true;
 "9" [ label="9: " ];
-"9" -> "11" [ label="S!HELLO(s: int)" ];
+"9" -> "11" [ label="S?HELLO(s: int)" ];
 "11" [ label="11: " ];
-"11" -> "12" [ label="S?HELLO(f: int)" ];
+"11" -> "12" [ label="S?HELLO(k: int, f:int)" ];
 "12" [ label="12: " ];
-"12" -> "13" [ label="S!HELLO(u: int)" ];
+"12" -> "13" [ label="S!HELLO(u: string)" ];
 "13" [ label="13: " ];
 "13" -> "14" [ label="S!ADD(y: int)" ];
 "14" [ label="14: " ];

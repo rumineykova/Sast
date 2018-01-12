@@ -7,6 +7,7 @@ open System.Reflection // necessary if we want to use the f# assembly
 open System.Threading.Tasks
 open System.Text
 open FSharp.Quotations.Evaluator
+open AssertionParsing.InferredVarsParser
 
 // ScribbleProvider specific namespaces and modules
 open ScribbleGenerativeTypeProvider.DomainModel
@@ -150,14 +151,20 @@ let rec findProvidedType (providedList:ProvidedTypeDefinition list) stateValue =
                    else
                        findProvidedType tl stateValue      
 
+let isVarInferred varName (inferredDict:System.Collections.Generic.IDictionary<string, string> option) = 
+    //let myDict = parseInfVars inferred
+    match inferredDict with 
+    | Some vars -> (vars.ContainsKey(varName))
+    | None -> false
+
 let internal createProvidedParameters (event : ScribbleProtocole.Root) (computedVars: Map<string, AssertionParsing.Expr>) =
     let generic = typeof<Buf<_>>.GetGenericTypeDefinition() 
     let payload = event.Payload
     let mutable n = 0
-
+    let myDict = parseInfVars event.Inferred 
     [for param in payload do
         n <- n+1
-        if not (computedVars.ContainsKey(param.VarName)) then 
+        if ((not (isVarInferred param.VarName myDict)) && (not (computedVars.ContainsKey(param.VarName)))) then 
             if param.VarType.Contains("[]") then
                 let nameParam = param.VarType.Replace("[]","")
                 let typing = System.Type.GetType(nameParam)
@@ -187,9 +194,10 @@ let internal payloadsToListStr (payloads:ScribbleProtocole.Payload []) =
     
     ]
 
-let internal payloadsToProvidedList (payloads:ScribbleProtocole.Payload []) (computedVars: Map<string, AssertionParsing.Expr>) =
+let internal payloadsToProvidedList (payloads:ScribbleProtocole.Payload []) (computedVars: Map<string, AssertionParsing.Expr>) inferred = 
+    let infDict = parseInfVars inferred
     [for i in 0 ..(payloads.Length-1) do 
-            if not (computedVars.ContainsKey(payloads.[i].VarName)) then 
+            if (not (isVarInferred payloads.[i].VarName infDict)) && not (computedVars.ContainsKey(payloads.[i].VarName)) then 
                 yield ProvidedParameter((payloads.[i].VarName),System.Type.GetType(payloads.[i].VarType))
     ]
 
@@ -388,10 +396,50 @@ let internal getAllChoiceLabelString (indexList : int list) (fsmInstance:Scribbl
                        aux tl (labelBytes::acc) 
     in aux indexList []
 
+
+let rec getQExpr (node:AssertionParsing.Expr) = 
+    match node with
+    | AssertionParsing.Expr.Ident(identifier) -> 
+        //Quotations.Expr.Var(new Quotations.Var(identifier, typeof<int>))
+        
+        //let spliced = Expr.Value(identifier)
+        <@@ Regarder.getFromToAssertionDict "cache" identifier @@>
+        //Quotations.Var(new Quotations.Expr.Value(getVal))
+    | AssertionParsing.Expr.Literal(AssertionParsing.Bool(value)) -> 
+        Quotations.Expr.Value(value)
+    | AssertionParsing.Expr.Literal(AssertionParsing.IntC(value)) -> 
+        Quotations.Expr.Value(value)
+    | AssertionParsing.Expr.Arithmetic(left, op, right) -> 
+        let leftExpr = getQExpr left
+        let rightExpr = getQExpr right 
+        Quotations.Expr.Applications(op.ToExpr(), [[leftExpr]; [rightExpr]]) 
+
+let mergeBuffersAndPayloads (payloads: string list) 
+                            (inferred:System.Collections.Generic.IDictionary<string, string>) 
+                            (buffers:Expr list) = 
+    let mutable index = 0
+    if (inferred.Count = 0) then buffers
+    else 
+        payloads |> List.map (fun elem -> 
+                              if (inferred.ContainsKey(elem)) 
+                                then let res = inferred.Item elem
+                                     let parsedExpr = AssertionParsing.FuncGenerator.parseAssertionExpr res
+                                     getQExpr parsedExpr
+                                     //Expr.Coerce(newExpr,typeof<obj>)
+
+                              else let res = buffers.Item index
+                                   let index= index + 1
+                                   res)
+
 let invokeCodeOnSend (args:Expr list) (payload: ScribbleProtocole.Payload [])  (payloadDelim: string List) 
-                    (labelDelim : string List)  (endDelim: string List)  (nameLabel:string) exprState role fullName (event:ScribbleProtocole.Root) = 
+                    (labelDelim : string List)  (endDelim: string List)  (nameLabel:string) 
+                    exprState role fullName (event:ScribbleProtocole.Root) = 
     let buffers = args.Tail.Tail                                                         
-    let payloadNames = (payloadsToListStr payload )
+    let payloadNames = (payloadsToListStr payload)
+    let newBufs = match parseInfVars event.Inferred with 
+                    |Some inferred -> mergeBuffersAndPayloads payloadNames inferred buffers
+                    |None -> buffers
+
     let types = payloadsToList payload
     let assertionString = event.Assertion
     
@@ -410,7 +458,7 @@ let invokeCodeOnSend (args:Expr list) (payload: ScribbleProtocole.Payload [])  (
    
     //let buf = ser buffers
     let exprAction = 
-        <@@ let buf = %(serialize fullName buffers types (payloadDelim.Head) (endDelim.Head) (labelDelim.Head) argsName fooName)
+        <@@ let buf = %(serialize fullName newBufs types (payloadDelim.Head) (endDelim.Head) (labelDelim.Head) argsName fooName)
             Regarder.sendMessage "agent" (buf:byte[]) role @@>
 
     let fn eq =
@@ -420,11 +468,11 @@ let invokeCodeOnSend (args:Expr list) (payload: ScribbleProtocole.Payload [])  (
     let exprAction = 
         Expr.Sequential(<@@ %(fn false) @@>,exprAction)
                                                      
-    let cachingSupported = types |> List.filter (fun x -> x <> "Syste,.Int32") 
+    let cachingSupported = types |> List.filter (fun x -> x <> "System.Int32") 
                                         |> List.length |> (fun x -> x=0) 
     if (cachingSupported=true) then 
         let addToCacheExpr = 
-            <@@ let myValues:int [] = (%%(Expr.NewArray(typeof<int>, buffers)):int []) 
+            <@@ let myValues:int [] = (%%(Expr.NewArray(typeof<int>, newBufs)):int []) 
                 Regarder.addVars "cache" payloadNames myValues  
                 @@>
         let exprAction = Expr.Sequential(addToCacheExpr, exprAction)
@@ -477,7 +525,7 @@ let invokeCodeOnReceive (args:Expr list) (payload: ScribbleProtocole.Payload [])
     let exprDes = 
         Expr.Sequential(<@@ printing "METHOD USED : Receive + Label = " nameLabel @@>,exprDes)
                                                             
-    let cachingSupported = listPayload |> List.filter (fun x -> x <> "Syste,.Int32") 
+    let cachingSupported = listPayload |> List.filter (fun x -> x <> "System.Int32") 
                                 |> List.length |> (fun x -> x=0) 
     if (cachingSupported=true) then 
         let payloadNames = (payloadsToListStr payload)
@@ -535,7 +583,6 @@ let generateMethod aType (methodName:string) listParam nextType (errorMessage:st
             let labelDelim, payloadDelim, endDelim = getDelims fullName
             let decode = new System.Text.UTF8Encoding()
             let message = Array.append (decode.GetBytes(fullName)) (decode.GetBytes(labelDelim.Head))
-            
             let myMethod = 
                 ProvidedMethod(methodName+nameLabel, listParam, nextType,
                     IsStaticMethod = false,
@@ -649,7 +696,7 @@ let generateMethodParams (fsmInstance:ScribbleProtocole.Root []) idx (providedLi
                 
     let listTypes = 
         match methodName with
-            |"send" -> payloadsToProvidedList event.Payload variablesMap
+            |"send" -> payloadsToProvidedList event.Payload variablesMap event.Inferred
             |"receive" -> createProvidedParameters event variablesMap
             | _ -> []
                 

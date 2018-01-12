@@ -5,6 +5,7 @@ open Microsoft.FSharp.Compiler.Interactive.Shell
 open Microsoft.FSharp.Compiler.SourceCodeServices
 open Microsoft.FSharp.Quotations
 open ProviderImplementation.ProvidedTypes
+open AssertionParsing
 
 open System.Reflection 
 open System.Text

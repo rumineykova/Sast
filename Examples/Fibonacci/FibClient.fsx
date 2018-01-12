@@ -14,16 +14,17 @@ let delims = """ [ {"label" : "ADD", "delims": {"delim1": [":"] , "delim2": [","
 
 
 [<Literal>]
-let typeAliasing1 = """ [ {"alias" : "int", "type": "System.Int32"} ] """
+let typeAliasing1 = """ [ {"alias" : "int", "type": "System.Int32"}, 
+                          {"alias" : "string", "type": "System.String"}] """
 
 type Fib = 
-    Provided.TypeProviderFile<"../../../Examples/Fibonacci/FibnoAss.scr"
+    Provided.TypeProviderFile<"../../../Examples/Fibonacci/FSM/FSMAsstC.txt"
                                ,"Adder"
                                ,"C"
                                ,"../../../Examples/Fibonacci/config.yaml"
                                ,Delimiter=delims
                                ,TypeAliasing=typeAliasing1
-                               ,ScribbleSource = ScribbleSource.LocalExecutable
+                               ,ScribbleSource = ScribbleSource.File
                                ,ExplicitConnection=false 
                                ,AssertionsOn=true>
 
@@ -55,7 +56,7 @@ let rec fibrec a b iter (c0:Fib.State12) =
     //let res2 = new DomainModel.Buf<int>()
     //let res1 = new DomainModel.Buf<int>()
     //printfn "number of iter: %d" (numIter - iter)
-    let c = c0.sendHELLO(S, 1)
+    let c = c0.sendHELLO(S, "1")
     //printfn "Result received: %d" (res2.getValue())
     match iter with
         |0 -> 
@@ -88,9 +89,17 @@ let rec fibrec a b iter (c0:Fib.State12) =
 
 let fibo = new Fib()
 let r = new DomainModel.Buf<int>()
+let newS = new DomainModel.Buf<int>()
+let f = new DomainModel.Buf<int>()
 let first = fibo.Start()//.request(S)
-let snd = first.sendHELLO(S, 1).receiveHELLO(S, r)
-TimeMeasure.start()
-let s = sprintf "TP measure with assertions in the code for: %i" numIter
-TimeMeasure.measureTime s
-snd |> fibrec 1 1 numIter
+let snd = first.receiveHELLO(S, newS)
+printfn "Just sent"
+
+let thr = snd.receiveHELLO(S, r, f)
+
+printfn "The received values are %i and %i" (r.getValue()) (f.getValue())
+
+//TimeMeasure.start()
+//let s = sprintf "TP measure with assertions in the code for: %i" numIter
+//TimeMeasure.measureTime s
+thr |> fibrec 1 1 2
