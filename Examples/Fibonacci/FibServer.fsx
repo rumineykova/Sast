@@ -37,10 +37,10 @@ let rec fibServer (c0:Fib.State26) =
     //printfn "After receive once"
     match c.branch() with 
         | :? Fib.BYE as bye-> 
-            //printfn"receive bye"
+            printfn"receive bye"
             bye.receive(C).sendBYE(C).finish()
         | :? Fib.ADD as add -> 
-            //printfn"receive add" 
+            printfn"receive add" 
             let c1 = add.receive(C, res1)
             let c2 = c1.sendRES(C, res1.getValue())
             fibServer c2
@@ -49,7 +49,7 @@ let session = new Fib()
 
 let r = new DomainModel.Buf<int>()
 let sessionCh = session.Start()//.accept(C)
-let snd = sessionCh.sendHELLO(C, 1)
+let snd = sessionCh.sendHELLO(C, 3)
 printfn "Just received"
 
 let thr = snd.sendHELLO(C, 2)
@@ -74,7 +74,7 @@ first |> fibrec 1 1 numIter
 
 *)
 
-
+(*
 let e = if System.DateTime.Today.Day % 2 = 0 then 
             <@ + 1 @> 
         else 
@@ -87,6 +87,6 @@ let elem = "x"
 let myRes = Expr.Value(inferred.Item elem)
 let x = 2
 let s = <@@ x + 1 @@>
-printf "Test"
+printf "Test" *)
 
 //let myres = <@@ res @@>

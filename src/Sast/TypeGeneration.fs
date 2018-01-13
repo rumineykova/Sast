@@ -231,8 +231,8 @@ let getAssertionDoc assertion inferred =
     if (assertion <> "" || inferred <> "") then 
         let sb = new System.Text.StringBuilder()
         sb.Append("<summary> Method arguments should satisfy the following constraint:") |> ignore
-        sb.Append ("<para>" + assertion.Replace(">", "&gt;").Replace("<","&lt;") + "</para>" ) |>ignore
-        sb.Append(("<para>" + inferred + "</para>" )) |> ignore
+        if (assertion <> "") then sb.Append ("<para>" + assertion.Replace(">", "&gt;").Replace("<","&lt;") + "</para>" ) |>ignore
+        if (inferred <> "") then sb.Append(("<para>" + inferred + "</para>" )) |> ignore
         sb.Append("</summary>") |>ignore
         sb.ToString()
     else ""    
@@ -458,7 +458,7 @@ let invokeCodeOnSend (args:Expr list) (payload: ScribbleProtocole.Payload [])  (
    
     //let buf = ser buffers
     let exprAction = 
-        <@@ let buf = %(serialize fullName newBufs types (payloadDelim.Head) (endDelim.Head) (labelDelim.Head) argsName fooName)
+        <@@ let buf = %(serialize fullName newBufs types (payloadDelim.Head) (endDelim.Head) (labelDelim.Head) argsName fooName payloadNames)
             Regarder.sendMessage "agent" (buf:byte[]) role @@>
 
     let fn eq =

@@ -1,9 +1,9 @@
 digraph G {
 compound = true;
 "23" [ label="23: " ];
-"23" -> "25" [ label="C!HELLO(s: int)" ];
+"23" -> "25" [ label="C!HELLO(s: int)@\"(s > 1)\"" ];
 "25" [ label="25: " ];
-"25" -> "26" [ label="C!HELLO(k: int, f: int){f:s+1}" ];
+"25" -> "26" [ label="C!HELLO(k: int, f: int)@\"(k > 1)\"{f:s+1}" ];
 "26" [ label="26: " ];
 "26" -> "27" [ label="C?HELLO(u: string)"];
 "27" [ label="27: " ];

@@ -51,14 +51,18 @@ let getIntValues (args: Expr list) =
     args |> List.map (fun arg -> Expr.Coerce(arg,typeof<int>) |> unbox<int []>)
     
 
-let serPayloads (args:Expr list) (listTypes:string list) (payloadDelim:string) (endDelim:string) (argsNames:string list) foo =
+let serPayloads (args:Expr list) (listTypes:string list) (payloadDelim:string) 
+                (endDelim:string) (argsNames:string list) foo (payloadNames: string list) =
+    let mutable assArgIndex = 0
     let listPayloads =  
         args 
         |> List.mapi (fun i arg -> 
             let currentType = listTypes.[i]
-            let argName = 
-                if foo <> "" then
-                    argsNames.[i]
+            let argName =  
+                if (foo <> "" && assArgIndex < argsNames.Length && argsNames.[assArgIndex].Equals(payloadNames.[i])) then
+                    printfn "Argument name %s" argsNames.[assArgIndex]
+                    assArgIndex <- assArgIndex + 1
+                    argsNames.[assArgIndex-1]
                 else
                     ""
             match currentType with
@@ -68,7 +72,7 @@ let serPayloads (args:Expr list) (listTypes:string list) (payloadDelim:string) (
 
                     let ranFoo = 
                         // No Assertion provided
-                        if foo <> "" then 
+                        if (foo <> "" &&  argName <> "") then 
                             Regarder.addArgValueToAssertionDict "agent" argName spliced                            
                             Regarder.runFooFunction "agent" foo
                         else
@@ -94,7 +98,7 @@ let serPayloads (args:Expr list) (listTypes:string list) (payloadDelim:string) (
 
                     let ranFoo = 
                         // No Assertion provided
-                        if foo <> "" then 
+                        if (foo <> "" &&  argName <> "") then 
                             // TimeMeasure.measureTime "before assertion"
                             Regarder.addArgValueToAssertionDict "agent" argName spliced
                             let res = Regarder.runFooFunction "agent" foo
@@ -142,14 +146,15 @@ let serPayloads (args:Expr list) (listTypes:string list) (payloadDelim:string) (
 
 
 
-let serialize (label:string) (args:Expr list) (listTypes:string list) (payloadDelim:string) (endDelim:string) (labelDelim:string) argsNames foo =
+let serialize (label:string) (args:Expr list) (listTypes:string list) (payloadDelim:string) 
+              (endDelim:string) (labelDelim:string) argsNames foo payloadNames =
 
     let labelSerialized = <@ serLabel label labelDelim @> // 
                              
 //    let payloadSerialized = serPayloads args listTypes payloadDelim endDelim 
     <@  
         printing "About to serialized" ""
-        let payloadSerialized = %( serPayloads args listTypes payloadDelim endDelim argsNames foo)
+        let payloadSerialized = %( serPayloads args listTypes payloadDelim endDelim argsNames foo payloadNames)
         let labelSerialized  = %(labelSerialized) 
         printing "Serialization done" ""
         Array.append labelSerialized payloadSerialized 

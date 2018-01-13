@@ -6,7 +6,6 @@ open ScribbleGenerativeTypeProvider.RefinementTypes.RefinementTypes
 type LoopUpDict() =     
     let dictFunInfos = ConcurrentDictionary<string,FnRuleInfos>()
     let dictArgInfos = ConcurrentDictionary<string,ArgInfos>()
-    let dictCacheVars = ConcurrentDictionary<string,ArgInfos>()
 
     let (|TryGetValueDict|_|) key (dict:ConcurrentDictionary<'a,'b>) =
         match dict.TryGetValue key with

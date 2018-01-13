@@ -65,10 +65,11 @@ let rec fibrec a b iter (c0:Fib.State12) =
             printfn "Fibo : %d" b
             TimeMeasure.measureTime  "done"
             let finalc = c2.finish()
+            printfn "done fib"
             finalc
         |n -> 
             let c1 = c.sendADD(S, b)
-            //printfn "Send ADD"   
+            printfn "Send ADD"   
             (*let genRandomNumbers count =
                 let rnd = System.Random()
                 List.init count (fun _ -> rnd.Next ())
@@ -102,4 +103,4 @@ printfn "The received values are %i and %i" (r.getValue()) (f.getValue())
 //TimeMeasure.start()
 //let s = sprintf "TP measure with assertions in the code for: %i" numIter
 //TimeMeasure.measureTime s
-thr |> fibrec 1 1 2
+thr |> fibrec 1 1 3

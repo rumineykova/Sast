@@ -60,7 +60,8 @@ let printCount name=
     cache.Item(name).Print()
 
 let addVars name (keys: string list) (values:int []) = 
-    printf "Adding values %s" (keys.Item 0)
+    //printf "Adding values %s" (keys.Item 0)
+    keys |> List.iteri (fun i key ->  printfn "Adding to cache: %s" key)
     //List.zip keys values |> List.iter (fun (key, value)->  cache.Item(name).Add(key, value))
     keys |> List.iteri (fun i key ->  cache.Item(name).Add(key, values.[i]))
 
