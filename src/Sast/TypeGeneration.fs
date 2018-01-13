@@ -505,11 +505,17 @@ let invokeCodeOnAccept role exprState=
 
 let invokeCodeOnReceive (args:Expr list) (payload: ScribbleProtocole.Payload [])  (payloadDelim: string List) 
                        (labelDelim : string List)  (endDelim: string List)  (nameLabel:string) (message: byte[]) 
-                        exprState role fullName assertionString = 
+                        exprState role fullName assertionString  = 
    
     let buffers = args.Tail.Tail
     let listPayload = (payloadsToList payload)
 
+    (*
+    let payloadNames = (payloadsToListStr payload)
+    let newBufs = match parseInfVars inferred with 
+                    |Some inferred -> mergeBuffersAndPayloads payloadNames inferred buffers
+                    |None -> buffers *)
+    
     let fooName, argsName = 
         if ((assertionString <> "fun expression -> expression") && (assertionString <> ""))  then
             let index = Regarder.getAssertionIndex "agent" 
