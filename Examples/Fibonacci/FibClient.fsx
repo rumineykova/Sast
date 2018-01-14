@@ -96,9 +96,9 @@ let first = fibo.Start()//.request(S)
 let snd = first.receiveHELLO(S, newS)
 printfn "Just sent"
 
-let thr = snd.receiveHELLO(S, r, f)
+let thr = snd.sendHELLO(S, 2)
 
-printfn "The received values are %i and %i" (r.getValue()) (f.getValue())
+//printfn "The received values are %i and %i" (r.getValue()) (f.getValue())
 
 //TimeMeasure.start()
 //let s = sprintf "TP measure with assertions in the code for: %i" numIter

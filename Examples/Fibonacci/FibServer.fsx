@@ -48,11 +48,13 @@ let rec fibServer (c0:Fib.State26) =
 let session = new Fib()
 
 let r = new DomainModel.Buf<int>()
+let f = new DomainModel.Buf<int>()
 let sessionCh = session.Start()//.accept(C)
 let snd = sessionCh.sendHELLO(C, 3)
 printfn "Just received"
 
-let thr = snd.sendHELLO(C, 2)
+let thr = snd.receiveHELLO(C, r, f)
+printfn "The received values are %i and %i" (r.getValue()) (f.getValue())
 printfn "Then send"
 fibServer(thr)
 

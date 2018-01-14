@@ -177,12 +177,19 @@ let convert (arrayList:byte[] list) (elemTypelist:string list) =
                 DeserializationConvertion (hd,typing) |> createFailure  
                         
     aux arrayList elemTypelist []
-   
+  
+(*let mergeReceivedAndInferred (payloads: string list) 
+                             (inferred:Map<string, Expr>) 
+                             received = 
+    <@ 
+    
+    @>*)
 let deserialize (args: Expr list) (listTypes:string list) (messages: _ list) (role:string) (argsNames:string list) foo =
     let buffer = [for elem in args do
                     yield Expr.Coerce(elem,typeof<ISetResult>) ]
-
+    // reduce only the list types 
     <@ 
+        // 
         let result = Regarder.receiveMessage "agent" messages role [listTypes]
         //printfn " deserialize Normal : %A || Role : %A || listTypes : %A" messages role listTypes
         printing " received Bytes: " result
@@ -204,10 +211,16 @@ let deserialize (args: Expr list) (listTypes:string list) (messages: _ list) (ro
         | Some false -> failwith "Assertion Constraint not met"
         | Some true ->
 
-            let received = List.toSeq received
+            
+            // update received 
+            //  let spliced = %%(Expr.Coerce(arg,typeof<obj>))
+
+            let received = List.toSeq received  
+            
             Runtime.setResults received (%%(Expr.NewArray(typeof<ISetResult>, buffer)):ISetResult []) 
+            
     @>
-                 
+
 let deserializeAsync (args: Expr list)  (listTypes:string list) (messages: _ list) (role:string) argsNames foo =  
     let buffer = [for elem in args do
                     yield Expr.Coerce(elem,typeof<ISetResult>) ]              

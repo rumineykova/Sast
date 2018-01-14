@@ -161,10 +161,10 @@ let internal createProvidedParameters (event : ScribbleProtocole.Root) (computed
     let generic = typeof<Buf<_>>.GetGenericTypeDefinition() 
     let payload = event.Payload
     let mutable n = 0
-    let myDict = parseInfVars event.Inferred 
+    //let myDict = parseInfVars event.Inferred 
     [for param in payload do
         n <- n+1
-        if ((not (isVarInferred param.VarName myDict)) && (not (computedVars.ContainsKey(param.VarName)))) then 
+        if (not (computedVars.ContainsKey(param.VarName))) then 
             if param.VarType.Contains("[]") then
                 let nameParam = param.VarType.Replace("[]","")
                 let typing = System.Type.GetType(nameParam)
@@ -503,19 +503,60 @@ let invokeCodeOnAccept role exprState=
         <@@ Regarder.acceptConnection "agent" role @@>
     Expr.Sequential(exprNext,exprState)
 
+// return new types and inferrede as objects 
+let calcReceivedTypesFromInferred (payloadNames: string list) 
+                                  (types: string list)
+                                  (inferred:System.Collections.Generic.IDictionary<string, string>) = 
+    
+    if inferred.Count = 0 then types
+    else 
+        List.zip payloadNames types 
+            |> List.filter (fun (varName, varType) -> not (inferred.ContainsKey(varName)))
+            |> List.map (fun (varName, varType) -> varType)
+
+// return those variable names  (and their names represented as Expr) that have to be assigned by the receiving
+let calcReceivedBuffers (payloadNames: string list) 
+                        (buffers: Expr list)
+                        (inferred:System.Collections.Generic.IDictionary<string, string>) = 
+    if inferred.Count = 0 then buffers
+    else 
+        List.zip payloadNames buffers 
+            |> List.filter (fun (varName, _) -> not (inferred.ContainsKey(varName)))
+            |> List.map (fun (varName, bufferExpr) -> bufferExpr)
+
+// return those variable names  (and their names represented as Expr) that have to be assigned by the Inferred(Cached)Values
+let calcInferredBuffers (payloadNames: string list) 
+                        (buffers: Expr list)
+                        (inferred:System.Collections.Generic.IDictionary<string, string>) = 
+    if inferred.Count = 0 then List.empty
+    else 
+        List.zip payloadNames buffers 
+        |> List.filter (fun (varName, _) -> (inferred.ContainsKey(varName))) 
+        |> List.map (fun (varName, bufferExpr) -> (varName, bufferExpr))
+
+let getExprFromInferred (inferred:System.Collections.Generic.IDictionary<string, string>) = 
+        inferred |> Seq.map (|KeyValue|)  
+                 |> Map.ofSeq
+                 |> Map.map (fun varName expr -> 
+                    let parsedExpr = AssertionParsing.FuncGenerator.parseAssertionExpr expr
+                    let expr = getQExpr parsedExpr
+                    expr)
+
 let invokeCodeOnReceive (args:Expr list) (payload: ScribbleProtocole.Payload [])  (payloadDelim: string List) 
-                       (labelDelim : string List)  (endDelim: string List)  (nameLabel:string) (message: byte[]) 
-                        exprState role fullName assertionString  = 
+                        (labelDelim : string List)  (endDelim: string List)  (nameLabel:string) (message: byte[]) 
+                        exprState role fullName assertionString  
+                        (inferred:string) = 
    
     let buffers = args.Tail.Tail
-    let listPayload = (payloadsToList payload)
-
-    (*
+    let payloadTypes = (payloadsToList payload)
     let payloadNames = (payloadsToListStr payload)
-    let newBufs = match parseInfVars inferred with 
-                    |Some inferred -> mergeBuffersAndPayloads payloadNames inferred buffers
-                    |None -> buffers *)
-    
+    let parsedInferred = match parseInfVars inferred with 
+                            |Some inferred -> inferred
+                            |None ->  dict[]
+    let newPayloadTypes = calcReceivedTypesFromInferred payloadNames payloadTypes parsedInferred
+    let inferredExpr = getExprFromInferred parsedInferred 
+    let newBuffs = calcReceivedBuffers payloadNames buffers parsedInferred 
+
     let fooName, argsName = 
         if ((assertionString <> "fun expression -> expression") && (assertionString <> ""))  then
             let index = Regarder.getAssertionIndex "agent" 
@@ -526,27 +567,41 @@ let invokeCodeOnReceive (args:Expr list) (payload: ScribbleProtocole.Payload [])
         else 
             "",[]
 
-    let exprDes = deserialize buffers listPayload [message] role argsName fooName
-   
+    let exprDes = deserialize newBuffs newPayloadTypes [message] role argsName fooName 
+    
+
     let exprDes = 
         Expr.Sequential(<@@ printing "METHOD USED : Receive + Label = " nameLabel @@>,exprDes)
                                                             
-    let cachingSupported = listPayload |> List.filter (fun x -> x <> "System.Int32") 
+    let cachingSupported = payloadTypes |> List.filter (fun x -> x <> "System.Int32") 
                                 |> List.length |> (fun x -> x=0) 
-    if (cachingSupported=true) then 
-        let payloadNames = (payloadsToListStr payload)
+    let newExpr = if (cachingSupported=true) then 
+                    let payloadNames = (payloadsToListStr payload)
         
-        let addToCacheExpr = 
-            <@@ let myValues:Buf<int> [] = (%%(Expr.NewArray(typeof<Buf<int>>, buffers)):Buf<int> []) 
-                Regarder.addVarsBufs "cache" payloadNames myValues @@>
+                    let addToCacheExpr = 
+                        <@@ let myValues:Buf<int> [] = (%%(Expr.NewArray(typeof<Buf<int>>, buffers)):Buf<int> []) 
+                            Regarder.addVarsBufs "cache" payloadNames myValues @@>
 
-        let exprDes = Expr.Sequential(exprDes, addToCacheExpr)                                                            
-        let cachePrintExpr = <@@ Regarder.printCount "cache" @@>
+                    let exprDes = Expr.Sequential(exprDes, addToCacheExpr)                                                            
+                    let cachePrintExpr = <@@ Regarder.printCount "cache" @@>
         
-        let exprDes = Expr.Sequential(exprDes, cachePrintExpr)
-        Expr.Sequential(exprDes,exprState) 
-    else 
-        Expr.Sequential(exprDes,exprState) 
+                    let exprDes = Expr.Sequential(exprDes, cachePrintExpr)
+                    Expr.Sequential(exprDes,exprState) 
+                    else 
+                        Expr.Sequential(exprDes,exprState)
+
+    let inferredBufs = calcInferredBuffers payloadNames buffers parsedInferred 
+    let elems = inferredBufs |> List.map (fun (name, _) -> Expr.Coerce(inferredExpr.Item name,typeof<System.Int32>))
+    
+    let buffersToAssign = inferredBufs |> List.map (fun (_, iter) -> Expr.Coerce(iter,typeof<ISetResult>))
+    if elems.Length <> 0 then 
+        let inferredExpr =  
+            <@@ Runtime.setResults (%%(Expr.NewArray(typeof<System.Int32>, elems)):System.Int32 [])
+                    (%%(Expr.NewArray(typeof<ISetResult>, buffersToAssign)):ISetResult []) 
+            @@>
+
+        Expr.Sequential(inferredExpr, newExpr)
+    else newExpr
 
 let invokeCodeOnChoice (payload: ScribbleProtocole.Payload []) indexList fsmInstance role = 
     let listPayload = (payloadsToList payload) 
@@ -618,10 +673,10 @@ let generateMethod aType (methodName:string) listParam nextType (errorMessage:st
                 ProvidedMethod(methodName+nameLabel,listParam,nextType,
                     IsStaticMethod = false,
                     InvokeCode = 
-                        fun args-> 
+                        fun args -> 
                             invokeCodeOnReceive args event.Payload payloadDelim 
                                 labelDelim endDelim nameLabel message 
-                                exprState role fullName event.Assertion)
+                                exprState role fullName event.Assertion event.Inferred)
             
             let myMethodAsync = 
                 ProvidedMethod((methodName+nameLabel+"Async"),listParam,nextType,
