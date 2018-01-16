@@ -3,11 +3,9 @@
 //#r "./packages/FParsec/lib/net45-client/FParsec.dll"
 
 namespace AssertionParsing
-
-open System.Text.RegularExpressions
 open FParsec
-open Microsoft.FSharp
 //===============
+
 
 type Op =
         | Minus | Plus | Subtract | Multiply 
@@ -150,7 +148,8 @@ module AssertionParser =
         run xparser "x<y && x>10" |> ignore
         run xparser "x<y" |> ignore*)
 
-type InferredVars = InferredVars of Map<string, Expr>
+/// Parser for inferred variables as given in the labe field of the parsed CFSM. 
+// The format is: {variableName:Expression}, where Expression is arithmetic expression 
 module InferredVarsParser = 
     module InternalInferredVars = 
         let varName = manyChars (noneOf [',';')'; ':']) 
@@ -169,4 +168,6 @@ module InferredVarsParser =
             | Failure (error,_,_) -> 
                 printfn "%s" error
                 None
-            | Success (res,_,_) -> Some res
+            | Success (res,_,_) -> 
+                if res.Count> 0 then Some res
+                else None

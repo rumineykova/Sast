@@ -7,7 +7,6 @@ open System.Text
 open System
 open Microsoft.FSharp.Quotations
 open ScribbleGenerativeTypeProvider.DomainModel
-open ScribbleGenerativeTypeProvider.Regarder
 open ScribbleGenerativeTypeProvider.CommunicationAgents
 open System.Threading.Tasks
 open ScribbleGenerativeTypeProvider.Util
@@ -73,8 +72,8 @@ let serPayloads (args:Expr list) (listTypes:string list) (payloadDelim:string)
                     let ranFoo = 
                         // No Assertion provided
                         if (foo <> "" &&  argName <> "") then 
-                            Regarder.addArgValueToAssertionDict "agent" argName spliced                            
-                            Regarder.runFooFunction "agent" foo
+                            Runtime.addArgValueToAssertionDict "agent" argName spliced                            
+                            Runtime.runFooFunction "agent" foo
                         else
                             Some true
                     match ranFoo with
@@ -100,8 +99,8 @@ let serPayloads (args:Expr list) (listTypes:string list) (payloadDelim:string)
                         // No Assertion provided
                         if (foo <> "" &&  argName <> "") then 
                             // TimeMeasure.measureTime "before assertion"
-                            Regarder.addArgValueToAssertionDict "agent" argName spliced
-                            let res = Regarder.runFooFunction "agent" foo
+                            Runtime.addArgValueToAssertionDict "agent" argName spliced
+                            let res = Runtime.runFooFunction "agent" foo
                             // TimeMeasure.measureTime "after assertion res"
                             res
                         else
@@ -184,13 +183,13 @@ let convert (arrayList:byte[] list) (elemTypelist:string list) =
     <@ 
     
     @>*)
-let deserialize (args: Expr list) (listTypes:string list) (messages: _ list) (role:string) (argsNames:string list) foo =
+let deserialize (messages: _ list) (role:string) (args: Expr list) (listTypes:string list) (argsNames:string list) foo  =
     let buffer = [for elem in args do
                     yield Expr.Coerce(elem,typeof<ISetResult>) ]
     // reduce only the list types 
     <@ 
         // 
-        let result = Regarder.receiveMessage "agent" messages role [listTypes]
+        let result = Runtime.receiveMessage "agent" messages role [listTypes]
         //printfn " deserialize Normal : %A || Role : %A || listTypes : %A" messages role listTypes
         printing " received Bytes: " result
             
@@ -200,9 +199,9 @@ let deserialize (args: Expr list) (listTypes:string list) (messages: _ list) (ro
             // No Assertion provided
             if foo <> "" then 
                 (argsNames,received)
-                ||> List.map2(fun argName rcv -> Regarder.addArgValueToAssertionDict "agent" argName rcv )
+                ||> List.map2(fun argName rcv -> Runtime.addArgValueToAssertionDict "agent" argName rcv )
                 |> ignore
-                Regarder.runFooFunction "agent" foo
+                Runtime.runFooFunction "agent" foo
             else
                 Some true
 
@@ -210,24 +209,19 @@ let deserialize (args: Expr list) (listTypes:string list) (messages: _ list) (ro
         | None -> failwith "Incorrect type evaluated : Either not enough argument given to the assertion or the assertion is not a function that returns a boolean"
         | Some false -> failwith "Assertion Constraint not met"
         | Some true ->
-
-            
-            // update received 
-            //  let spliced = %%(Expr.Coerce(arg,typeof<obj>))
-
             let received = List.toSeq received  
             
             Runtime.setResults received (%%(Expr.NewArray(typeof<ISetResult>, buffer)):ISetResult []) 
             
     @>
 
-let deserializeAsync (args: Expr list)  (listTypes:string list) (messages: _ list) (role:string) argsNames foo =  
+let deserializeAsync (messages: _ list) (role:string) (args: Expr list)  (listTypes:string list)  argsNames foo =  
     let buffer = [for elem in args do
                     yield Expr.Coerce(elem,typeof<ISetResult>) ]              
     <@ 
         let work = 
             async{            
-                let! res = Regarder.receiveMessageAsync "agent" messages role listTypes 
+                let! res = Runtime.receiveMessageAsync "agent" messages role listTypes 
                 let res =
                     let received = (res.Tail |> convert <| listTypes )
 
@@ -235,9 +229,9 @@ let deserializeAsync (args: Expr list)  (listTypes:string list) (messages: _ lis
                         // No Assertion provided     
                         if foo <> "" then 
                             (argsNames,received)
-                            ||> List.map2(fun argName rcv -> Regarder.addArgValueToAssertionDict "agent" argName rcv )
+                            ||> List.map2(fun argName rcv -> Runtime.addArgValueToAssertionDict "agent" argName rcv )
                             |> ignore
-                            Regarder.runFooFunction "agent" foo
+                            Runtime.runFooFunction "agent" foo
                         else
                             Some true
                     match ranFoo with
@@ -257,7 +251,7 @@ let deserializeChoice (args: Expr list) (listTypes:string list) argsNames foo =
     let buffer = [for elem in args do
                     yield Expr.Coerce(elem,typeof<ISetResult>) ]
     <@ 
-        let result = Regarder.receiveChoice "agent" 
+        let result = Runtime.receiveChoice "agent" 
         printing "List types" listTypes
         let received = (result |> convert <| listTypes ) 
 
@@ -266,9 +260,9 @@ let deserializeChoice (args: Expr list) (listTypes:string list) argsNames foo =
             // No Assertion provided
             if foo <> "" then 
                 (argsNames,received)
-                ||> List.map2(fun argName rcv -> Regarder.addArgValueToAssertionDict "agent" argName rcv)
+                ||> List.map2(fun argName rcv -> Runtime.addArgValueToAssertionDict "agent" argName rcv)
                 |> ignore
-                Regarder.runFooFunction "agent" foo
+                Runtime.runFooFunction "agent" foo
             else
                 Some true
         

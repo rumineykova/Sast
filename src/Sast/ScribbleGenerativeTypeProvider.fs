@@ -10,18 +10,13 @@ open System.Diagnostics
 open System.IO
 open System.Collections.Generic
 open FSharp.Data
-open FSharp.Configuration
 // ScribbleProvider specific namespaces and modules
 open ScribbleGenerativeTypeProvider.TypeGeneration
 open ScribbleGenerativeTypeProvider.DomainModel
 open ScribbleGenerativeTypeProvider.CommunicationAgents
-open ScribbleGenerativeTypeProvider.Regarder
-open ScribbleGenerativeTypeProvider.RefinementTypes
 open ScribbleGenerativeTypeProvider.RefinementTypesDict
 open ScribbleGenerativeTypeProvider.AsstScribbleParser
 open ScribbleGenerativeTypeProvider.Util
-open System.Text.RegularExpressions
-open System.Text
 
 
 type ScribbleSource = 
@@ -128,7 +123,7 @@ type GenerativeTypeProvider(config : TypeProviderConfig) as this =
         let listTypes = (Set.toList stateSet) |> List.map (fun x -> makeStateType x )
         let firstStateType = findProvidedType listTypes firstState
         let tupleRole = makeRoleTypes protocol
-        let tupleLabel = makeLabelTypes protocol listTypes (tupleRole |> fst)
+        let tupleLabel = makeChoiceLabelTypes protocol listTypes (tupleRole |> fst)
         let listOfRoles = makeRoleList protocol
         let labelList = snd(tupleLabel)
         let roleList = snd(tupleRole)
@@ -150,20 +145,20 @@ type GenerativeTypeProvider(config : TypeProviderConfig) as this =
         DomainModel.config.Load(naming)
 
 
-        (tupleLabel |> fst) |> Regarder.addLabel
+        (tupleLabel |> fst) |> Runtime.addLabel
         let agentRouter = createRouter (DomainModel.config)  listOfRoles explicitConnection
-        Regarder.addAgent "agent" agentRouter 
+        Runtime.addAgent "agent" agentRouter 
         let cache = createCache
         let assertionLookUp = createlookUp
-        Regarder.initAssertionDict "agent" assertionLookUp
-        Regarder.initCache "cache" cache
+        Runtime.initAssertionDict "agent" assertionLookUp
+        Runtime.initCache "cache" cache
 
-        addProperties listTypes listTypes (Set.toList stateSet) (fst tupleLabel) (fst tupleRole) protocol (variablesMap : Map<string, AssertionParsing.Expr>)
+        addProperties listTypes listTypes (Set.toList stateSet) (fst tupleLabel) (fst tupleRole) protocol
 
         let ctor = firstStateType.GetConstructors().[0]                                                               
         let ctorExpr = Expr.NewObject(ctor, [])
         let exprCtor = ctorExpr
-        let exprStart = <@@ Regarder.startAgentRouter "agent"  @@>
+        let exprStart = <@@ Runtime.startAgentRouter "agent"  @@>
         let expression = Expr.Sequential(exprStart,exprCtor)
             
         let ty = name 
@@ -245,15 +240,13 @@ type GenerativeTypeProvider(config : TypeProviderConfig) as this =
                             finally 
                                 if File.Exists(tempFileName) then File.Delete(tempFileName)
             let variablesMap : Map<string, AssertionParsing.Expr> = Map.empty
-            // Pass u = v + 3 : string -> AssertionParsing.Expr
             let size = parameters.Length
             //TimeMeasure.measureTime "Before Type generation"
             let genType = generateTypes fsm  variablesMap name parameters.[3..(size-1)]
             cachedTypes.Add(name, genType)
-            TimeMeasure.measureTime "After Type generation"
+            //TimeMeasure.measureTime "After Type generation"
             genType
 
-    //let basePort = 5000       
     let providedType = TypeGeneration.createProvidedType tmpAsm "TypeProviderFile"       
     let parametersTP=  [ProvidedStaticParameter("File Uri",typeof<string>);
                           ProvidedStaticParameter("Global Protocol",typeof<string>);

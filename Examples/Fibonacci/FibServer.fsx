@@ -57,38 +57,3 @@ let thr = snd.receiveHELLO(C, r, f)
 printfn "The received values are %i and %i" (r.getValue()) (f.getValue())
 printfn "Then send"
 fibServer(thr)
-
-(*  
-let rec fibrec a b iter (c:Fib.State14) =
-    let res = new DomainModel.Buf<int>()
-    printfn"number of iter: %d" (numIter - iter)
-    match iter with
-        |0 -> c.sendBYE(S).receiveBYE(S).finish()
-        |n -> let c1 = c.sendADD(S, a, b)
-              let c2 = c1.receiveRES(S, res)
-              printfn "Fibo : %d" (res.getValue())
-              Async.RunSynchronously(Async.Sleep(1000))
-              fibrec b (res.getValue()) (n-1) c2
-
-let fibo = new Fib()
-let first = fibo.Start()
-first |> fibrec 1 1 numIter
-
-*)
-
-(*
-let e = if System.DateTime.Today.Day % 2 = 0 then 
-            <@ + 1 @> 
-        else 
-            <@ - 1 @>
-let resf = <@ fun x -> %e + x @>
-
-open Microsoft.FSharp.Quotations
-let inferred = dict["x", "5"; "y", "4"]
-let elem = "x"
-let myRes = Expr.Value(inferred.Item elem)
-let x = 2
-let s = <@@ x + 1 @@>
-printf "Test" *)
-
-//let myres = <@@ res @@>

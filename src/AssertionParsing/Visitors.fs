@@ -1,5 +1,4 @@
 ﻿namespace AssertionParsing
-open AssertionParsing.AssertionParser
 
 module Visitors =
     let rec getStringRepr node = 
@@ -30,34 +29,15 @@ module Visitors =
             | _ -> false
         | _ -> false 
 
-    let myDict = dict["x", 2; "y", 3]
-    let rec getQExpr node = 
-        match node with
-        | Literal(Bool(value)) -> 
-            Quotations.Expr.Value(value)
-        | Literal(IntC(value)) -> 
-            Quotations.Expr.Value(value)
-        | Ident(identifier) -> 
-            //Quotations.Expr.Var(new Quotations.Var(identifier, typeof<int>))
-            //let getVal = myDict.Item identifier 
-            <@@ myDict.Item identifier @@>
-            //Quotations.Expr.Value(getVal)
-
-        | Arithmetic(left, op, right) -> 
-            let leftExpr = getQExpr left
-            let rightExpr = getQExpr right
-            let res = Quotations.Expr.Applications(op.ToExpr(), [[leftExpr]; [rightExpr]]) 
-            res 
-
     let rec getVars node = 
         match node with
-        | Literal(Bool(value)) -> 
+        | Literal(Bool(_)) -> 
             set []
-        | Literal(IntC(value)) -> 
+        | Literal(IntC(_)) -> 
             set []
         | Ident(identifier) -> 
             set [identifier]
-        | UnaryOp(op, right) -> 
+        | UnaryOp(_, right) -> 
             getVars right
         | Not(expr) -> 
             getVars expr
@@ -70,11 +50,21 @@ module Visitors =
             let res = leftSet |> Set.union rightSet
             res 
 
-    (*let rec substVar node (mapping:Map<string, obj option>) = 
-        match node with 
-        |Ident(identifier) -> 
-            let value = mapping.Item(identifier)
-            let res = match value with 
-                        | Some x -> x      
-                        | _ -> failwith "No value given for the arguments"
-            Literal(IntC(res :> System.Int32))*)
+        (*let myDict = dict["x", 2; "y", 3]
+    let rec getQuotationsExpr node = 
+        match node with
+        | Literal(Bool(value)) -> 
+            Quotations.Expr.Value(value)
+        | Literal(IntC(value)) -> 
+            Quotations.Expr.Value(value)
+        | Ident(identifier) -> 
+            //Quotations.Expr.Var(new Quotations.Var(identifier, typeof<int>))
+            //let getVal = myDict.Item identifier 
+            <@@ myDict.Item identifier @@>
+            //Quotations.Expr.Value(getVal)
+
+        | Arithmetic(left, op, right) -> 
+            let leftExpr = getQuotationsExpr left
+            let rightExpr = getQuotationsExpr right
+            let res = Quotations.Expr.Applications(op.ToExpr(), [[leftExpr]; [rightExpr]]) 
+            res *)
