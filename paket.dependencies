@@ -5,4 +5,5 @@ nuget FSharp.Configuration 0.6.1 restriction: >= net452
 nuget FSharp.Data 2.3.1 restriction: >= net452
 nuget FSharp.Quotations.Evaluator 1.0.7 restriction: >= net452
 nuget FSharp.TypeProviders.StarterPack
+nuget SharpYaml
 nuget QuotationCompiler
