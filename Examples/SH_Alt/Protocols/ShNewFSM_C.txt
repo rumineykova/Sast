@@ -1,0 +1,10 @@
+digraph G {
+compound = true;
+"20" [ label="20: " ];
+"20" -> "20" [ label="P?BothIn(r1: int)" ];
+"20" -> "20" [ label="P?BothOut(_dum3: _Unit)" ];
+"20" -> "20" [ label="P?Two(r3: int, r4: int)" ];
+"20" -> "20" [ label="P?One(r2: int)" ];
+"20" -> "21" [ label="P?Close(_dum6: _Unit)" ];
+"21" [ label="21: " ];
+}

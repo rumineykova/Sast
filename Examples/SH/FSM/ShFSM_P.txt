@@ -1,0 +1,30 @@
+digraph G {
+compound = true;
+"30" [ label="30: " ];
+"30" -> "32" [ label="R!Plane(x1: int, x2: int, x3: int, x4: int)" ];
+"32" [ label="32: " ];
+"32" -> "33" [ label="R!IsAbove(v1: int)" ];
+"33" [ label="33: " ];
+"33" -> "34" [ label="R?Res(b1: int)" ];
+"34" [ label="34: " ];
+"34" -> "35" [ label="R!IsAbove(v2: int)" ];
+"35" [ label="35: " ];
+"35" -> "36" [ label="R?Res(b2: int)" ];
+"36" [ label="36: " ];
+"36" -> "37" [ label="R!Intersct(y1: int, y2: int)@\"(((b1 = 1) && (b2 = 0)) || ((b1 = 0) && (b2 = 1)))\"" ];
+"37" [ label="37: " ];
+"37" -> "38" [ label="R?Res(i: int)" ];
+"38" [ label="38: " ];
+"38" -> "32" [ label="C!SecIn(r3: int, r4: int)@\"(b2 = 1)\"" ];
+"38" -> "32" [ label="C!SecOut(r2: int)@\"(b2 = 0)\"" ];
+"36" -> "39" [ label="R!BothIn(_dum1: _Unit)@\"((b1 = 1) && (b2 = 1))\"" ];
+"39" [ label="39: " ];
+"39" -> "32" [ label="C!BothIn(r1: int)" ];
+"36" -> "40" [ label="R!BothOut(_dum2: _Unit)@\"((b1 = 0) && (b2 = 0))\"" ];
+"40" [ label="40: " ];
+"40" -> "32" [ label="C!BothOut(_dum3: _Unit)" ];
+"32" -> "41" [ label="R!Close(_dum4: _Unit)" ];
+"41" [ label="41: " ];
+"41" -> "31" [ label="C!Close(_dum5: _Unit)" ];
+"31" [ label="31: " ];
+}

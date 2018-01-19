@@ -1,0 +1,21 @@
+digraph G {
+compound = true;
+"10" [ label="10: " ];
+"10" -> "12" [ label="P?plane(x1: int, x2: int, x3: int, x4: int)" ];
+"12" [ label="12: " ];
+"12" -> "13" [ label="P?Above(v1: int)" ];
+"13" [ label="13: " ];
+"13" -> "14" [ label="P!Res(b1: int)" ];
+"14" [ label="14: " ];
+"14" -> "15" [ label="P?Above(v2: int)" ];
+"15" [ label="15: " ];
+"15" -> "16" [ label="P!Res(b2: int)" ];
+"16" [ label="16: " ];
+"16" -> "12" [ label="P?BothIn(_dum1: _Unit)" ];
+"16" -> "12" [ label="P?BothOut(_dum2: _Unit)" ];
+"16" -> "17" [ label="P?Itersect(_dum4: _Unit)" ];
+"17" [ label="17: " ];
+"17" -> "12" [ label="P!Res(i: int)" ];
+"12" -> "11" [ label="P?Close(_dum5: _Unit)" ];
+"11" [ label="11: " ];
+}

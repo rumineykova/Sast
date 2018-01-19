@@ -1,0 +1,12 @@
+digraph G {
+compound = true;
+"55" [ label="55: " ];
+"55" -> "57" [ label="P?hello(_dum3: _Unit)" ];
+"57" [ label="57: " ];
+"57" -> "57" [ label="P?BothOut(_dum6: _Unit)" ];
+"57" -> "57" [ label="P?One(_dum8: _Unit)" ];
+"57" -> "57" [ label="P?BothIn(r1: int)" ];
+"57" -> "57" [ label="P?Two(_dum9: _Unit)" ];
+"57" -> "56" [ label="P?Close(_dum11: _Unit)" ];
+"56" [ label="56: " ];
+}

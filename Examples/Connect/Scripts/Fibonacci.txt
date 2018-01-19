@@ -1,0 +1,22 @@
+module demo;
+
+
+type <dotnet> "System.Int32" from "Nothing" as Integer;
+
+
+global protocol Fib(role A, role B)
+{
+	rec Fib
+	{
+		choice at A
+		{
+			fib(Integer,Integer) from A to B;
+			fib(Integer) from B to A;
+			continue Fib;
+		}
+		or
+		{
+			bye() from A to B;
+		}
+	}
+}

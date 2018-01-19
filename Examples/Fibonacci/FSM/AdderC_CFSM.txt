@@ -1,0 +1,13 @@
+digraph G {
+compound = true;
+"7" [ label="7: " ];
+"7" -> "9" [ label="S!HELLO(_dum1: int)" ];
+"9" [ label="9: " ];
+"9" -> "10" [ label="S!ADD(y: int)" ];
+"10" [ label="10: " ];
+"10" -> "7" [ label="S?RES(v: int)" ];
+"9" -> "11" [ label="S!BYE(_dum2: _Unit)" ];
+"11" [ label="11: " ];
+"11" -> "8" [ label="S?BYE(_dum3: _Unit)" ];
+"8" [ label="8: " ];
+}

@@ -1,0 +1,19 @@
+digraph G {
+compound = true;
+"9" [ label="9: " ];
+"9" -> "11" [ label="C!plane(x1: int, x2: int, x3: int, x4: int)" ];
+"11" [ label="11: " ];
+"11" -> "12" [ label="C!close(_dum2: _Unit)" ];
+"12" [ label="12: " ];
+"12" -> "10" [ label="P!close(_dum3: _Unit)" ];
+"10" [ label="10: " ];
+"11" -> "13" [ label="C!vertex(p1: int, p2: int)" ];
+"13" [ label="13: " ];
+"13" -> "14" [ label="C?BothInOrOut(res: int)" ];
+"14" [ label="14: " ];
+"14" -> "11" [ label="P!none(_dum1: _Unit)@\"(res = 1)\"" ];
+"14" -> "11" [ label="P!addP(z: int)@\"((z = p2) && (res = 0))\"" ];
+"13" -> "15" [ label="C?Itersection(p3: int)" ];
+"15" [ label="15: " ];
+"15" -> "11" [ label="P!forwardP(p4: int)@\"(p3 = p4)\"" ];
+}

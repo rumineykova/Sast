@@ -1,0 +1,25 @@
+digraph G {
+compound = true;
+"32" [ label="32: " ];
+"32" -> "34" [ label="R!hello(s: int)" ];
+"34" [ label="34: " ];
+"34" -> "35" [ label="R?hello(f: int)" ];
+"35" [ label="35: " ];
+"35" -> "36" [ label="R!plane(x1: int)" ];
+"36" [ label="36: " ];
+"36" -> "37" [ label="R!Above(v1: int)" ];
+"37" [ label="37: " ];
+"37" -> "38" [ label="R?Res(b1: int)" ];
+"38" [ label="38: " ];
+"38" -> "39" [ label="R!Above(v2: int)" ];
+"39" [ label="39: " ];
+"39" -> "40" [ label="R?Res(b2: int)" ];
+"40" [ label="40: " ];
+"40" -> "41" [ label="R!Inersect(s1: _Unit)@\"(((s1 > 0) && (b2 = 0)) || ((s1 < 0) && (b2 = 1)))\"" ];
+"41" [ label="41: " ];
+"41" -> "36" [ label="R?Res(i: int)" ];
+"40" -> "36" [ label="R!BothIn(_dum1: _Unit)@\"((b1 = 1) && (b2 = 1))\"" ];
+"40" -> "36" [ label="R!BothOut(_dum2: _Unit)@\"((b1 = 0) && (b2 = 0))\"" ];
+"36" -> "33" [ label="R!Close(_dum4: _Unit)" ];
+"33" [ label="33: " ];
+}
