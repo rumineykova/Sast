@@ -1,6 +1,0 @@
-digraph G {
-compound = true;
-"4" [ label="4: , {}" ];
-"4" -> "4" [ label="B!1(int)@\"(x < 10)\"" ];
-"4" -> "4" [ label="B!2(x:Int)@\"(y > 5)\"" ];
-}

@@ -117,7 +117,7 @@ module parserHelper =
         many1Satisfy isVar .>> spaces
     let expr:Parser<_, unit> = 
         let normalChar 
-            = satisfy (fun c -> c <> ';' && c<>'\\' && c<>'\"' && c<>'}'&& c<>',')
+            = satisfy (fun c -> c <> ';' && c<>'\\' && c<>'\"' && c<>'}')
         (manyChars normalChar) 
     // pstring "\"" .>> spaces .>> pstring "];" >>. spaces
 

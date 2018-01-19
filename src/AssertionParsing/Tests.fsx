@@ -3,12 +3,15 @@
 open AssertionParsing
 open AssertionParsing.FuncGenerator
 open AssertionParsing.AssertionParser
+open AssertionParsing.InferredVarsParser
 open AssertionParsing.Visitors
 open Microsoft.FSharp.Quotations
 
-let newtest = getQExpr (parseAssertionExpr "x+3") 
+//let newtest = getQExpr (parseAssertionExpr "x+3") 
 
 
+
+parseInfVars "{y1:v2,y2:v2}"
 
 let test expr = 
     match (parse expr) with 
@@ -18,6 +21,7 @@ let test expr =
 let plus = <@ 2 + 3 @>
 
 let s = Quotations.Expr.Applications(plus, [[Quotations.Expr.Value(2)];[Quotations.Expr.Value(3)]])
+
 
 
 test "(x>3)"

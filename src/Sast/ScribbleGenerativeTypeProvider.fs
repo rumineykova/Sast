@@ -37,7 +37,7 @@ type internal WatchSpec =
 type GenerativeTypeProvider(config : TypeProviderConfig) as this =
     inherit TypeProviderForNamespaces ()      
     let tmpAsm = Assembly.LoadFrom(config.RuntimeAssembly)
-    let s = TimeMeasure.start()
+    //let s = TimeMeasure.start()
     //TimeMeasure.measureTime "Starting"   
 
     // ==== cachng ============
@@ -164,7 +164,7 @@ type GenerativeTypeProvider(config : TypeProviderConfig) as this =
         let ty = name 
                     |> createProvidedType tmpAsm
                     |> addCstor ( <@@ "hey" + string n @@> |> createCstor [])
-                    |> addMethod ( expression |> createMethodType "Start" [] firstStateType)
+                    |> addMethod ( expression |> createMethodType "Init" [] firstStateType)
                     |> addIncludedTypeToProvidedType roleList
                     |> addIncludedTypeToProvidedType labelList
                     |> addIncludedTypeToProvidedType listTypes
@@ -254,9 +254,10 @@ type GenerativeTypeProvider(config : TypeProviderConfig) as this =
                           ProvidedStaticParameter("Config",typeof<string>);
                           ProvidedStaticParameter("Delimiter",typeof<string>);
                           ProvidedStaticParameter("TypeAliasing",typeof<string>); 
-                          ProvidedStaticParameter("ScribbleSource",typeof<ScribbleSource>);
-                          ProvidedStaticParameter("ExplicitConnection",typeof<bool>);
-                          ProvidedStaticParameter("AssertionsOn",typeof<bool>); ]
+                          ProvidedStaticParameter("ScribbleSource",typeof<ScribbleSource>, ScribbleSource.LocalExecutable);
+                          ProvidedStaticParameter("ExplicitConnection",typeof<bool>, false);
+                          ProvidedStaticParameter("AssertionsOn",typeof<bool>, false);
+                          ProvidedStaticParameter("AssertionOptimisationsOn",typeof<bool>, false);]
 
     do 
         this.Disposing.Add((fun _ ->
