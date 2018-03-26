@@ -1,6 +1,13 @@
 ﻿namespace ScribbleGenerativeTypeProvider.Util
+
 open System.IO
 open System.Diagnostics
+
+module Debug = 
+    let doPrinting = true
+    let print message data =
+        if doPrinting then
+            printfn "%s %A" message data
 
 module TimeMeasure =     
     let mutable stopWatch = System.Diagnostics.Stopwatch.StartNew()
@@ -39,3 +46,23 @@ module ListHelpers =
             | [] -> false
             | hd::tl -> if hd.Equals(role) then true
                         else containsRole tl role
+
+    let isInList (aList:_ list) x = 
+        let rec aux list x In =
+            match list with
+                |[] -> In
+                |hd :: tl -> match hd with
+                                |n when n=x -> true
+                                | _ -> aux tl x In
+        in aux aList x false
+
+    let isInOne (weirdList: string list list) (str:string) =
+        let rec aux (list1: string list list) =
+            match list1 with
+                |[] -> false
+                |hd::tl -> if (List.exists (fun elem -> elem = str) hd) then
+                               true
+                           else
+                               aux tl
+        aux weirdList
+    

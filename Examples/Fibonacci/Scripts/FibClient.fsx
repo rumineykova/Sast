@@ -1,7 +1,7 @@
-﻿#r "../../src/Sast/bin/Debug/Sast.dll"
+﻿#r "../../../src/Sast/bin/Debug/Sast.dll"
 
-open ScribbleGenerativeTypeProvider
-           
+
+open ScribbleGenerativeTypeProvider           
            
            
                         
@@ -17,17 +17,36 @@ let delims = """ [ {"label" : "ADD", "delims": {"delim1": [":"] , "delim2": [","
 let typeAliasing1 = """ [ {"alias" : "int", "type": "System.Int32"}, 
                           {"alias" : "string", "type": "System.String"}] """
 
-type Fib = 
-    Provided.TypeProviderFile<"../../../Examples/Fibonacci/FSM/FSMAsstC.txt"
+
+type Fib = Provided.STP<"../../../Examples/Fibonacci/FSM/SimpleC.txt"
+                       , "Adder" 
+                       , "C"
+                       , "../../../Examples/Fibonacci/Config/config.yaml"
+                       ,Delimiter=delims
+                       ,TypeAliasing=typeAliasing1
+                       ,ScribbleSource = ScribbleSource.File
+                       ,ExplicitConnection=false 
+                       ,AssertionsOn=true>
+
+let C = Fib.C.instance
+let S = Fib.S.instance
+
+let s = new Fib()
+let c = s.Init()
+let p = new DomainModel.Buf<int>()
+let p2 = new DomainModel.Buf<int>()
+c.sendHELLO(S, 2).receiveHELLO(S, p).sendHELLO(S, 2).receiveHELLO(S, p2).finish()
+
+printfn "Done too:%i!" (p.getValue())
+(*let Fib = Provided.STP<"../../../Examples/Fibonacci/FSM/SimpleC.txt"
                                ,"Adder"
                                ,"C"
-                               ,"../../../Examples/Fibonacci/config.yaml"
+                               ,"../../../Examples/Fibonacci/Config/config.yaml"
                                ,Delimiter=delims
                                ,TypeAliasing=typeAliasing1
                                ,ScribbleSource = ScribbleSource.File
                                ,ExplicitConnection=false 
                                ,AssertionsOn=true>
-
 
 module TimeMeasure =     
     open System.IO
@@ -104,3 +123,5 @@ let thr = snd.sendHELLO(S, 2)
 //let s = sprintf "TP measure with assertions in the code for: %i" numIter
 //TimeMeasure.measureTime s
 thr |> fibrec 1 1 3
+
+*)

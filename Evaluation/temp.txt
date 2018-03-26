@@ -13521,3 +13521,135 @@ Assembly: 95348
 Assembly: 52514 
 After Scribble Compiler: 396 
 After Scribble Compiler: 359 
+Assembly: 0 
+Assembly: 0 
+From the cache: 85254 
+From the cache: 2640 
+From the cache: 0 
+From the cache: 12 
+From the cache: 0 
+From the cache: 997 
+From the cache: 0 
+Assembly: 6029 
+From the cache: 30 
+From the cache: 966 
+From the cache: 0 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+From the cache: 641 
+From the cache: 438 
+From the cache: 0 
+From the cache: 63070 
+From the cache: 0 
+From the cache: 30430 
+From the cache: 120792 
+From the cache: 2 
+From the cache: 402575 
+From the cache: 11151 
+From the cache: 2018 
+From the cache: 16 
+From the cache: 989 
+Assembly: 0 
+From the cache: 1156 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+From the cache: 590 
+From the cache: 63 
+From the cache: 0 
+Assembly: 0 
+From the cache: 607 
+From the cache: 654 
+From the cache: 0 
+Assembly: 0 
+From the cache: 613 
+From the cache: 50 
+From the cache: 0 
+Assembly: 0 
+From the cache: 546 
+From the cache: 332 
+From the cache: 0 
+Assembly: 0 
+From the cache: 609 
+From the cache: 77 
+From the cache: 0 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+Assembly: 27777 
+Assembly: 6074 
+Assembly: 0 
+Assembly: 0 
+Assembly: 7426 
+Assembly: 5071 
+Assembly: 0 
+Assembly: 0 
+Assembly: 56123 
+Assembly: 0 
+Assembly: 9510 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+Assembly: 200123 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+Assembly: 472520 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+Assembly: 1169744 
+Assembly: 1173970 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 
+Assembly: 0 

@@ -1,4 +1,4 @@
-﻿#r "../../src/Sast/bin/Debug/Sast.dll"
+﻿#r "../../../src/Sast/bin/Debug/Sast.dll"
 
 open ScribbleGenerativeTypeProvider
                         
@@ -13,10 +13,10 @@ let typeAliasing1 = """ [ {"alias" : "int", "type": "System.Int32"},
                           {"alias" : "string", "type": "System.String"}] """
 
 type Fib = 
-    Provided.TypeProviderFile<"../../../Examples/Fibonacci/FSM/FSMAsstS.txt"
+    Provided.STP<"../../../Examples/Fibonacci/FSM/SimpleS.txt"
                                ,"Adder"
                                ,"S"
-                               ,"../../../Examples/Fibonacci/configServer.yaml"
+                               ,"../../../Examples/Fibonacci/Config/configServer.yaml"
                                ,Delimiter=delims1
                                ,TypeAliasing=typeAliasing1
                                ,ScribbleSource = ScribbleSource.File
@@ -24,7 +24,33 @@ type Fib =
                                ,AssertionsOn=true>
 
 let C = Fib.C.instance
+let S = Fib.S.instance
 
+let s = Fib().Init()
+let p = new DomainModel.Buf<int>()
+let p2 = new DomainModel.Buf<int>()
+[<Literal>]
+let f = 1
+
+let trysmth x y = y x
+
+trysmth(f, fun y -> y + f)
+
+
+let newS = s.receiveHELLO(C, p).sendHELLO(C, 4).branch((), p)
+
+let receiveHello x y = x + y 
+let receiveBye x y z = x + y + z
+
+
+ 
+//sendHELLO<2>(C, 2).receiveHELLO(C, p).sendHELLO<f>(C, 3)
+
+printfn "Done: %i!!!" (p.getValue())
+
+
+
+(*
 let rec fibServer (c0:Fib.State26) =
     let res1 = new DomainModel.Buf<int>()
     //let res2 = new DomainModel.Buf<int>()
@@ -57,3 +83,4 @@ let thr = snd.receiveHELLO(C, r, f)
 printfn "The received values are %i and %i" (r.getValue()) (f.getValue())
 printfn "Then send"
 fibServer(thr)
+*)

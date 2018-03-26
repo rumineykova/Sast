@@ -28,7 +28,9 @@ module Fsi =
     let allArgs = Array.append argv [|"--noninteractive"|]
 
     let fsiConfig = FsiEvaluationSession.GetDefaultConfiguration()
-    let fsiSession = FsiEvaluationSession.Create(fsiConfig, allArgs, inStream, outStream, errStream) 
+    let fsiSession = FsiEvaluationSession.Create(
+                        fsiConfig, allArgs, inStream, 
+                        outStream, errStream) 
 
 
 module RefinementTypes =
@@ -63,9 +65,11 @@ module RefinementTypes =
         }
         
     let parseAndCheckSingleFile (input) = 
-        let file = Path.ChangeExtension(System.IO.Path.GetTempFileName(), "fsx")
+        let file = 
+            Path.ChangeExtension(System.IO.Path.GetTempFileName(), "fsx")
         File.WriteAllText(file, input)
-        let checker = SourceCodeServices.FSharpChecker.Create(keepAssemblyContents=true)
+        let checker = 
+            SourceCodeServices.FSharpChecker.Create(keepAssemblyContents=true)
 
         let projOptions = 
             checker.GetProjectOptionsFromScript(file, input)
@@ -107,8 +111,7 @@ module RefinementTypes =
                     getKeys subDecl
                 | FSharpImplementationFileDeclaration.MemberOrFunctionOrValue(value, valueListList, e) ->
                     let argList =
-                        [
-                            for valueList in valueListList do
+                        [for valueList in valueListList do
                                 yield valueList.Head
                         ]
                     // TODO : Return a List of parameters with information regarding the type...
@@ -146,9 +149,12 @@ module RefinementTypes =
                 if FSharpType.IsFunction fnType then
                     let methodInfo =
                         fnType.GetMethods()
-                        |> Array.filter (fun x -> x.Name = "Invoke" && x.GetParameters().Length = 1)
+                        |> Array.filter (
+                            fun x -> x.Name = "Invoke" 
+                                     && x.GetParameters().Length = 1)
                         |> Array.head
-                    let nextPartialFn = methodInfo.Invoke(partialFn, [| args.Head |])
+                    let nextPartialFn = 
+                        methodInfo.Invoke(partialFn, [| args.Head |])
                     helper nextPartialFn args.Tail
                 else 
                     None
@@ -171,21 +177,22 @@ module RefinementTypes =
 //    let res2 = res [8;4]
 
     let createFnRule index ruleFunction = 
-        let (fooName, args, fooType) = generateFooAndGetArgsInfos index ruleFunction
+        let (fooName, args, fooType) = 
+            generateFooAndGetArgsInfos index ruleFunction
         let (untypedFoo) = untypedEvaluation ruleFunction
         
         let argList = 
             [ for arg in args do
-                  yield { argName = arg.CompiledName
-                          argInfos = 
-                              { argType = arg.FullType
-                                value = None } } ]
+                  yield 
+                    { argName = arg.CompiledName
+                      argInfos = 
+                        { argType = arg.FullType
+                          value = None } } ]
         
         let fnRule = 
             { fnName    = fooName
               fnInfos   = 
-                  { 
-                    fnType    = fooType.FullType              
+                  { fnType = fooType.FullType              
                     untypedFn = untypedFoo
                     argNames = args |> List.map (fun x -> x.CompiledName) } }
         

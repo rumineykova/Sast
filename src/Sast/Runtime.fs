@@ -58,10 +58,13 @@ let printCount name=
     cache.Item(name).Print()
 
 let addVarsToCache name (keys: string list) (values:int []) = 
-    keys |> List.iteri (fun i key ->  cache.Item(name).Add(key, values.[i]))
+    keys 
+    |> List.iteri (fun i key ->  cache.Item(name).Add(key, values.[i]))
 
 let addVarsBufsToCache name (keys: string list) (values:Buf<int> []) = 
-    keys |> List.iteri (fun i key ->  cache.Item(name).Add(key, values.[i].getValue()))
+    keys 
+    |> List.iteri (fun i key ->  
+        cache.Item(name).Add(key, values.[i].getValue()))
 
 let getFromCache name elem =
     cache.Item(name).Get(elem)
@@ -84,4 +87,5 @@ let addArgValueToAssertionDict name argName rcv =
     assertionLookUp.Item(name).addArgValue argName rcv 
 
 let setResults results (bufs:ISetResult []) = 
-    Seq.zip results (Array.toSeq bufs) |> Seq.iter (fun (res,buf:ISetResult) -> buf.SetValue(res))
+    Seq.zip results (Array.toSeq bufs) 
+    |> Seq.iter (fun (res,buf:ISetResult) -> buf.SetValue(res))
