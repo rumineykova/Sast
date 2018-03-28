@@ -127,9 +127,9 @@ type GenerativeTypeProvider() as this =
         let listTypes = (Set.toList stateSet) |> List.map (fun x -> makeStateType x )
         let firstStateType = findProvidedType listTypes firstState
         let tupleRole = makeRoleTypes protocol
-        //let tupleLabel = makeChoiceLabelTypes protocol listTypes (tupleRole |> fst)
+        let tupleLabel = makeChoiceLabelTypes protocol listTypes (tupleRole |> fst)
         let listOfRoles = makeRoleList protocol
-        //let labelList = snd(tupleLabel)
+        let labelList = snd(tupleLabel)
         let roleList = snd(tupleRole)
         
         let mutable mapping = Map.empty<string,string list* string list * string list>
@@ -156,17 +156,13 @@ type GenerativeTypeProvider() as this =
         let assertionLookUp = createlookUp
         Runtime.initAssertionDict "agent" assertionLookUp
         Runtime.initCache "cache" cache
-
-        addProperties listTypes listTypes (Set.toList stateSet) 
-                        //(fst tupleLabel) 
-                      Map.empty (fst tupleRole) protocol
-        
-        
+      
         let ctor = firstStateType.GetConstructors().[0]                                                               
         let ctorExpr = Expr.NewObject(ctor, [])
         let exprCtor = ctorExpr
         let exprStart = <@@ Runtime.startAgentRouter "agent"  @@>
         let expression = Expr.Sequential(exprStart,exprCtor)
+        
         
         let ty = 
             name 
@@ -174,8 +170,18 @@ type GenerativeTypeProvider() as this =
             |> addCstor ( <@@ "hey" + string n :> obj @@> |> createCstor [])
             |> addMethod ( expression |> createMethodType "Init" [] firstStateType)
             |> addIncludedTypeToProvidedType roleList
-            //|> addIncludedTypeToProvidedType labelList
+            |> addIncludedTypeToProvidedType labelList    
             |> addIncludedTypeToProvidedType listTypes
+        
+        //ty.AddMemberDelayed ( fun () -> ProvidedMethid()
+
+        addProperties listTypes listTypes 
+                      (Set.toList stateSet) 
+                      (fst tupleLabel) 
+                      //Map.empty
+                      (fst tupleRole) protocol
+       
+
         
         //let assemblyPath = Path.ChangeExtension(System.IO.Path.GetTempFileName(), ".dll")
         //let assembly = ProvidedAssembly assemblyPath

@@ -153,9 +153,8 @@ let convert (arrayList:byte[] list) (elemTypelist:string list) =
             let typing = sub.[sub.Length-1]
             try
                 let mymethod = 
-                    Type
-                    .GetType("System.BitConverter")
-                    .GetMethod("To"+typing,[|typeof<byte []>;typeof<int>|])
+                    Type.GetType("System.BitConverter")
+                        .GetMethod("To"+typing,[|typeof<byte []>;typeof<int>|])
                 
                 let invoke = mymethod.Invoke(null,[|box hd;box 0|])
                 aux tl (elemList.Tail) (invoke::acc)
@@ -190,16 +189,15 @@ let deserializeAsync (messages: _ list) (role:string)
                 let! res = 
                     Runtime.receiveMessageAsync "agent" 
                         messages role listTypes 
-                let res =
-                    let received = (res.Tail |> convert <| listTypes )
-                    runAssertion foo argsNames received
-                    let received = received |> List.toSeq          
-                    Runtime.setResults received 
-                        (%%(Expr.NewArray(typeof<ISetResult>, buffer)):ISetResult []) 
-                return res
+                let received = (res.Tail |> convert <| listTypes )
+                runAssertion foo argsNames received
+                let received = received |> List.toSeq          
+                Runtime.setResults received 
+                    (%%(Expr.NewArray(typeof<ISetResult>, buffer)):ISetResult []) 
             }
         Async.Start(work)
      @>
+
 
 let deserializeChoice (args: Expr list) (listTypes:string list) argsNames foo =
     let buffer = [for elem in args do

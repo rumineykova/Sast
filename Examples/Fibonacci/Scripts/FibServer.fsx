@@ -32,12 +32,19 @@ let p2 = new DomainModel.Buf<int>()
 [<Literal>]
 let f = 1
 
-let trysmth x y = y x
+let byeCallback (x:Fib.BYE) =  
+    printf "Bye handler" 
+    x.receive(C).sendBYE(C).finish()
 
-trysmth(f, fun y -> y + f)
+let helloCallback (x:Fib.HELLO) =   
+    printf "Bye executed" 
+    let buf = new DomainModel.Buf<int>()
+    x.receive(C, buf).sendHELLO(C, 2).finish()
 
+// trysmth(f, fun y -> y + f)
 
-let newS = s.receiveHELLO(C, p).sendHELLO(C, 4).branch((), p)
+let newS = s.receiveHELLO(C, p).sendHELLO(C, 4).branch(byeCallback, helloCallback)
+//.branch((), p)
 
 let receiveHello x y = x + y 
 let receiveBye x y z = x + y + z

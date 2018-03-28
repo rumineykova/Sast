@@ -513,25 +513,36 @@ let invokeCodeOnChoice (payload: ScribbleProtocole.Payload []) indexList fsmInst
     // 4. invoke h with the received value 
     // Should invorporate whatever is in the receive... 
 
+    // Maybe we can't implement only receive handlers! 
     <@@ 
         Debug.print "Before Branching :" 
             (listExpectedMessages,listExpectedTypes,listPayload)
+        
         let result = 
             Runtime.receiveMessage "agent" listExpectedMessages 
                 role listExpectedTypes 
         let decode = new UTF8Encoding() 
         let labelRead = decode.GetString(result.[0])
+        // let handlerIndex = labelNames |> List.findIndex (fun x -> x = labelRead)
+        // let handler = args.[handlerIndex]
         // here have invokeCodeOnreceive
 
         let labelIndex = 
             labelNames 
             |> List.findIndex (fun x -> x.Equals(labelRead))
         let handler = args.[labelIndex]
-        let assembly = System.Reflection.Assembly.GetExecutingAssembly() 
+        typeof<TypeChoices.Choice1>
+        // get the current channel 
+        // TODO: Get contructor for the generated type 
+        //let instanceOfChoice = Expr.Call getTheContructorOfThisType
+        let instance = args.[0]
+        
+        Expr.Application(handler,  instance)
+        (*let assembly = System.Reflection.Assembly.GetExecutingAssembly() 
         let label = Runtime.getLabelType labelRead 
         let ctor = label.GetConstructors().[0] 
         let typing = assembly.GetType(label.FullName) 
-        System.Activator.CreateInstance(typing,[||]) 
+        System.Activator.CreateInstance(typing,[||])*)
     @@>
 
 let rec makeFunctionType (types: System.Type list) =
@@ -542,7 +553,8 @@ let rec makeFunctionType (types: System.Type list) =
             //FSharp.Reflection.FSharpType.MakeFunctionType(typeof<()>,System.Int32) //failwith "shouldn't happen"
             | _ ->  typeof<unit> 
 
-let generateHandlers (aType:ProvidedTypeDefinition) 
+let generateHandlers (aType:ProvidedTypeDefinition)
+        (labels:Map<string,ProvidedTypeDefinition>)  
         (fsmInstance: ScribbleProtocole.Root []) 
         currentState indexList indexOfState 
         (mRole:Map<string,ProvidedTypeDefinition>) 
@@ -553,6 +565,7 @@ let generateHandlers (aType:ProvidedTypeDefinition)
 
     let rec aux (outTranition:int) =
         let currEvent = fsmInstance.[outTranition]
+        
         let name = currEvent.Label.Replace("(","").Replace(")","")                                                                                 
         let listTypes = createProvidedParameters currEvent 
         let listParam = 
@@ -565,11 +578,18 @@ let generateHandlers (aType:ProvidedTypeDefinition)
 
         let nextType = findProvidedType providedList (currEvent.NextState)
         let inferredVars = parseInfVars currEvent.Inferred
+        (*
         let paramTypes = 
             listTypes 
             |>  List.map (fun (x:ProvidedParameter) -> x.ParameterType)
-        
-        let T = makeFunctionType(paramTypes)
+        *)
+
+        let assembly = Assembly.GetExecutingAssembly()
+        let labelType = labels.[currEvent.Label+"_1"].DeclaringType
+        //let ctor = label.GetConstructors().[0] 
+        //let labelType = assembly.GetType(nextType.FullName).DeclaringType
+        // (labelType::paramTypes)
+        let T = makeFunctionType(List.append [labelType] [typeof<End>])        
         let param = ProvidedParameter(currEvent.Label, T)
         param
              
@@ -579,32 +599,38 @@ let generateChoice (aType:ProvidedTypeDefinition)
         (fsmInstance: ScribbleProtocole.Root []) 
         currentState indexList indexOfState 
         (mRole:Map<string,ProvidedTypeDefinition>) 
-        (providedList: ProvidedTypeDefinition list) = 
+        (providedList: ProvidedTypeDefinition list) 
+        (labels: Map<string, ProvidedTypeDefinition>) = 
 
-    let assem = typeof<TypeChoices.Choice1>.Assembly
-    let labelType = assem.GetType(ChoiceType + string currentState)
-    let event = fsmInstance.[indexOfState]
-    let role = event.Partner
     
-    let handlers = 
-        generateHandlers aType fsmInstance currentState 
-            indexList indexOfState mRole providedList
-    let myMethod = 
-        //let paramTypes = listParam |>  List.map (fun (x:ProvidedParameter) -> x.ParameterType)
-        //let T = makeFunctionType(paramTypes)
-        //let param = [ProvidedParameter("handler", T)]
-        let labelNames = handlers |> List.map (fun x -> x.Name) 
-        ProvidedMethod("branch", 
-            handlers, labelType, 
-            IsStaticMethod = false, 
-            InvokeCode = (fun args  ->  
-                invokeCodeOnChoice event.Payload 
-                    indexList fsmInstance role args labelNames)) 
-    
-    let doc = getDocForChoice indexList fsmInstance
-    myMethod.AddXmlDocDelayed(fun () -> doc)
-    aType |> addMethod myMethod |> ignore
+    //aType |> addMethod myMethod |> ignore
 
+    aType.AddMemberDelayed(fun () -> 
+        let assem = typeof<TypeChoices.Choice1>.Assembly
+        let labelType = assem.GetType(ChoiceType + string currentState)
+        let event = fsmInstance.[indexOfState]
+        let role = event.Partner
+    
+        let handlers = 
+            generateHandlers aType labels fsmInstance currentState
+                indexList indexOfState mRole providedList
+
+        let myMethod = 
+            //let paramTypes = listParam |>  List.map (fun (x:ProvidedParameter) -> x.ParameterType)
+            //let T = makeFunctionType(paramTypes)
+            //let param = [ProvidedParameter("handler", T)]
+            let labelNames = handlers |> List.map (fun x -> x.Name) 
+            ProvidedMethod("branch", 
+                handlers, typeof<End>, 
+                IsStaticMethod = false, 
+                InvokeCode = (fun args  ->  
+                    invokeCodeOnChoice event.Payload 
+                        indexList fsmInstance role args labelNames)) 
+    
+        let doc = getDocForChoice indexList fsmInstance
+        myMethod.AddXmlDocDelayed(fun () -> doc)
+        myMethod
+    )
 
 let internal makeChoiceLabelTypes (fsmInstance:ScribbleProtocole.Root []) 
         (providedList: ProvidedTypeDefinition list) 
@@ -629,6 +655,10 @@ let internal makeChoiceLabelTypes (fsmInstance:ScribbleProtocole.Root [])
                     else
                         let currEvent = fsmInstance.[liste.Head]
                         let name = currEvent.Label.Replace("(","").Replace(")","") 
+                        let mutable holderType = 
+                            name + "_1" 
+                            |> createProvidedIncludedType
+                        
                         let mutable aType = 
                             name 
                             |> createProvidedIncludedType
@@ -661,15 +691,20 @@ let internal makeChoiceLabelTypes (fsmInstance:ScribbleProtocole.Root [])
                         if doc <> "" then  myMethod.AddXmlDocDelayed(fun() -> doc)                                                                                                                                        
                         aType <- aType |> addMethod (myMethod)
 
-                        aType.SetAttributes(TypeAttributes.Public ||| TypeAttributes.Class)
-                        aType.HideObjectMethods <- true
-                        aType.AddInterfaceImplementation typeCtor
-                        
+                        //aType.SetAttributes(TypeAttributes.Public ||| TypeAttributes.Class)
+                        //aType.HideObjectMethods <- true
+                        //aType.AddInterfaceImplementation typeCtor
+                        aType.AddMember holderType
+
+
                         if not (alreadySeenOnlyLabel listeLabelSeen currEvent.Label) then 
                             mapping <- mapping.Add(currEvent.Label,aType)
+                            mapping <- mapping.Add(currEvent.Label + "_1", holderType)
                             listeType <- (aType)::listeType       
                         listeLabelSeen <- (currEvent.Label,currEvent.CurrentState)::listeLabelSeen
                         
+                        
+
                         if (List.length liste) > 1 then aux liste.Tail
 
                 in aux listIndexChoice 
@@ -682,90 +717,90 @@ let generateMethod (aType:ProvidedTypeDefinition)
         (methodName:string) listParam nextType 
         (errorMessage:string) (event: ScribbleProtocole.Root) 
         exprState role = 
-    
-    let fullName = event.Label
-    let nameLabel = fullName.Replace("(","").Replace(")","")
-    let inferredVars = parseInfVars event.Inferred
-    let methods = 
-        match methodName with
-        |"send" -> 
-            let m = ProvidedMethod(methodName+nameLabel, listParam, nextType,
-                        IsStaticMethod = false,
-                        InvokeCode = fun args-> 
-                            invokeCodeOnSend args event.Payload 
-                                exprState role fullName 
-                                event.Assertion inferredVars)
+    aType.AddMembersDelayed( fun () -> 
+        let fullName = event.Label
+        let nameLabel = fullName.Replace("(","").Replace(")","")
+        let inferredVars = parseInfVars event.Inferred
+        let methods = 
+            match methodName with
+            |"send" -> 
+                let m = ProvidedMethod(methodName+nameLabel, listParam, nextType,
+                            IsStaticMethod = false,
+                            InvokeCode = fun args-> 
+                                invokeCodeOnSend args event.Payload 
+                                    exprState role fullName 
+                                    event.Assertion inferredVars)
                 
-            //let dummy = ProvidedMethod(methodName+nameLabel, [ ], nextType, IsStaticMethod = false, InvokeCode = fun args -> <@@ 3 @@>)              
-            // all arguments can be given as static parameters, then they are imemdiately inserted in the cache. 
-            // otherwise, we can use the static parameters to program the assertions on send (in the choice)!
-            let staticParams = [ProvidedStaticParameter("Count", typeof<int>)]
+                //let dummy = ProvidedMethod(methodName+nameLabel, [ ], nextType, IsStaticMethod = false, InvokeCode = fun args -> <@@ 3 @@>)              
+                // all arguments can be given as static parameters, then they are imemdiately inserted in the cache. 
+                // otherwise, we can use the static parameters to program the assertions on send (in the choice)!
+                let staticParams = [ProvidedStaticParameter("Count", typeof<int>)]
                 
                 
-            let add (a:System.Int32) (b:System.Int32) = a + b
-            let T = add.GetType()
+                let add (a:System.Int32) (b:System.Int32) = a + b
+                let T = add.GetType()
                
-            //let T1 = typeof<int -> float> 
-            //T1 = T2
-            (*m.DefineStaticParameters(staticParams, (fun nm args ->
-                                        let arg = args.[0] :?> int
-                                        if arg < 3 then  
-                                            let m2 = ProvidedMethod(nm, param, nextType,
-                                                        IsStaticMethod = false,
-                                                        InvokeCode = fun args-> 
-                                                            invokeCodeOnSend args event.Payload 
-                                                                exprState role fullName 
-                                                                event.Assertion inferredVars)
-                                            aType.AddMember m2
-                                            m2
-                                        else failwith "Assertion not satisfied"
-                                        ))*)
-            [m]
-        |"receive" ->  
-            let labelDelim, _, _ = getDelims fullName
-            let decode = new System.Text.UTF8Encoding()
-            let message = 
-                Array.append (decode.GetBytes(fullName)) 
-                    (decode.GetBytes(labelDelim.Head))
+                //let T1 = typeof<int -> float> 
+                //T1 = T2
+                (*m.DefineStaticParameters(staticParams, (fun nm args ->
+                                            let arg = args.[0] :?> int
+                                            if arg < 3 then  
+                                                let m2 = ProvidedMethod(nm, param, nextType,
+                                                            IsStaticMethod = false,
+                                                            InvokeCode = fun args-> 
+                                                                invokeCodeOnSend args event.Payload 
+                                                                    exprState role fullName 
+                                                                    event.Assertion inferredVars)
+                                                aType.AddMember m2
+                                                m2
+                                            else failwith "Assertion not satisfied"
+                                            ))*)
+                [m]
+            |"receive" ->  
+                let labelDelim, _, _ = getDelims fullName
+                let decode = new System.Text.UTF8Encoding()
+                let message = 
+                    Array.append (decode.GetBytes(fullName)) 
+                        (decode.GetBytes(labelDelim.Head))
 
-            let recvMethod = 
-                ProvidedMethod(
-                    methodName+nameLabel,listParam,nextType,
-                    IsStaticMethod = false,
-                    InvokeCode = fun args -> 
-                        invokeCodeOnReceive args event.Payload  
-                            exprState   event.Assertion inferredVars
-                            (deserialize [message] role)
-                    )
-            let recvMethodAsync = 
-                ProvidedMethod(
-                    (methodName+nameLabel+"Async"),listParam,nextType, 
-                    IsStaticMethod = false,
-                    InvokeCode = fun args -> 
-                        invokeCodeOnReceive args event.Payload 
-                            exprState event.Assertion inferredVars
-                            (deserializeAsync [message] role))
-            [recvMethod; recvMethodAsync]
-        |"request" ->
-            [ProvidedMethod(
-                methodName+nameLabel, 
-                listParam, nextType, 
-                IsStaticMethod = false,
-                InvokeCode = fun _-> invokeCodeOnRequest role exprState)]
-        |"accept" ->  
+                let recvMethod = 
+                    ProvidedMethod(
+                        methodName+nameLabel,listParam,nextType,
+                        IsStaticMethod = false,
+                        InvokeCode = fun args -> 
+                            invokeCodeOnReceive args event.Payload  
+                                exprState   event.Assertion inferredVars
+                                (deserialize [message] role)
+                        )
+                let recvMethodAsync = 
+                    ProvidedMethod(
+                        (methodName+nameLabel+"Async"),listParam,nextType, 
+                        IsStaticMethod = false,
+                        InvokeCode = fun args -> 
+                            invokeCodeOnReceive args event.Payload 
+                                exprState event.Assertion inferredVars
+                                (deserializeAsync [message] role))
+                [recvMethod; recvMethodAsync]
+            |"request" ->
                 [ProvidedMethod(
                     methodName+nameLabel, 
-                    listParam, 
-                    nextType, 
+                    listParam, nextType, 
                     IsStaticMethod = false,
-                    InvokeCode = fun _-> invokeCodeOnAccept role exprState)] 
-        | _ -> failwith errorMessage    
+                    InvokeCode = fun _-> invokeCodeOnRequest role exprState)]
+            |"accept" ->  
+                    [ProvidedMethod(
+                        methodName+nameLabel, 
+                        listParam, 
+                        nextType, 
+                        IsStaticMethod = false,
+                        InvokeCode = fun _-> invokeCodeOnAccept role exprState)] 
+            | _ -> failwith errorMessage    
 
-    methods 
-    |> List.iter (fun genMethod -> 
-        let doc = getAssertionDoc event.Assertion event.Inferred
-        if doc <> "" then genMethod.AddXmlDocDelayed(fun () -> doc);
-        aType |> addMethod genMethod |> ignore)             
+        methods) 
+        (*|> List.iter (fun genMethod -> 
+            let doc = getAssertionDoc event.Assertion event.Inferred
+            if doc <> "" then genMethod.AddXmlDocDelayed(fun () -> doc);
+            aType |> addMethod genMethod |> ignore)*)
 
 let generateMethodParams (fsmInstance:ScribbleProtocole.Root []) idx 
         (providedList:ProvidedTypeDefinition list) roleValue  = 
@@ -798,7 +833,7 @@ let rec goingThrough (methodNaming:string)
         (mLabel:Map<string,ProvidedTypeDefinition>) 
         (mRole:Map<string,ProvidedTypeDefinition>) 
         (fsmInstance:ScribbleProtocole.Root []) =
-
+    
     if (List.length indexList = 0) then 
         let expr = <@@ Runtime.stopMessage "agent" @@> 
         let finishExpr =  Expr.Sequential(expr, <@@ printfn "finish" @@>)
@@ -842,7 +877,7 @@ let rec addProperties (providedListStatic:ProvidedTypeDefinition list)
                     aType indexList mLabel mRole fsmInstance 
             |"choice" -> 
                 generateChoice aType fsmInstance currentState 
-                    indexList indexOfState  mRole providedList
+                    indexList indexOfState  mRole providedList mLabel
             |"finish" ->  
                 goingThrough methodName providedListStatic aType 
                     indexList mLabel mRole fsmInstance 
@@ -854,7 +889,7 @@ let rec addProperties (providedListStatic:ProvidedTypeDefinition list)
                     hd indexList mLabel mRole fsmInstance 
             |"choice" -> 
                 generateChoice hd fsmInstance currentState 
-                    indexList indexOfState mRole providedList
+                    indexList indexOfState mRole providedList mLabel
             |"finish" -> 
                 goingThrough methodName providedListStatic hd 
                     indexList mLabel mRole fsmInstance 
