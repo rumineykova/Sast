@@ -6,10 +6,10 @@ type <java> "java.lang.Integer" from "rt.jar" as int;
 global protocol Adder(role C, role S)
 {
 	//HELLO(u:int) from C to S; @"u < 3"
-	HELLO() from C to S;
+	HELLO(u:int) from C to S;
 	choice at C
 	{
-		HELLO() from C to S;
+		HELLO(v:int) from C to S;
 		//RES(v:int) from S to C;
 		//do Adder(C, S);
 	}

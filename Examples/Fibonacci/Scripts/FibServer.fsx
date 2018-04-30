@@ -54,7 +54,7 @@ let helloCallback (x:Fib.HELLO) =
 //let newS = s.receiveHELLO(C, p).sendHELLO(C, 4).branch(test1, test2)
 
 printfn "After Init: %i!!!" 1
-let newS = s.receiveHELLO(C)
+let newS = s.receiveHELLO(C, p)
 printfn "Done: %i!!!" 1 //(p.getValue())
 let res = newS.branch(test1, test2)
 //.branch((), p)

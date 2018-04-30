@@ -534,7 +534,7 @@ let invokeCodeOnChoice (payload: ScribbleProtocole.Payload []) indexList fsmInst
         
             let labelIndex = 
                 labelNames 
-                |> List.findIndex (fun x -> x=labelRead)         
+                |> List.findIndex (fun x -> x.Equals(labelRead))         
             Debug.print "After receive :" labelIndex
             if labelIndex = 0 then 
                 Debug.print "First handler :" labelIndex

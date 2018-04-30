@@ -35,7 +35,7 @@ let s = new Fib()
 let c = s.Init()
 let p = new DomainModel.Buf<int>()
 let p2 = new DomainModel.Buf<int>()
-c.sendHELLO(S).sendBYE(S)//receiveHELLO(S, p).sendHELLO(S, 2).receiveHELLO(S, p2).finish()
+c.sendHELLO(S, 2).sendHELLO(S, 3)//receiveHELLO(S, p).sendHELLO(S, 2).receiveHELLO(S, p2).finish()
 
 printfn "Done too:%i!" (p.getValue())
 (*let Fib = Provided.STP<"../../../Examples/Fibonacci/FSM/SimpleC.txt"

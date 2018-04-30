@@ -96,7 +96,7 @@ let serPayloads (args:Expr list) (listTypes:string list)
                 else
                    ""
             match currentType with
-            |"System.String" | "System.Char" | _ -> 
+            |"System.String" | "System.Char" -> 
                 <@  
                     let spliced = %%(Expr.Coerce(arg,typeof<obj>))
                     let names = if argName = "" then [] else [argName]
@@ -110,7 +110,22 @@ let serPayloads (args:Expr list) (listTypes:string list)
                         Debug.print "Failed to serialize 1" ""
                         SerializationPayload (spliced,currentType) |> createFailure        
                 @>
-           ) 
+             |  _ -> 
+                <@ 
+                    let spliced = %%(Expr.Coerce(arg,typeof<obj>))
+                    let names = if argName = "" then [] else [argName]
+                    runAssertion assrtFun [argName] [spliced] 
+
+                    try
+                        Type.GetType("System.BitConverter")
+                            .GetMethod("GetBytes",[|Type.GetType(currentType)|])
+                            .Invoke(null,[|spliced|] ) |> unbox<byte []> 
+                    with
+                    | _ -> 
+                        Debug.print "Failed to serialize 2" ""
+                        SerializationPayload (spliced,currentType) |> createFailure   
+                @> 
+           )  
 
     let payloadsNum = listPayloads.Length
     let listDelims = 
