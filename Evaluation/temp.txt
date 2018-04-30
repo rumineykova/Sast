@@ -14618,3 +14618,247 @@ After Scribble Compiler: 613
 After Parsing : 7 
 After Scribble Compiler: 553 
 After Parsing : 9 
+Assembly: 0 
+After Scribble Compiler: 828 
+After Parsing : 166 
+After Scribble Compiler: 624 
+After Parsing : 7 
+After Scribble Compiler: 590 
+After Parsing : 13 
+Assembly: 0 
+After Scribble Compiler: 700 
+After Parsing : 160 
+After Scribble Compiler: 618 
+After Parsing : 7 
+After Scribble Compiler: 564 
+After Parsing : 7 
+Assembly: 0 
+After Scribble Compiler: 856 
+After Parsing : 186 
+After Scribble Compiler: 650 
+After Parsing : 7 
+After Scribble Compiler: 642 
+After Parsing : 8 
+After Scribble Compiler: 743 
+After Parsing : 8 
+After Scribble Compiler: 575 
+After Parsing : 7 
+Assembly: 0 
+After Scribble Compiler: 771 
+After Parsing : 227 
+After Scribble Compiler: 621 
+After Parsing : 8 
+After Scribble Compiler: 648 
+After Parsing : 12 
+Assembly: 0 
+After Scribble Compiler: 831 
+After Parsing : 13 
+After Scribble Compiler: 828 
+After Parsing : 195 
+After Scribble Compiler: 615 
+After Parsing : 7 
+After Scribble Compiler: 607 
+After Parsing : 8 
+After Scribble Compiler: 560 
+After Parsing : 7 
+Assembly: 0 
+After Scribble Compiler: 688 
+After Parsing : 161 
+After Scribble Compiler: 598 
+After Parsing : 7 
+After Scribble Compiler: 560 
+After Parsing : 7 
+Assembly: 0 
+After Scribble Compiler: 756 
+After Parsing : 115 
+After Scribble Compiler: 578 
+After Parsing : 7 
+After Scribble Compiler: 644 
+After Parsing : 7 
+After Scribble Compiler: 1049 
+After Parsing : 8 
+After Scribble Compiler: 561 
+After Parsing : 7 
+Assembly: 0 
+After Scribble Compiler: 762 
+After Parsing : 119 
+After Scribble Compiler: 626 
+After Parsing : 7 
+After Scribble Compiler: 554 
+After Parsing : 7 
+After Scribble Compiler: 698 
+After Parsing : 7 
+After Scribble Compiler: 567 
+After Parsing : 8 
+After Scribble Compiler: 3009 
+After Parsing : 7 
+After Scribble Compiler: 552 
+After Parsing : 7 
+After Scribble Compiler: 571 
+After Parsing : 9 
+After Scribble Compiler: 629 
+After Parsing : 10 
+After Scribble Compiler: 595 
+After Parsing : 10 
+After Scribble Compiler: 567 
+After Parsing : 8 
+Assembly: 0 
+After Scribble Compiler: 799 
+After Parsing : 190 
+After Scribble Compiler: 606 
+After Parsing : 7 
+After Scribble Compiler: 554 
+After Parsing : 7 
+After Scribble Compiler: 818 
+After Parsing : 7 
+After Scribble Compiler: 561 
+After Parsing : 7 
+Assembly: 0 
+After Scribble Compiler: 798 
+After Parsing : 183 
+After Scribble Compiler: 602 
+After Parsing : 7 
+After Scribble Compiler: 572 
+After Parsing : 28 
+After Scribble Compiler: 692 
+After Parsing : 18 
+After Scribble Compiler: 586 
+After Parsing : 7 
+Assembly: 0 
+After Scribble Compiler: 833 
+After Parsing : 208 
+After Scribble Compiler: 664 
+After Parsing : 13 
+After Scribble Compiler: 581 
+After Parsing : 7 
+After Scribble Compiler: 726 
+After Parsing : 7 
+After Scribble Compiler: 524 
+After Parsing : 7 
+Assembly: 0 
+After Scribble Compiler: 857 
+After Parsing : 204 
+After Scribble Compiler: 644 
+After Parsing : 7 
+After Scribble Compiler: 572 
+After Parsing : 7 
+After Scribble Compiler: 663 
+After Parsing : 7 
+After Scribble Compiler: 573 
+After Parsing : 7 
+Assembly: 0 
+After Scribble Compiler: 732 
+After Parsing : 167 
+After Scribble Compiler: 646 
+After Parsing : 9 
+After Scribble Compiler: 592 
+After Parsing : 20 
+Assembly: 0 
+After Scribble Compiler: 720 
+After Parsing : 159 
+After Scribble Compiler: 622 
+After Parsing : 7 
+After Scribble Compiler: 558 
+After Parsing : 12 
+Assembly: 0 
+After Scribble Compiler: 867 
+After Parsing : 216 
+After Scribble Compiler: 609 
+After Parsing : 8 
+After Scribble Compiler: 585 
+After Parsing : 7 
+After Scribble Compiler: 668 
+After Parsing : 8 
+After Scribble Compiler: 636 
+After Parsing : 10 
+Assembly: 0 
+After Scribble Compiler: 742 
+After Parsing : 194 
+After Scribble Compiler: 621 
+After Parsing : 8 
+After Scribble Compiler: 575 
+After Parsing : 7 
+After Scribble Compiler: 759 
+After Parsing : 9 
+Assembly: 0 
+After Scribble Compiler: 674 
+After Parsing : 13 
+After Scribble Compiler: 804 
+After Parsing : 165 
+After Scribble Compiler: 664 
+After Parsing : 8 
+After Scribble Compiler: 600 
+After Parsing : 7 
+Assembly: 0 
+After Scribble Compiler: 721 
+After Parsing : 162 
+After Scribble Compiler: 610 
+After Parsing : 7 
+After Scribble Compiler: 581 
+After Parsing : 7 
+Assembly: 0 
+After Scribble Compiler: 825 
+After Parsing : 215 
+After Scribble Compiler: 988 
+After Parsing : 7 
+After Scribble Compiler: 618 
+After Parsing : 7 
+Assembly: 0 
+After Scribble Compiler: 864 
+After Parsing : 7 
+After Scribble Compiler: 706 
+After Parsing : 15 
+After Scribble Compiler: 985 
+After Parsing : 193 
+After Scribble Compiler: 658 
+After Parsing : 7 
+After Scribble Compiler: 620 
+After Parsing : 8 
+After Scribble Compiler: 759 
+After Parsing : 12 
+Assembly: 0 
+After Scribble Compiler: 670 
+After Parsing : 11 
+After Scribble Compiler: 801 
+After Parsing : 179 
+After Scribble Compiler: 701 
+After Parsing : 8 
+After Scribble Compiler: 585 
+After Parsing : 11 
+Assembly: 0 
+After Scribble Compiler: 724 
+After Parsing : 160 
+After Scribble Compiler: 597 
+After Parsing : 8 
+After Scribble Compiler: 546 
+After Parsing : 7 
+After Scribble Compiler: 55730 
+After Parsing : 7 
+After Scribble Compiler: 543 
+After Parsing : 7 
+After Scribble Compiler: 4464 
+After Parsing : 7 
+After Scribble Compiler: 562 
+After Parsing : 8 
+After Scribble Compiler: 577 
+After Parsing : 14 
+Assembly: 0 
+After Scribble Compiler: 648 
+After Parsing : 7 
+After Scribble Compiler: 808 
+After Scribble Compiler: 675 
+After Parsing : 199 
+After Parsing : 16 
+After Scribble Compiler: 615 
+After Parsing : 11 
+After Scribble Compiler: 663 
+After Parsing : 13 
+Assembly: 0 
+After Scribble Compiler: 673 
+After Parsing : 9 
+After Scribble Compiler: 811 
+After Parsing : 160 
+After Scribble Compiler: 629 
+After Parsing : 8 
+After Scribble Compiler: 567 
+After Parsing : 7 

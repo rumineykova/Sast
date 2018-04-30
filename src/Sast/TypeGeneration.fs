@@ -527,17 +527,20 @@ let invokeCodeOnChoice (payload: ScribbleProtocole.Payload []) indexList fsmInst
             let decode = new UTF8Encoding() 
             let labelRead = decode.GetString(result.[0])
             Debug.print "After receive :" labelRead
+            Debug.print "After receive :" labelNames
             // let handlerIndex = labelNames |> List.findIndex (fun x -> x = labelRead)
             // let handler = args.[handlerIndex]
             // here have invokeCodeOnreceive
         
             let labelIndex = 
                 labelNames 
-                |> List.findIndex (fun x -> x.Equals(labelRead))         
-
-            if labelIndex = 1 then 
+                |> List.findIndex (fun x -> x=labelRead)         
+            Debug.print "After receive :" labelIndex
+            if labelIndex = 0 then 
+                Debug.print "First handler :" labelIndex
                 %%Expr.Applications(args.[1], [[elem]; [elem]])
-            else if labelIndex = 2 then 
+            else if labelIndex = 1 then 
+                Debug.print "Second handler :" labelIndex
                 %%Expr.Applications(args.[2], [[elem]; [elem]])
     @@>
     expr
