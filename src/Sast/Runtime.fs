@@ -26,7 +26,10 @@ let getLabelType (labelRead:string) =
     mLabel.[labelRead]
 
 let startAgentRouter agent =
-    routerMap.Item(agent).Start()
+    printfn "Before adding agent"
+    routerMap.Item(agent).Start() 
+    printfn "After adding agent"
+    ()
 
 let acceptConnection agent role =
     routerMap.Item(agent).AcceptConnection(role)

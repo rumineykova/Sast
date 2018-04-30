@@ -343,6 +343,7 @@ type AgentReceiver(ipAddress,port, roles: string list) =
 
     member this.Start()=
         server.Start()
+        Debug.print "Start the router" this.parentRouter
         Agent.Start(binding server this.parentRouter) |> ignore
         agentReceiver <- Some (Agent.Start(receive))
 
@@ -427,11 +428,14 @@ type AgentRouter(explicitConnection:bool) =
             ()
 
         member this.Start() =
+            printfn "before agentReceive.start()"
             this.agentReceiver.Start()
+            printfn "After agentReceive.start()"
             if (not explicitConnection) then 
                 for sender in this.agentMapping do
                     sender.Value.Start()
                     //connectedAgents.[sender.Key] = true |> ignore
+            Debug.print "Starting the connection..."
 
         member this.Stop() =
             for sender in this.agentMapping do

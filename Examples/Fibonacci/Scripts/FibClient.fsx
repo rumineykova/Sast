@@ -18,13 +18,13 @@ let typeAliasing1 = """ [ {"alias" : "int", "type": "System.Int32"},
                           {"alias" : "string", "type": "System.String"}] """
 
 
-type Fib = Provided.STP<"../../../Examples/Fibonacci/FSM/SimpleC.txt"
+type Fib = Provided.STP<"../../../Examples/Fibonacci/Protocols/Fib.scr"
                        , "Adder" 
                        , "C"
                        , "../../../Examples/Fibonacci/Config/config.yaml"
                        ,Delimiter=delims
                        ,TypeAliasing=typeAliasing1
-                       ,ScribbleSource = ScribbleSource.File
+                       ,ScribbleSource = ScribbleSource.LocalExecutable
                        ,ExplicitConnection=false 
                        ,AssertionsOn=true>
 
@@ -35,7 +35,7 @@ let s = new Fib()
 let c = s.Init()
 let p = new DomainModel.Buf<int>()
 let p2 = new DomainModel.Buf<int>()
-c.sendHELLO(S, 2).receiveHELLO(S, p).sendHELLO(S, 2).receiveHELLO(S, p2).finish()
+c.sendHELLO(S).sendHELLO(S)//receiveHELLO(S, p).sendHELLO(S, 2).receiveHELLO(S, p2).finish()
 
 printfn "Done too:%i!" (p.getValue())
 (*let Fib = Provided.STP<"../../../Examples/Fibonacci/FSM/SimpleC.txt"

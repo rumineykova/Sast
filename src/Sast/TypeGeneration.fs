@@ -498,7 +498,8 @@ let invokeCodeOnReceive (args:Expr list)
     exprInferredVars
 
 let invokeCodeOnChoice (payload: ScribbleProtocole.Payload []) indexList fsmInstance role 
-        (args: Expr list) (labelNames: string List)= 
+        (args: Expr list) (labelNames: string List) = 
+         
     let listPayload = (payloadsToTypes payload) 
     let listExpectedMessagesAndTypes  = getAllChoiceLabels indexList fsmInstance
     let listExpectedMessages = listExpectedMessagesAndTypes |> List.map fst
@@ -514,36 +515,62 @@ let invokeCodeOnChoice (payload: ScribbleProtocole.Payload []) indexList fsmInst
     // Should invorporate whatever is in the receive... 
 
     // Maybe we can't implement only receive handlers! 
-    <@@ 
-        Debug.print "Before Branching :" 
-            (listExpectedMessages,listExpectedTypes,listPayload)
+    let elem = <@ 1 @> 
+    let expr = 
+        <@@  
+            Debug.print "Before Branching :" 
+                (listExpectedMessages,listExpectedTypes,listPayload)
         
-        let result = 
-            Runtime.receiveMessage "agent" listExpectedMessages 
-                role listExpectedTypes 
-        let decode = new UTF8Encoding() 
-        let labelRead = decode.GetString(result.[0])
-        // let handlerIndex = labelNames |> List.findIndex (fun x -> x = labelRead)
-        // let handler = args.[handlerIndex]
-        // here have invokeCodeOnreceive
+            let result = 
+                Runtime.receiveMessage "agent" listExpectedMessages 
+                    role listExpectedTypes 
+            let decode = new UTF8Encoding() 
+            let labelRead = decode.GetString(result.[0])
+            Debug.print "After receive :" labelRead
+            // let handlerIndex = labelNames |> List.findIndex (fun x -> x = labelRead)
+            // let handler = args.[handlerIndex]
+            // here have invokeCodeOnreceive
+        
+            let labelIndex = 
+                labelNames 
+                |> List.findIndex (fun x -> x.Equals(labelRead))         
 
-        let labelIndex = 
-            labelNames 
-            |> List.findIndex (fun x -> x.Equals(labelRead))
-        let handler = args.[labelIndex]
-        typeof<TypeChoices.Choice1>
+            if labelIndex = 1 then 
+                %%Expr.Applications(args.[1], [[elem]; [elem]])
+            else if labelIndex = 2 then 
+                %%Expr.Applications(args.[2], [[elem]; [elem]])
+    @@>
+    expr
+    //let index = Expr.Coerce(expr, typeof<int>) :? System.Int32 
+    //let elem = <@ 1 @>
+    //let index = Expr.Coerce(expr, typeof<int>)
+    //Expr.Applications( <@@ args.[%%index] @@>, [[elem]; [elem]])
+    //let elem = <@ 1 @>
+    
+
+       (*
+        let methodInfo =
+            handler.GetMethods()
+            |> Array.filter (
+                fun x -> x.Name = "Invoke" 
+                            && x.GetParameters().Length = 1)
+            |> Array.head
+        let nextPartialFn = 
+            methodInfo.Invoke(partialFn, [| args.Head |])
+        helper nextPartialFn args.Tail
+        handler 1 *)
+        //typeof<TypeChoices.Choice1> |> ignore
         // get the current channel 
         // TODO: Get contructor for the generated type 
         //let instanceOfChoice = Expr.Call getTheContructorOfThisType
-        let instance = args.[0]
-        
-        Expr.Application(handler,  instance)
+        //let instance = %%(args.[0])
+        //instance
+        //Expr.Application(handler,  instance) |> ignore
         (*let assembly = System.Reflection.Assembly.GetExecutingAssembly() 
         let label = Runtime.getLabelType labelRead 
         let ctor = label.GetConstructors().[0] 
         let typing = assembly.GetType(label.FullName) 
         System.Activator.CreateInstance(typing,[||])*)
-    @@>
 
 let rec makeFunctionType (types: System.Type list) =
             match types with
@@ -589,7 +616,9 @@ let generateHandlers (aType:ProvidedTypeDefinition)
         //let ctor = label.GetConstructors().[0] 
         //let labelType = assembly.GetType(nextType.FullName).DeclaringType
         // (labelType::paramTypes)
-        let T = makeFunctionType(List.append [labelType] [typeof<End>])        
+        //let T = makeFunctionType(List.append [labelType] [typeof<End>])        
+        //let T = makeFunctionType(List.append [labelType] [typeof<unit>])        
+        let T = makeFunctionType(List.append [typeof<int>; typeof<int>] [typeof<unit>])        
         let param = ProvidedParameter(currEvent.Label, T)
         param
              
@@ -601,8 +630,6 @@ let generateChoice (aType:ProvidedTypeDefinition)
         (mRole:Map<string,ProvidedTypeDefinition>) 
         (providedList: ProvidedTypeDefinition list) 
         (labels: Map<string, ProvidedTypeDefinition>) = 
-
-    
     //aType |> addMethod myMethod |> ignore
 
     aType.AddMemberDelayed(fun () -> 

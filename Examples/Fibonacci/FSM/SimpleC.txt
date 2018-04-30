@@ -1,7 +1,7 @@
 digraph G {
 compound = true;
 "8" [ label="8: " ];
-"8" -> "10" [ label="S!HELLO(s: int)" ];
+"8" -> "10" [ label="S!HELLO(_dum3: _Unit)" ];
 "10" [ label="10: " ];
 "10" -> "11" [ label="S?HELLO(f: int)" ];
 "11" [ label="11: " ];

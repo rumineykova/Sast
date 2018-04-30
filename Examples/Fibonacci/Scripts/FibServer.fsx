@@ -13,13 +13,13 @@ let typeAliasing1 = """ [ {"alias" : "int", "type": "System.Int32"},
                           {"alias" : "string", "type": "System.String"}] """
 
 type Fib = 
-    Provided.STP<"../../../Examples/Fibonacci/FSM/SimpleS.txt"
+    Provided.STP<"../../../Examples/Fibonacci/Protocols/Fib.scr"
                                ,"Adder"
                                ,"S"
                                ,"../../../Examples/Fibonacci/Config/configServer.yaml"
                                ,Delimiter=delims1
                                ,TypeAliasing=typeAliasing1
-                               ,ScribbleSource = ScribbleSource.File
+                               ,ScribbleSource = ScribbleSource.LocalExecutable
                                ,ExplicitConnection=false 
                                ,AssertionsOn=true>
 
@@ -32,6 +32,14 @@ let p2 = new DomainModel.Buf<int>()
 [<Literal>]
 let f = 1
 
+let test1 (x:int) (y:int) = 
+    printf "First handler %i and %i" x y
+    ()
+
+let test2 (x:int) (y:int) = 
+    printf "Second handler %i and %i" x y
+    ()
+(*
 let byeCallback (x:Fib.BYE) =  
     printf "Bye handler" 
     x.receive(C).sendBYE(C).finish()
@@ -40,10 +48,15 @@ let helloCallback (x:Fib.HELLO) =
     printf "Bye executed" 
     let buf = new DomainModel.Buf<int>()
     x.receive(C, buf).sendHELLO(C, 2).finish()
-
+*)
 // trysmth(f, fun y -> y + f)
 
-let newS = s.receiveHELLO(C, p).sendHELLO(C, 4).branch(byeCallback, helloCallback)
+//let newS = s.receiveHELLO(C, p).sendHELLO(C, 4).branch(test1, test2)
+
+printfn "After Init: %i!!!" 1
+let newS = s.receiveHELLO(C)
+printfn "Done: %i!!!" 1 //(p.getValue())
+let res = newS.branch(test1, test2)
 //.branch((), p)
 
 let receiveHello x y = x + y 
@@ -53,7 +66,7 @@ let receiveBye x y z = x + y + z
  
 //sendHELLO<2>(C, 2).receiveHELLO(C, p).sendHELLO<f>(C, 3)
 
-printfn "Done: %i!!!" (p.getValue())
+printfn "Done: %i!!!" 2 //(p.getValue())
 
 
 
