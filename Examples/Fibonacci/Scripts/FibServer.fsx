@@ -23,45 +23,56 @@ type Fib =
                                ,ExplicitConnection=false 
                                ,AssertionsOn=true>
 
+
+
 let C = Fib.C.instance
 let S = Fib.S.instance
 
 let s = Fib().Init()
+
+
 let p = new DomainModel.Buf<int>()
 let p2 = new DomainModel.Buf<int>()
 [<Literal>]
 let f = 1
 
-let test1 (x:int) (y:int) = 
-    printf "First handler %i and %i" x y
+let test1 (x:int)  = 
+    printf "First handler %i and %i" x x
     ()
 
-let test2 (x:int) (y:int) = 
-    printf "Second handler %i and %i" x y
+//let testX (c:Fib.BYE) = 
+    //c.receive()
+
+let test2 (x:int)  = 
+    printf "Second handler %i and %i" x x 
     ()
-(*
+
 let byeCallback (x:Fib.BYE) =  
     printf "Bye handler" 
-    x.receive(C).sendBYE(C).finish()
+    x.receive(C).finish()
+
+let helloCallback1 (x:Fib.HELLO) =   
+    printfn "hello executed" 
+    let buf = new DomainModel.Buf<int>()
+    x.receive(C, buf).finish()
+    
 
 let helloCallback (x:Fib.HELLO) =   
-    printf "Bye executed" 
+    printfn "hello executed" 
     let buf = new DomainModel.Buf<int>()
-    x.receive(C, buf).sendHELLO(C, 2).finish()
-*)
-// trysmth(f, fun y -> y + f)
-
-//let newS = s.receiveHELLO(C, p).sendHELLO(C, 4).branch(test1, test2)
-
+    x.receive(C, buf).finish()
+       
 printfn "After Init: %i!!!" 1
 let newS = s.receiveHELLO(C, p)
 printfn "Done: %i!!!" 1 //(p.getValue())
-let res = newS.branch(test1, test2)
-//.branch((), p)
+//let res = newS.branch(test1, test2)
+
+let res = newS.branch(helloCallback, byeCallback)
+
+let res1 = newS.branch(helloCallback, byeCallback)
 
 let receiveHello x y = x + y 
 let receiveBye x y z = x + y + z
-
 
  
 //sendHELLO<2>(C, 2).receiveHELLO(C, p).sendHELLO<f>(C, 3)
@@ -104,3 +115,64 @@ printfn "The received values are %i and %i" (r.getValue()) (f.getValue())
 printfn "Then send"
 fibServer(thr)
 *)
+
+
+(*
+type UpdateMonad<'TState, 'TUpdate, 'T> = 
+  UM of ('TState -> 'TUpdate * 'T)
+
+type State
+type Update =
+  static Unit    : Update
+  static Combine : Update * Update -> Update
+  static Apply   : State * Update -> State
+
+let inline unit< ^S when ^S : 
+    (static member Unit : ^S)> () : ^S =
+  (^S : (static member Unit : ^S) ()) 
+
+/// Invokes Combine operation on a pair of ^S values
+let inline (++)< ^S when ^S : 
+    (static member Combine : ^S * ^S -> ^S )> a b : ^S =
+  (^S : (static member Combine : ^S * ^S -> ^S) (a, b)) 
+
+/// Invokes Apply operation on state and update ^S * ^U
+let inline apply< ^S, ^U when ^U : 
+    (static member Apply : ^S * ^U -> ^S )> s a : ^S =
+  (^U : (static member Apply : ^S * ^U -> ^S) (s, a)) 
+
+*)
+
+
+
+type LoggingBuilder() = 
+    let log p = printfn "expression is %A" p 
+
+    member this.Bind(x, f) = 
+        log x
+        f x
+
+    member this.Return(x) = 
+        x
+        
+let logger = new LoggingBuilder()
+
+let loggerWorkflow = 
+    logger {
+       let! x = 42
+       let! y = x 
+       return y
+    }
+
+        
+type MaybeBuilder() = 
+    member this.Bind(x, f) = 
+        match x with 
+        |None -> None
+        |Some a -> f a
+         
+    member this.Return(x) = 
+        Some(x)
+
+let maybe = MaybeBuilder()
+

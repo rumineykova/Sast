@@ -35,7 +35,11 @@ let s = new Fib()
 let c = s.Init()
 let p = new DomainModel.Buf<int>()
 let p2 = new DomainModel.Buf<int>()
-c.sendHELLO(S, 2).sendHELLO(S, 3)//receiveHELLO(S, p).sendHELLO(S, 2).receiveHELLO(S, p2).finish()
+let finalS = c.sendHELLO<0>(S, 2).sendHELLO<1>(S, 1)
+
+//let finalS = c.sendHELLO(S, 2).sendHELLO(S, 3)//receiveHELLO(S, p).sendHELLO(S, 2).receiveHELLO(S, p2).finish()
+Async.RunSynchronously(Async.Sleep(2000))
+finalS.finish()
 
 printfn "Done too:%i!" (p.getValue())
 (*let Fib = Provided.STP<"../../../Examples/Fibonacci/FSM/SimpleC.txt"

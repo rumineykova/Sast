@@ -497,8 +497,14 @@ let invokeCodeOnReceive (args:Expr list)
             inferredVars exprCaching
     exprInferredVars
 
+let invokeHandler (handler: Expr) (args: byte[] list) (types : string list)   = 
+    let received = convert args types
+    let toExpr = received |> List.map (fun i -> <@@ unbox<System.Int32> i @@>)
+    Expr.Applications(handler, [toExpr]) |> ignore
+    ()
+
 let invokeCodeOnChoice (payload: ScribbleProtocole.Payload []) indexList fsmInstance role 
-        (args: Expr list) (labelNames: string List) = 
+        (args: Expr list) (labelNames: string List) (choiceTypes:ProvidedTypeDefinition list)= 
          
     let listPayload = (payloadsToTypes payload) 
     let listExpectedMessagesAndTypes  = getAllChoiceLabels indexList fsmInstance
@@ -515,35 +521,46 @@ let invokeCodeOnChoice (payload: ScribbleProtocole.Payload []) indexList fsmInst
     // Should invorporate whatever is in the receive... 
 
     // Maybe we can't implement only receive handlers! 
-    let elem = <@ 1 @> 
-    let expr = 
-        <@@  
-            Debug.print "Before Branching :" 
-                (listExpectedMessages,listExpectedTypes,listPayload)
+    let elem = <@@ 1 @@> 
+
+  
+    <@@ 
+        Debug.print "Before Branching :" 
+            (listExpectedMessages,listExpectedTypes,listPayload)
         
-            let result = 
-                Runtime.receiveMessage "agent" listExpectedMessages 
-                    role listExpectedTypes 
-            let decode = new UTF8Encoding() 
-            let labelRead = decode.GetString(result.[0])
-            Debug.print "After receive :" labelRead
-            Debug.print "After receive :" labelNames
-            // let handlerIndex = labelNames |> List.findIndex (fun x -> x = labelRead)
-            // let handler = args.[handlerIndex]
-            // here have invokeCodeOnreceive
-        
-            let labelIndex = 
-                labelNames 
-                |> List.findIndex (fun x -> x.Equals(labelRead))         
-            Debug.print "After receive :" labelIndex
-            if labelIndex = 0 then 
-                Debug.print "First handler :" labelIndex
-                %%Expr.Applications(args.[1], [[elem]; [elem]])
-            else if labelIndex = 1 then 
-                Debug.print "Second handler :" labelIndex
-                %%Expr.Applications(args.[2], [[elem]; [elem]])
+        let result = 
+            Runtime.receiveMessage "agent" listExpectedMessages 
+                role listExpectedTypes 
+        let decode = new UTF8Encoding() 
+        let labelRead = decode.GetString(result.[0])
+        Debug.print "After receive :" labelRead
+        Debug.print "After receive :" labelNames
+        //let received = convert (result.Tail) listExpectedTypes.[1]
+        //Debug.print "After convert:" received
+        //%%Expr.Value(received.[0])
+        //received.[0]
+            
+        //let handlerIndex = labelNames |> List.findIndex (fun x -> x = labelRead)
+        //let handler = args.[handlerIndex]
+        // here have invokeCodeOnreceive
+            
+        let labelIndex = 
+            labelNames 
+            |> List.findIndex (fun x -> x.Equals(labelRead))         
+        Debug.print "After receive :" labelIndex
+        if labelIndex = 0 then 
+            Debug.print "First handler :" labelIndex
+            //let received = convert (result.Tail) listExpectedTypes.[1]
+            //let toExpr = received |> List.map (fun i -> <@@ unbox<System.Int32> i @@>)
+            (%%Expr.Application(args.[1], Expr.NewObject(choiceTypes.[0].GetConstructors().[0],[])):End)
+        else 
+            Debug.print "Second handler :" labelIndex
+            (%%Expr.Application(args.[2], Expr.NewObject(choiceTypes.[1].GetConstructors().[0],[])):End)
+            
     @@>
-    expr
+    //let expr = Expr.Coerce(myResults, typeof<int>)
+    //Expr.Applications(myResults, [[elem]; [elem]])
+
     //let index = Expr.Coerce(expr, typeof<int>) :? System.Int32 
     //let elem = <@ 1 @>
     //let index = Expr.Coerce(expr, typeof<int>)
@@ -616,14 +633,16 @@ let generateHandlers (aType:ProvidedTypeDefinition)
 
         let assembly = Assembly.GetExecutingAssembly()
         let labelType = labels.[currEvent.Label+"_1"].DeclaringType
+        
         //let ctor = label.GetConstructors().[0] 
         //let labelType = assembly.GetType(nextType.FullName).DeclaringType
         // (labelType::paramTypes)
-        //let T = makeFunctionType(List.append [labelType] [typeof<End>])        
+        //let T = makeFunctionType([labelType;typeof<End>])        
         //let T = makeFunctionType(List.append [labelType] [typeof<unit>])        
-        let T = makeFunctionType(List.append [typeof<int>; typeof<int>] [typeof<unit>])        
+        let T = makeFunctionType(List.append [labelType] [typeof<End>])        
         let param = ProvidedParameter(currEvent.Label, T)
-        param
+        
+        (param, labels.[currEvent.Label+"_1"])
              
     in listIndexChoice |> List.map aux 
 
@@ -641,21 +660,23 @@ let generateChoice (aType:ProvidedTypeDefinition)
         let event = fsmInstance.[indexOfState]
         let role = event.Partner
     
-        let handlers = 
+        let all = 
             generateHandlers aType labels fsmInstance currentState
                 indexList indexOfState mRole providedList
-
+        let handlers = all |> List.map fst
+        let choiceTypes = all |> List.map snd
+        Debug.print "The choice types are" choiceTypes.[0]
         let myMethod = 
             //let paramTypes = listParam |>  List.map (fun (x:ProvidedParameter) -> x.ParameterType)
             //let T = makeFunctionType(paramTypes)
             //let param = [ProvidedParameter("handler", T)]
             let labelNames = handlers |> List.map (fun x -> x.Name) 
             ProvidedMethod("branch", 
-                handlers, typeof<End>, 
+                handlers, typeof<unit>, 
                 IsStaticMethod = false, 
                 InvokeCode = (fun args  ->  
                     invokeCodeOnChoice event.Payload 
-                        indexList fsmInstance role args labelNames)) 
+                        indexList fsmInstance role args labelNames choiceTypes)) 
     
         let doc = getDocForChoice indexList fsmInstance
         myMethod.AddXmlDocDelayed(fun () -> doc)
@@ -754,14 +775,14 @@ let generateMethod (aType:ProvidedTypeDefinition)
         let methods = 
             match methodName with
             |"send" -> 
-                let m = ProvidedMethod(methodName+nameLabel, listParam, nextType,
+                (*let m = ProvidedMethod(methodName+nameLabel, listParam, nextType,
                             IsStaticMethod = false,
                             InvokeCode = fun args-> 
                                 invokeCodeOnSend args event.Payload 
                                     exprState role fullName 
                                     event.Assertion inferredVars)
-                
-                //let dummy = ProvidedMethod(methodName+nameLabel, [ ], nextType, IsStaticMethod = false, InvokeCode = fun args -> <@@ 3 @@>)              
+                *)
+                let dummy = ProvidedMethod(methodName+nameLabel, [ ], nextType, IsStaticMethod = false, InvokeCode = fun args -> <@@ 3 @@>)              
                 // all arguments can be given as static parameters, then they are imemdiately inserted in the cache. 
                 // otherwise, we can use the static parameters to program the assertions on send (in the choice)!
                 let staticParams = [ProvidedStaticParameter("Count", typeof<int>)]
@@ -772,10 +793,10 @@ let generateMethod (aType:ProvidedTypeDefinition)
                
                 //let T1 = typeof<int -> float> 
                 //T1 = T2
-                (*m.DefineStaticParameters(staticParams, (fun nm args ->
+                dummy.DefineStaticParameters(staticParams, (fun nm args ->
                                             let arg = args.[0] :?> int
                                             if arg < 3 then  
-                                                let m2 = ProvidedMethod(nm, param, nextType,
+                                                let m2 = ProvidedMethod(nm, listParam, nextType,
                                                             IsStaticMethod = false,
                                                             InvokeCode = fun args-> 
                                                                 invokeCodeOnSend args event.Payload 
@@ -784,8 +805,10 @@ let generateMethod (aType:ProvidedTypeDefinition)
                                                 aType.AddMember m2
                                                 m2
                                             else failwith "Assertion not satisfied"
-                                            ))*)
-                [m]
+                                            ))
+                let assembly = Assembly.GetExecutingAssembly()
+                
+                [dummy]
             |"receive" ->  
                 let labelDelim, _, _ = getDelims fullName
                 let decode = new System.Text.UTF8Encoding()
