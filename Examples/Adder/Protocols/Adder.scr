@@ -1,22 +1,23 @@
-module Adder;
+module AdderNoAss;
 
 type <java> "java.lang.Integer" from "rt.jar" as int;
 
 
 global protocol Adder(role C, role S)
 {
-	HELLO(u:int) from C to S;
-
-	choice at C
-	{
-		ADD(y:int) from C to S;
-		ADD(w:int) from C to S;		
-		RES(v:int) from S to C;
-		do Adder(C, S);
-	}
-	or
-	{
-		BYE() from C to S;
-		BYE() from S to C;
-	}
+	rec Loop {
+		HELLO(u:int) from C to S;
+		choice at C
+		{
+			ADD(w:int) from C to S; 
+			ADD(y:int) from C to S; 
+			RES(z:int) from S to C;
+			continue Loop; 
+		}
+		or
+		{
+			BYE() from C to S;
+			BYE() from S to C;
+		}
+}
 }
