@@ -1,4 +1,4 @@
-﻿#r "../../src/Sast/bin/Debug/Sast.dll"
+﻿#r "../../../src/Sast/bin/Debug/Sast.dll"
 
 open ScribbleGenerativeTypeProvider
 
@@ -42,25 +42,6 @@ let first = loanApp.Start()
 
 first.accept(App).request(PDept).receiveapplyForLoan()
 
-//first .sendapplyForLoan(AppPortal, "", "", 0, 0).finish()
-(*let rec fibrec a b iter (c0:Fib.State7) =
-    let res = new DomainModel.Buf<int>()
-    printfn"number of iter: %d" (numIter - iter)
-    let c = c0.sendHELLO(S, a)
-
-
-    
-    match iter with
-        |0 -> c.sendBYE(S).receiveBYE(S).finish()
-        |n -> let c1 = c.sendADD(S, a)
-              let c2 = c1.receiveRES(S, res)
-              printfn "Fibo : %d" (res.getValue())
-              Async.RunSynchronously(Async.Sleep(1000))
-              fibrec b (res.getValue()) (n-1) c2
-*)
-
-
-//let check func dict = 
 
 
     
