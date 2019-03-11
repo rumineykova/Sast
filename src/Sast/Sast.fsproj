@@ -1900,6 +1900,7 @@
     <Compile Include="ScribbleParser.fs" />
     <Compile Include="ScribbleGenerativeTypeProvider.fs" />
     <None Include="paket.references" />
+    <Compile Include="TestYMML.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FParsec">

@@ -21,6 +21,43 @@ module Visitors =
             let rightStr = getStringRepr right
             sprintf "%s %s %s" leftStr (op.ToString()) rightStr
 
+    let rec evalArithExpr node = 
+        match node with
+        | Literal(IntC(value)) -> value
+        | Ident(identifier) -> failwith "Free variable %s" identifier
+        | Arithmetic(left, op, right) -> 
+            let leftVal = (evalArithExpr left)
+            let rightVal = (evalArithExpr right)
+            match op with 
+            | Plus -> leftVal+rightVal
+            | Minus -> leftVal-rightVal
+            | Multiply -> leftVal*rightVal
+            | Subtract -> leftVal-rightVal
+        | _ -> failwith "Expression is not in the correct format"
+
+    let rec evalExpr node = 
+        match node with
+        | Literal(Bool(value)) -> value
+        | Ident(identifier) -> failwith "Free variable %s" identifier
+        | Comparison(left, op, right) -> 
+            let leftVal = (evalArithExpr left)
+            let rightVal = (evalArithExpr right)
+            match op with 
+            | LT -> leftVal<rightVal
+            | GT -> leftVal>rightVal
+            | Eq -> leftVal=rightVal
+            | NotEq -> leftVal<>rightVal
+            | LTEq -> leftVal<=rightVal
+            | GTEq -> leftVal>=rightVal  
+            | _ -> failwith "Error"
+        | Logical(left, op, right) -> 
+            let leftVal = (evalExpr left)
+            let rightVal = (evalExpr right)
+            match op with  
+            | AndOp -> leftVal && rightVal
+            | OrOp ->  leftVal && rightVal
+            | _ -> failwith "Error"
+
     let isEquality node = 
         match node with 
         | Comparison(left, op, right) -> 
@@ -48,6 +85,37 @@ module Visitors =
             let leftSet = getVars left
             let rightSet = getVars right
             let res = leftSet |> Set.union rightSet
+            res 
+
+    let rec subsExpr node (subsMap: Map<string, int>)= 
+        match node with
+        | Literal(Bool(value)) -> node
+        | Literal(IntC(value)) -> node
+        | Ident(identifier) -> 
+            if (subsMap.ContainsKey(identifier)) 
+                then Literal(IntC(subsMap.[identifier]))
+            else node
+        | UnaryOp(_, right) -> subsExpr right subsMap
+        | Not(expr) -> subsExpr expr subsMap
+        | Arithmetic(left, op, right) -> 
+            let leftSub = subsExpr left subsMap
+            let rightSub = subsExpr right subsMap
+            let res = Arithmetic(leftSub, op, rightSub)
+            res 
+        | Comparison(left, op, right) -> 
+            let leftSub = subsExpr left subsMap
+            let rightSub = subsExpr right subsMap
+            let res = Comparison(leftSub, op, rightSub)
+            res 
+        | BinLogical(left, op, right) -> 
+            let leftSub = subsExpr left subsMap
+            let rightSub = subsExpr right subsMap
+            let res = BinLogical(leftSub, op, rightSub)
+            res 
+        | Logical(left, op, right) -> 
+            let leftSub = subsExpr left subsMap
+            let rightSub = subsExpr right subsMap
+            let res = Logical(leftSub, op, rightSub)
             res 
 
         (*let myDict = dict["x", 2; "y", 3]

@@ -11,8 +11,8 @@ module Debug =
 
 module TimeMeasure =     
     let mutable stopWatch = System.Diagnostics.Stopwatch.StartNew()
-    let path = "C:/Users/rn710/Repositories/GenerativeTypeProviderExample/Evaluation/"
-    let file = "C:/Users/rn710/Repositories/GenerativeTypeProviderExample/Evaluation/temp.txt"
+    let path = """\\Mac\Home\Documents\Dev\Repositories\GenerativeTypeProviderExample\Evaluation\"""
+    let file = """\\Mac\Home\Documents\Dev\Repositories\GenerativeTypeProviderExample\Evaluation\temp.txt"""
 
     let start() = 
         stopWatch.Stop()

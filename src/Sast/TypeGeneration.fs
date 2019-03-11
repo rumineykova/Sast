@@ -9,7 +9,6 @@ open System.Text
 open System.Collections
 open FSharp.Quotations.Evaluator
 open AssertionParsing.InferredVarsParser
-
 // ScribbleProvider specific namespaces and modules
 open ScribbleGenerativeTypeProvider.DomainModel
 open ScribbleGenerativeTypeProvider.CommunicationAgents
@@ -518,12 +517,10 @@ let invokeCodeOnChoice (payload: ScribbleProtocole.Payload []) indexList fsmInst
     // 2. Map them to the approprate handler 
     // 3. get the handler : h = findByName
     // 4. invoke h with the received value 
-    // Should invorporate whatever is in the receive... 
+    // Should incorporate whatever is in the receive... 
 
     // Maybe we can't implement only receive handlers! 
     let elem = <@@ 1 @@> 
-
-  
     <@@ 
         Debug.print "Before Branching :" 
             (listExpectedMessages,listExpectedTypes,listPayload)
@@ -764,6 +761,14 @@ let internal makeChoiceLabelTypes (fsmInstance:ScribbleProtocole.Root [])
 
     (mapping,listeType)
 
+let removeAt index = function
+    | xs when index >= 0 && index < List.length xs -> 
+          xs
+          |> List.splitAt index
+          |> fun (x,y) -> y |> List.skip 1 |>  List.append x
+          |> Some
+    | ys -> None
+
 let generateMethod (aType:ProvidedTypeDefinition) 
         (methodName:string) listParam nextType 
         (errorMessage:string) (event: ScribbleProtocole.Root) 
@@ -795,11 +800,25 @@ let generateMethod (aType:ProvidedTypeDefinition)
                 //T1 = T2
                 dummy.DefineStaticParameters(staticParams, (fun nm args ->
                                             let arg = args.[0] :?> int
-                                            if arg < 3 then  
-                                                let m2 = ProvidedMethod(nm, listParam, nextType,
+                                            let assertVal = 
+                                                if (event.Assertion<>"") 
+                                                then 
+                                                     let index = event.Assertion.IndexOf("->")
+                                                     let cond  = event.Assertion.Substring(index + 2)
+                                                     let varNames = (payloadsToVarNames event.Payload)
+                                                     let subs = [(List.item 0 varNames, arg)] |> Map.ofList
+                                                     AssertionParsing.FuncGenerator.evalExpr cond subs
+                                                else true
+                                            if assertVal then  
+                                                let namedParams = 
+                                                        match  (removeAt 1 listParam) with 
+                                                        | Some lst -> lst 
+                                                        | None -> List.empty  
+                                                                          
+                                                let m2 = ProvidedMethod(nm, namedParams, nextType,
                                                             IsStaticMethod = false,
                                                             InvokeCode = fun args-> 
-                                                                invokeCodeOnSend args event.Payload 
+                                                                invokeCodeOnSend args event.Payload
                                                                     exprState role fullName 
                                                                     event.Assertion inferredVars)
                                                 aType.AddMember m2
@@ -807,7 +826,6 @@ let generateMethod (aType:ProvidedTypeDefinition)
                                             else failwith "Assertion not satisfied"
                                             ))
                 let assembly = Assembly.GetExecutingAssembly()
-                
                 [dummy]
             |"receive" ->  
                 let labelDelim, _, _ = getDelims fullName

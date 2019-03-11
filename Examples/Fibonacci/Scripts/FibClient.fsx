@@ -35,7 +35,8 @@ let s = new Fib()
 let c = s.Init()
 let p = new DomainModel.Buf<int>()
 let p2 = new DomainModel.Buf<int>()
-let finalS = c.sendHELLO<0>(S, 2).sendHELLO<1>(S, 1)
+// INT -> ROLE -> INT 
+let finalS = c.sendHELLO<0>(S, 5).sendHELLO<1>(S)
 
 //let finalS = c.sendHELLO(S, 2).sendHELLO(S, 3)//receiveHELLO(S, p).sendHELLO(S, 2).receiveHELLO(S, p2).finish()
 Async.RunSynchronously(Async.Sleep(2000))

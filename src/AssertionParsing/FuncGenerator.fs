@@ -25,3 +25,10 @@ module FuncGenerator =
        match (parse expr) with 
         | Some res -> res 
         | None -> failwith "Empty expression"
+
+    let evalExpr expr subsMap = 
+        match (parse expr) with 
+            | Some res -> 
+                let closedExpr = Visitors.subsExpr res subsMap 
+                Visitors.evalExpr closedExpr
+            | None -> failwith "No result"

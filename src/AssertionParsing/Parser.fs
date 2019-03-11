@@ -33,7 +33,6 @@ type Op =
                     | Multiply -> <@ (*) @>
                     | _ -> failwith "Only arithmetic operations are supported"
 
-       
 
 type identifier = string 
          
@@ -60,7 +59,6 @@ type Expr =
         | BinLogical of Expr * Op * Expr
         | And        of Expr
         | Or        of Expr
-
 
 module AssertionParser = 
     let ws = spaces

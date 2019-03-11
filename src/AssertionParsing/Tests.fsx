@@ -11,19 +11,30 @@ open Microsoft.FSharp.Quotations
 
 
 
-parseInfVars "{y1:v2,y2:v2}"
+//parseInfVars "{y1:v2,y2:v2}"
 
 let test expr = 
     match (parse expr) with 
         | Some res -> genLambdaFromExpr res 
         | None -> "No result"
 
-let plus = <@ 2 + 3 @>
+let testEval expr = 
+    match (parse expr) with 
+        | Some res -> Visitors.evalExpr res 
+        | None -> failwith "No result"
 
-let s = Quotations.Expr.Applications(plus, [[Quotations.Expr.Value(2)];[Quotations.Expr.Value(3)]])
+let getClosedExpression expr map = 
+    match (parse expr) with 
+        | Some res -> Visitors.subsExpr res map 
+        | None -> failwith "No result"
 
+//let plus = <@ 2 + 3 @>
 
+//let s = Quotations.Expr.Applications(plus, [[Quotations.Expr.Value(2)];[Quotations.Expr.Value(3)]])
 
+let subs = [("x", 5); ("y", 1)] |> Map.ofList
+let closedExpression = getClosedExpression "(x>3)" subs
+Visitors.evalExpr closedExpression
 test "(x>3)"
 test "x+1 < y+2 || x > 1"
 test "x+1 <5 && x<5 && x=y" 

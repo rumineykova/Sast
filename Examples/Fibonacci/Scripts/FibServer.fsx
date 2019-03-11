@@ -63,13 +63,14 @@ let helloCallback (x:Fib.HELLO) =
     x.receive(C, buf).finish()
        
 printfn "After Init: %i!!!" 1
-let newS = s.receiveHELLO(C, p)
+let newS = s.receiveHELLO(C, p, p2)
 printfn "Done: %i!!!" 1 //(p.getValue())
 //let res = newS.branch(test1, test2)
 
-let res = newS.branch(helloCallback, byeCallback)
+//let res = newS.send<0>(helloCallback)
 
-let res1 = newS.branch(helloCallback, byeCallback)
+let res1 = newS.branch(byeCallback, helloCallback)
+
 
 let receiveHello x y = x + y 
 let receiveBye x y z = x + y + z
@@ -142,9 +143,7 @@ let inline apply< ^S, ^U when ^U :
   (^U : (static member Apply : ^S * ^U -> ^S) (s, a)) 
 
 *)
-
-
-
+(*
 type LoggingBuilder() = 
     let log p = printfn "expression is %A" p 
 
@@ -175,4 +174,4 @@ type MaybeBuilder() =
         Some(x)
 
 let maybe = MaybeBuilder()
-
+*)

@@ -1,4 +1,4 @@
-﻿#r "../../src/Sast/bin/Debug/Sast.dll"
+﻿#r "../../../src/Sast/bin/Debug/Sast.dll"
 
 open ScribbleGenerativeTypeProvider
                         
@@ -14,7 +14,7 @@ let typeAliasing =
     """ [ {"alias" : "int", "type": "System.Int32"} ] """
 
 type Fib = 
-    Provided.TypeProviderFile<"../../../Examples/ConnectChoice/FibnoAss.scr"
+    Provided.TypeProvider<"../../../Examples/ConnectChoice/FibnoAss.scr"
                                ,"Adder"
                                ,"S"
                                ,"../../../Examples/ConnectChoice/configServer.yaml"
