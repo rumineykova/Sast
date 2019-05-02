@@ -52,7 +52,6 @@
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="Parser.fs" />
-    <Content Include="packages.config" />
     <Compile Include="Visitors.fs" />
     <Compile Include="FuncGenerator.fs" />
     <None Include="Tests.fsx" />
