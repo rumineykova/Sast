@@ -1,4 +1,4 @@
-﻿#r "../../../src/Sast/bin/Debug/Sast.dll"
+﻿#r "../../../src/Sast/bin/Debug/net452/Sast.dll"
 #load "AdderData.fsx"
 
 open ScribbleGenerativeTypeProvider
