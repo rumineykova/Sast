@@ -1,6 +1,6 @@
 source https://www.nuget.org/api/v2
 nuget FAKE
-nuget FParsec 1.0.2 restriction: >= net452
+nuget FParsec 1.0.3 restriction: >= net452
 nuget FSharp.Configuration 1.5.0 restriction: >= net452
 nuget FSharp.Data 2.3.1 restriction: >= net452
 nuget FSharp.Quotations.Evaluator 1.0.7 restriction: >= net452
