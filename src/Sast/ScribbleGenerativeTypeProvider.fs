@@ -79,16 +79,23 @@ type GenerativeTypeProvider(config : TypeProviderConfig) as this =
                                     batFile pathToFile protocol localRole tempFileName *)
 
         // Uncomment below for Scribble without assertions 
-        let scribbleArgs = match assertionsOn with 
-                           | false -> 
-                                let batFile = """%scribbleno%""" 
-                                sprintf """/C %s %s -fsm %s %s >> %s 2>&1 """ batFile pathToFile protocol localRole tempFileName
-                           | true -> 
-                                let batFile = """%scribble%""" 
-                                sprintf """/C %s %s -ass %s -ass-fsm %s -Z3  >> %s 2>&1 """ 
-                                                batFile pathToFile protocol localRole tempFileName
-
-        let psi = ProcessStartInfo("cmd.exe", scribbleArgs)
+        let psi_windows () =
+            let scribbleArgs = match assertionsOn with 
+                               | false -> 
+                                    let batFile = """%scribbleno%""" 
+                                    sprintf """/C %s %s -fsm %s %s >> %s 2>&1 """ batFile pathToFile protocol localRole tempFileName
+                               | true -> 
+                                    let batFile = """%scribble%""" 
+                                    sprintf """/C %s %s -ass %s -ass-fsm %s -Z3  >> %s 2>&1 """ 
+                                                    batFile pathToFile protocol localRole tempFileName
+            ProcessStartInfo("cmd.exe", scribbleArgs)
+        let psi_unix () =
+            let scribbleArgs = sprintf "%s -fsm %s %s >> %s 2>&1" pathToFile protocol localRole tempFileName
+            ProcessStartInfo("scribblec.sh", scribbleArgs)
+        let psi =
+            if System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform (System.Runtime.InteropServices.OSPlatform.Windows)
+                then psi_windows ()
+                else psi_unix ()
         psi.UseShellExecute <- false; psi.CreateNoWindow <- true; 
                                                             
         // Run the cmd process and wait for its completion
