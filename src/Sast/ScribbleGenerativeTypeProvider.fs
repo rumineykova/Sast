@@ -141,7 +141,7 @@ type GenerativeTypeProvider(config : TypeProviderConfig) as this =
 
         mapping |> DomainModel.modifyMap 
 
-        let naming = config.ResolutionFolder + configFilePath
+        let naming = Path.Combine(config.ResolutionFolder, configFilePath)
         DomainModel.config.Load(naming)
 
 
@@ -195,10 +195,10 @@ type GenerativeTypeProvider(config : TypeProviderConfig) as this =
                 |> Map.ofArray
 
 
-            let naming = config.ResolutionFolder + configFilePath
+            let naming = Path.Combine(config.ResolutionFolder, configFilePath)
             DomainModel.config.Load(naming)
 
-            let relativePath = config.ResolutionFolder + file
+            let relativePath = Path.Combine(config.ResolutionFolder, file)
             let pathToFile = match File.Exists(file) with 
                             | true -> file 
                             | false -> 
