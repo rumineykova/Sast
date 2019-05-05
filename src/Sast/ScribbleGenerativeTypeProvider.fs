@@ -80,17 +80,19 @@ type GenerativeTypeProvider(config : TypeProviderConfig) as this =
 
         // Uncomment below for Scribble without assertions 
         let psi_windows () =
-            let scribbleArgs = match assertionsOn with 
-                               | false -> 
-                                    let batFile = """%scribbleno%""" 
-                                    sprintf """/C %s %s -fsm %s %s >> %s 2>&1 """ batFile pathToFile protocol localRole tempFileName
-                               | true -> 
-                                    let batFile = """%scribble%""" 
-                                    sprintf """/C %s %s -ass %s -ass-fsm %s -Z3  >> %s 2>&1 """ 
-                                                    batFile pathToFile protocol localRole tempFileName
+            let scribbleArgs =
+                match assertionsOn with
+                | false ->
+                     let batFile = """%scribbleno%"""
+                     sprintf """/C %s %s -fsm %s %s >> %s 2>&1 """ batFile pathToFile protocol localRole tempFileName
+                | true ->
+                     let batFile = """%scribble%"""
+                     sprintf """/C %s %s -ass %s -ass-fsm %s -Z3  >> %s 2>&1 """
+                                    batFile pathToFile protocol localRole tempFileName
             ProcessStartInfo("cmd.exe", scribbleArgs)
         let psi_unix () =
-            let scribbleArgs = sprintf "-c scribblec.sh %s -fsm %s %s >> %s 2>&1" pathToFile protocol localRole tempFileName
+            let scribbleArgs =
+                sprintf "-c \"scribblec.sh %s -ass %s -ass-fsm %s -Z3 > %s 2>&1\"" pathToFile protocol localRole tempFileName
             ProcessStartInfo("bash", scribbleArgs)
         let psi =
             if System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform (System.Runtime.InteropServices.OSPlatform.Windows)
