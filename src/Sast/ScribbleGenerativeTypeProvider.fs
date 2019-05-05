@@ -90,8 +90,8 @@ type GenerativeTypeProvider(config : TypeProviderConfig) as this =
                                                     batFile pathToFile protocol localRole tempFileName
             ProcessStartInfo("cmd.exe", scribbleArgs)
         let psi_unix () =
-            let scribbleArgs = sprintf "%s -fsm %s %s >> %s 2>&1" pathToFile protocol localRole tempFileName
-            ProcessStartInfo("scribblec.sh", scribbleArgs)
+            let scribbleArgs = sprintf "-c scribblec.sh %s -fsm %s %s >> %s 2>&1" pathToFile protocol localRole tempFileName
+            ProcessStartInfo("bash", scribbleArgs)
         let psi =
             if System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform (System.Runtime.InteropServices.OSPlatform.Windows)
                 then psi_windows ()
