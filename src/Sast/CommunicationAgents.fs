@@ -375,6 +375,8 @@ type AgentReceiver(ipAddress,port, roles: string list) =
             receive.PostAndReply(fun ch -> 
                 Message.ReceiveMessage (msg,role,ch))
         |None -> failwith ErrorMsg.agentNotInstantiated
+
+
                      
 /// In case of receive: message is the serialized version of the Type
 /// replyMessage is the message really received from the network 
@@ -479,7 +481,7 @@ let isIn (list:string list) (localRole:string) =
     list |> List.exists (fun x -> x=localRole) 
 
 let private createReceiver (ipAddress:string) (port:int) 
-    (roles: string list) =new AgentReceiver(ipAddress,port, roles)
+    (roles: string list) = new AgentReceiver(ipAddress,port, roles)
 
 let createMapSender (partnersInfo: IList<ConfigFile.Partners_Item_Type>) 
         (listRoles:string list) (localRole:string) =
@@ -529,3 +531,4 @@ let createRouter (configInfos:ConfigFile)
             receiver.SetRouter router
             router.StartAgentRouter(mapAgentSender, receiver)
             router
+    

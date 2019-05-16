@@ -193,6 +193,23 @@ let deserialize (messages: _ list) (role:string) (args: Expr list)
             (%%(Expr.NewArray(typeof<ISetResult>, buffer)):ISetResult [])     
     @>
 
+let deserializeNew (messages: _ list) (role:string) (args: Expr list) 
+        (listTypes:string list) (argsNames:string list) foo  =
+    let buffer = [for elem in args do yield Expr.Coerce(elem,typeof<ISetResult>)]
+    let x = 
+        <@  
+            let result = Runtime.receiveMessage "agent" messages role [listTypes]
+            //printfn " deserialize Normal : 
+            // %A || Role : %A || listTypes : %A" messages role listTypes
+            let received = convert (result.Tail) listTypes 
+            runAssertion foo argsNames received
+            //let received = List.toSeq received  
+            //Runtime.setResults received 
+            //(%%(Expr.NewArray(typeof<System.Int32>, received))) 
+            received.Head
+        @>
+    Expr.Coerce(x, typeof<System.Int32>)
+
 let deserializeAsync (messages: _ list) (role:string) 
         (args: Expr list) (listTypes:string list)  argsNames foo =  
     

@@ -2,20 +2,14 @@ module Fib;
 
 type <java> "java.lang.Integer" from "rt.jar" as int;
 
-
 global protocol Adder(role C, role S)
 {
-	//HELLO(u:int) from C to S; @"u < 3"
-	HELLO(u:int, f:int) from C to S; @"u < 2"
-	choice at C
-	{
-		HELLO(v:int) from C to S;
-		//RES(v:int) from S to C;
-		//do Adder(C, S);
-	}
-	or
-	{
-		BYE() from C to S;
-		//BYE() from S to C;
+	HELLO(u:int) from C to S;
+	SUM(v:int) from S to C;
+	//RES(f:int) from C to S;
+	choice at C {
+		RES(a:int) from C to S;
+	} or {
+		BYE(b:int) from C to S;
 	}
 }                                           

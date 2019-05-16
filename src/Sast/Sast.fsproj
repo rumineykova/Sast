@@ -1896,6 +1896,7 @@
     <Compile Include="Runtime.fs" />
     <Compile Include="IO.fs" />
     <Compile Include="AsstScribbleParser.fs" />
+    <Compile Include="CFSMop.fs" />
     <Compile Include="TypeGeneration.fs" />
     <Compile Include="ScribbleParser.fs" />
     <Compile Include="ScribbleGenerativeTypeProvider.fs" />

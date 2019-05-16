@@ -6,7 +6,7 @@ open ScribbleGenerativeTypeProvider
            
                         
 [<Literal>]
-let delims = """ [ {"label" : "ADD", "delims": {"delim1": [":"] , "delim2": [","] , "delim3": [";"] } },
+let delims = """ [ {"label" : "SUM", "delims": {"delim1": [":"] , "delim2": [","] , "delim3": [";"] } },
                    {"label" : "RES", "delims": {"delim1": [":"] , "delim2": [","] , "delim3": [";"] } }, 
                    {"label" : "BYE", "delims": {"delim1": [":"] , "delim2": [","] , "delim3": [";"] } }, 
                    {"label" : "close", "delims": {"delim1": [":"] , "delim2": [","] , "delim3": [";"] } }, 
@@ -33,7 +33,60 @@ let S = Fib.S.instance
 
 let s = new Fib()
 let c = s.Init()
-let p = new DomainModel.Buf<int>()
+
+let helloCallback1 () =   
+    printfn "hello callback1" 
+    Async.RunSynchronously(Async.Sleep(5000))
+    printfn "hello callback1" 
+    let buf = 4
+    buf
+
+let helloCallback3 () = 
+    printfn "hello callback3"
+    printfn "Done"
+    let s =5
+    s
+
+let helloCallback2 x  =   
+    printfn "hello callback2"
+    printfn "%A" x
+    ()
+
+let (|BYE|RES|) (n, c:Fib.State9) =
+    if n % 2 = 0 then BYE c else RES c
+
+let x = 1
+let s1 = c.sendHELLO(S, helloCallback1)
+let s2 = s1.receiveSUM(S, helloCallback2)
+//let (x, s3) = s2.select(fun x -> if n % 2 = 0 then Fib.BYE else Fib.RES, args)
+
+(*
+match (x, s2) with 
+    | BYE s3 -> s3.sendBYE(S, helloCallback1)
+    | RES s3 -> s3.sendRES(S, helloCallback1) 
+*)
+
+//sendRES(S, helloCallback3).finish()
+
+// define the active pattern
+
+(* DESIRED API
+let rec fib(c:Fib.State6) = 
+    let s1 = c.sendHELLO(S, fun data -> data.set_u<5>)
+    let s2 = s1.sendHELLO(S, fun data -> data.set_f<1>)
+    let s3 = s2.branch() //receiveSUM(S, fun (x:LabelCase) y -> ())
+    match s3 with 
+    | Fib.Sum -> let s4 = s3.receiveSum(S, fun data x -> data.x=x; x).sendRes(S, fun data -> data.x)
+                 let s4
+    | Fib.Mul ->  s3.receiveMul(S, fun data x -> ()).finish()
+
+let sumMul data = 
+    if data.f>1 then "Sum"
+    else "Mul"
+
+*)
+
+(*let p = new DomainModel.Buf<int>()
 let p2 = new DomainModel.Buf<int>()
 // INT -> ROLE -> INT 
 let finalS = c.sendHELLO<0>(S, 5).sendHELLO<1>(S)
@@ -41,8 +94,8 @@ let finalS = c.sendHELLO<0>(S, 5).sendHELLO<1>(S)
 //let finalS = c.sendHELLO(S, 2).sendHELLO(S, 3)//receiveHELLO(S, p).sendHELLO(S, 2).receiveHELLO(S, p2).finish()
 Async.RunSynchronously(Async.Sleep(2000))
 finalS.finish()
-
-printfn "Done too:%i!" (p.getValue())
+*)
+//printfn "Done too:%i!" (p.getValue())
 (*let Fib = Provided.STP<"../../../Examples/Fibonacci/FSM/SimpleC.txt"
                                ,"Adder"
                                ,"C"

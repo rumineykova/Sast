@@ -17,6 +17,7 @@ open ScribbleGenerativeTypeProvider.CommunicationAgents
 open ScribbleGenerativeTypeProvider.RefinementTypesDict
 open ScribbleGenerativeTypeProvider.AsstScribbleParser
 open ScribbleGenerativeTypeProvider.Util
+open ScribbleGenerativeTypeProvider.CFSMop
 
 
 type ScribbleSource = 
@@ -111,7 +112,36 @@ type GenerativeTypeProvider() as this =
             | Some parsed -> 
                 parsed
             | None -> failwith "The file given does not contain a valid fsm"
-
+    
+    let rec convertCFSM cfsm (states) (fsmInstance:ScribbleProtocole.Root []) = 
+        //let lstates = Set.toList states 
+        match states with
+        | [] -> cfsm
+        | h::t -> 
+            //cfsm |>CFSM.addTransition h cfsm
+            // convertCFSM  h fsmInstance
+            let index = findCurrentIndex  h fsmInstance 
+            if index = -1 then 
+                convertCFSM cfsm t fsmInstance 
+            else 
+                let methodName = fsmInstance.[index].Type
+                let role = fsmInstance.[index].Partner
+                let label = fsmInstance.[index].Label
+                let next = fsmInstance.[index].NextState
+                match methodName  with 
+                | "send" | "receive" | "finish" ->
+                    let transition = 
+                        match methodName with 
+                        | "send" ->  CFSMop.Transition.Send (role, label)
+                        | "receive" ->  CFSMop.Transition.Recv (role, label)
+                        | "finish" ->  CFSMop.Transition.End (role, label) 
+                    let newcfsm = cfsm |> CFSMop.addTransition h transition next 
+                    convertCFSM newcfsm t fsmInstance 
+                | "choice" -> 
+                    //let listIndexChoice = findSameCurrent fsmInstance.[index].CurrentState fsmInstance
+                    convertCFSM cfsm t fsmInstance 
+                | _ -> failwith "CFSM transition not supported"
+    
     let generateTypes (fsm:string) (variablesMap : Map<string, AssertionParsing.Expr>) (name:string) (parameters:obj[]) = 
     
         let configFilePath = parameters.[0]  :?> string
@@ -156,12 +186,15 @@ type GenerativeTypeProvider() as this =
         let assertionLookUp = createlookUp
         Runtime.initAssertionDict "agent" assertionLookUp
         Runtime.initCache "cache" cache
-      
+        
         let ctor = firstStateType.GetConstructors().[0]                                                               
         let ctorExpr = Expr.NewObject(ctor, [])
         let exprCtor = ctorExpr
         let exprStart = <@@ Runtime.startAgentRouter "agent"  @@>
-        let expression = Expr.Sequential(exprStart,exprCtor)
+        let exprStart0 = Expr.Sequential(exprStart, <@@ printfn "starting"  @@>)
+        let exprStart1 = Expr.Sequential(exprStart0, <@@ Runtime.initRecvHandlers "recv" Runtime.handlersRecvMap @@>)
+        let exprStart2 = Expr.Sequential(exprStart1, <@@ Runtime.initSendHandlers "send" Runtime.handlersSendMap @@>)
+        let expression = Expr.Sequential(exprStart2,exprCtor)
         
         
         let ty = 
@@ -172,6 +205,7 @@ type GenerativeTypeProvider() as this =
             |> addIncludedTypeToProvidedType roleList
             |> addIncludedTypeToProvidedType labelList    
             |> addIncludedTypeToProvidedType listTypes
+            //|> addEndType
         
         //ty.AddMemberDelayed ( fun () -> ProvidedMethid()
 
@@ -180,13 +214,15 @@ type GenerativeTypeProvider() as this =
                       (fst tupleLabel) 
                       //Map.empty
                       (fst tupleRole) protocol
-       
+        let mutable cfsm = CFSMop.initFsm firstState
+        let newCFSM = convertCFSM cfsm (Set.toList stateSet) protocol 
+        CFSMop.initCFSMCache "cfsm" newCFSM
 
-        
         //let assemblyPath = Path.ChangeExtension(System.IO.Path.GetTempFileName(), ".dll")
-        //let assembly = ProvidedAssembly assemblyPath
-        //ty.SetAttributes(TypeAttributes.Public ||| TypeAttributes.Class)
-        //ty.HideObjectMethods <- true
+        //let assembly = ProvidedAssembly asse/mblyPath
+        //ty.SetAttributes(Type
+        //Public ||| TypeAttributes.Class)
+        //ty.HideObjectMethods <- truescribble
         //assembly.AddTypes [ty]
         ty
 

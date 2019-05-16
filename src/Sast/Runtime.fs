@@ -1,9 +1,11 @@
 ﻿module ScribbleGenerativeTypeProvider.Runtime 
 
+open System.Collections.Generic
 open ProviderImplementation.ProvidedTypes
 open ScribbleGenerativeTypeProvider.CommunicationAgents
 open ScribbleGenerativeTypeProvider.DomainModel
 open ScribbleGenerativeTypeProvider.RefinementTypesDict
+open Microsoft.FSharp.Quotations
 
 // The router map stores only one element (called agent), that acts as a router in the system. 
 // It redirects the messages to the internal actors
@@ -11,6 +13,36 @@ let mutable routerMap = Map.empty<string,AgentRouter>
 // TODO: This does not look safe!
 let mutable changed = false
 let mutable mLabel = Map.empty<string,ProvidedTypeDefinition>
+
+let mutable handlersRecvMap = Map.empty<int, System.Int32  -> Unit>
+let mutable handlersSendMap = Map.empty<int, unit-> System.Int32>
+
+let mutable recvHandlers = Map.empty<string, Map<int, System.Int32  -> Unit>>
+let initRecvHandlers name (recvHandelrsMap) = 
+    recvHandlers <- recvHandlers.Add("recv", recvHandelrsMap)
+
+let mutable sendHandlers = Map.empty<string, Map<int, unit-> System.Int32>>
+let initSendHandlers name (sendHandelrsMap) = 
+    sendHandlers <- sendHandlers.Add("send", sendHandelrsMap)
+
+let addToSendHandlers index handler= 
+    let s = sendHandlers.Item("send").Add(index, handler)
+    //printfn "%A" s
+    sendHandlers <- sendHandlers.Add("send", s)
+    //handlersSendMap.Add(index, handler)
+
+let addToRecvHandlers index handler= 
+    //handlersRecvMap.Add(index, handler)
+    let s = recvHandlers.Item("recv").Add(index, handler) 
+    //printfn "%A" s
+    recvHandlers <- recvHandlers.Add("recv", s)
+    //printfn "%A" (recvHandlers.Item("recv"))
+
+let getFromSendHandlers index = 
+    sendHandlers.Item("send").Item(index) 
+
+let getFromRecvHandlers index = 
+     recvHandlers.Item("recv").Item(index)
 
 let addAgent str agent =
     if not(changed) then
@@ -70,8 +102,7 @@ let addVarsBufsToCache name (keys: string list) (values:Buf<int> []) =
         cache.Item(name).Add(key, values.[i].getValue()))
 
 let getFromCache name elem =
-    cache.Item(name).Get(elem)
- 
+    cache.Item(name).Get(elem) 
 
 let mutable assertionLookUp = Map.empty<string, LoopUpDict>
 let initAssertionDict name (assertLookip:LoopUpDict) = 
@@ -91,4 +122,4 @@ let addArgValueToAssertionDict name argName rcv =
 
 let setResults results (bufs:ISetResult []) = 
     Seq.zip results (Array.toSeq bufs) 
-    |> Seq.iter (fun (res,buf:ISetResult) -> buf.SetValue(res))
+    |> Seq.iter (fun (res, buf:ISetResult) -> buf.SetValue(res)) 
