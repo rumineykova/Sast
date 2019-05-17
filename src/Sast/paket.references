@@ -1,5 +1,6 @@
-FSharp.TypeProviders.StarterPack
 QuotationCompiler
+FSharp.Data
 FSharp.Quotations.Evaluator
-FSharp.Data 
-FSharp.Configuration 
+FParsec
+FSharp.Configuration
+FSharp.Compiler.Service

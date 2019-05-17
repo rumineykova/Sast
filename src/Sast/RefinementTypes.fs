@@ -1,8 +1,8 @@
 ﻿module ScribbleGenerativeTypeProvider.RefinementTypes
 
 open FSharp.Core.CompilerServices
-open Microsoft.FSharp.Compiler.Interactive.Shell
-open Microsoft.FSharp.Compiler.SourceCodeServices
+open FSharp.Compiler.Interactive.Shell
+open FSharp.Compiler.SourceCodeServices
 open Microsoft.FSharp.Quotations
 open ProviderImplementation.ProvidedTypes
 open AssertionParsing
@@ -28,9 +28,7 @@ module Fsi =
     let allArgs = Array.append argv [|"--noninteractive"|]
 
     let fsiConfig = FsiEvaluationSession.GetDefaultConfiguration()
-    let fsiSession = FsiEvaluationSession.Create(
-                        fsiConfig, allArgs, inStream, 
-                        outStream, errStream) 
+    let fsiSession = FsiEvaluationSession.Create(fsiConfig, allArgs, inStream, outStream, errStream)
 
 
 module RefinementTypes =
@@ -38,7 +36,7 @@ module RefinementTypes =
     open System
     open System.Collections.Concurrent
     open FSharp.Reflection
-    open Microsoft.FSharp.Compiler
+    open FSharp.Compiler
 
     type FnRuleInfos =
         {
@@ -65,17 +63,15 @@ module RefinementTypes =
         }
         
     let parseAndCheckSingleFile (input) = 
-        let file = 
-            Path.ChangeExtension(System.IO.Path.GetTempFileName(), "fsx")
+        let file = Path.ChangeExtension(System.IO.Path.GetTempFileName(), "fsx")
         File.WriteAllText(file, input)
-        let checker = 
-            SourceCodeServices.FSharpChecker.Create(keepAssemblyContents=true)
+        let checker = SourceCodeServices.FSharpChecker.Create(keepAssemblyContents=true)
 
-        let projOptions = 
+        let projOptions, _err =
             checker.GetProjectOptionsFromScript(file, input)
             |> Async.RunSynchronously
 
-        checker.ParseAndCheckProject(projOptions |> fst) 
+        checker.ParseAndCheckProject(projOptions)
         |> Async.RunSynchronously
 
 

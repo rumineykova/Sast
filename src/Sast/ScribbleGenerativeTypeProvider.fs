@@ -33,10 +33,12 @@ type internal WatchSpec =
     member x.Path = let (WatchSpec(p, _)) = x in p
     member x.Filter = let (WatchSpec(_, f)) = x in f
 
+type State() =
+   let _ = ()
 
 [<TypeProvider>]
-type GenerativeTypeProvider() as this =
-    inherit TypeProviderForNamespaces ()      
+type GenerativeTypeProvider(config) as this =
+    inherit TypeProviderForNamespaces (config)      
     //let tmpAsm = Assembly.LoadFrom(config.RuntimeAssembly)
     let thisAssembly = Assembly.GetExecutingAssembly()
     //let s = TimeMeasure.start()
@@ -175,7 +177,7 @@ type GenerativeTypeProvider() as this =
 
         mapping |> DomainModel.modifyMap 
 
-        let naming = __SOURCE_DIRECTORY__ + configFilePath
+        let naming = Path.Combine(config.ResolutionFolder, configFilePath)
         DomainModel.config.Load(naming)
 
 
@@ -188,7 +190,7 @@ type GenerativeTypeProvider() as this =
         Runtime.initCache "cache" cache
         
         let ctor = firstStateType.GetConstructors().[0]                                                               
-        let ctorExpr = Expr.NewObject(ctor, [])
+        let ctorExpr = <@@ obj() @@> //Expr.NewObject(ctor, [])
         let exprCtor = ctorExpr
         let exprStart = <@@ Runtime.startAgentRouter "agent"  @@>
         let exprStart0 = Expr.Sequential(exprStart, <@@ printfn "starting"  @@>)
@@ -246,10 +248,16 @@ type GenerativeTypeProvider() as this =
             |> Map.ofArray
 
 
-        let naming = __SOURCE_DIRECTORY__ + configFilePath
-        DomainModel.config.Load(naming)
+        let naming = Path.Combine(config.ResolutionFolder, configFilePath)
 
-        let relativePath = __SOURCE_DIRECTORY__ + file
+        match File.Exists(naming) with 
+            | true -> DomainModel.config.Load(naming)
+            | false -> failwith ("The path to the config folder is not correct: " + config.ResolutionFolder + " " + naming)
+
+        
+
+        let relativePath = Path.Combine(config.ResolutionFolder, file)
+
         let pathToFile = 
             match File.Exists(file) with 
                 | true -> file 
@@ -286,9 +294,9 @@ type GenerativeTypeProvider() as this =
                     let tempFileName = Path.GetTempFileName()       
                     try  
                         let parsedScribble = invokeScribble pathToFile protocol localRole tempFileName assertionsOn
-                        TimeMeasure.measureTime "After Scribble Compiler"  
+                        //TimeMeasure.measureTime "After Scribble Compiler"  
                         let p = parseCFSM parsedScribble protocol localRole typeAliasing
-                        TimeMeasure.measureTime "After Parsing "
+                        //TimeMeasure.measureTime "After Parsing "
                         p
                     finally 
                         if File.Exists(tempFileName) then File.Delete(tempFileName)
@@ -319,11 +327,11 @@ type GenerativeTypeProvider() as this =
         ))*)
 
         //providedType.DefineStaticParameters(parametersTP, createOrUseProvidedTypeDefinition)
-        let stpTy  = ProvidedTypeDefinition(thisAssembly, ns, "STP", Some typeof<obj>, IsErased = true)
+        let stpTy  = ProvidedTypeDefinition(thisAssembly, ns, "STP", Some typeof<obj>, isErased = true)
         stpTy.DefineStaticParameters(parametersTP, createOrUseProvidedTypeDefinition)
         this.AddNamespace(ns, [stpTy])
         //this.AddNamespace(ns, [providedType])     
-        TimeMeasure.measureTime "Assembly"
+        //TimeMeasure.measureTime "Assembly"
     
     //[<CLIEvent>]
     //member x.Invalidate = invalidation.Publish

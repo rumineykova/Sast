@@ -17,7 +17,7 @@ let delims = """ [ {"label" : "SUM", "delims": {"delim1": [":"] , "delim2": [","
 let typeAliasing1 = """ [ {"alias" : "int", "type": "System.Int32"}, 
                           {"alias" : "string", "type": "System.String"}] """
 
-
+(*
 type Fib = Provided.STP<"../../../Examples/Fibonacci/Protocols/Fib.scr"
                        , "Adder" 
                        , "C"
@@ -27,9 +27,18 @@ type Fib = Provided.STP<"../../../Examples/Fibonacci/Protocols/Fib.scr"
                        ,ScribbleSource = ScribbleSource.LocalExecutable
                        ,ExplicitConnection=false 
                        ,AssertionsOn=true>
+*)
 
+type Fib = 
+   Provided.STP<"..\FSM\FSMAsstC.txt", "Adder", "C"
+       ,"../Config/configC.yaml", Delimiter=delims
+       ,TypeAliasing=typeAliasing1, AssertionsOn=true, ScribbleSource= ScribbleSource.File>
+
+//let S = AdderC.S.instance
+//et client = new AdderC()
+(*let c = client.Init().receiveHELLO(S).finish()
 let C = Fib.C.instance
-let S = Fib.S.instance
+let S = Fib.S.instance*)
 
 let s = new Fib()
 let c = s.Init()
