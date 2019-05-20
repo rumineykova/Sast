@@ -9,6 +9,7 @@ open AssertionParsing.FuncGenerator
 
 
 let nextNumber = 
+
     let counter = ref 0
     fun () -> 
         counter.Value <- !counter + 1
@@ -283,8 +284,9 @@ module Parsing =
         let mutable newArray = [||] 
         for i in 0..(fsm.Length-1) do
             let elem = fsm.[i]
-            if elem.Type = "receive" && (isCurrentChoice fsm i) then
-                let newElem = ScribbleProtocole.Root(elem.CurrentState,elem.LocalRole,elem.Partner,elem.Label,elem.Payload, elem.Assertion, elem.Inferred, "choice",elem.NextState)
+            if (elem.Type = "receive" || elem.Type = "send") && (isCurrentChoice fsm i) then
+                let choice_type = if elem.Type = "receive" then "choice_receive" else "choice_send"
+                let newElem = ScribbleProtocole.Root(elem.CurrentState,elem.LocalRole,elem.Partner,elem.Label,elem.Payload, elem.Assertion, elem.Inferred, choice_type,elem.NextState)
                 newArray <- Array.append newArray [|newElem|]            
             else
             newArray <- Array.append newArray [|elem|]

@@ -41,6 +41,7 @@ type GenerativeTypeProvider(config) as this =
     inherit TypeProviderForNamespaces (config)      
     //let tmpAsm = Assembly.LoadFrom(config.RuntimeAssembly)
     let thisAssembly = Assembly.GetExecutingAssembly()
+
     //let s = TimeMeasure.start()
     //TimeMeasure.measureTime "Starting"   
 
@@ -139,7 +140,7 @@ type GenerativeTypeProvider(config) as this =
                         | "finish" ->  CFSMop.Transition.End (role, label) 
                     let newcfsm = cfsm |> CFSMop.addTransition h transition next 
                     convertCFSM newcfsm t fsmInstance 
-                | "choice" -> 
+                | "choice_receive" | "choice_send" -> 
                     //let listIndexChoice = findSameCurrent fsmInstance.[index].CurrentState fsmInstance
                     convertCFSM cfsm t fsmInstance 
                 | _ -> failwith "CFSM transition not supported"
@@ -157,9 +158,12 @@ type GenerativeTypeProvider(config) as this =
         let n, stateSet, firstState = triple
         
         let listTypes = (Set.toList stateSet) |> List.map (fun x -> makeStateType x )
+        let ctxTypes = (Set.toList stateSet) |> List.map (fun x -> makeContextType x )
+        //let ctxTypes = List.map fst ctxTypesList
+        //let ctxDeclTypes = List.map snd ctxTypesList
         let firstStateType = findProvidedType listTypes firstState
         let tupleRole = makeRoleTypes protocol
-        let tupleLabel = makeChoiceLabelTypes protocol listTypes (tupleRole |> fst)
+        let tupleLabel = makeChoiceLabelTypes protocol listTypes (tupleRole |> fst) ctxTypes
         let listOfRoles = makeRoleList protocol
         let labelList = snd(tupleLabel)
         let roleList = snd(tupleRole)
@@ -204,14 +208,17 @@ type GenerativeTypeProvider(config) as this =
             |> createProvidedType thisAssembly
             |> addCstor ( <@@ "hey" + string n :> obj @@> |> createCstor [])
             |> addMethod ( expression |> createMethodType "Init" [] firstStateType)
+            |> addIncludedTypeToProvidedType ctxTypes
+            //|> addIncludedTypeToProvidedType ctxDeclTypes
             |> addIncludedTypeToProvidedType roleList
             |> addIncludedTypeToProvidedType labelList    
             |> addIncludedTypeToProvidedType listTypes
+            
             //|> addEndType
         
         //ty.AddMemberDelayed ( fun () -> ProvidedMethid()
 
-        addProperties listTypes listTypes 
+        addProperties listTypes listTypes ctxTypes
                       (Set.toList stateSet) 
                       (fst tupleLabel) 
                       //Map.empty
@@ -334,7 +341,7 @@ type GenerativeTypeProvider(config) as this =
         //TimeMeasure.measureTime "Assembly"
     
     //[<CLIEvent>]
-    //member x.Invalidate = invalidation.Publish
+    member x.Invalidate = invalidation.Publish
 
 [<assembly:TypeProviderAssembly>]
     do() 

@@ -25,6 +25,7 @@ let addTransition current event next (fsm: CFSM) =
                 |> Map.add current (Map.add event next m)
         } 
 
+// Get one of the next states
 let getNext current (fsm: CFSM) = 
     match fsm.Transitions|> Map.tryFind current with 
     | None -> failwith "The current state is not defined"
@@ -56,7 +57,7 @@ let rec run (fsm:CFSM) s =
         //Array.append labelSerialized payloadSerialized 
         
         let func = Runtime.getFromSendHandlers s
-        let x = func ()
+        let x = func (Runtime.IContext())
         printfn "The result of the handler is %i" x 
 
         let buf = System.BitConverter.GetBytes(x)

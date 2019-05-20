@@ -7,6 +7,10 @@ open ScribbleGenerativeTypeProvider.DomainModel
 open ScribbleGenerativeTypeProvider.RefinementTypesDict
 open Microsoft.FSharp.Quotations
 
+
+type IContext() = 
+    let _ = ()
+
 // The router map stores only one element (called agent), that acts as a router in the system. 
 // It redirects the messages to the internal actors
 let mutable routerMap = Map.empty<string,AgentRouter>
@@ -15,13 +19,13 @@ let mutable changed = false
 let mutable mLabel = Map.empty<string,ProvidedTypeDefinition>
 
 let mutable handlersRecvMap = Map.empty<int, System.Int32  -> Unit>
-let mutable handlersSendMap = Map.empty<int, unit-> System.Int32>
+let mutable handlersSendMap = Map.empty<int, IContext-> System.Int32>
 
 let mutable recvHandlers = Map.empty<string, Map<int, System.Int32  -> Unit>>
 let initRecvHandlers name (recvHandelrsMap) = 
     recvHandlers <- recvHandlers.Add("recv", recvHandelrsMap)
 
-let mutable sendHandlers = Map.empty<string, Map<int, unit-> System.Int32>>
+let mutable sendHandlers = Map.empty<string, Map<int, IContext-> System.Int32>>
 let initSendHandlers name (sendHandelrsMap) = 
     sendHandlers <- sendHandlers.Add("send", sendHandelrsMap)
 

@@ -200,7 +200,8 @@ module Parsing =
         for i in 0..(fsm.Length-1) do
             let elem = fsm.[i]
             if elem.Type = "receive" && (isCurrentChoice fsm i) then
-                let newElem = ScribbleProtocole.Root(elem.CurrentState,elem.LocalRole,elem.Partner,elem.Label,elem.Payload,"choice",elem.NextState)
+                let choice_type = if elem.Type = "receive" then "choice_receive" else "choice_send"
+                let newElem = ScribbleProtocole.Root(elem.CurrentState,elem.LocalRole,elem.Partner,elem.Label,elem.Payload, choice_type ,elem.NextState)
                 newArray <- Array.append newArray [|newElem|]            
             else
             newArray <- Array.append newArray [|elem|]
