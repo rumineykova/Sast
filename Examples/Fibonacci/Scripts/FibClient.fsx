@@ -35,6 +35,7 @@ type Fib =
        ,"../Config/configC.yaml", Delimiter=delims
        ,TypeAliasing=typeAliasing1, AssertionsOn=true, ScribbleSource= ScribbleSource.File>
 
+
 let S = Fib.S.instance
 //et client = new AdderC()
 (*let c = client.Init().receiveHELLO(S).finish()
@@ -46,20 +47,27 @@ let c = s.Init()
 
 type Runtime.IContext with
     member x.SetX(y) = printfn "Setting x to: %i" y
-    member x.GetX() = printfn "Getting x"
+    member x.GetX() = printfn "Getting x:"
 
-
-let helloCallback1 ctx  =   
+let helloCallback1 (ctx:Fib.InContext10) =   
     printfn "hello callback1" 
     Async.RunSynchronously(Async.Sleep(5000))
-    printfn "hello callback1" 
-    let buf = 4
-    buf
+    printfn "hello callback1"  
+    ctx.setX<7>()
+    //let buf = 4
+    //ctx.Add
+    //buf
 
-let helloCallback11 ()  =   
+let helloCallback12 (ctx:Fib.InContext11) =   
     printfn "hello callback1" 
     Async.RunSynchronously(Async.Sleep(5000))
-    printfn "hello callback1" 
+    printfn "hello callback1"  
+    ctx.setX<0>()
+
+let helloCallback123 ()  =
+    printfn "hello callback1"
+    Async.RunSynchronously(Async.Sleep(5000))
+    printfn "hello callback1"
     let buf = 4
     buf
 
@@ -81,7 +89,9 @@ let helloCallback4 (c: Fib.ADD)  =
 
 let helloCallback5 (c: Fib.BYE)  =   
     printfn "hello callback2"
-    c.send(S, helloCallback1).receiveBYE(S, helloCallback2).finish()
+    c.send(S, helloCallback1)
+     .receiveBYE(S, helloCallback2)
+     .finish()
 
 let helloCallback6 (c: Fib.BYEADD)  =      
     printfn "hello callback2"
@@ -89,18 +99,18 @@ let helloCallback6 (c: Fib.BYEADD)  =
     if (s = "Hello") then c.selector<"BYE">()
     else c.selector<"ADD">()
 
+let s1 = c.receiveHELLO(S, helloCallback2)
+          .sendHELLO(S, helloCallback1)
+          .sendHELLO(S, helloCallback12)
+          .register_selector(helloCallback6)
+          .select_handlers(helloCallback5, helloCallback4)
+
 (*
 let (|BYE|RES|) (n, c:Fib.State9) =
     if n % 2 = 0 then BYE c else RES c
 *)
 
-let x = 1
-let s1 = c.receiveHELLO(S, helloCallback2)
-          .sendHELLO(S, helloCallback1)
-          .sendHELLO(S, helloCallback1)
-          .register_selector(helloCallback6)
-          .select_handlers(helloCallback5,helloCallback4)
-
+//let x = 1
 //let (x, s3) = s2.select(fun x -> if n % 2 = 0 then Fib.BYE else Fib.RES, args)
 
 (*

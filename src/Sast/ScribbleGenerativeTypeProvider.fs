@@ -17,7 +17,6 @@ open ScribbleGenerativeTypeProvider.CommunicationAgents
 open ScribbleGenerativeTypeProvider.RefinementTypesDict
 open ScribbleGenerativeTypeProvider.AsstScribbleParser
 open ScribbleGenerativeTypeProvider.Util
-open ScribbleGenerativeTypeProvider.CFSMop
 
 
 type ScribbleSource = 
@@ -158,12 +157,13 @@ type GenerativeTypeProvider(config) as this =
         let n, stateSet, firstState = triple
         
         let listTypes = (Set.toList stateSet) |> List.map (fun x -> makeStateType x )
-        let ctxTypes = (Set.toList stateSet) |> List.map (fun x -> makeContextType x )
+        let ctxInTypes = (Set.toList stateSet) |> List.map (fun x -> makeInContextType x )
+        let ctxOutTypes = (Set.toList stateSet) |> List.map (fun x -> makeOutContextType x )
         //let ctxTypes = List.map fst ctxTypesList
         //let ctxDeclTypes = List.map snd ctxTypesList
         let firstStateType = findProvidedType listTypes firstState
         let tupleRole = makeRoleTypes protocol
-        let tupleLabel = makeChoiceLabelTypes protocol listTypes (tupleRole |> fst) ctxTypes
+        let tupleLabel = makeChoiceLabelTypes protocol listTypes (tupleRole |> fst) ctxInTypes ctxOutTypes
         let listOfRoles = makeRoleList protocol
         let labelList = snd(tupleLabel)
         let roleList = snd(tupleRole)
@@ -208,7 +208,8 @@ type GenerativeTypeProvider(config) as this =
             |> createProvidedType thisAssembly
             |> addCstor ( <@@ "hey" + string n :> obj @@> |> createCstor [])
             |> addMethod ( expression |> createMethodType "Init" [] firstStateType)
-            |> addIncludedTypeToProvidedType ctxTypes
+            |> addIncludedTypeToProvidedType ctxInTypes
+            |> addIncludedTypeToProvidedType ctxOutTypes
             //|> addIncludedTypeToProvidedType ctxDeclTypes
             |> addIncludedTypeToProvidedType roleList
             |> addIncludedTypeToProvidedType labelList    
@@ -218,9 +219,9 @@ type GenerativeTypeProvider(config) as this =
         
         //ty.AddMemberDelayed ( fun () -> ProvidedMethid()
 
-        addProperties listTypes listTypes ctxTypes
+        addProperties listTypes listTypes ctxInTypes ctxOutTypes
                       (Set.toList stateSet) 
-                      (fst tupleLabel) 
+                      (fst tupleLabel)
                       //Map.empty
                       (fst tupleRole) protocol
         let mutable cfsm = CFSMop.initFsm firstState

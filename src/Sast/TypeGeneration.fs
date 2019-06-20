@@ -346,7 +346,8 @@ let internal makeCtxTypeBase (n:int) (s:string) =
     ty
 
 let internal makeStateType (n:int) = makeStateTypeBase n "State"
-let internal makeContextType (n:int) = makeCtxTypeBase n "Context"
+let internal makeInContextType (n:int) = makeCtxTypeBase n "InContext" 
+let internal makeOutContextType (n:int) = makeCtxTypeBase n "OutContext" 
 
 (*******************END GENERATE SIMPLE TYPES*******************)
 
@@ -475,7 +476,8 @@ let invokeCodeOnSend (args:Expr list) (payload: ScribbleProtocole.Payload [])
         getExprCachingOnSend types payloadNames sendBuffers sendExpr
     
 
-    let ls = <@@ Runtime.addToSendHandlers stateNum (%%args.[2]: Runtime.IContext-> System.Int32) |> ignore @@>
+    //let ls = <@@ Runtime.addToSendHandlers stateNum (%%args.[2]: Runtime.IContext-> System.Int32) |> ignore @@>
+    let ls = <@@ Runtime.addToSendHandlers stateNum (%%args.[2]: Runtime.IContext-> Runtime.IContext) |> ignore @@>
     //let next_expr = Expr.Sequential(ls,exprCaching) 
 
     //Expr.Sequential(exprCaching, exprState)
@@ -945,7 +947,8 @@ let generateChoice (aType:ProvidedTypeDefinition)
 
 let generateMethodParams (fsmInstance:ScribbleProtocole.Root []) idx 
         (providedList:ProvidedTypeDefinition list) roleValue 
-        (ctxTypes:ProvidedTypeDefinition list) = 
+        (ctxInTypes:ProvidedTypeDefinition list)
+        (ctxOutTypes:ProvidedTypeDefinition list) = 
 
     let nextType = 
         findProvidedType providedList fsmInstance.[idx].NextState
@@ -960,9 +963,45 @@ let generateMethodParams (fsmInstance:ScribbleProtocole.Root []) idx
         match methodName with
             |"send" | "choice_send" -> //payloadsToProvidedList event.Payload event.Inferred
                 let infDict = parseInfVars event.Inferred
-                let lts = payloadsToSystemType event.Payload infDict
-                let labelType = ctxTypes.Item(idx)
-                let f = makeFunctionType(List.append [labelType] lts) 
+                // This is needed if we want to return a basic type
+                // let lts = payloadsToSystemType event.Payload infDict
+
+                let labelType = ctxInTypes.Item(idx)
+                let lts = ProvidedParameter("System.Int32", System.Type.GetType("System.Int32"))
+                let resultType = ctxOutTypes.Item(idx) 
+                let m = ProvidedMethod("setX", [lts], resultType,
+                                           isStatic = false,
+                                           invokeCode = fun args-> 
+                                               <@@ printf "Hello world" @@>)
+
+                labelType.AddMemberDelayed(fun () -> m)
+                
+                let staticParams = [ProvidedStaticParameter("x", typeof<int>)]
+                //event.Assertion = "fun x -> x < 1" |> ignore
+                m.DefineStaticParameters(staticParams, 
+                                      (fun nm args ->
+                                          let arg = args.[0] :?> int
+                                          let assertVal = 
+                                              if (event.Assertion<>"") 
+                                              then 
+                                                   let index = event.Assertion.IndexOf("->")
+                                                   let cond  = event.Assertion.Substring(index + 2)
+                                                   let varNames = (payloadsToVarNames event.Payload)
+                                                   let subs = [(List.item 0 varNames, arg)] |> Map.ofList
+                                                   AssertionParsing.FuncGenerator.evalExpr cond subs
+                                              else true
+                                          if assertVal then           
+                                              let m2 =ProvidedMethod(nm, [], resultType,
+                                                        isStatic = false,
+                                                        invokeCode = fun args-> 
+                                                        <@@ printf "Hello world" @@>)
+                                              labelType.AddMember m2
+                                              m2
+                                          else failwith "Assertion not satisfied"
+                                          ))
+                    
+                // let f = makeFunctionType(List.append [labelType] lts) 
+                let f = makeFunctionType(List.append [labelType] [resultType]) 
                 [ProvidedParameter("on_send", f)]
             |"receive" | "choice_receive" -> 
                 let infDict = parseInfVars event.Inferred
@@ -985,7 +1024,8 @@ let generateMethodParams (fsmInstance:ScribbleProtocole.Root []) idx
 let internal makeChoiceLabelTypes (fsmInstance:ScribbleProtocole.Root []) 
         (providedList: ProvidedTypeDefinition list) 
         (mRole:Map<string,ProvidedTypeDefinition>)
-        (ctxTypes: ProvidedTypeDefinition list) 
+        (ctxInTypes: ProvidedTypeDefinition list)
+        (ctxOutTypes: ProvidedTypeDefinition list)
         : Map<string,ProvidedTypeDefinition> * ProvidedTypeDefinition list = 
 
     let mutable listeLabelSeen = []
@@ -1069,7 +1109,8 @@ let internal makeChoiceLabelTypes (fsmInstance:ScribbleProtocole.Root [])
                         let indexList = findSameCurrent currEvent.CurrentState fsmInstance 
                         let methodName, listParam, nextType, exprState = 
                                 generateMethodParams fsmInstance 
-                                    indexList.Head providedList (mRole.[currEvent.Partner]) ctxTypes
+                                    indexList.Head providedList (mRole.[currEvent.Partner]) 
+                                    ctxInTypes ctxOutTypes
                         let myMethod = 
                             match methodName with 
                             | "choice_send" -> 
@@ -1261,7 +1302,8 @@ let rec goingThrough (methodNaming:string)
         (mLabel:Map<string,ProvidedTypeDefinition>) 
         (mRole:Map<string,ProvidedTypeDefinition>) 
         (fsmInstance:ScribbleProtocole.Root [])
-        (ctxTypes:ProvidedTypeDefinition list) =
+        (ctxInTypes:ProvidedTypeDefinition list) 
+        (ctxOutTypes:ProvidedTypeDefinition list) =
 
     if (List.length indexList = 0) then 
         let runExpr = <@@ CFSMop.runFromInit (CFSMop.getCFSM "cfsm") @@>
@@ -1275,7 +1317,7 @@ let rec goingThrough (methodNaming:string)
         let role = event.Partner
         let methodName, listParam, nextType, exprState = 
             generateMethodParams fsmInstance 
-                indexList.Head providedList (mRole.[role]) ctxTypes 
+                indexList.Head providedList (mRole.[role]) ctxInTypes ctxOutTypes
 
         let errorMessage = ErrorMsg.unexpectedMethod methodName
 
@@ -1284,12 +1326,13 @@ let rec goingThrough (methodNaming:string)
         
         if (List.length indexList > 1) then 
             goingThrough methodName providedList aType 
-                indexList.Tail mLabel mRole fsmInstance ctxTypes
+                indexList.Tail mLabel mRole fsmInstance ctxInTypes ctxOutTypes
 
 
 let rec addProperties (providedListStatic:ProvidedTypeDefinition list) 
         (providedList:ProvidedTypeDefinition list) 
-        (ctxTypes:ProvidedTypeDefinition list) 
+        (ctxInTypes:ProvidedTypeDefinition list)
+        (ctxOutTypes:ProvidedTypeDefinition list)        
         (stateList: int list) 
         (mLabel:Map<string,ProvidedTypeDefinition>) 
         (mRole:Map<string,ProvidedTypeDefinition>) 
@@ -1307,28 +1350,28 @@ let rec addProperties (providedListStatic:ProvidedTypeDefinition list)
         match methodName with
             |"send" |"receive" |"request" |"accept" -> 
                 goingThrough methodName providedListStatic 
-                    aType indexList mLabel mRole fsmInstance ctxTypes
+                    aType indexList mLabel mRole fsmInstance ctxInTypes ctxOutTypes
             |"choice_receive" | "choice_send" -> 
                 generateChoice aType fsmInstance currentState 
                     indexList indexOfState  mRole providedList mLabel
             |"finish" ->  
                 goingThrough methodName providedListStatic aType 
-                    indexList mLabel mRole fsmInstance ctxTypes
+                    indexList mLabel mRole fsmInstance ctxInTypes ctxOutTypes
             | _ -> failwith ErrorMsg.methodNameNotFound
     |hd::tl ->  
         match methodName with
             |"send" |"receive" |"request" |"accept" -> 
                 goingThrough methodName providedListStatic 
-                    hd indexList mLabel mRole fsmInstance ctxTypes
+                    hd indexList mLabel mRole fsmInstance ctxInTypes ctxOutTypes
             |"choice_receive" | "choice_send" -> 
                 generateChoice hd fsmInstance currentState 
                     indexList indexOfState mRole providedList mLabel
             |"finish" -> 
                 goingThrough methodName providedListStatic hd 
-                    indexList mLabel mRole fsmInstance ctxTypes
+                    indexList mLabel mRole fsmInstance ctxInTypes ctxOutTypes
             | _ -> failwith ErrorMsg.methodNameNotFound
 
-        addProperties providedListStatic tl ctxTypes (stateList.Tail) 
+        addProperties providedListStatic tl ctxInTypes ctxOutTypes (stateList.Tail) 
             mLabel mRole fsmInstance
 
 (******************* END GENERATE STATE TYPES*******************)

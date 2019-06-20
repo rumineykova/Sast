@@ -58,8 +58,8 @@ let rec run (fsm:CFSM) s =
         
         let func = Runtime.getFromSendHandlers s
         let x = func (Runtime.IContext())
-        printfn "The result of the handler is %i" x 
-
+        //printfn "The result of the handler is %i" x 
+        let x = 1
         let buf = System.BitConverter.GetBytes(x)
         Runtime.sendMessage "agent" (buf:byte[]) role 
         printfn "I am sending and moving to next state: %i %s and %s " s label role

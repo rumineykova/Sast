@@ -19,13 +19,13 @@ let mutable changed = false
 let mutable mLabel = Map.empty<string,ProvidedTypeDefinition>
 
 let mutable handlersRecvMap = Map.empty<int, System.Int32  -> Unit>
-let mutable handlersSendMap = Map.empty<int, IContext-> System.Int32>
+let mutable handlersSendMap = Map.empty<int, IContext-> IContext>
 
 let mutable recvHandlers = Map.empty<string, Map<int, System.Int32  -> Unit>>
 let initRecvHandlers name (recvHandelrsMap) = 
     recvHandlers <- recvHandlers.Add("recv", recvHandelrsMap)
 
-let mutable sendHandlers = Map.empty<string, Map<int, IContext-> System.Int32>>
+let mutable sendHandlers = Map.empty<string, Map<int, IContext-> IContext>>
 let initSendHandlers name (sendHandelrsMap) = 
     sendHandlers <- sendHandlers.Add("send", sendHandelrsMap)
 
