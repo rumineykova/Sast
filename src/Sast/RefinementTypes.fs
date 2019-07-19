@@ -65,10 +65,11 @@ module RefinementTypes =
     let parseAndCheckSingleFile (input) = 
         let file = Path.ChangeExtension(System.IO.Path.GetTempFileName(), "fsx")
         File.WriteAllText(file, input)
+        let source = File.ReadAllText file  
         let checker = SourceCodeServices.FSharpChecker.Create(keepAssemblyContents=true)
 
         let projOptions, _err =
-            checker.GetProjectOptionsFromScript(file, input)
+            checker.GetProjectOptionsFromScript(file, source)
             |> Async.RunSynchronously
 
         checker.ParseAndCheckProject(projOptions)
