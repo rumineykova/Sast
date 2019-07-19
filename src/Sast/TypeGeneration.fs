@@ -968,8 +968,12 @@ let generateMethodParams (fsmInstance:ScribbleProtocole.Root []) idx
 
                 let labelType = ctxInTypes.Item(idx)
                 let lts = ProvidedParameter("System.Int32", System.Type.GetType("System.Int32"))
+
                 let resultType = ctxOutTypes.Item(idx) 
-                let m = ProvidedMethod("setX", [lts], resultType,
+                let varNames = (payloadsToVarNames event.Payload) 
+                let varname = varNames.Head
+                
+                let m = ProvidedMethod("set" + varname, [lts], resultType,
                                            isStatic = false,
                                            invokeCode = fun args-> 
                                                <@@ printf "Hello world" @@>)
