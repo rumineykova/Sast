@@ -31,7 +31,7 @@ type Fib = Provided.STP<"../../../Examples/Fibonacci/Protocols/Fib.scr"
 *)
 
 type Fib = 
-   Provided.STP<"..\FSM\FSMAsstC_new.txt", "Adder", "C"
+   Provided.STP<"../FSM/FSMAsstC_new.txt", "Adder", "C"
        ,"../Config/configC.yaml", Delimiter=delims
        ,TypeAliasing=typeAliasing1, AssertionsOn=true, ScribbleSource= ScribbleSource.File>
 
@@ -49,6 +49,9 @@ type Runtime.IContext with
     member x.SetX(y) = printfn "Setting x to: %i" y
     member x.GetX() = printfn "Getting x:"
 
+let helloCallback00 (x:int) = 
+    printfn "hello callback00"
+
 let helloCallback1 (ctx:Fib.InContext10) =   
     printfn "hello callback1" 
     Async.RunSynchronously(Async.Sleep(5000))
@@ -63,6 +66,12 @@ let helloCallback12 (ctx:Fib.InContext11) =
     Async.RunSynchronously(Async.Sleep(5000))
     printfn "hello callback1"  
     ctx.setu<0>()
+
+let helloCallback14 (ctx:Fib.InContext14) =   
+    printfn "hello callback1" 
+    Async.RunSynchronously(Async.Sleep(5000))
+    printfn "hello callback1"  
+    ctx.setl(4)
 
 let helloCallback123 ()  =
     printfn "hello callback1"
@@ -99,8 +108,8 @@ let helloCallback6 (c: Fib.BYEADD)  =
     if (s = "Hello") then c.selector<"BYE">()
     else c.selector<"ADD">()
 
-let s1 = c.receiveHELLO(S, helloCallback2)
-          .sendHELLO(S, helloCallback1)
+let s1 = c.receiveHELLO(S, helloCallback00).sendHELLO(S, helloCallback1)
+         (* .sendHELLO(S, helloCallback1)
           .sendHELLO(S, helloCallback12)
           .register_selector(helloCallback6)
-          .select_handlers(helloCallback5, helloCallback4)
+          .select_handlers(helloCallback5, helloCallback4)*)

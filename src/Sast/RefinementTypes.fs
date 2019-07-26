@@ -67,9 +67,9 @@ module RefinementTypes =
         File.WriteAllText(file, input)
         let source = File.ReadAllText file  
         let checker = SourceCodeServices.FSharpChecker.Create(keepAssemblyContents=true)
-
+        let nSource = Text.SourceText.ofString(source)
         let projOptions, _err =
-            checker.GetProjectOptionsFromScript(file, source)
+            checker.GetProjectOptionsFromScript(file, nSource, assumeDotNetFramework = false)
             |> Async.RunSynchronously
 
         checker.ParseAndCheckProject(projOptions)
