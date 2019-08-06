@@ -40,10 +40,15 @@ let helloCallback21 (s:Fib.InContext20) =
     //let s =5
     s.setu<0>()
 
-let helloCallback2 (s:Fib.InContext25) = 
+let helloCallback2a (s:Fib.InContext23) = 
     printfn "hello callback2"
     //let s =5
-    s.setd<0>()
+    s.setc<8>()
+
+let helloCallback2b (s:Fib.InContext25) = 
+    printfn "hello callback2"
+    //let s =5
+    s.setd<6>()
 
 let helloCallback3 x =   
     printfn "hello callback3"
@@ -53,17 +58,16 @@ let helloCallback3 x =
     ()
 
 let branchBYE (c: Fib.BYE) = 
-    let s1 = c.receive(C, helloCallback1).sendBYE(C, helloCallback2)
+    let s1 = c.receive(C, helloCallback1).sendBYE(C, helloCallback2b)
     s1.finish()
 
 let branchRES (c: Fib.ADD) = 
-    let s1 = c.receive(C, helloCallback1).sendBYE(C, helloCallback2)
+    let s1 = c.receive(C, helloCallback1).sendBYE(C, helloCallback2a)
     s1.finish()
 
 let s1 = s.sendHELLO(C, helloCallback21)
 let s2 = s1.receiveHELLO(C, helloCallback3)
-let s2 = s2.on_branch(branchBYE, branchRES)
-
+let s3 = s2.on_branch(branchBYE, branchRES)
 
 (*
 let (|BYE|RES|) n =

@@ -11,6 +11,8 @@ open Microsoft.FSharp.Quotations
 type IContext() = 
     let _ = ()
 
+type StateType() = 
+    let _ = ()
 // The router map stores only one element (called agent), that acts as a router in the system. 
 // It redirects the messages to the internal actors
 let mutable routerMap = Map.empty<string,AgentRouter>
@@ -20,6 +22,7 @@ let mutable mLabel = Map.empty<string,ProvidedTypeDefinition>
 
 let mutable handlersRecvMap = Map.empty<int, System.Int32  -> Unit>
 let mutable handlersSendMap = Map.empty<int, IContext-> IContext>
+let mutable branchHandlers = Map.empty<string, StateType-> End>
 
 let mutable recvHandlers = Map.empty<string, Map<int, System.Int32  -> Unit>>
 let initRecvHandlers name (recvHandelrsMap) = 
@@ -41,6 +44,13 @@ let addToRecvHandlers index handler=
     //printfn "%A" s
     recvHandlers <- recvHandlers.Add("recv", s)
     //printfn "%A" (recvHandlers.Item("recv"))
+
+let addToBranchHandlers label handler = 
+    branchHandlers <- branchHandlers.Add(label, handler) 
+
+let getFromBranchHandlers label = 
+    branchHandlers.Item(label) 
+
 
 let getFromSendHandlers index = 
     sendHandlers.Item("send").Item(index) 

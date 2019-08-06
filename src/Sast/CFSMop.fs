@@ -54,8 +54,7 @@ let rec run (fsm:CFSM) s =
      match t with 
      |Send (label,role) ->
         let x = 1 // get the funtion from the handlers!!! 
-        //Array.append labelSerialized payloadSerialized 
-        
+        //Array.append labelSerialized payloadSerialized      
         let func = Runtime.getFromSendHandlers s
         let x = func (Runtime.IContext())
         //printfn "The result of the handler is %i" x 
@@ -63,21 +62,20 @@ let rec run (fsm:CFSM) s =
         let buf = System.BitConverter.GetBytes(x)
         Runtime.sendMessage "agent" (buf:byte[]) role 
         printfn "I am sending and moving to next state: %i %s and %s " s label role
-
         run fsm next   
+
      |Recv (label,role)-> 
         printfn "I am receiving and moving to next state: %i %s and %s " s label role
         printfn "the map for recv is is %A" (Runtime.recvHandlers.Item("recv"))
         printfn "%A" (Runtime.sendHandlers.Item("send"))
-        let result = Runtime.receiveMessage "agent" [] role [] 
-        
+        let result = Runtime.receiveMessage "agent" [] role []      
         let decode = new System.Text.UTF8Encoding() 
         let labelRead = decode.GetString(result.[0]) 
         let func = Runtime.getFromRecvHandlers s 
         let applyFunc = func 1 
         printfn "The function should have been executed now"
-
         run fsm next
+
      |End (label,role)-> 
         Runtime.stopMessage "agent"
         printf "It is over."  

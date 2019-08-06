@@ -608,29 +608,8 @@ let invokeCodeOnReceive (args:Expr list)
     let newPayloadTypes = 
         getReceiveTypes payloadNames payloadTypes inferredVars
     
-    (*
-    let allBuffers = args.Tail.Tail
-    
-    let receiveBuffers = 
-        getReceiveBuffers payloadNames allBuffers inferredVars 
-    
-    let assertionFunc, assertionArgs = inlineAssertion assertionString
-    
-    let exprDeserialize = 
-        deserializeFunc receiveBuffers 
-            newPayloadTypes assertionArgs assertionFunc                                                            
- 
-    let exprCaching = 
-        getExprCachingOnReceive payloadTypes payload 
-            allBuffers exprDeserialize exprCurrent
-   
-    let exprInferredVars = 
-        getExprInferredVars payloadNames allBuffers 
-            inferredVars exprCaching
-    *)
     let elem = <@@ 1 @@> 
     //let applyFunc = <@@ %%Expr.Application(args.[2], exprDeserialize):Unit @@>
-    
     //applyFunc
     let ls = <@ Runtime.addToRecvHandlers stateNum %%args.[2] |> ignore @>
     //let returnexpr = Expr.Sequential(ls,exprCaching)
@@ -738,7 +717,7 @@ let invokeCodeOnSelect (payload: ScribbleProtocole.Payload []) indexList fsmInst
 let invokeCodeOnChoice (payload: ScribbleProtocole.Payload []) indexList fsmInstance role 
         (args: Expr list) (labelNames: string List) (choiceTypes:ProvidedTypeDefinition list)= 
          
-    let listPayload = (payloadsToTypes payload) 
+    (*let listPayload = (payloadsToTypes payload) 
     let listExpectedMessagesAndTypes  = getAllChoiceLabels indexList fsmInstance
     let listExpectedMessages = listExpectedMessagesAndTypes |> List.map fst
     let listExpectedTypes = 
@@ -753,41 +732,24 @@ let invokeCodeOnChoice (payload: ScribbleProtocole.Payload []) indexList fsmInst
     // Should incorporate whatever is in the receive... 
 
     // Maybe we can't implement only receive handlers! 
-    let elem = <@@ 1 @@> 
-    <@@ 
-        Debug.print "Before Branching :" 
-            (listExpectedMessages,listExpectedTypes,listPayload)
-        
-        let result = 
-            Runtime.receiveMessage "agent" listExpectedMessages 
-                role listExpectedTypes 
-        let decode = new UTF8Encoding() 
-        let labelRead = decode.GetString(result.[0])
-        Debug.print "After receive :" labelRead
-        Debug.print "After receive :" labelNames
-        //let received = convert (result.Tail) listExpectedTypes.[1]
-        //Debug.print "After convert:" received
-        //%%Expr.Value(received.[0])
-        //received.[0]
-            
-        //let handlerIndex = labelNames |> List.findIndex (fun x -> x = labelRead)
-        //let handler = args.[handlerIndex]
-        // here have invokeCodeOnreceive
-            
-        let labelIndex = 
-            labelNames 
-            |> List.findIndex (fun x -> x.Equals(labelRead))         
-        Debug.print "After receive :" labelIndex
-        if labelIndex = 0 then 
-            Debug.print "First handler :" labelIndex
-            //let received = convert (result.Tail) listExpectedTypes.[1]
-            //let toExpr = received |> List.map (fun i -> <@@ unbox<System.Int32> i @@>)
-            (%%Expr.Application(args.[1], Expr.NewObject(choiceTypes.[0].GetConstructors().[0],[])):End)
-        else 
-            Debug.print "Second handler :" labelIndex
-            (%%Expr.Application(args.[2], Expr.NewObject(choiceTypes.[1].GetConstructors().[0],[])):End)
-            
-    @@>
+    //let elem = <@@ 1 @@> 
+  
+      let payloadTypes = (payloadsToTypes payload)
+      let payloadNames = (payloadsToVarNames payload)
+      let newPayloadTypes = 
+          getReceiveTypes payloadNames payloadTypes inferredVars
+      
+      let elem = <@@ 1 @@> *)
+      //let applyFunc = <@@ %%Expr.Application(args.[2], exprDeserialize):Unit @@>
+      //applyFunc
+      let ls = <@@ printfn "start" @@>
+      let acc_expr = 
+        List.fold 
+            (fun ls label-> Expr.Sequential(ls, <@ Runtime.addToBranchHandlers label %%args.[2] |> ignore @>)) ls labelNames
+      //let returnexpr = Expr.Sequential(ls,exprCaching)
+      let returnexpr = Expr.Sequential(acc_expr, <@@ printfn "recv handlers %A" (Runtime.branchHandlers.Item("recv")) @@>)
+      //let returnexpr = Expr.Sequential(ls1,<@@ printfn "In Recv adding handler: %i" stateNum @@>) 
+      returnexpr
 
     //let expr = Expr.Coerce(myResults, typeof<int>)
     //Expr.Applications(myResults, [[elem]; [elem]])
@@ -1120,7 +1082,7 @@ let internal makeChoiceLabelTypes (fsmInstance:ScribbleProtocole.Root [])
                         
                         let mutable aType = 
                             name 
-                            |> createProvidedIncludedType
+                            |> createProvidedIncludedTypeChoice (typeof<Runtime.StateType>) 
                             |> addCstor (<@@ name @@> |> createCstor [])
 
                         if (alreadySeenOnlyLabel listeLabelSeen currEvent.Label) then
@@ -1171,7 +1133,6 @@ let internal makeChoiceLabelTypes (fsmInstance:ScribbleProtocole.Root [])
                         //aType.HideObjectMethods <- true
                         //aType.AddInterfaceImplementation typeCtor
                         aType.AddMember holderType
-
 
                         if not (alreadySeenOnlyLabel listeLabelSeen currEvent.Label) then 
                             mapping <- mapping.Add(currEvent.Label,aType)
