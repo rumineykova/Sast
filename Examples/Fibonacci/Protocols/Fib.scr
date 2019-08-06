@@ -4,12 +4,14 @@ type <java> "java.lang.Integer" from "rt.jar" as int;
 
 global protocol Adder(role C, role S)
 {
-	HELLO(u:int) from C to S;
-	SUM(v:int) from S to C;
-	//RES(f:int) from C to S;
+	HELLO(u:int) from S to C;
+	HELLO(v:int) from C to S;
+	//HELLO(f:int) from C to S;
 	choice at C {
-		RES(a:int) from C to S;
+		ADD(a:int) from C to S;
+		BYE(c:int) from S to C;
 	} or {
 		BYE(b:int) from C to S;
+		BYE(d:int) from S to C;
 	}
 }                                           

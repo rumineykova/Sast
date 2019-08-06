@@ -40,39 +40,6 @@ type GenerativeTypeProvider(config) as this =
     inherit TypeProviderForNamespaces (config)      
     //let tmpAsm = Assembly.LoadFrom(config.RuntimeAssembly)
     let thisAssembly = Assembly.GetExecutingAssembly()
-
-    //let s = TimeMeasure.start()
-    //TimeMeasure.measureTime "Starting"   
-
-    // ==== cachng ============
-    (*
-    let cachedTypes = Dictionary<string, ProvidedTypeDefinition>()
-    let mutable disposals = ResizeArray<(unit -> unit)>()
-    let invalidation = new Event<System.EventHandler, _>()
-    let mutable invalidationTriggered = 0
-    let invalidate() = 
-        // FSW can run callbacks in multiple threads - actual event should be raised at most once
-        if System.Threading.Interlocked.CompareExchange(&invalidationTriggered, 1, 0) = 0 then
-            invalidation.Trigger(null, EventArgs())
-    
-    let watchPath (spec : WatchSpec) =
-
-        let watcher = 
-            let folder = Path.GetDirectoryName spec.Path
-            let file = Path.GetFileName spec.Path
-            new FileSystemWatcher (folder, file)
-        
-        watcher.Changed.Add (fun f -> 
-            if spec.Filter(f.FullPath) then 
-                cachedTypes.Clear()        
-                invalidate()
-            )
-        watcher.Deleted.Add(fun _ -> cachedTypes.Clear(); invalidate())
-        watcher.Renamed.Add(fun _ -> cachedTypes.Clear(); invalidate())
-
-        watcher.EnableRaisingEvents <- true
-        disposals.Add(fun () -> watcher.Dispose())
-     *)
     let invokeScribble pathToFile protocol localRole tempFileName assertionsOn =         
         // Configure command line
         // Add -batch (to speed up Z3 by passing one logical formulae for checking the protocol, 

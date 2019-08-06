@@ -788,6 +788,7 @@ let invokeCodeOnChoice (payload: ScribbleProtocole.Payload []) indexList fsmInst
             (%%Expr.Application(args.[2], Expr.NewObject(choiceTypes.[1].GetConstructors().[0],[])):End)
             
     @@>
+
     //let expr = Expr.Coerce(myResults, typeof<int>)
     //Expr.Applications(myResults, [[elem]; [elem]])
 
@@ -834,7 +835,7 @@ let generateHandlers (aType:ProvidedTypeDefinition)
     let mutable mapping = Map.empty<_,ProvidedParameter>
     let event = fsmInstance.[indexOfState]
     let listIndexChoice = (findSameCurrent event.CurrentState fsmInstance)
-                          |> List.filter (fun x -> (List.contains fsmInstance.[x].Label filter))
+                          //|> List.filter (fun x -> (List.contains fsmInstance.[x].Label filter))
 
     let rec aux (outTranition:int) =
         let currEvent = fsmInstance.[outTranition]
@@ -948,7 +949,10 @@ let generateChoice (aType:ProvidedTypeDefinition)
 let generateMethodParams (fsmInstance:ScribbleProtocole.Root []) idx 
         (providedList:ProvidedTypeDefinition list) roleValue 
         (ctxInTypes:ProvidedTypeDefinition list)
-        (ctxOutTypes:ProvidedTypeDefinition list) = 
+        (ctxOutTypes:ProvidedTypeDefinition list)
+        (labelTypes: Map<string, ProvidedTypeDefinition>)
+        //(labelIdx:int)
+        = 
 
     let nextType = 
         findProvidedType providedList fsmInstance.[idx].NextState
@@ -966,10 +970,16 @@ let generateMethodParams (fsmInstance:ScribbleProtocole.Root []) idx
                 // This is needed if we want to return a basic type
                 // let lts = payloadsToSystemType event.Payload infDict
 
-                let labelType = ctxInTypes.Item(idx)
+                let labelType = match methodName with
+                                |"send" -> ctxInTypes.Item(idx)
+                                | "choice_send" -> labelTypes.Item("InCtx" + event.Label)
+
                 let lts = ProvidedParameter("System.Int32", System.Type.GetType("System.Int32"))
 
-                let resultType = ctxOutTypes.Item(idx) 
+                let resultType = match methodName with
+                                 |"send" -> ctxOutTypes.Item(idx) 
+                                 | "choice_send" -> labelTypes.Item("OutCtx" + event.Label) 
+
                 let varNames = (payloadsToVarNames event.Payload) 
                 let varname = varNames.Head
                 
@@ -1025,6 +1035,13 @@ let generateMethodParams (fsmInstance:ScribbleProtocole.Root []) idx
     let makeReturnTuple = (methodName, listParam, nextType, exprState)
     makeReturnTuple
 
+let makeSelectTypes (prefix:string) 
+    (fsmInstance:ScribbleProtocole.Root [])  
+    listIndexChoice = 
+    List.map 
+        (fun value -> (prefix + fsmInstance.[value].Label, makeCtxTypeBase value (prefix + fsmInstance.[value].Label)))
+        listIndexChoice
+
 let internal makeChoiceLabelTypes (fsmInstance:ScribbleProtocole.Root []) 
         (providedList: ProvidedTypeDefinition list) 
         (mRole:Map<string,ProvidedTypeDefinition>)
@@ -1045,12 +1062,18 @@ let internal makeChoiceLabelTypes (fsmInstance:ScribbleProtocole.Root [])
                 let typeCtor = assem.GetType(ChoiceType + i.ToString())
                 choiceIter <- choiceIter + 1
                 let listIndexChoice = findSameCurrent event.CurrentState fsmInstance
-                
+
                 if (event.Type.Contains("choice_send")) then 
                     let selectorTypeName = List.fold (fun state value -> state + fsmInstance.[value].Label) "" listIndexChoice
+                    
+                    let sendInType = makeSelectTypes "InCtx" fsmInstance listIndexChoice
+                    let sendOutType = makeSelectTypes "OutCtx" fsmInstance listIndexChoice    
+                    mapping <- (List.concat [sendInType; sendOutType] |> Map.ofList)
+
                     let selectorType  = createProvidedIncludedType selectorTypeName
                     let selectorReturnType  = createProvidedIncludedType (selectorTypeName + "return")
                     let selectorSelectType  = createProvidedIncludedType (selectorTypeName + "select")
+
                     let m = ProvidedMethod("selector", [], selectorReturnType, 
                                             isStatic = false, 
                                             invokeCode = fun args -> <@@ "hello" @@>)
@@ -1078,6 +1101,10 @@ let internal makeChoiceLabelTypes (fsmInstance:ScribbleProtocole.Root [])
                     mapping <- mapping.Add(selectorTypeName + "return", selectorReturnType)
                     mapping <- mapping.Add(selectorTypeName + "select", selectorSelectType)
 
+                    
+                    let x = Seq.map snd sendInType |> Seq.toList
+                    let y = Seq.map snd sendOutType |> Seq.toList 
+                    listeType <- List.concat [x; y; listeType]
                     listeType <- (selectorType)::listeType
                     listeType <- (selectorReturnType)::listeType
                     listeType <- (selectorSelectType)::listeType  
@@ -1113,8 +1140,10 @@ let internal makeChoiceLabelTypes (fsmInstance:ScribbleProtocole.Root [])
                         let indexList = findSameCurrent currEvent.CurrentState fsmInstance 
                         let methodName, listParam, nextType, exprState = 
                                 generateMethodParams fsmInstance 
-                                    indexList.Head providedList (mRole.[currEvent.Partner]) 
+                                    liste.Head providedList (mRole.[currEvent.Partner]) 
                                     ctxInTypes ctxOutTypes
+                                    mapping
+                        
                         let myMethod = 
                             match methodName with 
                             | "choice_send" -> 
@@ -1322,6 +1351,7 @@ let rec goingThrough (methodNaming:string)
         let methodName, listParam, nextType, exprState = 
             generateMethodParams fsmInstance 
                 indexList.Head providedList (mRole.[role]) ctxInTypes ctxOutTypes
+                Map.empty
 
         let errorMessage = ErrorMsg.unexpectedMethod methodName
 

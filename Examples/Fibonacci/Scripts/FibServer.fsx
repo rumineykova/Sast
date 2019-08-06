@@ -6,22 +6,16 @@ open ScribbleGenerativeTypeProvider
 let delims1 = """ [ {"label" : "SUM", "delims": {"delim1": [":"] , "delim2": [","] , "delim3": [";"] } },
                    {"label" : "RES", "delims": {"delim1": [":"] , "delim2": [","] , "delim3": [";"] } }, 
                    {"label" : "BYE", "delims": {"delim1": [":"] , "delim2": [","] , "delim3": [";"] } }, 
+                   {"label" : "ADD", "delims": {"delim1": [":"] , "delim2": [","] , "delim3": [";"] } }, 
                    {"label" : "HELLO", "delims": {"delim1": [":"] , "delim2": [","] , "delim3": [";"] } }]"""
 
 [<Literal>]
 let typeAliasing1 = """ [ {"alias" : "int", "type": "System.Int32"},
                           {"alias" : "string", "type": "System.String"}] """
 
-type Fib = 
-    Provided.STP<"../../../Examples/Fibonacci/Protocols/Fib.scr"
-                               ,"Adder"
-                               ,"S"
-                               ,"../../../Examples/Fibonacci/Config/configServer.yaml"
-                               ,Delimiter=delims1
-                               ,TypeAliasing=typeAliasing1
-                               ,ScribbleSource = ScribbleSource.LocalExecutable
-                               ,ExplicitConnection=false 
-                               ,AssertionsOn=true>
+type Fib = Provided.STP<"../Protocols/Fib.scr", "Adder", "S"
+    ,"../Config/configC.yaml", Delimiter=delims1
+    ,TypeAliasing=typeAliasing1, AssertionsOn=true, ScribbleSource= ScribbleSource.LocalExecutable>
 
 
 let C = Fib.C.instance
@@ -41,10 +35,15 @@ let helloCallback1 x =
     printfn "%i" y
     ()
 
-let helloCallback2 () = 
+let helloCallback21 (s:Fib.InContext20) = 
     printfn "hello callback2"
-    let s =5
-    s
+    //let s =5
+    s.setu<0>()
+
+let helloCallback2 (s:Fib.InContext25) = 
+    printfn "hello callback2"
+    //let s =5
+    s.setd<0>()
 
 let helloCallback3 x =   
     printfn "hello callback3"
@@ -54,22 +53,22 @@ let helloCallback3 x =
     ()
 
 let branchBYE (c: Fib.BYE) = 
-    let s1 = c.receive(C, helloCallback1) 
-    s1.finish()   
+    let s1 = c.receive(C, helloCallback1).sendBYE(C, helloCallback2)
+    s1.finish()
 
-let branchRES (c: Fib.RES) = 
-    let s1 = c.receive(C, helloCallback1) 
-    s1.finish()   
+let branchRES (c: Fib.ADD) = 
+    let s1 = c.receive(C, helloCallback1).sendBYE(C, helloCallback2)
+    s1.finish()
 
-let s1 = s.receiveHELLO(C, helloCallback1) 
-let s2 = s1.sendSUM(C, helloCallback2)
-let s3 = s2.on_branch(branchBYE, branchRES)
+let s1 = s.sendHELLO(C, helloCallback21)
+let s2 = s1.receiveHELLO(C, helloCallback3)
+let s2 = s2.on_branch(branchBYE, branchRES)
 
 
-
+(*
 let (|BYE|RES|) n =
   if n % 2 = 0 then BYE Fib.BYE else RES Fib.RES
-
+*)
 
 
 (*
