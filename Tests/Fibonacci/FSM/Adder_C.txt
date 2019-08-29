@@ -1,0 +1,16 @@
+
+digraph G 
+compound = true;
+"8" [ label="8:  <> True" ];
+"8" -> "10" [ label="S?HELLO(u: int)(u > 3)<>" ];
+"9" [ label="9:  <> True" ];
+"13" [ label="13:  <> True" ];
+"13" -> "9" [ label="S?BYE(c: int)True<>" ];
+"12" [ label="12:  <> True" ];
+"12" -> "9" [ label="S?BYE(d: int)True<>" ];
+"11" [ label="11:  <> True" ];
+"11" -> "12" [ label="S!BYE(b: int)True<>" ];
+"11" -> "13" [ label="S!ADD(a: int)True<>" ];
+"10" [ label="10:  <> True" ];
+"10" -> "11" [ label="S!HELLO(v: int)True<>" ];
+

@@ -130,7 +130,7 @@ type AgentSender(ipAddress,port, localRole:string, role:string) =
         async { do! Async.Sleep(timeout*1000)} 
     
     // 5 Tries of 3 seconds and then double the time at each try 
-    let connect address p (tcpClient:TcpClient) (router:IRouter) =
+    let connect (address: string) p (tcpClient:TcpClient) (router:IRouter) =
         let rec aux timeout count =
             let tries = 5
             try
@@ -207,7 +207,7 @@ type AgentSender(ipAddress,port, localRole:string, role:string) =
         let stream = tcpClient.GetStream()        
         agentSender <- Some (Agent.Start(send stream))
     
-type AgentReceiver(ipAddress,port, roles: string list) =
+type AgentReceiver(ipAddress: string, port, roles: string list) =
 
     let server = new TcpListener(IPAddress.Parse(ipAddress),port)
     let mutable clientMap = Map.empty
