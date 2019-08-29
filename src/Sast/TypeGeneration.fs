@@ -456,7 +456,7 @@ let invokeCodeOnSend (args:Expr list) (payload: ScribbleProtocole.Payload [])
                 mergeGivenAndInferredVarsOnSend payloadNames inferred allBuffers
             |None -> allBuffers*)
     
-    let elem = <@@ () @@>
+    (*let elem = <@@ () @@>
     //let sb = <@@ %%Expr.Application(args.[2], elem):System.Int32 @@>
     
 
@@ -474,14 +474,14 @@ let invokeCodeOnSend (args:Expr list) (payload: ScribbleProtocole.Payload [])
 
     let exprCaching = 
         getExprCachingOnSend types payloadNames sendBuffers sendExpr
-    
+    *)
 
     //let ls = <@@ Runtime.addToSendHandlers stateNum (%%args.[2]: Runtime.IContext-> System.Int32) |> ignore @@>
     let ls = <@@ Runtime.addToSendHandlers stateNum (%%args.[2]: Runtime.IContext-> Runtime.IContext) |> ignore @@>
     //let next_expr = Expr.Sequential(ls,exprCaching) 
 
     //Expr.Sequential(exprCaching, exprState)
-    let newExpr = Expr.Sequential(ls, <@@ printfn "In on send" @@>) 
+    let newExpr = Expr.Sequential(ls, <@@ printfn "send handlers %A" (Runtime.sendHandlers.Item("send")) @@>) 
     Expr.Sequential(newExpr, exprState) 
 
 let invokeCodeOnSendHandler (args:int list) (payload: ScribbleProtocole.Payload [])
@@ -712,7 +712,25 @@ let invokeCodeOnSelect (payload: ScribbleProtocole.Payload []) indexList fsmInst
             (%%Expr.Application(args.[2], Expr.NewObject(choiceTypes.[1].GetConstructors().[0],[])):End)
     
             @@>*)
-        <@@ Debug.print "In select" @@>
+        let ls = <@@ printfn "start" @@>
+        let argsL = args.[1..args.Length-1]
+        let acc_expr = 
+          List.fold 
+              (fun ls (label, arg)-> Expr.Sequential(ls, <@ Runtime.addToSelectHandlers label %%arg |> ignore @>)) ls (List.zip labelNames argsL)
+        //let returnexpr = Expr.Sequential(ls,exprCaching)
+        let returnexpr = Expr.Sequential(acc_expr, <@@ printfn "select handlers %A" (Runtime.selectHandlers) @@>)
+        //let returnexpr = Expr.Sequential(ls1,<@@ printfn "In Recv adding handler: %i" stateNum @@>) 
+        returnexpr
+
+let invokeCodeOnRegister (payload: ScribbleProtocole.Payload []) indexList fsmInstance role 
+    (args: Expr list) (labelNames: string List) (choiceTypes:ProvidedTypeDefinition list) (stateNum:int) = 
+
+        let ls = <@@ printfn "start" @@>
+        let acc_expr = Expr.Sequential(ls, <@ Runtime.addToSelectorHandlers stateNum %%args.[1] |> ignore @>)
+        //let returnexpr = Expr.Sequential(ls,exprCaching)
+        let returnexpr = Expr.Sequential(acc_expr, <@@ printfn "register selector handler %A" (Runtime.selectorsHandlers) @@>)
+        //let returnexpr = Expr.Sequential(ls1,<@@ printfn "In Recv adding handler: %i" stateNum @@>) 
+        returnexpr
 
 let invokeCodeOnChoice (payload: ScribbleProtocole.Payload []) indexList fsmInstance role 
         (args: Expr list) (labelNames: string List) (choiceTypes:ProvidedTypeDefinition list)= 
@@ -742,12 +760,13 @@ let invokeCodeOnChoice (payload: ScribbleProtocole.Payload []) indexList fsmInst
       let elem = <@@ 1 @@> *)
       //let applyFunc = <@@ %%Expr.Application(args.[2], exprDeserialize):Unit @@>
       //applyFunc
-      let ls = <@@ printfn "start" @@>
+      let ls = <@@ printf "registerBranches %A" labelNames @@>
+      let handlers = args.[1..]
       let acc_expr = 
         List.fold 
-            (fun ls label-> Expr.Sequential(ls, <@ Runtime.addToBranchHandlers label %%args.[2] |> ignore @>)) ls labelNames
+            (fun ls (label, arg)-> Expr.Sequential(ls, <@ Runtime.addToBranchHandlers label %%arg |> ignore @>)) ls (List.zip labelNames handlers)
       //let returnexpr = Expr.Sequential(ls,exprCaching)
-      let returnexpr = Expr.Sequential(acc_expr, <@@ printfn "recv handlers %A" (Runtime.branchHandlers.Item("recv")) @@>)
+      let returnexpr = Expr.Sequential(acc_expr, <@@ printfn "branch handlers %A" (Runtime.branchHandlers) @@>)
       //let returnexpr = Expr.Sequential(ls1,<@@ printfn "In Recv adding handler: %i" stateNum @@>) 
       returnexpr
 
@@ -879,8 +898,9 @@ let generateChoice (aType:ProvidedTypeDefinition)
                                 [ProvidedParameter("on_select", selectorHandler)], nextType,            
                                 isStatic = false, 
                                 invokeCode = (fun args  ->  
-                                    invokeCodeOnSelect event.Payload 
+                                    invokeCodeOnRegister event.Payload 
                                         indexList fsmInstance role args labelNames choiceTypes
+                                        event.CurrentState
                                         )
                                 )
 
@@ -942,8 +962,9 @@ let generateMethodParams (fsmInstance:ScribbleProtocole.Root []) idx
                                  |"send" -> ctxOutTypes.Item(idx) 
                                  | "choice_send" -> labelTypes.Item("OutCtx" + event.Label) 
 
-                let varNames = (payloadsToVarNames event.Payload) 
-                let varname = varNames.Head
+                let varNames = (payloadsToVarNames event.Payload)
+                
+                let varname = varNames.Head 
                 
                 let m = ProvidedMethod("set" + varname, [lts], resultType,
                                            isStatic = false,
@@ -1032,8 +1053,10 @@ let internal makeChoiceLabelTypes (fsmInstance:ScribbleProtocole.Root [])
                     let sendOutType = makeSelectTypes "OutCtx" fsmInstance listIndexChoice    
                     mapping <- (List.concat [sendInType; sendOutType] |> Map.ofList)
 
-                    let selectorType  = createProvidedIncludedType selectorTypeName
-                    let selectorReturnType  = createProvidedIncludedType (selectorTypeName + "return")
+                    let selectorType  = createProvidedIncludedTypeChoice (typeof<Runtime.StateType>)  selectorTypeName
+                    let selectorReturnType  = (selectorTypeName + "return") 
+                                              |> createProvidedIncludedTypeChoice (typeof<string>) 
+                                              //|> addCstor (<@@ (selectorTypeName + "return")  @@> |> createCstor [])
                     let selectorSelectType  = createProvidedIncludedType (selectorTypeName + "select")
 
                     let m = ProvidedMethod("selector", [], selectorReturnType, 
@@ -1051,7 +1074,7 @@ let internal makeChoiceLabelTypes (fsmInstance:ScribbleProtocole.Root [])
                                 else 
                                     let m2 = ProvidedMethod(nm, [], selectorReturnType,
                                                 isStatic = false,
-                                                invokeCode = fun args1-> <@@ "hello" @@>)
+                                                invokeCode = fun args1-> <@@ Runtime.addToSelectedLabels arg @@>)
                                     if not (List.contains arg handlersList) then 
                                         handlersList <- arg :: handlersList
                                         invalidate()
@@ -1300,9 +1323,9 @@ let rec goingThrough (methodNaming:string)
         (ctxOutTypes:ProvidedTypeDefinition list) =
 
     if (List.length indexList = 0) then 
-        let runExpr = <@@ CFSMop.runFromInit (CFSMop.getCFSM "cfsm") @@>
-        let expr = Expr.Sequential(runExpr, <@@ Runtime.stopMessage "agent" @@>)
-        let finishExpr =  Expr.Sequential(expr, <@@ printfn "finish" @@>)
+        //let runExpr = <@@ CFSMop.runFromInit (CFSMop.getCFSM "cfsm") @@>
+        //let expr = <@@ Runtime.stopMessage "agent" @@>
+        let finishExpr =  <@@ printfn "finish" @@>
         aType 
         |> addMethod (finishExpr |> createMethodType methodNaming [] typeof<End>) 
         |> ignore

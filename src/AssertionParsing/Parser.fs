@@ -70,8 +70,8 @@ module AssertionParser =
     let number c = isDigit c 
     let pConst: Parser<_, unit> = pint32 .>> ws |>> (fun x -> Literal(IntC(x)))
     let pVarName:Parser<_, unit> = (manyChars (noneOf specialChars)) |>> Ident
-    let xbool =     (stringCIReturn "true" (Bool true)   |>> Literal)
-                    <|> (stringCIReturn "false" (Bool false) |>> Literal)
+    let xbool =     (stringCIReturn "True" (Bool true)   |>> Literal)
+                    <|> (stringCIReturn "False" (Bool false) |>> Literal)
 
 
     let xprim = pConst <|> xbool <|> pVarName  

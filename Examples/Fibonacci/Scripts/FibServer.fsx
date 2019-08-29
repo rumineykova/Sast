@@ -21,8 +21,8 @@ type Fib = Provided.STP<"../Protocols/Fib.scr", "Adder", "S"
 let C = Fib.C.instance
 let S = Fib.S.instance
 
-let s = Fib().Init()
-
+let l = Fib()
+let s = l.Init()
 
 let p = new DomainModel.Buf<int>()
 let p2 = new DomainModel.Buf<int>()
@@ -35,13 +35,13 @@ let helloCallback1 x =
     printfn "%i" y
     ()
 
-let helloCallback21 (s:Fib.InContext20) = 
-    printfn "hello callback2"
+let helloCallback21a (s:Fib.InContext20) = 
+    printfn "hello callback21a"
     //let s =5
     s.setu<0>()
 
 let helloCallback2a (s:Fib.InContext23) = 
-    printfn "hello callback2"
+    printfn "hello callback2a"
     //let s =5
     s.setc<8>()
 
@@ -58,16 +58,25 @@ let helloCallback3 x =
     ()
 
 let branchBYE (c: Fib.BYE) = 
+    printfn "executing branchBye"
     let s1 = c.receive(C, helloCallback1).sendBYE(C, helloCallback2b)
     s1.finish()
 
 let branchRES (c: Fib.ADD) = 
+    printfn "executing branchBye"
     let s1 = c.receive(C, helloCallback1).sendBYE(C, helloCallback2a)
     s1.finish()
 
-let s1 = s.sendHELLO(C, helloCallback21)
+let s1 = s.sendHELLO(C, helloCallback21a) // InContext -> OutContext
 let s2 = s1.receiveHELLO(C, helloCallback3)
-let s3 = s2.on_branch(branchBYE, branchRES)
+let s3 = s2.on_branch(branchBYE, branchRES) // StateType -> StatetType; RES -> END
+
+let ss = l.Start()
+
+//register.State1 += hellocallback12
+//register.State2 += hellocallback12
+
+
 
 (*
 let (|BYE|RES|) n =

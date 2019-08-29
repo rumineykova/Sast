@@ -1,7 +1,6 @@
 ﻿module ScribbleGenerativeTypeProvider.AsstScribbleParser
 
-open FSharp.Data
-open System
+
 open System.Text.RegularExpressions
 open FParsec
 open AssertionParsing
@@ -120,6 +119,12 @@ module parserHelper =
         let normalChar 
             = satisfy (fun c -> c <> ';' && c<>'\\' && c<>'\"' && c<>'}')
         (manyChars normalChar) 
+
+    let assrtExpr: Parser<_, unit> = 
+        //let assrt  = 
+        manyCharsTill anyChar (pstring "<>")
+        //(attempt (pstring "True" <|> pstring "False" <|> assrt ))
+
     // pstring "\"" .>> spaces .>> pstring "];" >>. spaces
 
     let current:Parser<_,unit> = 
@@ -186,20 +191,24 @@ module parserHelper =
                                  (fun name _ varExpr -> (sprintf "%s" name, sprintf "%s" varExpr))
         let inferredAll = spaces >>. (sepBy singleRecord (pstring ",")) .>> (pstring "}")
         //|>> Inferred*)
-        let infFragment = spaces >>. (between (pstring "{")  (pstring "}") expr)
-           
+        let infFragment = spaces >>. (between (pstring "(")  (pstring ")") expr)
+        let statevar = pstring "<>" 
         let endOfPayload = pstring "\"" >>. spaces >>. pstring "];" >>. spaces
-
+        //let assertion = AssertionParser.xparser p //|> Visitors.getStringRepr
+        (*
         let assrt = (endOfPayload |>> (fun x -> Assertion(""), Inferred("")))
                     // <|> ((((spaces >>. (between (pstring "{")  (pstring "}") expr))  .>> endOfPayload)) |>> Inferred)
                     <|> ((infFragment  .>> endOfPayload) |>> (fun x -> Assertion(""), Inferred(x)))
-                    <|> pipe2  (pstring "@" >>. (between (pstring "\\\"")  (pstring "\\\"") expr))  
+                    <|> pipe2  expr //(pstring "@" >>. (between (pstring "\\\"")  (pstring "\\\"") expr))  
                                ((endOfPayload |>> fun x -> "") <|> ((infFragment .>> endOfPayload) |> (fun x -> x))) 
                                (fun ass maybeInferred -> 
                                     if (maybeInferred <> "") 
                                     then Assertion(ass), Inferred(maybeInferred) 
                                     else Assertion(ass), Inferred("")
                                 )
+        *)
+        let assrt = (assrtExpr .>> endOfPayload) 
+                    |>> (fun ass -> Assertion(ass), Inferred(""))
         assrt
       // assrt |>> AssertionInferred
 

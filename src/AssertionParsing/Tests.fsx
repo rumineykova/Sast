@@ -35,7 +35,7 @@ let getClosedExpression expr map =
 let subs = [("x", 5); ("y", 1)] |> Map.ofList
 let closedExpression = getClosedExpression "(x>3)" subs
 Visitors.evalExpr closedExpression
-test "(x>3)"
+test "(x > 3)"
 test "x+1 < y+2 || x > 1"
 test "x+1 <5 && x<5 && x=y" 
 test "(x+1 <5 && x<5   && z=y)" 

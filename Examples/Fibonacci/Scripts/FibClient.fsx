@@ -49,7 +49,7 @@ type Runtime.IContext with
     member x.SetX(y) = printfn "Setting x to: %i" y
     member x.GetX() = printfn "Getting x:"
 
-let helloCallback1 (ctx:Fib.InContext9) =   
+let helloCallback1 (ctx:Fib.InContext13) =   
     printfn "hello callback1" 
     Async.RunSynchronously(Async.Sleep(5000))
     printfn "hello callback1"  
@@ -58,30 +58,17 @@ let helloCallback1 (ctx:Fib.InContext9) =
     //ctx.Add
     //buf
 
-let helloCallback12A (ctx:Fib.InCtxADD2) =   
+let helloCallback12A (ctx:Fib.InCtxADD4) =   
     printfn "hello callback1" 
     Async.RunSynchronously(Async.Sleep(5000))
     printfn "hello callback1"  
     ctx.seta<1>()
 
-let helloCallback12B (ctx:Fib.InCtxBYE4) =   
+let helloCallback12B (ctx:Fib.InCtxBYE3) =   
     printfn "hello callback1" 
     Async.RunSynchronously(Async.Sleep(5000))
     printfn "hello callback1"  
     ctx.setb<0>()
-
-let helloCallback123 ()  =
-    printfn "hello callback1"
-    Async.RunSynchronously(Async.Sleep(5000))
-    printfn "hello callback1"
-    let buf = 4
-    buf
-
-let helloCallback3  = 
-    printfn "hello callback3"
-    printfn "Done"
-    let s =5
-    s
 
 let helloCallback2  x =   
     printfn "hello callback2"
@@ -101,14 +88,15 @@ let helloCallback5 (c: Fib.BYE)  =
      .receiveBYE(S, helloCallback2)
      .finish()
 
-let helloCallback6 (c: Fib.BYEADD)  =      
+let helloCallback6 (c: Fib.ADDBYE)  =      
     printfn "hello callback2"
     let s = System.Console.ReadLine()
-    if (s = "Hello") then c.selector<"BYE">()
-    else c.selector<"ADD">()
+    //if (s = "Hello") then c.selector<"BYE">()
+    //else 
+    c.selector<"ADD">()
 
 let s1 = c.receiveHELLO(S, helloCallback2)
-          .sendHELLO(S, helloCallback1)
+let s2 = s1.sendHELLO(S, helloCallback1)
           //.sendHELLO(S, helloCallback12)
-          .register_selector(helloCallback6)
-          .select_handlers(helloCallback5, helloCallback4)
+let s3 = s2.register_selector(helloCallback6)
+let s4 = s3.select_handlers(helloCallback4, helloCallback5)

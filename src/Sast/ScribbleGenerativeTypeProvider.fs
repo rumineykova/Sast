@@ -57,7 +57,7 @@ type GenerativeTypeProvider(config) as this =
                                 sprintf """/C %s %s -fsm %s %s >> %s 2>&1 """ batFile pathToFile protocol localRole tempFileName
                            | true -> 
                                 let batFile = """%scribble%""" 
-                                sprintf """/C %s %s -ass %s -ass-fsm %s -Z3  >> %s 2>&1 """ 
+                                sprintf """/C %s %s -assrt  -fsm %s %s -z3  >> %s 2>&1 """ 
                                                 batFile pathToFile protocol localRole tempFileName
 
         let psi = ProcessStartInfo("cmd.exe", scribbleArgs)
@@ -82,35 +82,67 @@ type GenerativeTypeProvider(config) as this =
                 parsed
             | None -> failwith "The file given does not contain a valid fsm"
     
-    let rec convertCFSM cfsm (states) (fsmInstance:ScribbleProtocole.Root []) = 
+    let getChoiceTransitions index (fsmInstance:ScribbleProtocole.Root []) = 
+        let methodName = fsmInstance.[index].Type
+        let role = fsmInstance.[index].Partner
+        let label = fsmInstance.[index].Label
+        let next = fsmInstance.[index].NextState
+        let transition = 
+            match methodName with 
+              | "choice_send" ->  CFSMop.Transition.Send (role, label)
+              | "choice_receive" ->  CFSMop.Transition.Recv (role, label)
+              | "finish" ->  CFSMop.Transition.End 
+              | _ -> failwith "such event is not exepected"
+        (transition, next)
+
+    let rec convertCFSM cfsm (states) (fsmInstance:ScribbleProtocole.Root []) isIndex = 
         //let lstates = Set.toList states 
         match states with
         | [] -> cfsm
         | h::t -> 
             //cfsm |>CFSM.addTransition h cfsm
             // convertCFSM  h fsmInstance
-            let index = findCurrentIndex  h fsmInstance 
+            let index = 
+                if isIndex then h
+                else findCurrentIndex  h fsmInstance 
             if index = -1 then 
-                convertCFSM cfsm t fsmInstance 
+                convertCFSM cfsm t fsmInstance false 
             else 
                 let methodName = fsmInstance.[index].Type
                 let role = fsmInstance.[index].Partner
                 let label = fsmInstance.[index].Label
                 let next = fsmInstance.[index].NextState
+
                 match methodName  with 
                 | "send" | "receive" | "finish" ->
                     let transition = 
                         match methodName with 
                         | "send" ->  CFSMop.Transition.Send (role, label)
                         | "receive" ->  CFSMop.Transition.Recv (role, label)
-                        | "finish" ->  CFSMop.Transition.End (role, label) 
-                    let newcfsm = cfsm |> CFSMop.addTransition h transition next 
-                    convertCFSM newcfsm t fsmInstance 
+                        | "finish" ->  CFSMop.Transition.End 
+                    let newcfsm = cfsm |> CFSMop.addTransition h transition next
+                    let nextIndex = (findCurrentIndex next fsmInstance)
+                    let newcfsm1 = 
+                        if nextIndex = -1
+                        then newcfsm |> CFSMop.addTransition next CFSMop.Transition.End -1  
+                        else newcfsm
+                    convertCFSM newcfsm1 t fsmInstance false
                 | "choice_receive" | "choice_send" -> 
-                    //let listIndexChoice = findSameCurrent fsmInstance.[index].CurrentState fsmInstance
-                    convertCFSM cfsm t fsmInstance 
+                    let listIndexChoice = findSameCurrent fsmInstance.[index].CurrentState fsmInstance
+                    //let choiceStates = List.map (fun idx -> fsmInstance.[idx].CurrentState) listIndexChoice
+                    let newcfsm = 
+                        List.fold  (fun ncfsm n->  
+                                        let (tr, nxt) = getChoiceTransitions n fsmInstance
+                                        CFSMop.addTransition h tr nxt ncfsm) 
+                                   cfsm listIndexChoice 
+
+                    //let newcfsm = convertCFSM cfsm listIndexChoice fsmInstance true
+                    //let newcfsm = cfsm |> CFSMop.addTransition h transition next 
+                    convertCFSM newcfsm t fsmInstance false 
+
                 | _ -> failwith "CFSM transition not supported"
     
+
     let generateTypes (fsm:string) (variablesMap : Map<string, AssertionParsing.Expr>) (name:string) (parameters:obj[]) = 
     
         let configFilePath = parameters.[0]  :?> string
@@ -163,18 +195,21 @@ type GenerativeTypeProvider(config) as this =
         let ctor = firstStateType.GetConstructors().[0]                                                               
         let ctorExpr = <@@ obj() @@> //Expr.NewObject(ctor, [])
         let exprCtor = ctorExpr
-        let exprStart = <@@ Runtime.startAgentRouter "agent"  @@>
+        //let exprStart = <@@ Runtime.startAgentRouter "agent"  @@>
+        let exprStart = <@@ printf "starting"  @@>
         let exprStart0 = Expr.Sequential(exprStart, <@@ printfn "starting"  @@>)
         let exprStart1 = Expr.Sequential(exprStart0, <@@ Runtime.initRecvHandlers "recv" Runtime.handlersRecvMap @@>)
         let exprStart2 = Expr.Sequential(exprStart1, <@@ Runtime.initSendHandlers "send" Runtime.handlersSendMap @@>)
         let expression = Expr.Sequential(exprStart2,exprCtor)
         
+        let startExpr2 = <@@ CFSMop.runFromInit (CFSMop.getCFSM "cfsm") @@>
         
         let ty = 
             name 
             |> createProvidedType thisAssembly
             |> addCstor ( <@@ "hey" + string n :> obj @@> |> createCstor [])
             |> addMethod ( expression |> createMethodType "Init" [] firstStateType)
+            |> addMethod ( startExpr2 |> createMethodType "Start" [] firstStateType)
             |> addIncludedTypeToProvidedType ctxInTypes
             |> addIncludedTypeToProvidedType ctxOutTypes
             //|> addIncludedTypeToProvidedType ctxDeclTypes
@@ -192,7 +227,7 @@ type GenerativeTypeProvider(config) as this =
                       //Map.empty
                       (fst tupleRole) protocol
         let mutable cfsm = CFSMop.initFsm firstState
-        let newCFSM = convertCFSM cfsm (Set.toList stateSet) protocol 
+        let newCFSM = convertCFSM cfsm (Set.toList stateSet) protocol false
         CFSMop.initCFSMCache "cfsm" newCFSM
 
         //let assemblyPath = Path.ChangeExtension(System.IO.Path.GetTempFileName(), ".dll")

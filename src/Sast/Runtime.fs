@@ -13,6 +13,10 @@ type IContext() =
 
 type StateType() = 
     let _ = ()
+
+type SelectorReturnType() = 
+    let _ = ()
+
 // The router map stores only one element (called agent), that acts as a router in the system. 
 // It redirects the messages to the internal actors
 let mutable routerMap = Map.empty<string,AgentRouter>
@@ -23,6 +27,9 @@ let mutable mLabel = Map.empty<string,ProvidedTypeDefinition>
 let mutable handlersRecvMap = Map.empty<int, System.Int32  -> Unit>
 let mutable handlersSendMap = Map.empty<int, IContext-> IContext>
 let mutable branchHandlers = Map.empty<string, StateType-> End>
+let mutable selectHandlers = Map.empty<string, StateType-> End>
+let mutable selectedLabels = List.empty<string> 
+let mutable selectorsHandlers = Map.empty<int, StateType-> string>
 
 let mutable recvHandlers = Map.empty<string, Map<int, System.Int32  -> Unit>>
 let initRecvHandlers name (recvHandelrsMap) = 
@@ -51,6 +58,20 @@ let addToBranchHandlers label handler =
 let getFromBranchHandlers label = 
     branchHandlers.Item(label) 
 
+let addToSelectHandlers label handler = 
+    selectHandlers <- selectHandlers.Add(label, handler) 
+
+let getFromSelectHandlers label = 
+    selectHandlers.Item(label) 
+
+let addToSelectorHandlers label handler = 
+    selectorsHandlers <- selectorsHandlers.Add(label, handler) 
+
+let getFromSelectorHandlers label = 
+    selectorsHandlers.Item(label) 
+
+let addToSelectedLabels label  = 
+    selectedLabels <- List.append [label] selectedLabels
 
 let getFromSendHandlers index = 
     sendHandlers.Item("send").Item(index) 
