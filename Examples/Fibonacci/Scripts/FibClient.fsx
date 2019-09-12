@@ -13,7 +13,6 @@ let delims = """ [ {"label" : "SUM", "delims": {"delim1": [":"] , "delim2": [","
                    {"label" : "close", "delims": {"delim1": [":"] , "delim2": [","] , "delim3": [";"] } }, 
                    {"label" : "HELLO", "delims": {"delim1": [":"] , "delim2": [","] , "delim3": [";"] } }]"""
 
-
 [<Literal>]
 let typeAliasing1 = """ [ {"alias" : "int", "type": "System.Int32"}, 
                           {"alias" : "string", "type": "System.String"}] """
@@ -59,13 +58,13 @@ let helloCallback1 (ctx:Fib.InContext13) =
     //buf
 
 let helloCallback12A (ctx:Fib.InCtxADD4) =   
-    printfn "hello callback1" 
+    printfn "hello callback12A" 
     Async.RunSynchronously(Async.Sleep(5000))
     printfn "hello callback1"  
     ctx.seta<1>()
 
 let helloCallback12B (ctx:Fib.InCtxBYE3) =   
-    printfn "hello callback1" 
+    printfn "hello callback12B" 
     Async.RunSynchronously(Async.Sleep(5000))
     printfn "hello callback1"  
     ctx.setb<0>()
@@ -77,26 +76,31 @@ let helloCallback2  x =
 
 let x = ()
 let helloCallback4 (c: Fib.ADD)  =   
-    printfn "hello callback2"
-    c.send(S, helloCallback12A)
-     .receiveBYE(S, helloCallback2)
-     .finish()
+    printfn "hello callback4"
+    let s = c.send(S, helloCallback12A)
+    let s1 = s.receiveBYE(S, helloCallback2)
+    printfn "Register calls"
+    s1.finish()
 
 let helloCallback5 (c: Fib.BYE)  =   
-    printfn "hello callback2"
+    printfn "hello callback5"
     c.send(S, helloCallback12B)
      .receiveBYE(S, helloCallback2)
      .finish()
 
 let helloCallback6 (c: Fib.ADDBYE)  =      
-    printfn "hello callback2"
-    let s = System.Console.ReadLine()
+    printfn "hello callback6"
     //if (s = "Hello") then c.selector<"BYE">()
     //else 
-    c.selector<"ADD">()
+    let res = c.selector<"ADD">()
+    printfn "returned reslut is %A" res
+    res
 
 let s1 = c.receiveHELLO(S, helloCallback2)
 let s2 = s1.sendHELLO(S, helloCallback1)
           //.sendHELLO(S, helloCallback12)
 let s3 = s2.register_selector(helloCallback6)
 let s4 = s3.select_handlers(helloCallback4, helloCallback5)
+
+let start = s.Start()
+

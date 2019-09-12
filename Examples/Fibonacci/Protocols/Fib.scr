@@ -5,7 +5,7 @@ type <java> "java.lang.Integer" from "rt.jar" as int;
 global protocol Adder(role C, role S)
 {
 	HELLO(u:int) from S to C; @"u>3" // OutoutState20
-	HELLO(v:int) from C to S; @"v=u+3"// InputState22
+	HELLO(v:int) from C to S; // InputState22
 	choice at C { // BranchState23: [InputStateADD, InputStateBYE]
 		ADD(a:int) from C to S;// InputStateADD 
 		BYE(c:int) from S to C;// OutputState24

@@ -35,17 +35,17 @@ let helloCallback1 x =
     printfn "%i" y
     ()
 
-let helloCallback21a (s:Fib.InContext20) = 
+let helloCallback21a (s:Fib.InContext23) = 
     printfn "hello callback21a"
     //let s =5
-    s.setu<0>()
+    s.setu<5>()
 
-let helloCallback2a (s:Fib.InContext23) = 
+let helloCallback2a (s:Fib.InContext25) = 
     printfn "hello callback2a"
     //let s =5
     s.setc<8>()
 
-let helloCallback2b (s:Fib.InContext25) = 
+let helloCallback2b (s:Fib.InContext26) = 
     printfn "hello callback2"
     //let s =5
     s.setd<6>()
@@ -69,7 +69,7 @@ let branchRES (c: Fib.ADD) =
 
 let s1 = s.sendHELLO(C, helloCallback21a) // InContext -> OutContext
 let s2 = s1.receiveHELLO(C, helloCallback3)
-let s3 = s2.on_branch(branchBYE, branchRES) // StateType -> StatetType; RES -> END
+let s3 = s2.on_branch(branchRES, branchBYE) // StateType -> StatetType; RES -> END
 
 let ss = l.Start()
 

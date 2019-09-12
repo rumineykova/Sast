@@ -20,331 +20,206 @@ open ScribbleGenerativeTypeProvider.Util
 
 
 type ScribbleSource = 
-    | WebAPI = 0 
-    | File = 1
-    | LocalExecutable = 2
+  | WebAPI = 0 
+  | File = 1
+  | LocalExecutable = 2
 
 type internal WatchSpec = 
-    private 
-    | WatchSpec of string * (string -> bool)
-    static member File path = WatchSpec (path, fun _ -> true)
-    static member FileAndFilter (path, filter) = WatchSpec (path, filter)
-    member x.Path = let (WatchSpec(p, _)) = x in p
-    member x.Filter = let (WatchSpec(_, f)) = x in f
+  private 
+  | WatchSpec of string * (string -> bool)
+  static member File path = WatchSpec (path, fun _ -> true)
+  static member FileAndFilter (path, filter) = WatchSpec (path, filter)
+  member x.Path = let (WatchSpec(p, _)) = x in p
+  member x.Filter = let (WatchSpec(_, f)) = x in f
 
 type State() =
-   let _ = ()
+  let _ = ()
 
 [<TypeProvider>]
 type GenerativeTypeProvider(config) as this =
     inherit TypeProviderForNamespaces (config)      
     //let tmpAsm = Assembly.LoadFrom(config.RuntimeAssembly)
     let thisAssembly = Assembly.GetExecutingAssembly()
+
     let invokeScribble pathToFile protocol localRole tempFileName assertionsOn =         
-        // Configure command line
-        // Add -batch (to speed up Z3 by passing one logical formulae for checking the protocol, 
-        // hence the check is fast when the protocol is correct, but slow when it is not. 
-            
-        (* let batFile = if assertionsOn then """%scribble%""" else """%scribbleno%"""
-        
-        let scribbleArgs = sprintf """/C %s %s -ass %s -ass-fsm %s -Z3  >> %s 2>&1 """ 
-                                    batFile pathToFile protocol localRole tempFileName *)
-
-        // Uncomment below for Scribble without assertions 
-        let scribbleArgs = match assertionsOn with 
-                           | false -> 
-                                let batFile = """%scribbleno%""" 
-                                sprintf """/C %s %s -fsm %s %s >> %s 2>&1 """ batFile pathToFile protocol localRole tempFileName
-                           | true -> 
-                                let batFile = """%scribble%""" 
-                                sprintf """/C %s %s -assrt  -fsm %s %s -z3  >> %s 2>&1 """ 
-                                                batFile pathToFile protocol localRole tempFileName
-
-        let psi = ProcessStartInfo("cmd.exe", scribbleArgs)
-        psi.UseShellExecute <- false; psi.CreateNoWindow <- true; 
-                                                            
-        // Run the cmd process and wait for its completion
-        let p = new Process()
-        p.StartInfo<- psi;                             
-        let res = p.Start(); 
-        p.WaitForExit()
-
-        // Read the result from the executed script
-        let parsedFile = File.ReadAllText(tempFileName) 
-        // TODO:  Fix the parser not to care about starting/trailing spaces!
-        let parsedScribble = parsedFile.ToString().Replace("\r\n\r\n", "\r\n")
-        parsedScribble            
+      let scribbleArgs = 
+        match assertionsOn with 
+          | false -> 
+              let batFile = """%scribbleno%""" 
+              sprintf """/C %s %s -fsm %s %s >> %s 2>&1 """ 
+                batFile pathToFile protocol localRole tempFileName
+          | true -> 
+              let batFile = """%scribble%""" 
+              sprintf """/C %s %s -assrt  -fsm %s %s -z3  >> %s 2>&1 """ 
+                batFile pathToFile protocol localRole tempFileName
+      let psi = ProcessStartInfo("cmd.exe", scribbleArgs)
+      psi.UseShellExecute <- false; psi.CreateNoWindow <- true;                                                           
+      // Run the cmd process and wait for its completion
+      let p = new Process()
+      p.StartInfo<- psi;                             
+      let res = p.Start(); 
+      p.WaitForExit()
+      // Read the result from the executed script
+      let parsedFile = File.ReadAllText(tempFileName) 
+      // TODO:  Fix the parser not to care about starting/trailing spaces!
+      let parsedScribble = parsedFile.ToString().Replace("\r\n\r\n", "\r\n")
+      parsedScribble            
 
     let parseCFSM parsedScribble protocol localRole typeAliasing = 
-        let str = sprintf """{"code":"%s","proto":"%s","role":"%s"}""" "code" protocol localRole
-        match Parsing.getFSMJson parsedScribble str typeAliasing with 
-            | Some parsed -> 
-                parsed
-            | None -> failwith "The file given does not contain a valid fsm"
+      let str = sprintf """{"code":"%s","proto":"%s","role":"%s"}""" "code" protocol localRole
+      match Parsing.getFSMJson parsedScribble str typeAliasing with 
+          | Some parsed -> parsed
+          | None -> failwith "The file given does not contain a valid fsm"
+
+    let parseScribble scribbleSource scrFile protocol 
+      localRole typeAliasing assertionsOn =  
+      
+      // TODO: Fix as to replace only types
+      let typeAliasing: Map<string, string> = 
+          DotNetTypesMapping.Parse(typeAliasing) 
+          |>  Array.map (fun s -> (s.Alias, s.Type)) 
+          |> Map.ofArray
+     
+      let relativePath = Path.Combine(config.ResolutionFolder, scrFile)
+      let pathToFile = 
+        match File.Exists(scrFile) with 
+          | true -> scrFile 
+          | false -> 
+            match File.Exists(relativePath) with 
+              | true -> relativePath
+              | false -> failwith "The given file does not exist"
+
+      match scribbleSource with 
+      |ScribbleSource.File -> 
+          //TimeMeasure.measureTime "Before Scribble"
+          //let parsedScribble = code.ToString()
+          let scribbleCode = File.ReadAllText(pathToFile)
+          parseCFSM scribbleCode protocol localRole typeAliasing
+      |ScribbleSource.LocalExecutable ->  
+          // let batFile = DomainModel.config.ScribblePath.FileName 
+          let tempFileName = Path.GetTempFileName()       
+          try  
+              let parsedScribble = invokeScribble pathToFile protocol localRole tempFileName assertionsOn
+              //TimeMeasure.measureTime "After Scribble Compiler"  
+              let p = parseCFSM parsedScribble protocol localRole typeAliasing
+              //TimeMeasure.measureTime "After Parsing "
+              p
+          finally 
+              if File.Exists(tempFileName) then File.Delete(tempFileName)
     
-    let getChoiceTransitions index (fsmInstance:ScribbleProtocole.Root []) = 
-        let methodName = fsmInstance.[index].Type
-        let role = fsmInstance.[index].Partner
-        let label = fsmInstance.[index].Label
-        let next = fsmInstance.[index].NextState
-        let transition = 
-            match methodName with 
-              | "choice_send" ->  CFSMop.Transition.Send (role, label)
-              | "choice_receive" ->  CFSMop.Transition.Recv (role, label)
-              | "finish" ->  CFSMop.Transition.End 
-              | _ -> failwith "such event is not exepected"
-        (transition, next)
-
-    let rec convertCFSM cfsm (states) (fsmInstance:ScribbleProtocole.Root []) isIndex = 
-        //let lstates = Set.toList states 
-        match states with
-        | [] -> cfsm
-        | h::t -> 
-            //cfsm |>CFSM.addTransition h cfsm
-            // convertCFSM  h fsmInstance
-            let index = 
-                if isIndex then h
-                else findCurrentIndex  h fsmInstance 
-            if index = -1 then 
-                convertCFSM cfsm t fsmInstance false 
-            else 
-                let methodName = fsmInstance.[index].Type
-                let role = fsmInstance.[index].Partner
-                let label = fsmInstance.[index].Label
-                let next = fsmInstance.[index].NextState
-
-                match methodName  with 
-                | "send" | "receive" | "finish" ->
-                    let transition = 
-                        match methodName with 
-                        | "send" ->  CFSMop.Transition.Send (role, label)
-                        | "receive" ->  CFSMop.Transition.Recv (role, label)
-                        | "finish" ->  CFSMop.Transition.End 
-                    let newcfsm = cfsm |> CFSMop.addTransition h transition next
-                    let nextIndex = (findCurrentIndex next fsmInstance)
-                    let newcfsm1 = 
-                        if nextIndex = -1
-                        then newcfsm |> CFSMop.addTransition next CFSMop.Transition.End -1  
-                        else newcfsm
-                    convertCFSM newcfsm1 t fsmInstance false
-                | "choice_receive" | "choice_send" -> 
-                    let listIndexChoice = findSameCurrent fsmInstance.[index].CurrentState fsmInstance
-                    //let choiceStates = List.map (fun idx -> fsmInstance.[idx].CurrentState) listIndexChoice
-                    let newcfsm = 
-                        List.fold  (fun ncfsm n->  
-                                        let (tr, nxt) = getChoiceTransitions n fsmInstance
-                                        CFSMop.addTransition h tr nxt ncfsm) 
-                                   cfsm listIndexChoice 
-
-                    //let newcfsm = convertCFSM cfsm listIndexChoice fsmInstance true
-                    //let newcfsm = cfsm |> CFSMop.addTransition h transition next 
-                    convertCFSM newcfsm t fsmInstance false 
-
-                | _ -> failwith "CFSM transition not supported"
+    let parseDelimeters delimitaters = 
+      // handle configFile delim parameter (used for serialisation)
+      let mutable mapping = Map.empty<string,string list* string list * string list>
+      let instance = MappingDelimiters.Parse(delimitaters)
+      for elem in instance do
+          let label = elem.Label
+          let delims = elem.Delims
+          let delim1 = delims.Delim1 |> Array.toList
+          let delim2 = delims.Delim2 |> Array.toList
+          let delim3 = delims.Delim3 |> Array.toList
+          mapping <- mapping.Add(label,(delim1,delim2,delim3)) 
+      DomainModel.modifyMap mapping
     
-
-    let generateTypes (fsm:string) (variablesMap : Map<string, AssertionParsing.Expr>) (name:string) (parameters:obj[]) = 
-    
-        let configFilePath = parameters.[0]  :?> string
-        let delimitaters = parameters.[1]  :?> string
-        let explicitConnection = parameters.[4] :?> bool
-
-        let protocol = ScribbleProtocole.Parse(fsm)
+    let parseConfigFile configFilePath = 
+      let configFile = Path.Combine(config.ResolutionFolder, configFilePath)
+      match File.Exists(configFile) with 
+          | true -> DomainModel.config.Load(configFile)
+          | false -> failwith ("The path to the config folder is not correct: " + config.ResolutionFolder + " " + configFile)
+      
+    let generateTypes protocol (name:string) 
+      (explicitConnections) states firstState= 
+      let states_size = states |> Seq.length  
+      // create initial types
+      let listTypes = (Set.toList states) |> List.map (fun x -> makeStateType x )
+      let ctxInTypes = (Set.toList states) |> List.map (fun x -> makeInContextType x )
+      let ctxOutTypes = (Set.toList states) |> List.map (fun x -> makeOutContextType x )
+      let firstStateType = findProvidedType listTypes firstState
+      let tupleRole = makeRoleTypes protocol
+      let roleList = snd(tupleRole)
+      let tupleLabel = makeChoiceLabelTypes protocol listTypes (tupleRole |> fst) ctxInTypes ctxOutTypes
+      let listOfRoles = makeRoleList protocol
+      let labelList = snd(tupleLabel)
+     
+      // initialise persistent objects (teh Agent router and the cache for assertion values)
+      Runtime.initialise(listOfRoles, explicitConnections) 
+       
+      // create the expression for Initialising the TP
+      let exprInit = 
+        <@@ 
+          printfn "starting"  
+          Runtime.initRecvHandlers "recv" Runtime.handlersRecvMap 
+          Runtime.initSendHandlers "send" Runtime.handlersSendMap 
+          obj() 
+          @@> 
         
+      // create the expression for ctarting the protocol
+      let exprStart = 
+        <@@ CFSMModel.runFromInit (CFSMModel.getCFSM "cfsm") 
+        @@>
         
-        let triple = stateSet protocol
-        let n, stateSet, firstState = triple
+      let host_type = 
+        name 
+        |> createProvidedType thisAssembly
+        |> addCstor ( <@@ string states_size :> obj @@> |> createCstor [])
+        |> addMethod ( exprInit |> createMethodType "Init" [] firstStateType)
+        |> addMethod ( exprStart |> createMethodType "Start" [] firstStateType)
+        |> addIncludedTypeToProvidedType ctxInTypes
+        |> addIncludedTypeToProvidedType ctxOutTypes
+        |> addIncludedTypeToProvidedType roleList
+        |> addIncludedTypeToProvidedType labelList    
+        |> addIncludedTypeToProvidedType listTypes
         
-        let listTypes = (Set.toList stateSet) |> List.map (fun x -> makeStateType x )
-        let ctxInTypes = (Set.toList stateSet) |> List.map (fun x -> makeInContextType x )
-        let ctxOutTypes = (Set.toList stateSet) |> List.map (fun x -> makeOutContextType x )
-        //let ctxTypes = List.map fst ctxTypesList
-        //let ctxDeclTypes = List.map snd ctxTypesList
-        let firstStateType = findProvidedType listTypes firstState
-        let tupleRole = makeRoleTypes protocol
-        let tupleLabel = makeChoiceLabelTypes protocol listTypes (tupleRole |> fst) ctxInTypes ctxOutTypes
-        let listOfRoles = makeRoleList protocol
-        let labelList = snd(tupleLabel)
-        let roleList = snd(tupleRole)
-        
-        let mutable mapping = Map.empty<string,string list* string list * string list>
+      addProperties listTypes listTypes ctxInTypes ctxOutTypes
+        (Set.toList states) (fst tupleLabel) (fst tupleRole) protocol
 
-        let instance = MappingDelimiters.Parse(delimitaters)
-        for elem in instance do
-            let label = elem.Label
-            let delims = elem.Delims
-            let delim1 = delims.Delim1 |> Array.toList
-            let delim2 = delims.Delim2 |> Array.toList
-            let delim3 = delims.Delim3 |> Array.toList
-            mapping <- mapping.Add(label,(delim1,delim2,delim3)) 
-
-        mapping |> DomainModel.modifyMap 
-
-        let naming = Path.Combine(config.ResolutionFolder, configFilePath)
-        DomainModel.config.Load(naming)
-
-
-        //(tupleLabel |> fst) |> Runtime.addLabel
-        let agentRouter = createRouter (DomainModel.config)  listOfRoles explicitConnection
-        Runtime.addAgent "agent" agentRouter 
-        let cache = createCache
-        let assertionLookUp = createlookUp
-        Runtime.initAssertionDict "agent" assertionLookUp
-        Runtime.initCache "cache" cache
-        
-        let ctor = firstStateType.GetConstructors().[0]                                                               
-        let ctorExpr = <@@ obj() @@> //Expr.NewObject(ctor, [])
-        let exprCtor = ctorExpr
-        //let exprStart = <@@ Runtime.startAgentRouter "agent"  @@>
-        let exprStart = <@@ printf "starting"  @@>
-        let exprStart0 = Expr.Sequential(exprStart, <@@ printfn "starting"  @@>)
-        let exprStart1 = Expr.Sequential(exprStart0, <@@ Runtime.initRecvHandlers "recv" Runtime.handlersRecvMap @@>)
-        let exprStart2 = Expr.Sequential(exprStart1, <@@ Runtime.initSendHandlers "send" Runtime.handlersSendMap @@>)
-        let expression = Expr.Sequential(exprStart2,exprCtor)
-        
-        let startExpr2 = <@@ CFSMop.runFromInit (CFSMop.getCFSM "cfsm") @@>
-        
-        let ty = 
-            name 
-            |> createProvidedType thisAssembly
-            |> addCstor ( <@@ "hey" + string n :> obj @@> |> createCstor [])
-            |> addMethod ( expression |> createMethodType "Init" [] firstStateType)
-            |> addMethod ( startExpr2 |> createMethodType "Start" [] firstStateType)
-            |> addIncludedTypeToProvidedType ctxInTypes
-            |> addIncludedTypeToProvidedType ctxOutTypes
-            //|> addIncludedTypeToProvidedType ctxDeclTypes
-            |> addIncludedTypeToProvidedType roleList
-            |> addIncludedTypeToProvidedType labelList    
-            |> addIncludedTypeToProvidedType listTypes
-            
-            //|> addEndType
-        
-        //ty.AddMemberDelayed ( fun () -> ProvidedMethid()
-
-        addProperties listTypes listTypes ctxInTypes ctxOutTypes
-                      (Set.toList stateSet) 
-                      (fst tupleLabel)
-                      //Map.empty
-                      (fst tupleRole) protocol
-        let mutable cfsm = CFSMop.initFsm firstState
-        let newCFSM = convertCFSM cfsm (Set.toList stateSet) protocol false
-        CFSMop.initCFSMCache "cfsm" newCFSM
-
-        //let assemblyPath = Path.ChangeExtension(System.IO.Path.GetTempFileName(), ".dll")
-        //let assembly = ProvidedAssembly asse/mblyPath
-        //ty.SetAttributes(Type
-        //Public ||| TypeAttributes.Class)
-        //ty.HideObjectMethods <- truescribble
-        //assembly.AddTypes [ty]
-        ty
+      host_type
 
     let createOrUseProvidedTypeDefinition (name:string) (parameters:obj[]) =
-       (* match cachedTypes.TryGetValue name with 
-        | true, typeDef -> 
-            TimeMeasure.measureTime "From the cache"     
-            typeDef
-        | _ -> 
-        *)
-        let file = parameters.[0] :?> string
+        // parse TP static parameters 
+        let scrFile = parameters.[0] :?> string
         let protocol = parameters.[1] :?> string
         let localRole = parameters.[2] :?> string
         let configFilePath = parameters.[3] :?> string
-        let typeAliasingParam = parameters.[5] :?> string
-
-        // TODO: Fix as to replace only types
-        let typeAliasing: Map<string, string> = 
-            DotNetTypesMapping.Parse(typeAliasingParam) 
-            |>  Array.map (fun s -> (s.Alias, s.Type)) 
-            |> Map.ofArray
-
-
-        let naming = Path.Combine(config.ResolutionFolder, configFilePath)
-
-        match File.Exists(naming) with 
-            | true -> DomainModel.config.Load(naming)
-            | false -> failwith ("The path to the config folder is not correct: " + config.ResolutionFolder + " " + naming)
-
-        
-
-        let relativePath = Path.Combine(config.ResolutionFolder, file)
-
-        let pathToFile = 
-            match File.Exists(file) with 
-                | true -> file 
-                | false -> 
-                     match File.Exists(relativePath) with 
-                        | true -> relativePath
-                        | false -> failwith "The given file does not exist"
-            
-        //watchPath (WatchSpec.File pathToFile) 
-        //watchPath (WatchSpec.File naming) 
-
+        let delimeters = parameters.[4] :?> string
+        let typeAliasing = parameters.[5] :?> string
         let scribbleSource = parameters.[6] :?> ScribbleSource
+        let explicit_conn = parameters.[7] :?> bool
         let assertionsOn = parameters.[8] :?> bool
 
+        parseConfigFile configFilePath
+        parseDelimeters delimeters
 
-        let fsm = 
-            match scribbleSource with 
-                | ScribbleSource.WebAPI ->  
-                    let str =  File.ReadAllText(pathToFile) // parse the Scribble code
-                    let replace0 = System.Text.RegularExpressions.Regex.Replace(str,"(\s{2,}|\t+)"," ") 
-                    let replace2 = System.Text.RegularExpressions.Regex.Replace(replace0,"\"","\\\"")
-                    let str = sprintf """{"code":"%s","proto":"%s","role":"%s"}""" replace2 protocol localRole
-                    FSharp.Data.Http.RequestString("http://localhost:8083/graph.json", 
-                        query = ["json",str] ,
-                        headers = [ FSharp.Data.HttpRequestHeaders.Accept HttpContentTypes.Json ],
-                        httpMethod = "GET" )
-                |ScribbleSource.File -> 
-                    //TimeMeasure.measureTime "Before Scribble"
-                    //let parsedScribble = code.ToString()
-                    let scribbleCode = File.ReadAllText(pathToFile)
-                    parseCFSM scribbleCode protocol localRole typeAliasing
-                |ScribbleSource.LocalExecutable ->  
-                    // let batFile = DomainModel.config.ScribblePath.FileName 
-                    let tempFileName = Path.GetTempFileName()       
-                    try  
-                        let parsedScribble = invokeScribble pathToFile protocol localRole tempFileName assertionsOn
-                        //TimeMeasure.measureTime "After Scribble Compiler"  
-                        let p = parseCFSM parsedScribble protocol localRole typeAliasing
-                        //TimeMeasure.measureTime "After Parsing "
-                        p
-                    finally 
-                        if File.Exists(tempFileName) then File.Delete(tempFileName)
-        let variablesMap : Map<string, AssertionParsing.Expr> = Map.empty
-        let size = parameters.Length
-        //TimeMeasure.measureTime "Before Type generation"
-        let genType = generateTypes fsm  variablesMap name parameters.[3..(size-1)]
-        //cachedTypes.Add(name, genType)
-        //TimeMeasure.measureTime "After Type generation"
+        // Get a json_cfsm representation of the Scribble file 
+        let fsm_as_straing = 
+          parseScribble scribbleSource scrFile protocol 
+            localRole typeAliasing assertionsOn
+        let fsm_as_json = ScribbleProtocole.Parse(fsm_as_straing)   
+        let _, states, firstState = stateSet fsm_as_json
+
+        // Convert the parsed CFSM to our internal runtime CFSMModel
+        let cfsm = 
+          CFSMAdapter.convertCFSM (CFSMModel.initFsm firstState) 
+            (Set.toList states) fsm_as_json false
+        CFSMModel.init "cfsm" cfsm
+
+        let genType = generateTypes fsm_as_json name explicit_conn states firstState
         genType
 
-    //let providedType = TypeGeneration.createProvidedType thisAssembly "TypeProviderFile"       
-    let parametersTP =  [ProvidedStaticParameter("FileUri",typeof<string>);
-                         ProvidedStaticParameter("GlobalProtocol",typeof<string>);
-                         ProvidedStaticParameter("Role",typeof<string>);
-                         ProvidedStaticParameter("Config",typeof<string>);
-                         ProvidedStaticParameter("Delimiter",typeof<string>);
-                         ProvidedStaticParameter("TypeAliasing",typeof<string>); 
-                         ProvidedStaticParameter("ScribbleSource",typeof<ScribbleSource>, ScribbleSource.File);
-                         ProvidedStaticParameter("ExplicitConnection",typeof<bool>, false);
-                         ProvidedStaticParameter("AssertionsOn",typeof<bool>, false);
-                         ProvidedStaticParameter("AssertionOptimisationsOn",typeof<bool>, false);]
+    let parametersTP =  
+      [ProvidedStaticParameter("FileUri",typeof<string>);
+      ProvidedStaticParameter("GlobalProtocol",typeof<string>);
+      ProvidedStaticParameter("Role",typeof<string>);
+      ProvidedStaticParameter("Config",typeof<string>);
+      ProvidedStaticParameter("Delimiter",typeof<string>);
+      ProvidedStaticParameter("TypeAliasing",typeof<string>); 
+      ProvidedStaticParameter("ScribbleSource",typeof<ScribbleSource>, ScribbleSource.File);
+      ProvidedStaticParameter("ExplicitConnection",typeof<bool>, false);
+      ProvidedStaticParameter("AssertionsOn",typeof<bool>, false);
+      ProvidedStaticParameter("AssertionOptimisationsOn",typeof<bool>, false);]
     do 
-        (*this.Disposing.Add((fun _ ->
-            let disposers = disposals |> Seq.toList
-            disposals.Clear()
-            for disposef in disposers do try disposef() with _ -> ()
-        ))*)
-
-        //providedType.DefineStaticParameters(parametersTP, createOrUseProvidedTypeDefinition)
-        let stpTy  = ProvidedTypeDefinition(thisAssembly, ns, "STP", Some typeof<obj>, isErased = true)
-        stpTy.DefineStaticParameters(parametersTP, createOrUseProvidedTypeDefinition)
-        this.AddNamespace(ns, [stpTy])
-        //this.AddNamespace(ns, [providedType])     
-        //TimeMeasure.measureTime "Assembly"
-    
-    //[<CLIEvent>]
-    member x.Invalidate = invalidation.Publish
+      let stpTy  = ProvidedTypeDefinition(thisAssembly, ns, "STP", Some typeof<obj>, isErased = true)
+      stpTy.DefineStaticParameters(parametersTP, createOrUseProvidedTypeDefinition)
+      this.AddNamespace(ns, [stpTy])
 
 [<assembly:TypeProviderAssembly>]
-    do() 
+  do() 

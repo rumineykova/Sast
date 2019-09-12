@@ -477,11 +477,12 @@ let invokeCodeOnSend (args:Expr list) (payload: ScribbleProtocole.Payload [])
     *)
 
     //let ls = <@@ Runtime.addToSendHandlers stateNum (%%args.[2]: Runtime.IContext-> System.Int32) |> ignore @@>
-    let ls = <@@ Runtime.addToSendHandlers stateNum (%%args.[2]: Runtime.IContext-> Runtime.IContext) |> ignore @@>
+    let nullLS =  <@@ printfn "InvokeCodeOnSend %i" stateNum @@>
+    let ls = Expr.Sequential(nullLS, <@@ Runtime.addToSendHandlers stateNum (%%args.[2]: Runtime.IContext-> Runtime.IContext) |> ignore @@>)
     //let next_expr = Expr.Sequential(ls,exprCaching) 
 
     //Expr.Sequential(exprCaching, exprState)
-    let newExpr = Expr.Sequential(ls, <@@ printfn "send handlers %A" (Runtime.sendHandlers.Item("send")) @@>) 
+    let newExpr = Expr.Sequential(ls, <@@ printfn "In send handlers %A" (Runtime.sendHandlers.Item("send")) @@>) 
     Expr.Sequential(newExpr, exprState) 
 
 let invokeCodeOnSendHandler (args:int list) (payload: ScribbleProtocole.Payload [])
@@ -1067,7 +1068,7 @@ let internal makeChoiceLabelTypes (fsmInstance:ScribbleProtocole.Root [])
                     let staticparams = [ProvidedStaticParameter("Label", typeof<System.String>)] 
                     //let handlersListNum=  handlersList.Length
                     m.DefineStaticParameters(staticparams, 
-                        (fun nm args ->
+                        (fun nm args -> 
                             let arg = args.[0] :?> System.String
                             let filter = List.filter (fun value -> (arg = fsmInstance.[value].Label)) listIndexChoice
                             if (filter.IsEmpty) then failwith "This is not a valid return type"

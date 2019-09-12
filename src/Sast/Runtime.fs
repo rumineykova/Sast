@@ -7,7 +7,6 @@ open ScribbleGenerativeTypeProvider.DomainModel
 open ScribbleGenerativeTypeProvider.RefinementTypesDict
 open Microsoft.FSharp.Quotations
 
-
 type IContext() = 
     let _ = ()
 
@@ -62,6 +61,7 @@ let addToSelectHandlers label handler =
     selectHandlers <- selectHandlers.Add(label, handler) 
 
 let getFromSelectHandlers label = 
+    printf "select handlers are: %A" selectHandlers
     selectHandlers.Item(label) 
 
 let addToSelectorHandlers label handler = 
@@ -71,6 +71,7 @@ let getFromSelectorHandlers label =
     selectorsHandlers.Item(label) 
 
 let addToSelectedLabels label  = 
+    printf "In selected labels %s" label
     selectedLabels <- List.append [label] selectedLabels
 
 let getFromSendHandlers index = 
@@ -158,3 +159,11 @@ let addArgValueToAssertionDict name argName rcv =
 let setResults results (bufs:ISetResult []) = 
     Seq.zip results (Array.toSeq bufs) 
     |> Seq.iter (fun (res, buf:ISetResult) -> buf.SetValue(res)) 
+
+let initialise(roles, explicit_conn) = 
+  let agentRouter = createRouter (DomainModel.config) roles explicit_conn
+  addAgent "agent" agentRouter 
+  let cache = createCache
+  let assertionLookUp = createlookUp
+  initAssertionDict "agent" assertionLookUp
+  initCache "cache" cache
