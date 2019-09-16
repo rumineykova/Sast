@@ -9,10 +9,8 @@ open Microsoft.FSharp.Quotations
 
 type IContext() = 
     let _ = ()
-
 type StateType() = 
     let _ = ()
-
 type SelectorReturnType() = 
     let _ = ()
 
@@ -22,7 +20,6 @@ let mutable routerMap = Map.empty<string,AgentRouter>
 // TODO: This does not look safe!
 let mutable changed = false
 let mutable mLabel = Map.empty<string,ProvidedTypeDefinition>
-
 let mutable handlersRecvMap = Map.empty<int, System.Int32  -> Unit>
 let mutable handlersSendMap = Map.empty<int, IContext-> IContext>
 let mutable branchHandlers = Map.empty<string, StateType-> End>

@@ -4,20 +4,14 @@
 open Microsoft.FSharp.Quotations
 open ProviderImplementation.ProvidedTypes // open the providedtypes.fs file
 open System.Reflection // necessary if we want to use the f# assembly
-open System.Threading.Tasks
-open System.Text
 open System.Collections
-open FSharp.Quotations.Evaluator
 open AssertionParsing.InferredVarsParser
 // ScribbleProvider specific namespaces and modules
 open ScribbleGenerativeTypeProvider.DomainModel
-open ScribbleGenerativeTypeProvider.CommunicationAgents
 open ScribbleGenerativeTypeProvider.IO
 open ScribbleGenerativeTypeProvider.RefinementTypes
 open ScribbleGenerativeTypeProvider.Util.ListHelpers
 open ScribbleGenerativeTypeProvider.Util
-
-open System.Reflection;
 (******************* TYPE PROVIDER'S HELPERS *******************)
 
 // CREATING TYPES, NESTED TYPES, METHODS, PROPERTIES, CONSTRUCTORS
@@ -53,12 +47,6 @@ let internal createPropertyType name typing expression =
 
 let internal createCstor param expression =
     ProvidedConstructor( parameters = param, invokeCode = (fun args -> expression ))
-
-
-// ADDING TYPES, NESTED TYPES, METHODS, PROPERTIES, CONSTRUCTORS TO THE ASSEMBLY AND AS MEMBERS OF THE TYPE PROVIDER
-(*let internal addProvidedTypeToAssembly (providedType:ProvidedTypeDefinition)=
-    asm.AddTypes([providedType])
-    providedType*)
 
 let internal addIncludedTypeToProvidedType nestedTypeToAdd (providedType:ProvidedTypeDefinition) =
     providedType.AddMembers(nestedTypeToAdd)
@@ -195,7 +183,6 @@ let internal payloadsToTypes
     [for elem in payloads do
         yield elem.VarType ]
 
-
 let internal payloadsToVarNames (payloads:ScribbleProtocole.Payload []) =
     [for i in 0..(payloads.Length-1) do
         yield payloads.[i].VarName
@@ -218,7 +205,6 @@ let internal payloadsToSystemType
         if (not (isVarInferred payloads.[i].VarName infDict)) then 
             yield (System.Type.GetType(payloads.[i].VarType))
     ]
-
 (******************* END CONVERT FUNCTIONS FOR PAYLOADS*******************)
 
 (******************* START AUX FUNCTIONS*******************)
@@ -294,7 +280,6 @@ let internal makeRoleList (fsmInstance:ScribbleProtocole.Root []) =
         if not(setSeen |> contains <| event.Partner) then
             setSeen <- setSeen.Add(event.Partner)
             yield event.Partner] 
-
 let internal makeRoleTypes (fsmInstance:ScribbleProtocole.Root []) = 
     let mutable localRoles = [fsmInstance.[0].LocalRole]
     let mutable listeType = []
@@ -325,7 +310,6 @@ let internal makeRoleTypes (fsmInstance:ScribbleProtocole.Root []) =
             localRoles <- event.Partner::localRoles
             listeType <- t::listeType
     (mapping,listeType)
-
 let internal makeStateTypeBase (n:int) (s:string) = 
     let ty = 
         (s + string n) 
@@ -333,7 +317,6 @@ let internal makeStateTypeBase (n:int) (s:string) =
         |> addCstor (<@@ s+ string n @@> |> createCstor [])
     ty.HideObjectMethods <- true
     ty
-
 let internal makeCtxTypeBase (n:int) (s:string) = 
     let ty = createProvidedIncludedTypeChoice (typeof<Runtime.IContext>) (s + string n)  
              |> addCstor (<@@ s+ string n @@> |> createCstor [])
@@ -344,7 +327,6 @@ let internal makeCtxTypeBase (n:int) (s:string) =
     //ty.AddMember holderType
     ty.HideObjectMethods <- true
     ty
-
 let internal makeStateType (n:int) = makeStateTypeBase n "State"
 let internal makeInContextType (n:int) = makeCtxTypeBase n "InContext" 
 let internal makeOutContextType (n:int) = makeCtxTypeBase n "OutContext" 
