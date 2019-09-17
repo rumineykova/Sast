@@ -7,8 +7,9 @@ open ScribbleGenerativeTypeProvider.DomainModel
 open ScribbleGenerativeTypeProvider.RefinementTypesDict
 open Microsoft.FSharp.Quotations
 
-type IContext() = 
+type IContext() =
     let _ = ()
+
 type StateType() = 
     let _ = ()
 type SelectorReturnType() = 
@@ -117,6 +118,14 @@ let receiveMessage agent message role listTypes =
 
 let receiveChoice agent =
     routerMap.Item(agent).ReceiveChoice()
+
+let context = VarCache()
+
+let getFromContext state  = 
+  context.Get(state)
+
+let addToContext state payload = 
+  context.Add(state, payload)
 
 let mutable cache = Map.empty<string,VarCache>
 let initCache name (newCache:VarCache) = 

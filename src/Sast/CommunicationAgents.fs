@@ -375,8 +375,6 @@ type AgentReceiver(ipAddress,port, roles: string list) =
             receive.PostAndReply(fun ch -> 
                 Message.ReceiveMessage (msg,role,ch))
         |None -> failwith ErrorMsg.agentNotInstantiated
-
-
                      
 /// In case of receive: message is the serialized version of the Type
 /// replyMessage is the message really received from the network 
