@@ -78,6 +78,7 @@ let runAssertion assrtFun argNames argVals =
     | Some false -> failwith ErrorMsg.assertionInvalid 
     | Some true -> ()
 
+
 let serPayloads (args:Expr list) (listTypes:string list) 
                 (payloadDelim:string) (endDelim:string) 
                 (argsNames:string list) assrtFun (payloadNames: string list) =
@@ -159,6 +160,7 @@ let serialize (label:string) (args:Expr list)
         Array.append labelSerialized payloadSerialized 
     @>        
 
+
 let convert (arrayList:byte[] list) (elemTypelist:string list) =
     let rec aux (arrList:byte[] list) (elemList:string list) (acc:obj list) =
         match arrList with
@@ -193,6 +195,7 @@ let deserialize (messages: _ list) (role:string) (args: Expr list)
             (%%(Expr.NewArray(typeof<ISetResult>, buffer)):ISetResult [])     
     @>
 
+
 let deserializeNew (messages: _ list) (role:string) (args: Expr list) 
         (listTypes:string list) (argsNames:string list) foo  =
     let buffer = [for elem in args do yield Expr.Coerce(elem,typeof<ISetResult>)]
@@ -209,6 +212,7 @@ let deserializeNew (messages: _ list) (role:string) (args: Expr list)
             received.Head
         @>
     Expr.Coerce(x, typeof<System.Int32>)
+
 
 let deserializeAsync (messages: _ list) (role:string) 
         (args: Expr list) (listTypes:string list)  argsNames foo =  

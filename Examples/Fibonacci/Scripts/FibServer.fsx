@@ -31,12 +31,14 @@ let f = 1
 
 let helloCallback1 x =   
     let y = x + 1
+    Async.RunSynchronously(Async.Sleep(5000))
     printfn "hello callBack1"
     printfn "%i" y
     ()
 
 let helloCallback21a (s:Fib.InContext23) = 
     printfn "hello callback21a"
+    Async.RunSynchronously(Async.Sleep(5000))
     //let s =5
     s.setu<5>()
 
@@ -47,11 +49,13 @@ let helloCallback2a (s:Fib.InContext25) =
 
 let helloCallback2b (s:Fib.InContext26) = 
     printfn "hello callback2"
+    Async.RunSynchronously(Async.Sleep(5000))
     //let s =5
     s.setd<6>()
 
 let helloCallback3 x =   
     printfn "hello callback3"
+    Async.RunSynchronously(Async.Sleep(5000))
     printfn "%A" x
     let buf = new DomainModel.Buf<int>()
     printfn "Done"
@@ -59,13 +63,17 @@ let helloCallback3 x =
 
 let branchBYE (c: Fib.BYE) = 
     printfn "executing branchBye"
-    let s1 = c.receive(C, helloCallback1).sendBYE(C, helloCallback2b)
-    s1.finish()
+    Async.RunSynchronously(Async.Sleep(5000))
+    let s1 = c.receive(C, helloCallback1)
+    let s2 = s1.sendBYE(C, helloCallback2b)
+    printfn "done executing branchBye"
+    s2.finish()
 
 let branchRES (c: Fib.ADD) = 
     printfn "executing branchBye"
     let s1 = c.receive(C, helloCallback1).sendBYE(C, helloCallback2a)
     s1.finish()
+    
 
 let s1 = s.sendHELLO(C, helloCallback21a) // InContext -> OutContext
 let s2 = s1.receiveHELLO(C, helloCallback3)

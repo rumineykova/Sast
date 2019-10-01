@@ -1,10 +1,8 @@
 ﻿#r "../../../src/Sast/bin/Debug/Sast.dll"
 
 
-open ScribbleGenerativeTypeProvider           
-           
-           
-                        
+open ScribbleGenerativeTypeProvider      
+                         
 [<Literal>]
 let delims = """ [ {"label" : "SUM", "delims": {"delim1": [":"] , "delim2": [","] , "delim3": [";"] } },
                    {"label" : "ADD", "delims": {"delim1": [":"] , "delim2": [","] , "delim3": [";"] } },
@@ -92,6 +90,7 @@ let helloCallback6 (c: Fib.ADDBYE)  =
     printfn "hello callback6"
     //if (s = "Hello") then c.selector<"BYE">()
     //else 
+    Async.RunSynchronously(Async.Sleep(5000))
     let res = c.selector<"ADD">()
     printfn "returned reslut is %A" res
     res

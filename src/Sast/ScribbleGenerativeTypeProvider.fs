@@ -4,20 +4,14 @@
 open System
 open FSharp.Core.CompilerServices
 open Microsoft.FSharp.Quotations
+open System.IO
 open ProviderImplementation.ProvidedTypes // open the providedtypes.fs file
 open System.Reflection // necessary if we want to use the f# assembly
-open System.Diagnostics
-open System.IO
-open System.Collections.Generic
 open FSharp.Data
 // ScribbleProvider specific namespaces and modules
 open ScribbleGenerativeTypeProvider.TypeGeneration
 open ScribbleGenerativeTypeProvider.DomainModel
-open ScribbleGenerativeTypeProvider.CommunicationAgents
-open ScribbleGenerativeTypeProvider.RefinementTypesDict
-open ScribbleGenerativeTypeProvider.AsstScribbleParser
-open ScribbleGenerativeTypeProvider.Util
-
+open ScribbleGenerativeTypeProvider.TPConfigParser
 
 type ScribbleSource = 
   | WebAPI = 0 
@@ -40,9 +34,45 @@ type GenerativeTypeProvider(config) as this =
     inherit TypeProviderForNamespaces (config)      
     //let tmpAsm = Assembly.LoadFrom(config.RuntimeAssembly)
     let thisAssembly = Assembly.GetExecutingAssembly()
-      
+    
+    let parseScribble scribbleSource scrFile protocol 
+      localRole typeAliasing assertionsOn =  
+    // TODO: Fix as to replace only types
+      let typeAliasing: Map<string, string> = 
+          DotNetTypesMapping.Parse(typeAliasing) 
+          |>  Array.map (fun s -> (s.Alias, s.Type)) 
+          |> Map.ofArray
+          
+      let relativePath = Path.Combine(config.ResolutionFolder, scrFile)
+      let pathToFile = 
+        match File.Exists(scrFile) with 
+          | true -> scrFile 
+          | false -> 
+            match File.Exists(relativePath) with 
+              | true -> relativePath
+              | false -> failwith "The given file does not exist"
+
+      match scribbleSource with 
+      |ScribbleSource.File -> 
+          //TimeMeasure.measureTime "Before Scribble"
+          //let parsedScribble = code.ToString()
+          let scribbleCode = File.ReadAllText(pathToFile)
+          parseCFSM scribbleCode protocol localRole typeAliasing
+      |ScribbleSource.LocalExecutable ->  
+          // let batFile = DomainModel.config.ScribblePath.FileName 
+          let tempFileName = Path.GetTempFileName()       
+          try  
+              let parsedScribble = invokeScribble pathToFile protocol localRole tempFileName assertionsOn
+              //TimeMeasure.measureTime "After Scribble Compiler"  
+              let p = parseCFSM parsedScribble protocol localRole typeAliasing
+              //TimeMeasure.measureTime "After Parsing "
+              p
+          finally 
+              if File.Exists(tempFileName) then File.Delete(tempFileName)
+ 
+    
     let generateTypes protocol (name:string) 
-      (explicitConnections) states firstState= 
+      (explicitConnections) states firstState localRole= 
       let states_size = states |> Seq.length  
       // create initial types
       let listTypes = (Set.toList states) |> List.map (fun x -> makeStateType x )
@@ -69,7 +99,11 @@ type GenerativeTypeProvider(config) as this =
         
       // create the expression for ctarting the protocol
       let exprStart = 
-        <@@ CFSMModel.runFromInit (CFSMModel.getCFSM "cfsm") 
+        <@@ 
+        let endpoint = 
+          if (localRole = "C") then ITransport.startClient ()
+          else ITransport.startServer ()
+        CFSMModel.runFromInit (CFSMModel.getCFSM "cfsm") endpoint  
         @@>
         
       let host_type = 
@@ -101,8 +135,9 @@ type GenerativeTypeProvider(config) as this =
         let explicit_conn = parameters.[7] :?> bool
         let assertionsOn = parameters.[8] :?> bool
 
-        parseConfigFile configFilePath
-        parseDelimeters delimeters
+        let parser = new ConfigParser(config.ResolutionFolder)
+        parser.parseConfigFile(configFilePath)
+        parser.parseDelimeters(delimeters)
 
         // Get a json_cfsm representation of the Scribble file 
         let fsm_as_straing = 
@@ -117,7 +152,7 @@ type GenerativeTypeProvider(config) as this =
             (Set.toList states) fsm_as_json false
         CFSMModel.init "cfsm" cfsm
 
-        let genType = generateTypes fsm_as_json name explicit_conn states firstState
+        let genType = generateTypes fsm_as_json name explicit_conn states firstState localRole
         genType
 
     let parametersTP =  

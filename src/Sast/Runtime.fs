@@ -7,6 +7,7 @@ open ScribbleGenerativeTypeProvider.DomainModel
 open ScribbleGenerativeTypeProvider.RefinementTypesDict
 open Microsoft.FSharp.Quotations
 
+
 type IContext() =
     let _ = ()
 
@@ -35,6 +36,13 @@ let initRecvHandlers name (recvHandelrsMap) =
 let mutable sendHandlers = Map.empty<string, Map<int, IContext-> IContext>>
 let initSendHandlers name (sendHandelrsMap) = 
     sendHandlers <- sendHandlers.Add("send", sendHandelrsMap)
+let mutable role = List.empty<string>
+let setEndpoint (currentRole:string) = 
+  role <- [currentRole]
+
+
+let getEndpoint () = 
+  List.item 0 role
 
 let addToSendHandlers index handler= 
     let s = sendHandlers.Item("send").Add(index, handler)

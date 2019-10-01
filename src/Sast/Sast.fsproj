@@ -76,20 +76,22 @@
     <Compile Include="ErrorMsg.fs" />
     <Compile Include="DomainModel.fs" />
     <Compile Include="TypeChoices.fs" />
+    <Compile Include="Comms.fs" />
     <Compile Include="RefinementTypes.fs" />
     <Compile Include="RefinementTypesDict.fs" />
     <Compile Include="Util.fs" />
     <Compile Include="CommunicationAgents.fs" />
     <Compile Include="Runtime.fs" />
     <Compile Include="IO.fs" />
-    <Compile Include="AsstScribbleParser.fs" />
-    <Compile Include="ITransport.fs" />
-    <Compile Include="CFSMModel.fs" />
-    <Compile Include="TypeGeneration.fs" />
     <Compile Include="ScribbleParser.fs" />
+    <Compile Include="ITransport.fs" />
+    <Compile Include="TypeGeneration.fs" />
+    <Compile Include="CFSMModel.fs" />
+    <Compile Include="TPConfigParser.fs" />
     <Compile Include="CFSMAdapter.fs" />
     <Compile Include="ScribbleGenerativeTypeProvider.fs" />
     <None Include="paket.references" />
+    <Compile Include="TCPTransport.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />

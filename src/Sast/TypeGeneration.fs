@@ -591,10 +591,10 @@ let invokeCodeOnReceive (args:Expr list)
     let newPayloadTypes = 
         getReceiveTypes payloadNames payloadTypes inferredVars
     
-    let elem = <@@ 1 @@> 
+    let printExpr = <@@ printfn "recv stateNum %A" stateNum @@> 
     //let applyFunc = <@@ %%Expr.Application(args.[2], exprDeserialize):Unit @@>
     //applyFunc
-    let ls = <@ Runtime.addToRecvHandlers stateNum %%args.[2] |> ignore @>
+    let ls = Expr.Sequential(printExpr,<@ Runtime.addToRecvHandlers stateNum %%args.[2] |> ignore @>)
     //let returnexpr = Expr.Sequential(ls,exprCaching)
     let ls1 = Expr.Sequential(ls, <@@ printfn "recv handlers %A" (Runtime.recvHandlers.Item("recv")) @@>)
     let returnexpr = Expr.Sequential(ls1,<@@ printfn "In Recv adding handler: %i" stateNum @@>) 
@@ -752,42 +752,6 @@ let invokeCodeOnChoice (payload: ScribbleProtocole.Payload []) indexList fsmInst
       let returnexpr = Expr.Sequential(acc_expr, <@@ printfn "branch handlers %A" (Runtime.branchHandlers) @@>)
       //let returnexpr = Expr.Sequential(ls1,<@@ printfn "In Recv adding handler: %i" stateNum @@>) 
       returnexpr
-
-    //let expr = Expr.Coerce(myResults, typeof<int>)
-    //Expr.Applications(myResults, [[elem]; [elem]])
-
-    //let index = Expr.Coerce(expr, typeof<int>) :? System.Int32 
-    //let elem = <@ 1 @>
-    //let index = Expr.Coerce(expr, typeof<int>)
-    //Expr.Applications( <@@ args.[%%index] @@>, [[elem]; [elem]])
-    //let elem = <@ 1 @>
-    
-
-       (*
-        let methodInfo =
-            handler.GetMethods()
-            |> Array.filter (
-                fun x -> x.Name = "Invoke" 
-                            && x.GetParameters().Length = 1)
-            |> Array.head
-        let nextPartialFn = 
-            methodInfo.Invoke(partialFn, [| args.Head |])
-        helper nextPartialFn args.Tail
-        handler 1 *)
-        //typeof<TypeChoices.Choice1> |> ignore
-        // get the current channel 
-        // TODO: Get contructor for the generated type 
-        //let instanceOfChoice = Expr.Call getTheContructorOfThisType
-        //let instance = %%(args.[0])
-        //instance
-        //Expr.Application(handler,  instance) |> ignore
-        (*let assembly = System.Reflection.Assembly.GetExecutingAssembly() 
-        let label = Runtime.getLabelType labelRead 
-        let ctor = label.GetConstructors().[0] 
-        let typing = assembly.GetType(label.FullName) 
-        System.Activator.CreateInstance(typing,[||])*)
-
-
 
 let generateHandlers (aType:ProvidedTypeDefinition)
         (labels:Map<string,ProvidedTypeDefinition>)  
@@ -956,17 +920,18 @@ let generateMethodParams (fsmInstance:ScribbleProtocole.Root []) idx
 
                 labelType.AddMemberDelayed(fun () -> m)
                 
-                let staticParams = [ProvidedStaticParameter("x", typeof<int>)]
+                let staticParams = [ProvidedStaticParameter("varname", typeof<int>)]
                 //event.Assertion = "fun x -> x < 1" |> ignore
                 m.DefineStaticParameters(staticParams, 
                                       (fun nm args ->
                                           let arg = args.[0] :?> int
+                                          let varNames = (payloadsToVarNames event.Payload)
+                                          let var_0 = List.item 0 varNames
                                           let assertVal = 
                                               if (event.Assertion<>"") 
                                               then 
                                                    let index = event.Assertion.IndexOf("->")
                                                    let cond  = event.Assertion.Substring(index + 2)
-                                                   let varNames = (payloadsToVarNames event.Payload)
                                                    let subs = [(List.item 0 varNames, arg)] |> Map.ofList
                                                    AssertionParsing.FuncGenerator.evalExpr cond subs
                                               else true
@@ -974,7 +939,7 @@ let generateMethodParams (fsmInstance:ScribbleProtocole.Root []) idx
                                               let m2 =ProvidedMethod(nm, [], resultType,
                                                         isStatic = false,
                                                         invokeCode = fun args-> 
-                                                        <@@ printf "Hello world" @@>)
+                                                        <@@ Runtime.addToContext var_0 arg @@>)
                                               labelType.AddMember m2
                                               m2
                                           else failwith "Assertion not satisfied"
@@ -1125,7 +1090,7 @@ let internal makeChoiceLabelTypes (fsmInstance:ScribbleProtocole.Root [])
                                 ProvidedMethod("receive",listParam,nextType,
                                     isStatic = false,
                                     invokeCode = fun args-> 
-                                        invokeCodeOnReceive args currEvent.Payload   
+                                        invokeCodeOnReceive args event.Payload   
                                             exprState event.Assertion inferredVars
                                             deserializeChoice event.CurrentState)
 
@@ -1155,8 +1120,6 @@ let internal makeChoiceLabelTypes (fsmInstance:ScribbleProtocole.Root [])
                                 + " : This protocol won't be taken in account by this TP. ") 
     
     (mapping,listeType)
-
-
 
 let removeAt index = function
     | xs when index >= 0 && index < List.length xs -> 
