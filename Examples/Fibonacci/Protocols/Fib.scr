@@ -7,10 +7,10 @@ global protocol Adder(role C, role S)
 	HELLO(u:int) from S to C; @"u>3" // OutoutState20
 	HELLO(v:int) from C to S; // InputState22
 	choice at C { // BranchState23: [InputStateADD, InputStateBYE]
-		ADD1(a:int) from C to S;// InputStateADD 
-		ADD2(c:int) from S to C;// OutputState24
+		ADD(a:int) from C to S;// InputStateADD 
+		BYE(c:int) from S to C;// OutputState24
 	} or {
-		BYE1(b:int) from C to S;// InputStateBYE
-		BYE2(d:int) from S to C;// OutputState25
+		BYE(b:int) from C to S;// InputStateBYE
+		BYE(d:int) from S to C;// OutputState25
   }
 }                                           

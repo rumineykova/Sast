@@ -5,12 +5,12 @@ type LRuntime(isMock, endpoint:Comms.CommunicationChannel) =
   member x.endpoint = endpoint
   member x.startClient = 
     let ip = System.Net.IPAddress.Parse("127.0.0.1")
-    let endpoint = Comms.makeTcpServerEndPoint "S" ip 4000
+    let endpoint = Comms.makeTcpServerEndPoint "S" ip 4001
     x.endpoint = endpoint
   
   member x.startServer = 
      let ip = System.Net.IPAddress.Parse("127.0.0.1")
-     let endpoint = Comms.makeTcpClientEndPoint "C" "127.0.0.1" 4000
+     let endpoint = Comms.makeTcpClientEndPoint "C" "127.0.0.1" 4001
      x.endpoint = endpoint
 
   member x.recv role label = 
